@@ -1,0 +1,313 @@
+:root {
+    /* Color */
+    --white-color: #fff;
+
+    /* Size */
+    --side-padding: 12px;
+
+    /* Font Size */
+    --font-medium: 12px;
+}
+
+/* 기본 속성 */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+button,
+button:focus {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+}
+
+
+/* 상단 네비게이션 */
+.toparea {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.toparea .top_menu {
+    display: flex;
+    list-style: none;
+    margin-right: 1vw;
+}
+
+.toparea .top_menu li {
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+/* 하단 네비게이션 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 2vw 12px 2vw;
+}
+
+.navbar .bot_menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.navbar .bot_menu img {
+    width: 100%;
+    height: 100%;
+}
+
+.navbar .bot_menu .menubar {
+    display: flex;
+    list-style: none;
+    margin-left: 52px;
+}
+
+.navbar .bot_menu .menubar li {
+    padding: 8px 12px;
+}
+
+.navbar .bot_menu .menubar li:hover {
+    color: #d49466;
+}
+
+/* 하단 네비  마이페이지 */
+.navbar .linkes {
+    display: flex;
+    font-size: 24px;
+}
+
+.navbar .linkes li {
+    padding: 8px 12px;
+}
+
+/* 하단 네비 사이드 아이콘 색 */
+.navbar .linkes a {
+    color: black;
+}
+
+.navbar .linkes .fa-heart {
+    color: red;
+}
+
+
+/* 광고, 행사 배너 */
+.banner {
+    display: flex;
+    justify-content: center;
+  }
+
+
+  .banner .banner_Swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .banner .banner_Swiper swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .banner .banner_Swiper swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 330px;
+    object-fit: cover;
+  }
+
+
+
+/* 반응형 화면 모바일 */
+@media screen and (max-width: 611px) {
+    .toparea{
+        display: none;
+    }
+    .navbar {
+        flex-direction: column;
+        margin: 10px;
+    }
+    .navbar .logo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+    
+    .navbar .logo i {
+        color: rgb(106, 106, 223);
+        font-size: 28px;
+        margin-right: 7px;
+    }
+    
+    .navbar .logo .title .top_txt{
+        font-size: 6px;
+        padding-left: 3px;
+        letter-spacing: -1.2px;
+    }
+
+    .navbar .logo .title .bot_txt{
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1.2;
+        letter-spacing: -0.6px;
+    }
+
+    .navbar .side_bar .search_bar{
+        margin: 10px 0;
+        width: 330px;
+        max-width: 90vw;
+    }
+
+    .navbar .side_bar .search_bar input[type="text"] {
+        padding: 5px 15px;
+    }
+
+    .navbar .side_bar .search_bar button {
+        padding: 5px 10px;
+        font-size: 15px;
+    }
+
+    .navbar .side_bar .linkes li{
+        display: none;
+    }
+
+    .menubar {
+        display: none;
+    }
+
+    /* 메뉴바 */
+  .mini_menubar {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    width: 100vw;
+    border: 1px solid #f8f8f8;
+  }
+
+  .mini_menubar .menuSwiper {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    text-align: center;
+    width: 80vw;
+    height: 10vh;
+  }
+
+  .mini_menubar .left_order {
+    display: flex;
+    width: 6vw;
+    margin: 2vw;
+    justify-content: flex-end;
+    max-width: 50px;
+  }
+
+  .mini_menubar .right_order {
+    display: flex;
+    width: 6vw;
+    margin: 0 2vw;
+    justify-content: flex-start;
+    max-width: 50px;
+  }
+
+  .mini_menubar .menuSwiper swiper-slide {
+    font-size: 11px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .mini_menubar .menuSwiper swiper-slide img {
+    border: 1px solid #868fe265;
+    background-color: #fff;
+    border-radius: 30px;
+    width: 2.8rem;
+    height: 2.8rem;
+    margin-bottom: 5px;
+  }
+}
+
+/* 반응형 화면 타블렛 */
+@media screen and (min-width: 612px) and (max-width: 1023px) {
+   /* 하단 네비게이션 */
+    .navbar {
+        margin: 24px 2vw 20px 3vw;
+    }
+
+    .navbar .logo i {
+        font-size: 36px;
+        margin-right: 6px;
+    }
+
+    .navbar .logo .title .top_txt{
+        font-size: 12px;
+        letter-spacing: -0.8px;
+    }
+
+    .navbar .logo .title .bot_txt{
+        font-size: 24px;
+        line-height: 1.0;
+        letter-spacing: -1.0px;
+    }
+
+    /* 검색창 */
+    .navbar .side_bar .search_bar{
+        width: 270px;
+    }
+
+    .navbar .side_bar .search_bar input[type="text"] {
+        padding: 6px 18px;
+    }
+
+    .navbar .side_bar .search_bar button {
+        padding: 6px 12px;
+        font-size: 20px;
+    }
+
+    .navbar .side_bar .linkes {
+        display: none;
+    } 
+
+    .menubar .menuSwiper swiper-slide {
+        font-size: 12px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+    
+      .menubar .menuSwiper swiper-slide img {
+        border: 1px solid #868fe265;
+        background-color: #fff;
+        border-radius: 30px;
+        width: 45px;
+        height: 45px;
+        margin-bottom: 10px;
+      }
+}

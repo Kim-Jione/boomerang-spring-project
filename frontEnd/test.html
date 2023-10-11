@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.3s;
+        }
+
+        .box {
+            width: 200px;
+            height: 100px;
+            background-color: #3498db;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+    </style>
+    <title>박스 슬라이더</title>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider">
+            <div class="box">Box 1</div>
+            <div class="box">Box 2</div>
+            <div class="box">Box 3</div>
+            <div class="box">Box 4</div>
+            <div class="box">Box 5</div> <!-- 추가 박스 -->
+            <div class="box">Box 6</div> <!-- 추가 박스 -->
+            <div class="box">Box 7</div> <!-- 추가 박스 -->
+            <div class="box">Box 8</div> <!-- 추가 박스 -->
+        </div>
+        <button class="prev-button">이전</button>
+        <button class="next-button">다음</button>
+    </div>
+    <script>
+        const slider = document.querySelector('.slider');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+
+        let slideIndex = 0;
+
+        prevButton.addEventListener('click', () => {
+            slideIndex = Math.max(slideIndex - 1, 0);
+            updateSlider();
+        });
+
+        nextButton.addEventListener('click', () => {
+            slideIndex = Math.min(slideIndex + 1, slider.children.length - 4);
+            updateSlider();
+        });
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${slideIndex * 200}px)`;
+        }
+
+        updateSlider();
+    </script>
+</body>
+</html>
+
