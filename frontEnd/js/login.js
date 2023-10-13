@@ -1,18 +1,11 @@
-let id = $('#id');
-let pw = $('#pw');
-let btn = $('#btn');
+const container = document.getElementById('container');
+const registerBtn = document.getElementById('register');
+const loginBtn = document.getElementById('login');
 
-$(btn).on('click', function() {
-    if($(id).val() == "") {
-        $(id).next('label').addClass('warning');
-        setTimeout(function() {
-            $('label').removeClass('warning');
-        },1500);
-    }
-    else if($(pw).val() == "") {
-        $(pw).next('label').addClass('warning');
-        setTimeout(function() {
-            $('label').removeClass('warning');
-        },1500);
-    }
+registerBtn.addEventListener('click', () => {
+    container.classList.add("active");
+});
+
+loginBtn.addEventListener('click', () => {
+    container.classList.remove("active");
 });
