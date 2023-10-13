@@ -26,13 +26,19 @@ body{
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
     overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
+    width: 60%;
+    height: 50%;
+    /* max-width: 100%;*/
+    min-width: 600px;
+    min-height: 480px; 
+}
+
+.container h1 {
+    font-size: 2.5vw;
 }
 
 .container p{
-    font-size: 14px;
+    font-size: 1vw;
     line-height: 20px;
     letter-spacing: 0.3px;
     margin: 20px 0;
