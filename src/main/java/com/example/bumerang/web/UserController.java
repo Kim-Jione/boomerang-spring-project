@@ -76,11 +76,4 @@ public class UserController {
         return "redirect:/";
     }
 
-    // 공지사항 작성하기 화면
-    @GetMapping("/user/noticeWriteForm")
-    public String writeForm() {
-        return "user/noticeWriteForm";
-    }
-
-
 }

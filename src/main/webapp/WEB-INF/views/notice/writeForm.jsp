@@ -46,9 +46,8 @@
 
                 <label for="noticeType">공지사항 유형</label>
                 <select id="noticeType" name="noticeType">
-                    <option value="스텝">스텝</option>
-                    <option value="감독">감독</option>
-                    <option value="배우">배우</option>
+                    <option value="컨텐츠 공지">컨텐츠 공지</option>
+                    <option value="서비스 공지">서비스 공지</option>
                 </select>
 
                 <input type="hidden" id="userId" name="userId" value="${principal.userId}" required>
@@ -56,7 +55,46 @@
                 <!-- "작성 완료" 버튼 -->
                 <input type="button" id="writeBtn" value="작성 완료">
             </div>
-            
+            <script>
+                $("#writeBtn").click(() => {
+                    write();
+                });
+
+                function write() {
+                    let data = {
+                        noticeTitle: $("#noticeTitle").val(),
+                        noticeContent: $("#noticeContent").val(),
+                        noticeType: $("#noticeType").val(),
+                        userId: $("#userId").val()
+                    };
+
+                    if (data.noticeTitle.length < 1) {
+                        alert("제목을 입력해주셔야 합니다.");
+                        return;
+                    }
+
+                    if (data.noticeContent.length < 1) {
+                        alert("내용을 입력해주셔야 합니다.");
+                        return;
+                    }
+
+                    $.ajax("/notice/write", {
+                        type: "POST",
+                        dataType: "json",
+                        data: JSON.stringify(data),
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }).done((res) => {
+                        if (res.code == 1) {
+                            alert(res.msg);
+                        } else {
+                            alert(res.msg);
+                            return false;
+                        }
+                    });
+                }
+            </script>
         </body>
 
         </html>

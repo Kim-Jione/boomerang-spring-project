@@ -102,6 +102,7 @@
                         <p><a href="/user/joinForm"> 회원가입</a></p>
                         <p> <a href="/user/loginForm">로그인</a></p>
                         <p><a href="/jobSearch/writeForm">구인정보 작성하기</a></p>
+                        <p><a href="/notice/writeForm">공지사항 작성하기</a></p>
                     </div>
                 </div>
             </div>

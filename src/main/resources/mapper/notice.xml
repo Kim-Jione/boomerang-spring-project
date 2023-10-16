@@ -18,9 +18,9 @@
 
     <insert id="insert">
         INSERT INTO notice
-        (notice_title, notice_content, notice_type, user_id, created_at)
+        (notice_title, notice_content, notice_type, user_id)
         VALUES
-        (#{noticeTitle}, #{noticeContent}, #{noticeType}, #{userId}, NOW())
+        (#{noticeTitle}, #{noticeContent}, #{noticeType}, #{userId})
     </insert>
 
     <update id="update">
