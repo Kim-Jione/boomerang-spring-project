@@ -28,7 +28,7 @@
                 <tbody>
                     <c:forEach var="notice" items="${noticeList}">
                         <tr>
-                            <td>${notice.noticeId}</td>
+                            <td><a href="/notice/detailForm/${notice.noticeId}">${notice.noticeId}이동하기</a></td>
                             <td>${notice.noticeTitle}</td>
                             <td>${notice.noticeContent}</td>
                             <td>${notice.noticeType}</td>

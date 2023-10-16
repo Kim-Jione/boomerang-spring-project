@@ -4,13 +4,11 @@ import com.example.bumerang.domain.notice.Notice;
 import com.example.bumerang.service.NoticeService;
 import com.example.bumerang.web.dto.request.notice.WriteDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
+import com.example.bumerang.web.dto.response.notice.NoticeDetailDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -41,5 +39,13 @@ public class NoticeController {
         List<Notice> noticeList = noticeService.findAll();
         model.addAttribute("noticeList", noticeList);
         return "notice/writeList";
+    }
+
+    // 공지사항 상세보기 화면
+    @GetMapping("/notice/detailForm/{noticeId}")
+    public String detailForm(@PathVariable Integer noticeId, Model model) {
+        NoticeDetailDto noticeDetail = noticeService.findByNotice(noticeId);
+        model.addAttribute("notice", noticeDetail);
+        return "notice/detailForm";
     }
 }

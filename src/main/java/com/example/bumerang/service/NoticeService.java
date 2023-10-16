@@ -2,6 +2,7 @@ package com.example.bumerang.service;
 
 import com.example.bumerang.domain.notice.Notice;
 import com.example.bumerang.domain.notice.NoticeDao;
+import com.example.bumerang.web.dto.response.notice.NoticeDetailDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,9 @@ public class NoticeService {
 
 	public List<Notice> findAll() {
 		return noticeDao.findAll();
+	}
+
+	public NoticeDetailDto findByNotice(Integer noticeId) {
+		return noticeDao.findByNoticeDetail(noticeId);
 	}
 }
