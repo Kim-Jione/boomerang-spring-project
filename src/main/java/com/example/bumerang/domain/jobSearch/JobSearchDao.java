@@ -15,5 +15,7 @@ public interface JobSearchDao {
 
     public void delete(Integer jobId);
 
-    JobSearchDetailDto findByJobSearchDetail(Integer jobId);
+    public JobSearchDetailDto findByJobSearchDetail(Integer jobId);
+
+    public void deleteJob(Integer jobId);
 }

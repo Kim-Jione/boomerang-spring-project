@@ -56,4 +56,7 @@
         WHERE j.job_id=#{jobId}
     </select>
 
+    <delete id="deleteJob">
+        DELETE FROM job_search WHERE job_id = #{jobId}
+    </delete>
 </mapper>

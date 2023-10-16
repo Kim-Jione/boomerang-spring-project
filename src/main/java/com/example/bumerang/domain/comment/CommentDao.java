@@ -12,4 +12,5 @@ public interface CommentDao {
     public void update(Comment comment);
 
     public void delete(Integer commentId);
+
 }

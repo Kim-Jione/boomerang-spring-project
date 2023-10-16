@@ -1,5 +1,6 @@
 package com.example.bumerang.service;
 
+import com.example.bumerang.domain.comment.CommentDao;
 import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.domain.jobSearch.JobSearchDao;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
@@ -18,6 +19,7 @@ public class JobSearchService {
 
 	private final HttpSession session;
 	private final JobSearchDao jobSearchDao;
+	private final CommentDao commentDao;
 
 
 	public void write(WriteDto writeDto) {
@@ -42,7 +44,7 @@ public class JobSearchService {
 		System.err.println("디버그 getJobContent: "+updateDto.toEntity().getJobContent());
 	}
 
-	public void delete(Integer jobSearchId) {
-		jobSearchDao.delete(jobSearchId);
+	public void delete(Integer jobId) {
+		jobSearchDao.deleteJob(jobId);
 	}
 }
