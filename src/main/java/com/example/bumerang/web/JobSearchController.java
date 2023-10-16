@@ -5,6 +5,7 @@ import com.example.bumerang.service.JobSearchService;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobSearchDetailDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -46,7 +47,9 @@ public class JobSearchController {
     @GetMapping("/jobSearch/detailForm/{jobId}")
     public String detailForm(@PathVariable Integer jobId, Model model) {
         JobSearchDetailDto jobSearchDetail = jobSearchService.findByJobSearch(jobId);
+        List<JobCommentDto> commentList = jobSearchService.jobFindAll(jobId);
         model.addAttribute("jobSearch", jobSearchDetail);
+        model.addAttribute("commentList", commentList);
         return "jobSearch/detailForm";
     }
 
@@ -70,5 +73,13 @@ public class JobSearchController {
     public String delete(@PathVariable Integer jobId) {
         jobSearchService.delete(jobId);
         return "redirect:/jobSearch/writeList";
+    }
+
+    // 구인정보 수정하기 화면
+    @GetMapping("/jobSearch/mainForm")
+    public String mainForm(Model model) {
+        List<JobSearch> jobSearchList = jobSearchService.findAll();
+        model.addAttribute("jobSearchList", jobSearchList);
+        return "jobSearch/mainForm";
     }
 }

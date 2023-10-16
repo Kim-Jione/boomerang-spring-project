@@ -74,6 +74,29 @@
     <label for="userId">작성자 id</label>
     <p>${jobSearch.userId}</p>
 
+    <h1>댓글 목록</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>댓글Id</th>
+                            <th>댓글 내용</th>
+                            <th>댓글 작성자 닉네임</th>
+                            <th>댓글 작성자 프로필이미지</th>
+                            <th>댓글 작성 시간</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="comment" items="${commentList}">
+                            <tr>
+                                <td>${comment.commentId}</td>
+                                <td>${comment.commentContent}</td>
+                                <td>${comment.userNickname}</td>
+                                <td>${comment.userProfileImg}</td>
+                                <td>${comment.createdAt}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
 </div>
 </body>
 </html>

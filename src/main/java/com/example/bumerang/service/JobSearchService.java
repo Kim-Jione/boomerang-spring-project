@@ -5,6 +5,7 @@ import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.domain.jobSearch.JobSearchDao;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobSearchDetailDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class JobSearchService {
 	}
 
 	public JobSearchDetailDto findByJobSearch(Integer jobId) {
-        return jobSearchDao.findByJobSearchDetail(jobId);
+		return jobSearchDao.findByJobSearchDetail(jobId);
 	}
 
 	public void update(UpdateDto updateDto) {
@@ -46,5 +47,9 @@ public class JobSearchService {
 
 	public void delete(Integer jobId) {
 		jobSearchDao.deleteJob(jobId);
+	}
+
+	public  List<JobCommentDto> jobFindAll(Integer jobId) {
+		return commentDao.findAllJob(jobId);
 	}
 }
