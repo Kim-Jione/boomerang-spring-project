@@ -57,6 +57,8 @@
     </select>
 
     <delete id="deleteJob">
-        DELETE FROM job_search WHERE job_id = #{jobId}
+        DELETE FROM comment WHERE job_id = #{jobId};
+        DELETE FROM likey WHERE job_id = #{jobId};
+        DELETE FROM job_search WHERE job_id = #{jobId};
     </delete>
 </mapper>
