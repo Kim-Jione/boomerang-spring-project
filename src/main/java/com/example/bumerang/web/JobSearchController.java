@@ -48,8 +48,10 @@ public class JobSearchController {
     public String detailForm(@PathVariable Integer jobId, Model model) {
         JobSearchDetailDto jobSearchDetail = jobSearchService.findByJobSearch(jobId);
         List<JobCommentDto> commentList = jobSearchService.jobFindAll(jobId);
+        Integer likeyCount = jobSearchService.likeyCount(jobId);
         model.addAttribute("jobSearch", jobSearchDetail);
         model.addAttribute("commentList", commentList);
+        model.addAttribute("likeyCount", likeyCount);
         return "jobSearch/detailForm";
     }
 

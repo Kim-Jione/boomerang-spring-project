@@ -73,7 +73,7 @@
 
     <label for="userId">작성자 id</label>
     <p>${jobSearch.userId}</p>
-
+    <h1>게시글 추천 수: ${likeyCount}</h1>
     <h1>댓글 목록</h1>
                 <table>
                     <thead>

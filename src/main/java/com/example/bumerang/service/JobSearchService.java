@@ -3,6 +3,7 @@ package com.example.bumerang.service;
 import com.example.bumerang.domain.comment.CommentDao;
 import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.domain.jobSearch.JobSearchDao;
+import com.example.bumerang.domain.likey.LikeyDao;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
@@ -21,6 +22,7 @@ public class JobSearchService {
 	private final HttpSession session;
 	private final JobSearchDao jobSearchDao;
 	private final CommentDao commentDao;
+	private final LikeyDao likeyDao;
 
 
 	public void write(WriteDto writeDto) {
@@ -51,5 +53,9 @@ public class JobSearchService {
 
 	public  List<JobCommentDto> jobFindAll(Integer jobId) {
 		return commentDao.findAllJob(jobId);
+	}
+
+	public Integer likeyCount(Integer jobId) {
+		return likeyDao.likeyCount(jobId);
 	}
 }
