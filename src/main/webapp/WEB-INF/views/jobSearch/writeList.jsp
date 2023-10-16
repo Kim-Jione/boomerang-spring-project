@@ -56,8 +56,7 @@
                                 <a href="/jobSearch/updateForm/${jobSearch.jobId}" class="btn btn-warning">수정</a>
                             </td>
                             <td>
-                                <form action="" method="post">
-                                    <input type="hidden" name="jobId" value="${jobSearch.jobId}">
+                                <form action="/jobSearch/delete/${jobSearch.jobId}" method="post" onsubmit="return confirmDelete()">
                                     <button type="submit" class="btn btn-danger">
                                         삭제
                                     </button>
@@ -67,7 +66,11 @@
                     </c:forEach>
                 </tbody>
             </table>
-
+<script>
+    function confirmDelete() {
+        return confirm("진짜 삭제하시겠습니까?"); // 삭제 여부를 묻는 확인 대화상자 표시
+    }
+</script>
 
         </body>
 
