@@ -21,7 +21,6 @@ import java.util.List;
 public class JobSearchController {
 
     private final JobSearchService jobSearchService;
-
     // 구인정보 작성하기 화면
     @GetMapping("/jobSearch/writeForm")
     public String writeForm() {

@@ -1,5 +1,6 @@
 package com.example.bumerang.domain.user;
 
+import com.example.bumerang.web.UserController;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

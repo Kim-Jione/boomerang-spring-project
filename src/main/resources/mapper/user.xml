@@ -58,5 +58,4 @@
             resultType="com.example.bumerang.web.dto.SessionUserDto">
         SELECT * FROM user WHERE user_login_id=#{userLoginId} AND user_password=#{userPassword}
     </select>
-
 </mapper>

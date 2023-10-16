@@ -9,4 +9,5 @@ public class Likey {
     private Integer jobId;
     private Integer pfId;
     private Integer userId;
+
 }
