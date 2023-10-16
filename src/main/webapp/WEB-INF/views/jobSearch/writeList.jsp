@@ -36,23 +36,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="post" items="${postList}">
+                    <c:forEach var="jobSearch" items="${jobSearchList}">
                         <tr>
-                            <td><a href="/jobSearch/detailForm/${post.jobId}">${post.jobId}이동하기</a></td>
-                            <td>${post.jobContentTitle}</td>
-                            <td>${post.jobContent}</td>
-                            <td>${post.jobGenre}</td>
-                            <td>${post.jobArtTitle}</td>
-                            <td>${post.jobStartDate}</td>
-                            <td>${post.jobProductionDate}</td>
-                            <td>${post.jobTo}</td>
-                            <td>${post.jobField}</td>
-                            <td>${post.jobGender}</td>
-                            <td>${post.jobContact}</td>
-                            <td>${post.jobDeadline}</td>
-                            <td>${post.userId}</td>
+                            <td><a href="/jobSearch/detailForm/${jobSearch.jobId}">${jobSearch.jobId}이동하기</a></td>
+                            <td>${jobSearch.jobContentTitle}</td>
+                            <td>${jobSearch.jobContent}</td>
+                            <td>${jobSearch.jobGenre}</td>
+                            <td>${jobSearch.jobArtTitle}</td>
+                            <td>${jobSearch.jobStartDate}</td>
+                            <td>${jobSearch.jobProductionDate}</td>
+                            <td>${jobSearch.jobTo}</td>
+                            <td>${jobSearch.jobField}</td>
+                            <td>${jobSearch.jobGender}</td>
+                            <td>${jobSearch.jobContact}</td>
+                            <td>${jobSearch.jobDeadline}</td>
+                            <td>${jobSearch.userId}</td>
                             <td>
-                                <a href="/admin/${admin.usersId}/update" class="btn btn-warning">수정</a>
+                                <a href="/jobSearch/updateForm/${jobSearch.jobId}" class="btn btn-warning">수정</a>
                             </td>
                         </tr>
                     </c:forEach>

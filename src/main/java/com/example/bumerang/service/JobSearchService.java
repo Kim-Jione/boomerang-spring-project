@@ -2,6 +2,7 @@ package com.example.bumerang.service;
 
 import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.domain.jobSearch.JobSearchDao;
+import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobSearchDetailDto;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,15 @@ public class JobSearchService {
 	public JobSearchDetailDto findByJobSearch(Integer jobSearchId) {
 		JobSearchDetailDto jobSearchDetail = jobSearchDao.findByJobSearchDetail(jobSearchId);
 		return jobSearchDetail;
+	}
+
+	public void update(UpdateDto updateDto) {
+
+		System.err.println("디버그 서비스 진입");
+		jobSearchDao.update(updateDto.toEntity());
+		System.err.println("디버그 getJobId: "+updateDto.toEntity().getJobId());
+		System.err.println("디버그 getUserId: "+updateDto.toEntity().getUserId());
+		System.err.println("디버그 getJobContentTitle: "+updateDto.toEntity().getJobContentTitle());
+		System.err.println("디버그 getJobContent: "+updateDto.toEntity().getJobContent());
 	}
 }

@@ -37,10 +37,10 @@
         job_gender = #{jobGender},
         job_contact = #{jobContact},
         job_view = #{jobView},
-        created_at = NOW()
+        job_deadline = #{jobDeadline}
         WHERE
-        job_content_title = #{jobContentTitle}
-        AND user_id = #{userId};
+        job_id = #{jobId}
+        AND user_id = #{userId}
     </update>
 
     <delete id="delete">
