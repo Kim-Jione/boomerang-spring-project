@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -18,5 +19,9 @@ public class NoticeService {
 
 	public void insert(Notice writeDto) {
 		noticeDao.insert(writeDto);
+	}
+
+	public List<Notice> findAll() {
+		return noticeDao.findAll();
 	}
 }

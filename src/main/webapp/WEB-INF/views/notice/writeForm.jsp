@@ -88,6 +88,7 @@
                     }).done((res) => {
                         if (res.code == 1) {
                             alert(res.msg);
+                            location.href = "/notice/writeList";
                         } else {
                             alert(res.msg);
                             return false;
