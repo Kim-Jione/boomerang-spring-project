@@ -6,8 +6,9 @@ import com.example.bumerang.domain.jobSearch.JobSearchDao;
 import com.example.bumerang.domain.likey.LikeyDao;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
+import com.example.bumerang.web.dto.response.jobSearch.BestJobDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
-import com.example.bumerang.web.dto.response.jobSearch.JobSearchDetailDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobDetailDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +34,8 @@ public class JobSearchService {
 		return jobSearchDao.findAll();
 	}
 
-	public JobSearchDetailDto findByJobSearch(Integer jobId) {
-		return jobSearchDao.findByJobSearchDetail(jobId);
+	public JobDetailDto findByJob(Integer jobId) {
+		return jobSearchDao.findByJobDetail(jobId);
 	}
 
 	public void update(UpdateDto updateDto) {
@@ -57,5 +58,13 @@ public class JobSearchService {
 
 	public Integer likeyCount(Integer jobId) {
 		return likeyDao.likeyCount(jobId);
+	}
+
+	public List<JobDetailDto> findAllJob() {
+		return jobSearchDao.findAllJob();
+	}
+
+	public List<BestJobDto> findAllBeestJob() {
+		return jobSearchDao.findAllBestJob();
 	}
 }

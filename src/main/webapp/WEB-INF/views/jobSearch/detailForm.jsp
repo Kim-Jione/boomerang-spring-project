@@ -43,46 +43,46 @@
             <h1>구인 상세보기</h1>
             <div>
                 <label for="jobContentTitle">모집 제목</label>
-                <p>${jobSearch.jobContentTitle}</p>
+                <p>${job.jobContentTitle}</p>
 
                 <label for="jobContent">모집 내용</label>
-                <p>${jobSearch.jobContent}</p>
+                <p>${job.jobContent}</p>
 
                 <label for="jobGenre">모집 장르</label>
-                <p>${jobSearch.jobGenre}</p>
+                <p>${job.jobGenre}</p>
 
                 <label for="jobArtTitle">작품 제목</label>
-                <p>${jobSearch.jobArtTitle}</p>
+                <p>${job.jobArtTitle}</p>
 
                 <label for="jobStartDate">모집 시작일</label>
-                <p>${jobSearch.jobStartDate}</p>
+                <p>${job.jobStartDate}</p>
 
                 <label for="jobProductionDate">제작일</label>
-                <p>${jobSearch.jobProductionDate}</p>
+                <p>${job.jobProductionDate}</p>
 
                 <label for="jobTo">모집 인원</label>
-                <p>${jobSearch.jobTo}</p>
+                <p>${job.jobTo}</p>
 
                 <label for="jobField">모집 분야</label>
-                <p>${jobSearch.jobField}</p>
+                <p>${job.jobField}</p>
 
                 <label for="jobGender">모집 성별</label>
-                <p>${jobSearch.jobGender}</p>
+                <p>${job.jobGender}</p>
 
                 <label for="jobContact">연락방법</label>
-                <p>${jobSearch.jobContact}</p>
+                <p>${job.jobContact}</p>
 
                 <label for="jobDeadline">마감일</label>
-                <p>${jobSearch.jobDeadline}</p>
+                <p>${job.jobDeadline}</p>
 
                 <label for="createdAt">구인정보글 작성일</label>
-                <p>${jobSearch.createdAt}</p>
+                <p>${job.createdAt}</p>
 
                 <label for="userNickname">작성자 닉네임</label>
-                <p>${jobSearch.userNickname}</p>
+                <p>${job.userNickname}</p>
 
                 <label for="userProfileImg">작성자 프로필 이미지</label>
-                <p>${jobSearch.userProfileImg}</p>
+                <p>${job.userProfileImg}</p>
 
                 <h1>게시글 추천 수: ${likeyCount}</h1>
                 <h1>댓글 목록</h1>
