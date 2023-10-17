@@ -109,6 +109,18 @@ body {
     font-weight: 600;
 }
 
+.form_container .profile_info #user_password_confirm{
+    margin-bottom: 3px;
+}
+
+.form_container .profile_info #passwordError {
+    margin-bottom: 20px;
+}
+
+/* .form_container .profile_info #email_label {
+    margin-top: 20px;
+} */
+
 .form_container .profile_info .gender span {
     font-weight: 600;
     margin-right: 50px;
