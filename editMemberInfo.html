@@ -34,7 +34,7 @@
             </div>
             <button id="close">닫기</button>
           </div>
-          <h2 class="welcome">님 환영해요.</h2>
+          <h2 class="welcome">${user_nickname}님 환영해요.</h2>
         </div>
 
         <form class="profile_info" action="" method="post">
@@ -46,23 +46,25 @@
             placeholder="닉네임을 입력해주세요."
           />
 
+          <label for="user_password">비밀번호</label>
+          <input type="password" name="user_password" id="user_password" placeholder="영어 대/소문자, 특수문자를 포함하여 8자 이상">
+
+          <label for="user_password_check">비밀번호 확인</label>
+          <input type="password" name="user_password_check" id="user_password_check" placeholder="위 입력한 비밀번호와 동일하게 적어주세요">
+
+          <label for="user_email">이메일</label>
+          <input type="email" name="user_email" placeholder="email@xxxx">
+
           <div class="gender">
             <span class="accent">성별</span>
             <label for="male">남성</label>
-            <input type="radio" name="user_gender" value="true" />
+            <input type="radio" name="user_gender" value="true" checked />
             <label for="female">여성</label>
             <input type="radio" name="user_gender" value="false" />
           </div>
 
-          <label for="user_age">나이</label>
-          <input
-            class="user_age"
-            type="number"
-            name="user_age"
-            placeholder="만 나이(숫자만)"
-          />
 
-          <label for="generation">닉네임</label>
+          <label for="generation">연령대</label>
           <select id="generation">
             <option value="옵션1">10대</option>
             <option value="옵션2">20대</option>
@@ -85,9 +87,10 @@
 
           <label for="career">경력</label>
           <select id="career">
-            <option value="옵션1">1~3년</option>
-            <option value="옵션2">4~6년</option>
-            <option value="옵션3">7년 이상</option>
+            <option value="옵션1">신인</option>
+            <option value="옵션2">1~3년</option>
+            <option value="옵션3">4~6년</option>
+            <option value="옵션4">7년 이상</option>
           </select>
 
           <label for="intro">자기소개</label>

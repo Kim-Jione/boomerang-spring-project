@@ -30,9 +30,6 @@ body {
     /* position: relative; */
     /* height: 100vh; */
     /* width: 40vw; */
-    
-    
-
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -69,8 +66,8 @@ body {
 
 .profile_img .icon img {
     border-radius: 100%;
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
 }
 
 .profile_img #imageSelector {
