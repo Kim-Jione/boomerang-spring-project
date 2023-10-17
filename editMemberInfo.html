@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/memberInfo.css" />
+    <title>회원 정보 수정하기</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form_container">
+        <div class="profile_img">
+          <div class="icon">
+            <img src="image/chara/mainlogo.png" id="icon_img" />
+          </div>
+          <div id="imageSelector">
+            <h2>프로필 이미지 선택하기</h2>
+            <div>
+              <img class='icon_imgs' src="image/chara/mainlogo.png" />
+              <img class='icon_imgs' src="image/chara/boogie.png" />
+              <img class='icon_imgs' src="image/chara/ggodeungo.jpeg" />
+            </div>
+            <button id="close">닫기</button>
+          </div>
+          <h2 class="welcome">님 환영해요.</h2>
+        </div>
+
+        <form class="profile_info">
+          <label for="user_nickname">닉네임</label>
+          <input
+            type="text"
+            name="user_nickname"
+            id="user_nickname"
+            placeholder="닉네임을 입력해주세요."
+          />
+
+          <div class="gender">
+            <span class="accent">성별</span>
+            <label for="male">남성</label>
+            <input type="radio" name="user_gender" value="true" />
+            <label for="female">여성</label>
+            <input type="radio" name="user_gender" value="false" />
+          </div>
+
+          <label for="user_age">나이</label>
+          <input
+            class="user_age"
+            type="number"
+            name="user_age"
+            placeholder="만 나이(숫자만)"
+          />
+
+          <label for="generation">닉네임</label>
+          <select id="generation">
+            <option value="옵션1">10대</option>
+            <option value="옵션2">20대</option>
+            <option value="옵션3">30대</option>
+            <option value="옵션4">40대</option>
+            <option value="옵션4">50대</option>
+            <option value="옵션4">60대 이상</option>
+          </select>
+
+          <label for="position">포지션</label>
+          <select id="position">
+            <option value="옵션1">배우</option>
+            <option value="옵션2">연출</option>
+            <option value="옵션3">음향</option>
+            <option value="옵션4">카메라</option>
+            <option value="옵션4">조명</option>
+            <option value="옵션4">작가</option>
+            <option value="옵션4">기타</option>
+          </select>
+
+          <label for="career">경력</label>
+          <select id="career">
+            <option value="옵션1">1~3년</option>
+            <option value="옵션2">4~6년</option>
+            <option value="옵션3">7년 이상</option>
+          </select>
+
+          <label for="intro">자기소개</label>
+          <textarea
+            name="intro"
+            id="intro"
+            placeholder="자기소개를 입력해주세요."
+          ></textarea>
+
+          <label for="port_link">포트폴리오 링크</label>
+          <input
+            class="link"
+            type="text"
+            name="intro"
+            id="port_link"
+            placeholder="포트폴리오 링크를 입력해주세요."
+          />
+
+          <label for="contact_link">연락 방법</label>
+          <input
+            class="link"
+            type="text"
+            name="intro"
+            id="contact_link"
+            placeholder="카카오톡, 전화번호 등 연락처를 입력해주세요."
+          />
+          <button type="submit" class="btn_memberInfo">프로필 저장</button>
+        </form>
+        <form>
+          <button type="submit" class="btn_withrawal">회원 탈퇴</button>
+        </form>
+      </div>
+    </div>
+    <script src="js/editMemberInfo.js"></script>
+  </body>
+</html>

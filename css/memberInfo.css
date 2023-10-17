@@ -1,0 +1,201 @@
+:root {
+    /* Color */
+    --white-color: #fff;
+
+    /* Size */
+    --side-padding: 12px;
+
+    /* Font Size */
+    --font-medium: 12px;
+}
+
+/* 기본 속성 */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* height: 100vh; */
+}
+
+.container {
+    background-color: #fff;
+    /* position: relative; */
+    /* height: 100vh; */
+    /* width: 40vw; */
+    
+    
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px
+}
+
+.form_container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.profile_img{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.profile_img .icon{
+    border-radius: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    width: 200px;
+    height:200px;
+    margin-bottom: 30px;
+}
+
+.profile_img .icon img {
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.profile_img #imageSelector {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #000;
+    width: 600px;
+}
+
+.profile_img #imageSelector img{
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    margin: 30px 10px;
+}
+
+.profile_img .welcome {
+    font-size: 24px;   
+    margin-bottom: 20px;
+}
+
+.form_container form{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    width: 500px;
+    margin: 10px;
+    height: 100%;
+}
+
+.form_container .profile_info label {
+    font-weight: 600;
+}
+
+.form_container .profile_info .gender span {
+    font-weight: 600;
+    margin-right: 50px;
+}
+
+.form_container .profile_info .gender label {
+    margin-left: 15px;
+}
+
+.form_container .profile_info .gender input {
+    height: 15px;
+    width: 50px;
+}
+
+.form_container .profile_info input{
+    background-color: #fff;
+    border: solid rgb(232, 232, 232) 1px;
+    margin: 8px 0;
+    margin-bottom: 30px;
+    padding: 10px 15px;
+    font-size: var(--font-medium) * 1.5;
+    border-radius: 8px;
+    width: 100%;
+    height: 50px;
+    outline: none;
+}
+
+.form_container .profile_info select{
+    background-color: #fff;
+    border: solid rgb(232, 232, 232) 1px;
+    margin: 8px 0;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    font-size: var(--font-medium) * 1.5;
+    border-radius: 8px;
+    width: 300px;
+    outline: none;
+}
+
+.form_container .profile_info #intro {
+    background-color: #fff;
+    border: solid rgb(232, 232, 232) 1px;
+    margin: 8px 0;
+    margin-bottom: 30px;
+    padding: 10px 15px;
+    font-size: var(--font-medium) * 1.5;
+    border-radius: 8px;
+    width: 100%;
+    height: 200px;
+    outline: none;
+    resize: none;
+}
+
+.form_container button {
+    background-color: #1899D6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round,sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+}
+
+.form_container .btn_withrawal {
+    background-color: #d61818;
+}
+
+
