@@ -57,17 +57,20 @@ body {
 }
 
 .profile_img .icon{
+    display: flex;
     border-radius: 100%;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     width: 200px;
     height:200px;
     margin-bottom: 30px;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile_img .icon img {
     border-radius: 100%;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
 }
 
 .profile_img #imageSelector {
@@ -79,7 +82,7 @@ body {
     background-color: #fff;
     padding: 20px;
     border: 1px solid #000;
-    width: 600px;
+    width: 660px;
 }
 
 .profile_img #imageSelector img{
