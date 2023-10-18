@@ -225,8 +225,40 @@ body {
     -webkit-filter: brightness(1.1);
 }
 
-.form_container .btn_withrawal {
+.form_container .withdrawal{
+    
+}
+
+.form_container .withdrawal .btn_withdrawal {
     background-color: #d61818;
+}
+
+.form_container .withdrawal .confirm_withdrwal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #000;
+    width: 400px;
+}
+
+.form_container .withdrawal .confirm_withdrwal *{
+    margin: 10px 0;
+    font-size: var(--font-medium)*1.2;
+    font-weight: 600;
+}
+
+.form_container .withdrawal .confirm_withdrwal .btn_withdrawal_confirm {
+    background-color: black;
+}
+
+.form_container .withdrawal .confirm_withdrwal .btn_withdrawal_close {
+    background-color: white;
+    color: black;
+    border: solid 1px black;
 }
 
 
