@@ -11,6 +11,7 @@
       <div class="form_container">
         <div class="profile_img">
           <div class="icon">
+            <!-- <img src="${img_src}" id="icon_img" /> -->
             <img src="image/chara/bugi1.jpg" id="icon_img" />
           </div>
           <div id="imageSelector">
@@ -78,38 +79,39 @@
             <input type="radio" name="user_gender" value="false" />
           </div>
 
-          <label for="generation">연령대</label>
-          <select id="generation">
-            <option value="옵션1">10대</option>
-            <option value="옵션2">20대</option>
-            <option value="옵션3">30대</option>
-            <option value="옵션4">40대</option>
-            <option value="옵션4">50대</option>
-            <option value="옵션4">60대 이상</option>
+          <label for="age">연령대</label>
+          <select name="user_age" id="age">
+            <option value="0">10대 이하</option>
+            <option value="10">10대</option>
+            <option value="20">20대</option>
+            <option value="30">30대</option>
+            <option value="40">40대</option>
+            <option value="50">50대</option>
+            <option value="60">60대 이상</option>
           </select>
 
           <label for="position">포지션</label>
-          <select id="position">
-            <option value="옵션1">배우</option>
-            <option value="옵션2">연출</option>
-            <option value="옵션3">음향</option>
-            <option value="옵션4">카메라</option>
-            <option value="옵션4">조명</option>
-            <option value="옵션4">작가</option>
-            <option value="옵션4">기타</option>
+          <select name="user_position" id="position">
+            <option value="배우">배우</option>
+            <option value="연출">연출</option>
+            <option value="음향">음향</option>
+            <option value="카메라">카메라</option>
+            <option value="조명">조명</option>
+            <option value="작가">작가</option>
+            <option value="기타">기타</option>
           </select>
 
           <label for="career">경력</label>
-          <select id="career">
-            <option value="옵션1">신인</option>
-            <option value="옵션2">1~3년</option>
-            <option value="옵션3">4~6년</option>
-            <option value="옵션4">7년 이상</option>
+          <select name="user_career" id="career">
+            <option value="신인">신인</option>
+            <option value="1~3년">1~3년</option>
+            <option value="4~6년">4~6년</option>
+            <option value="7년 이상">7년 이상</option>
           </select>
 
           <label for="intro">자기소개</label>
           <textarea
-            name="intro"
+            name="user_intro"
             id="intro"
             placeholder="자기소개를 입력해주세요."
             autocomplete="off"
@@ -119,7 +121,7 @@
           <input
             class="link"
             type="text"
-            name="intro"
+            name="user_port_link"
             id="port_link"
             placeholder="포트폴리오 링크를 입력해주세요."
           />
@@ -128,7 +130,7 @@
           <input
             class="link"
             type="text"
-            name="intro"
+            name="user_contact_link"
             id="contact_link"
             placeholder="카카오톡, 전화번호 등 연락처를 입력해주세요."
           />
@@ -138,8 +140,12 @@
           <button type="button" class="btn_withdrawal">회원 탈퇴</button>
           <div class="confirm_withdrwal">
             <p>정말로 부메랑을 탈퇴하시겠습니까?</p>
-            <button type="submit" class="btn_withdrawal_confirm">부메랑 부수기</button>
-            <button type="button" class="btn_withdrawal_close">아직 내겐 부메랑이 필요해!</button>
+            <button type="submit" class="btn_withdrawal_confirm">
+              부메랑 부수기
+            </button>
+            <button type="button" class="btn_withdrawal_close">
+              아직 내겐 부메랑이 필요해!
+            </button>
           </div>
         </form>
       </div>
