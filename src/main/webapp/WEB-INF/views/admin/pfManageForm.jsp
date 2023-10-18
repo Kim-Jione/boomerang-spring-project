@@ -40,19 +40,19 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <c:forEach var="job" items="${jobList}">
+                                        <c:forEach var="pf" items="${pfList}">
                                             <tr>
                                                 <td>1</td>
-                                                <td>${job.jobContentTitle}</td>
-                                                <td>${job.jobGenre}</td>
-                                                <td>${job.jobView}</td>
-                                                <td>${job.createdAt}</td>
+                                                <td>${pf.pfTitle}</td>
+                                                <td>${pf.pfGenre}</td>
+                                                <td>${pf.pfView}</td>
+                                                <td>${pf.createdAt}</td>
                                                 <td>
-                                                    <a href="/admin/updateForm/${job.userId}"
+                                                    <a href="/admin/updateForm/${pf.userId}"
                                                         class="btn btn-warning">수정</a>
                                                 </td>
                                                 <td>
-                                                    <form action="/admin/delete/${job.userId}" method="delete"
+                                                    <form action="/admin/delete/${pf.userId}" method="delete"
                                                         onsubmit="return confirmDelete()">
                                                         <button type="submit" class="btn btn-danger">
                                                             삭제

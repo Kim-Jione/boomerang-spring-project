@@ -18,6 +18,7 @@ public class Performance {
     private String pfLocation;
     private Integer pfRunningtime;
     private Integer pfPrice;
+    private Integer pfView;
     private String pfGenre;
     private String pfThumbnail;
     private Integer userId;

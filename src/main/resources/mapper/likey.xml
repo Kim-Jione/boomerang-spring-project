@@ -13,7 +13,6 @@
             resultType="com.example.bumerang.domain.likey.Likey">
         SELECT *
         FROM likey
-        WHERE user_id=#{userId}
     </select>
 
     <insert id="insert">
