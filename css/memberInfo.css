@@ -109,12 +109,31 @@ body {
     font-weight: 600;
 }
 
+.form_container .profile_info .user_password_confirm{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    width: 500px;
+    margin-bottom: 30px;
+}
+
 .form_container .profile_info #user_password_confirm{
     margin-bottom: 3px;
+    width: 420px;
+
 }
 
 .form_container .profile_info #passwordError {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 20%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    padding: 20px;
 }
 
 /* .form_container .profile_info #email_label {
