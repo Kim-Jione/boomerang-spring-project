@@ -37,6 +37,7 @@ function closeImageSelector() {
 //선택한 이미지로 프로필 이미지 변경
 function changeImage(newImageSrc) {
   document.getElementById("icon_img").src = newImageSrc;
+  //이미지 변경 후, 변경된 이미지 주소를 서버로 보내는 부분 필요. (조장 문의)
   closeImageSelector();
 }
 
