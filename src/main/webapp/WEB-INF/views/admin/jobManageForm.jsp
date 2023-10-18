@@ -20,13 +20,10 @@
                                     <thead>
                                         <tr>
                                             <th>번호</th>
-                                            <th>닉네임</th>
-                                            <th>이메일</th>
-                                            <th>성별</th>
-                                            <th>연령대</th>
-                                            <th>포지션</th>
-                                            <th>경력</th>
-                                            <th>권한</th>
+                                            <th>제목</th>
+                                            <th>내용</th>
+                                            <th>조회수</th>
+                                            <th>작성일</th>
                                             <th>수정</th>
                                             <th>삭제</th>
                                         </tr>
@@ -34,39 +31,28 @@
                                     <tfoot>
                                         <tr>
                                             <th>번호</th>
-                                            <th>닉네임</th>
-                                            <th>이메일</th>
-                                            <th>성별</th>
-                                            <th>연령대</th>
-                                            <th>포지션</th>
-                                            <th>경력</th>
-                                            <th>권한</th>
+                                            <th>제목</th>
+                                            <th>내용</th>
+                                            <th>조회수</th>
+                                            <th>작성일</th>
                                             <th>수정</th>
                                             <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <c:forEach var="user" items="${userList}">
+                                        <c:forEach var="job" items="${jobList}">
                                             <tr>
                                                 <td>1</td>
-                                                <td>${user.userNickname}</td>
-                                                <td>${user.userEmail}</td>
+                                                <td>${job.jobContentTitle}</td>
+                                                <td>${job.jobContent}</td>
+                                                <td>${job.jobView}</td>
+                                                <td>${job.createdAt}</td>
                                                 <td>
-                                                    <c:choose>
-                                                        <c:when test="${user.userGender == true}">남자</c:when>
-                                                        <c:otherwise>여자</c:otherwise>
-                                                    </c:choose>
-                                                </td>
-                                                <td>${user.userAge}대</td>
-                                                <td>${user.userPosition}</td>
-                                                <td>${user.userCareer}년</td>
-                                                <td>${user.userRole}</td>
-                                                <td>
-                                                    <a href="/admin/updateForm/${user.userId}"
+                                                    <a href="/admin/updateForm/${job.userId}"
                                                         class="btn btn-warning">수정</a>
                                                 </td>
                                                 <td>
-                                                    <form action="/admin/delete/${user.userId}" method="delete"
+                                                    <form action="/admin/delete/${job.userId}" method="delete"
                                                         onsubmit="return confirmDelete()">
                                                         <button type="submit" class="btn btn-danger">
                                                             삭제

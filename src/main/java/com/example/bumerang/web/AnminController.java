@@ -1,6 +1,8 @@
 package com.example.bumerang.web;
 
+import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.domain.user.User;
+import com.example.bumerang.service.JobSearchService;
 import com.example.bumerang.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import java.util.List;
 public class AnminController {
     private final HttpSession session;
     private final UserService userService;
+    private final JobSearchService jobSearchService;
 
     // 메인 화면
     @GetMapping("/indexForm")
@@ -39,9 +42,17 @@ public class AnminController {
     @GetMapping("/userManageForm")
     public String userManageForm(Model model) {
         List<User> userList = userService.findAll();
-        System.err.println("디버그: "+userList.get(0).getUserNickname());
-        System.err.println("디버그: "+userList.get(0).getUserGender());
         model.addAttribute("userList",userList);
         return "admin/userManageForm";
+    }
+
+    // 구인글관리 화면
+    @GetMapping("/jobManageForm")
+    public String jobManageForm(Model model) {
+        List<JobSearch> jobList = jobSearchService.findAll();
+        System.err.println("디버그: "+jobList.get(0).getJobContent());
+        System.err.println("디버그: "+jobList.get(0).getJobContentTitle());
+        model.addAttribute("jobList",jobList);
+        return "admin/jobManageForm";
     }
 }
