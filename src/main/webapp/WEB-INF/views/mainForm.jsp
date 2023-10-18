@@ -97,13 +97,19 @@
                         <p><a href="/user/joinListForm">사용자 목록</a></p>
                         <p><a href="/jobSearch/mainForm">구인정보글 메인화면</a></p>
                         <p><a href="/likey/likeyForm">내관심목록</a></p>
+
+                        <p><a href="/notice/writeList">공지사항글 목록 화면</a></p>
+
                     </div>
                     <div>
                         <h3>기능 모음</h3>
                         <p><a href="/user/joinForm"> 회원가입</a></p>
                         <p> <a href="/user/loginForm">로그인</a></p>
                         <p><a href="/jobSearch/writeForm">구인정보 작성하기</a></p>
+
                         <p><a href="/user/profileForm">프로필수정하기</a></p>
+
+                        <p><a href="/notice/writeForm">공지사항 작성하기</a></p>
                     </div>
                 </div>
             </div>
