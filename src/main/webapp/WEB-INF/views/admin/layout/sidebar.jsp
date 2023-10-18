@@ -19,7 +19,7 @@
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/tableForm">사용자 관리</a>
+                                <a class="nav-link" href="/userManageForm">사용자 관리</a>
                                 <a class="nav-link" href="/tableForm">구인정보글 관리</a>
                                 <a class="nav-link" href="/tableForm">공연홍보글 관리</a>
                                 <a class="nav-link" href="/tableForm">공지사항 관리</a>

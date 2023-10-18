@@ -1,11 +1,14 @@
 package com.example.bumerang.web;
 
+import com.example.bumerang.domain.user.User;
 import com.example.bumerang.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -30,5 +33,15 @@ public class AnminController {
     @GetMapping("/tableForm")
     public String tableForm() {
         return "admin/tableForm";
+    }
+
+    // 사용자관리 화면
+    @GetMapping("/userManageForm")
+    public String userManageForm(Model model) {
+        List<User> userList = userService.findAll();
+        System.err.println("디버그: "+userList.get(0).getUserNickname());
+        System.err.println("디버그: "+userList.get(0).getUserGender());
+        model.addAttribute("userList",userList);
+        return "admin/userManageForm";
     }
 }
