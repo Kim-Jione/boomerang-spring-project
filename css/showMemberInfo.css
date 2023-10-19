@@ -16,34 +16,31 @@
   box-sizing: border-box;
 }
 
+/* 바디 기본 설정 */
 body {
   background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* height: 100vh; */
 }
 
 .container {
+  /* 컨테이너 배경 투명도 */
   background-color: rgba(255, 255, 255, 0.6);
-  /* position: relative; */
-  /* height: 100vh; */
-  /* width: 100vw; */
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin: 100px;
-  
 }
 
 .form_container {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  
 }
 
+/* 프로필 아이콘 */
 .profile_img {
   display: flex;
   align-items: center;
@@ -70,6 +67,7 @@ body {
   height: 80%;
 }
 
+/* 마이페이지 */
 .profile_img .welcome {
   font-size: 24px;
   margin-bottom: 20px;
@@ -80,6 +78,7 @@ body {
   font-weight: 600;
 }
 
+/* 프로필 정보 */
 .form_container .profile_info {
   display: flex;
   align-items: flex-start;
@@ -91,6 +90,15 @@ body {
   height: 100%;
 }
 
+/* 레이블 태그 */
+.form_container .profile_info label {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 5px 0;
+  color: #2e82cb;
+}
+
+/* 인풋 태그 */
 .form_container .profile_info input {
   /* background-color: #fff; */
   background: none;
@@ -104,6 +112,8 @@ body {
   font-weight: 700;
   color: #4c4c4c;
 }
+
+/* 두 줄 배열 부분 */
 .form_container .profile_info .two_cols {
   display: flex;
   justify-content: center;
@@ -125,17 +135,7 @@ body {
   margin: 0;
 }
 
-.form_container .profile_info label {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 5px 0;
-  color: #2e82cb;
-}
-
-/* .form_container .profile_info #user_nickname {
-    width: 250px;
-} */
-
+/* 자기소개 */
 .form_container .profile_info #intro {
   /* background-color: #fff; */
   border: solid rgb(232, 232, 232) 1px;
@@ -149,6 +149,7 @@ body {
   resize: none;
 }
 
+/* 포트폴리오, 연락처 링크 */
 .form_container .profile_info .links {
   display: flex;
   align-items: center;

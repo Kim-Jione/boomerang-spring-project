@@ -3,6 +3,7 @@ $(document).ready(function(){
     var heightWindow = $(window).height();
     var widthWindow = $(window).width();
 
+    // i는 점의 갯수
     for(var i = 0; i < 30; i++){
         array.push({
             top: Math.floor(Math.random()*heightWindow),

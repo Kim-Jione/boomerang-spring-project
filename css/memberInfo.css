@@ -1,160 +1,117 @@
 :root {
-    /* Color */
-    --white-color: #fff;
+  /* Color */
+  --white-color: #fff;
 
-    /* Size */
-    --side-padding: 12px;
+  /* Size */
+  --side-padding: 12px;
 
-    /* Font Size */
-    --font-medium: 12px;
+  /* Font Size */
+  --font-medium: 12px;
 }
 
 /* 기본 속성 */
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
+/* body 기본 설정 */
 body {
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    /* height: 100vh; */
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .container {
-    background-color: #fff;
-    /* position: relative; */
-    /* height: 100vh; */
-    /* width: 40vw; */
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 100px
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 100px;
 }
 
 .form_container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.profile_img{
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    height: 100%;
+/* 프로필 아이콘 */
+.profile_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  height: 100%;
 }
 
-.profile_img .icon{
-    display: flex;
-    border-radius: 100%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    width: 200px;
-    height:200px;
-    margin-bottom: 30px;
-    align-items: center;
-    justify-content: center;
+.profile_img .icon {
+  display: flex;
+  border-radius: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  width: 200px;
+  height: 200px;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: center;
 }
+
 
 .profile_img .icon img {
-    border-radius: 100%;
-    width: 80%;
-    height: 80%;
+  border-radius: 100%;
+  width: 80%;
+  height: 80%;
 }
 
+/* 프로필 이미지 셀렉터 */
 .profile_img #imageSelector {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #000;
-    width: 660px;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #000;
+  width: 660px;
 }
 
-.profile_img #imageSelector img{
-    border-radius: 100%;
-    width: 100px;
-    height: 100px;
-    margin: 30px 10px;
+.profile_img #imageSelector img {
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  margin: 30px 10px;
 }
 
+/* 환영 문구 */
 .profile_img .welcome {
-    font-size: 24px;   
-    margin-bottom: 20px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-.form_container form{
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    width: 500px;
-    margin: 10px;
-    height: 100%;
+/* 폼 태그 */
+.form_container form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  width: 500px;
+  margin: 10px;
+  height: 100%;
 }
 
+/* 레이블 */
 .form_container .profile_info label {
-    font-weight: 600;
+  font-weight: 600;
 }
 
-.form_container .profile_info .user_password_confirm{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    position: relative;
-    width: 500px;
-    margin-bottom: 30px;
-}
-
-.form_container .profile_info #user_password_confirm{
-    margin-bottom: 3px;
-    width: 420px;
-
-}
-
-.form_container .profile_info #passwordError {
-    /* margin-bottom: 20px; */
-    display: none;
-    position: absolute;
-    top: 110%;
-    left: 20%;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-}
-
-/* .form_container .profile_info #email_label {
-    margin-top: 20px;
-} */
-
-.form_container .profile_info .gender span {
-    font-weight: 600;
-    margin-right: 50px;
-}
-
-.form_container .profile_info .gender label {
-    margin-left: 15px;
-}
-
-.form_container .profile_info .gender input {
-    height: 15px;
-    width: 50px;
-}
-
-.form_container .profile_info input{
+/* 인풋 태그 */
+.form_container .profile_info input {
     background-color: #fff;
     border: solid rgb(232, 232, 232) 1px;
     margin: 8px 0;
@@ -165,100 +122,140 @@ body {
     width: 100%;
     height: 50px;
     outline: none;
+  }
+
+/* 비밀번호 확인 */
+.form_container .profile_info .user_password_confirm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  width: 500px;
+  margin-bottom: 30px;
 }
 
-.form_container .profile_info select{
-    background-color: #fff;
-    border: solid rgb(232, 232, 232) 1px;
-    margin: 8px 0;
-    margin-bottom: 20px;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 8px;
-    width: 300px;
-    outline: none;
+.form_container .profile_info #user_password_confirm {
+  margin-bottom: 3px;
+  width: 420px;
 }
 
+.form_container .profile_info #passwordError {
+  /* margin-bottom: 20px; */
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 20%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+}
+
+/* 성별 선택 */
+.form_container .profile_info .gender span {
+  font-weight: 600;
+  margin-right: 50px;
+}
+
+.form_container .profile_info .gender label {
+  margin-left: 15px;
+}
+
+.form_container .profile_info .gender input {
+  height: 15px;
+  width: 50px;
+}
+
+/* 셀렉트-옵션 태그들 */
+.form_container .profile_info select {
+  background-color: #fff;
+  border: solid rgb(232, 232, 232) 1px;
+  margin: 8px 0;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  width: 300px;
+  outline: none;
+}
+
+/* 자기소개 */
 .form_container .profile_info #intro {
-    background-color: #fff;
-    border: solid rgb(232, 232, 232) 1px;
-    margin: 8px 0;
-    margin-bottom: 30px;
-    padding: 10px 15px;
-    font-size: var(--font-medium) * 1.5;
-    border-radius: 8px;
-    width: 100%;
-    height: 200px;
-    outline: none;
-    resize: none;
+  background-color: #fff;
+  border: solid rgb(232, 232, 232) 1px;
+  margin: 8px 0;
+  margin-bottom: 30px;
+  padding: 10px 15px;
+  font-size: var(--font-medium) * 1.5;
+  border-radius: 8px;
+  width: 100%;
+  height: 200px;
+  outline: none;
+  resize: none;
 }
 
+/* 저장 버튼 */
 .form_container button {
-    background-color: #1899D6;
-    border: solid transparent;
-    border-radius: 16px;
-    border-width: 0 0 4px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: din-round,sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .8px;
-    line-height: 20px;
-    margin: 0;
-    outline: none;
-    overflow: visible;
-    padding: 13px 16px;
-    text-align: center;
-    text-transform: uppercase;
-    touch-action: manipulation;
-    transform: translateZ(0);
-    transition: filter .2s;
-    user-select: none;
-    -webkit-user-select: none;
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 100%;
-    filter: brightness(1.1);
-    -webkit-filter: brightness(1.1);
+  background-color: #1899d6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
 }
 
-.form_container .withdrawal{
-    
-}
-
+/* 탈퇴 버튼 */
 .form_container .withdrawal .btn_withdrawal {
-    background-color: #d61818;
+  background-color: #d61818;
 }
 
 .form_container .withdrawal .confirm_withdrwal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #000;
-    width: 400px;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #000;
+  width: 400px;
 }
 
-.form_container .withdrawal .confirm_withdrwal *{
-    margin: 10px 0;
-    font-size: var(--font-medium)*1.2;
-    font-weight: 600;
+.form_container .withdrawal .confirm_withdrwal * {
+  margin: 10px 0;
+  font-size: var(--font-medium) * 1.2;
+  font-weight: 600;
 }
 
 .form_container .withdrawal .confirm_withdrwal .btn_withdrawal_confirm {
-    background-color: black;
+  background-color: black;
 }
 
 .form_container .withdrawal .confirm_withdrwal .btn_withdrawal_close {
-    background-color: white;
-    color: black;
-    border: solid 1px black;
+  background-color: white;
+  color: black;
+  border: solid 1px black;
 }
-
-
