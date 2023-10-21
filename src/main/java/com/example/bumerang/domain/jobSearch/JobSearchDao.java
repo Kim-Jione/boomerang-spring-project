@@ -18,9 +18,9 @@ public interface JobSearchDao {
 
     public JobDetailDto findByJobDetail(Integer jobId);
 
-    public void deleteJob(Integer jobId);
-
     public List<JobDetailDto> findAllJob();
 
     public List<BestJobDto> findAllBestJob();
+
+    JobSearch writeResult(Integer userId);
 }

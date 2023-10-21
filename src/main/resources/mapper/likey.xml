@@ -17,9 +17,9 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO likey (job_id, pf_id, user_id)
+        INSERT INTO likey (job_id, pf_id, comment_id, user_id)
         VALUES
-        (#{jobId}, #{pfId}, #{userId})
+        (#{jobId}, #{pfId}, #{commentId}, #{userId})
     </insert>
 
     <delete id="delete">

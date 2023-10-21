@@ -9,7 +9,7 @@
 <a href="/"><h1> 메인 페이지 </h1></a>
 <h1> 회원가입 기능 </h1>
 
-<form action="/user/join" method="post" onsubmit="return checkPassword()">
+<form onsubmit="return checkPassword()">
         <!-- 바꿀 아이디 입력 -->
         <label for="userLoginId">아이디:</label>
         <input type="text" id="userLoginId" name="userLoginId" required>
@@ -50,6 +50,29 @@
         }
         return true; // 비밀번호가 일치하면 폼 제출을 허용
     }
+
+    function join() {
+            let data = {
+                userLoginId: $("#userLoginId").val(),
+                userPassword: $("#userPassword").val()
+            };
+
+            $.ajax("/user/join", {
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            }).done((res) => {
+                if (res.code == 1) {
+                    alert(res.msg);
+                    location.href = "/user/loginForm";
+                } else {
+                    alert(res.msg);
+                }
+            });
+        }
     </script>
 </body>
 

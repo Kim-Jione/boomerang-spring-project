@@ -26,8 +26,9 @@ public class JobSearchService {
 	private final LikeyDao likeyDao;
 
 
-	public void write(WriteDto writeDto) {
+	public JobSearch write(WriteDto writeDto) {
 		jobSearchDao.insert(writeDto.toEntity());
+		return jobSearchDao.writeResult(writeDto.getUserId());
 	}
 
 	public List<JobSearch> findAll() {
@@ -38,18 +39,15 @@ public class JobSearchService {
 		return jobSearchDao.findByJobDetail(jobId);
 	}
 
-	public void update(UpdateDto updateDto) {
-
-		System.err.println("디버그 서비스 진입");
+	public JobSearch update(UpdateDto updateDto) {
 		jobSearchDao.update(updateDto.toEntity());
-		System.err.println("디버그 getJobId: "+updateDto.toEntity().getJobId());
-		System.err.println("디버그 getUserId: "+updateDto.toEntity().getUserId());
-		System.err.println("디버그 getJobContentTitle: "+updateDto.toEntity().getJobContentTitle());
-		System.err.println("디버그 getJobContent: "+updateDto.toEntity().getJobContent());
+		return jobSearchDao.findById(updateDto.getJobId());
 	}
 
-	public void delete(Integer jobId) {
-		jobSearchDao.deleteJob(jobId);
+	public JobSearch delete(Integer jobId) {
+		jobSearchDao.delete(jobId);
+		JobSearch deleteResult = jobSearchDao.findById(jobId);
+		return deleteResult;
 	}
 
 	public  List<JobCommentDto> jobFindAll(Integer jobId) {
@@ -66,5 +64,9 @@ public class JobSearchService {
 
 	public List<BestJobDto> findAllBeestJob() {
 		return jobSearchDao.findAllBestJob();
+	}
+
+	public JobSearch findById(Integer jobId) {
+		return jobSearchDao.findById(jobId);
 	}
 }

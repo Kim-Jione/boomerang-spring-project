@@ -13,9 +13,9 @@ public class UpdateDto {
     private String jobArtTitle;
     private String jobStartDate;
     private String jobProductionDate;
-    private Integer jobTo;
+    private String jobTo;
     private String jobField;
-    private Boolean jobGender;
+    private String jobGender;
     private String jobContact;
     private String jobDeadline;
     private Integer userId;

@@ -33,9 +33,9 @@ public class UserController {
 
     // 회원가입 기능
     @PostMapping("/user/join")
-    public String join(JoinDto joinDto) {
-        userService.join(joinDto);
-        return "redirect:/user/joinListForm";
+    public @ResponseBody CMRespDto<?> join(@RequestBody JoinDto joinDto) {
+        SessionUserDto joinResult = userService.join(joinDto);
+        return new CMRespDto<>(1, "회원가입 성공.", joinResult);
     }
 
     // 로그인한 세션 화면
@@ -53,12 +53,13 @@ public class UserController {
     // 로그인 기능
     @PostMapping("/user/login")
     public @ResponseBody CMRespDto<?> login(@RequestBody LoginDto loginDto) {
-        SessionUserDto userPS = userService.findByUser(loginDto.getUserLoginId(), loginDto.getUserPassword());
-        if (userPS == null) {
+        System.err.println("디버그"+loginDto.getUserLoginId());
+        SessionUserDto loginResult = userService.findByUser(loginDto);
+        if (loginResult == null) {
             return new CMRespDto<>(-1, "아이디 혹은 비밀번호를 잘못 입력하셨습니다.", null);
         }
-        userService.login(userPS);
-        return new CMRespDto<>(1, "로그인 성공.", null);
+        userService.login(loginResult);
+        return new CMRespDto<>(1, "로그인 성공.", loginResult);
     }
 
     // 회원가입된 사용자 목록
