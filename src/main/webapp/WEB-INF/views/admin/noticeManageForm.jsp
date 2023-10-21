@@ -4,16 +4,16 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">공연 홍보글</h1>
+                        <h1 class="mt-4">공지글</h1>
                         <div class="card mb-4">
                             <div class="card-body">
-                                공연 홍보글의 정보를 관리합니다.
+                                공지글의 정보를 관리합니다.
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                공연 홍보글 정보
+                                공지글 정보
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -21,8 +21,7 @@
                                         <tr>
                                             <th>번호</th>
                                             <th>제목</th>
-                                            <th>장르</th>
-                                            <th>조회수</th>
+                                            <th>유형</th>
                                             <th>작성일</th>
                                             <th>수정</th>
                                             <th>삭제</th>
@@ -32,27 +31,25 @@
                                         <tr>
                                             <th>번호</th>
                                             <th>제목</th>
-                                            <th>장르</th>
-                                            <th>조회수</th>
+                                            <th>유형</th>
                                             <th>작성일</th>
                                             <th>수정</th>
                                             <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <c:forEach var="pf" items="${pfList}">
+                                        <c:forEach var="notice" items="${noticeList}">
                                             <tr>
                                                 <td>1</td>
-                                                <td>${pf.pfTitle}</td>
-                                                <td>${pf.pfGenre}</td>
-                                                <td>${pf.pfView}</td>
-                                                <td>${pf.createdAt}</td>
+                                                <td>${notice.noticeTitle}</td>
+                                                <td>${notice.noticeType}</td>
+                                                <td>${notice.createdAt}</td>
                                                 <td>
-                                                    <a href="/admin/updateForm/${pf.userId}"
+                                                    <a href="/admin/updateForm/${notice.userId}"
                                                         class="btn btn-warning">수정</a>
                                                 </td>
                                                 <td>
-                                                    <form action="/admin/delete/${pf.userId}" method="delete"
+                                                    <form action="/admin/delete/${notice.userId}" method="delete"
                                                         onsubmit="return confirmDelete()">
                                                         <button type="submit" class="btn btn-danger">
                                                             삭제

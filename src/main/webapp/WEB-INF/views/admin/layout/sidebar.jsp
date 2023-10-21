@@ -7,7 +7,7 @@
                         <div class="sb-sidenav-menu-heading">Core</div>
                         <a class="nav-link" href="/indexForm">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            대쉬보드
+                            <!-- 대쉬보드 -->
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
@@ -22,7 +22,7 @@
                                 <a class="nav-link" href="/userManageForm">사용자 관리</a>
                                 <a class="nav-link" href="/jobManageForm">구인정보글 관리</a>
                                 <a class="nav-link" href="/pfManageForm">공연홍보글 관리</a>
-                                <a class="nav-link" href="/tableForm">공지사항 관리</a>
+                                <a class="nav-link" href="/noticeManageForm">공지사항 관리</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
