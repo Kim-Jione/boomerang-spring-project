@@ -4,11 +4,12 @@ import com.example.bumerang.domain.comment.CommentDao;
 import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.domain.jobSearch.JobSearchDao;
 import com.example.bumerang.domain.likey.LikeyDao;
+import com.example.bumerang.domain.view.ViewDao;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
 import com.example.bumerang.web.dto.response.jobSearch.BestJobDto;
+import com.example.bumerang.web.dto.response.jobSearch.DetailFormDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
-import com.example.bumerang.web.dto.response.jobSearch.JobDetailDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class JobSearchService {
 	private final JobSearchDao jobSearchDao;
 	private final CommentDao commentDao;
 	private final LikeyDao likeyDao;
+	private final ViewDao viewDao;
 
 
 	public JobSearch write(WriteDto writeDto) {
@@ -35,8 +37,8 @@ public class JobSearchService {
 		return jobSearchDao.findAll();
 	}
 
-	public JobDetailDto findByJob(Integer jobId) {
-		return jobSearchDao.findByJobDetail(jobId);
+	public DetailFormDto findByJob(Integer jobId) {
+		return jobSearchDao.findByJob(jobId);
 	}
 
 	public JobSearch update(UpdateDto updateDto) {
@@ -50,15 +52,12 @@ public class JobSearchService {
 		return deleteResult;
 	}
 
-	public  List<JobCommentDto> jobFindAll(Integer jobId) {
-		return commentDao.findAllJob(jobId);
+	public  List<JobCommentDto> findByCommentList(Integer jobId) {
+		List<JobCommentDto> findByCommentList = commentDao.findByCommentList(jobId);
+		return findByCommentList;
 	}
 
-	public Integer likeyCount(Integer jobId) {
-		return likeyDao.likeyCount(jobId);
-	}
-
-	public List<JobDetailDto> findAllJob() {
+	public List<DetailFormDto> findAllJob() {
 		return jobSearchDao.findAllJob();
 	}
 
@@ -69,4 +68,5 @@ public class JobSearchService {
 	public JobSearch findById(Integer jobId) {
 		return jobSearchDao.findById(jobId);
 	}
+
 }

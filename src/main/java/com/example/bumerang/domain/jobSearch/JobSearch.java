@@ -16,9 +16,8 @@ public class JobSearch {
     private String jobArtTitle;
     private String jobStartDate;
     private String jobProductionDate;
-    private String jobTo;
+    private Integer jobTo;
     private String jobPay;
-    private String jobField;
     private String jobGender;
     private String jobContact;
     private String jobDeadline;
@@ -28,7 +27,7 @@ public class JobSearch {
     private Timestamp updatedAt;
 
     @Builder
-    public JobSearch(String jobContentTitle, String jobContent, String jobGenre, String jobArtTitle, String jobStartDate, String jobProductionDate, String jobTo, String jobPay, String jobField, String jobGender, String jobContact, String jobDeadline, Integer jobId, Integer userId) {
+    public JobSearch(String jobContentTitle, String jobContent, String jobGenre, String jobArtTitle, String jobStartDate, String jobProductionDate, Integer jobTo, String jobPay,  String jobGender, String jobContact, String jobDeadline, Integer jobId, Integer userId) {
         this.jobContentTitle = jobContentTitle;
         this.jobContent = jobContent;
         this.jobGenre = jobGenre;
@@ -36,7 +35,6 @@ public class JobSearch {
         this.jobStartDate = jobStartDate;
         this.jobProductionDate = jobProductionDate;
         this.jobTo = jobTo;
-        this.jobField = jobField;
         this.jobGender = jobGender;
         this.jobContact = jobContact;
         this.jobDeadline = jobDeadline;

@@ -27,7 +27,6 @@ public class UserService {
 
     public SessionUserDto findByUser(LoginDto loginDto) {
 		SessionUserDto userPS = userDao.findByUser(loginDto);
-		System.err.println("디버그"+userPS.getUserLoginId());
 		return userPS;
     }
 

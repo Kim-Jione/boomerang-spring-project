@@ -5,15 +5,11 @@ import com.example.bumerang.service.JobSearchService;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
-import com.example.bumerang.web.dto.response.jobSearch.BestJobDto;
-import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
-import com.example.bumerang.web.dto.response.jobSearch.JobDetailDto;
+import com.example.bumerang.web.dto.response.jobSearch.DetailFormDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -24,10 +20,9 @@ public class JobSearchController {
 
     // 구인정보 작성하기 화면
     @GetMapping("/jobSearch/writeForm")
-    public String writeForm() {
-        return "jobSearch/writeForm";
+    public @ResponseBody CMRespDto<?> writeForm() {
+        return new CMRespDto<>(1, "구인정보 작성하기 화면 불러오기 성공.", null);
     }
-
 
     // 구인정보 작성하기 기능
     @PostMapping("/jobSearch/write")
@@ -35,33 +30,20 @@ public class JobSearchController {
         JobSearch writeResult = jobSearchService.write(writeDto);
         return new CMRespDto<>(1, "구인정보 작성하기 성공.", writeResult);
     }
-
-    // 구인정보 목록 화면
-    @GetMapping("/jobSearch/writeList")
-    public String writeList(Model model) {
-        List<JobSearch> jobSearchList = jobSearchService.findAll();
-        model.addAttribute("jobList", jobSearchList);
-        return "jobSearch/writeList";
-    }
-
+    
     // 구인정보 상세보기 화면
     @GetMapping("/jobSearch/detailForm/{jobId}")
-    public String detailForm(@PathVariable Integer jobId, Model model) {
-        JobDetailDto jobSearchDetail = jobSearchService.findByJob(jobId);
-        List<JobCommentDto> commentList = jobSearchService.jobFindAll(jobId);
-        Integer likeyCount = jobSearchService.likeyCount(jobId);
-        model.addAttribute("job", jobSearchDetail);
-        model.addAttribute("commentList", commentList);
-        model.addAttribute("likeyCount", likeyCount);
-        return "jobSearch/detailForm";
+    public @ResponseBody CMRespDto<?> detailForm(@PathVariable Integer jobId, Model model) {
+        DetailFormDto jobDetail = jobSearchService.findByJob(jobId);
+        jobDetail.setCommentList(jobSearchService.findByCommentList(jobId));
+        return new CMRespDto<>(1, "구인정보 상세보기 화면 불러오기 성공.", jobDetail);
     }
 
     // 구인정보 수정하기 화면
     @GetMapping("/jobSearch/updateForm/{jobId}")
-    public String updateForm(@PathVariable Integer jobId, Model model) {
-        JobDetailDto jobDetail = jobSearchService.findByJob(jobId);
-        model.addAttribute("job", jobDetail);
-        return "jobSearch/updateForm";
+    public @ResponseBody CMRespDto<?> updateForm(@PathVariable Integer jobId) {
+        DetailFormDto jobDetail = jobSearchService.findByJob(jobId);
+        return new CMRespDto<>(1, "구인정보 수정하기 화면 불러오기 성공.", jobDetail);
     }
 
     // 구인정보 수정하기 기능
@@ -76,15 +58,5 @@ public class JobSearchController {
     public @ResponseBody CMRespDto<?> delete(@PathVariable Integer jobId) {
         JobSearch deleteResult = jobSearchService.delete(jobId);
         return new CMRespDto<>(1, "구인정보 삭제하기 성공.", deleteResult);
-    }
-
-    // 구인정보글 메인 화면
-    @GetMapping("/jobSearch/mainForm")
-    public String mainForm(Model model) {
-        List<JobDetailDto> jobList = jobSearchService.findAllJob();
-        List<BestJobDto> bestJobList = jobSearchService.findAllBeestJob();
-        model.addAttribute("jobList", jobList);
-        model.addAttribute("bestJobList", bestJobList);
-        return "jobSearch/mainForm";
     }
 }

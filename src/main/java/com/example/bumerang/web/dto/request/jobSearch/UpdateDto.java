@@ -13,8 +13,7 @@ public class UpdateDto {
     private String jobArtTitle;
     private String jobStartDate;
     private String jobProductionDate;
-    private String jobTo;
-    private String jobField;
+    private Integer jobTo;
     private String jobGender;
     private String jobContact;
     private String jobDeadline;
@@ -30,7 +29,6 @@ public class UpdateDto {
                 .jobStartDate(this.jobStartDate)
                 .jobProductionDate(this.jobProductionDate)
                 .jobTo(this.jobTo)
-                .jobField(this.jobField)
                 .jobGender(this.jobGender)
                 .jobContact(this.jobContact)
                 .jobDeadline(this.jobDeadline)

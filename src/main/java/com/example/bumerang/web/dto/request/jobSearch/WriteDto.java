@@ -13,9 +13,8 @@ public class WriteDto {
     private String jobArtTitle;
     private String jobStartDate;
     private String jobProductionDate;
-    private String jobTo;
+    private Integer jobTo;
     private String jobPay;
-    private String jobField;
     private String jobGender;
     private String jobContact;
     private String jobDeadline;
@@ -31,7 +30,6 @@ public class WriteDto {
                 .jobProductionDate(this.jobProductionDate)
                 .jobTo(this.jobTo)
                 .jobPay(this.jobPay)
-                .jobField(this.jobField)
                 .jobGender(this.jobGender)
                 .jobContact(this.jobContact)
                 .jobDeadline(this.jobDeadline)
