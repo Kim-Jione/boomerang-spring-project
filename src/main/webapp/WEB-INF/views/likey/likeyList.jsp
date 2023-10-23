@@ -41,7 +41,7 @@
 
             <div class="pfContent">
                 <p class="text_title">전시공연</p>
-                <c:forEach var="Performance" items="${PerfomancesList}">
+                <c:forEach var="Performance" items="${perfomancesList}">
                 <div><a href="#"> <img src="http://via.placeholder.com/280x300"> </a><p>${Performance.pfTitle}</p></div>
                 <div></div>
                 </c:forEach>
