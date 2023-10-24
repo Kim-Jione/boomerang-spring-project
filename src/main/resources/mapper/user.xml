@@ -10,7 +10,7 @@
     </select>
 
     <select id="findAll"
-            resultType="com.example.bumerang.domain.user.User">
+            resultType="com.example.bumerang.domain.user.UserDao">
         SELECT *
         FROM user
     </select>
