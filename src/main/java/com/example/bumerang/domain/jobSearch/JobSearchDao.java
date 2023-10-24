@@ -27,7 +27,7 @@ public interface JobSearchDao {
 
     public JobRespDto findByRecent();
 
-    public JobRespDto findByResult(Integer jobId);
-
     public JobRespDto findByUpdate(Integer jobId);
+
+    public JobRespDto findByDelete(Integer jobId);
 }

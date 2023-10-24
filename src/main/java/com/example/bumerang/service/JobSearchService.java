@@ -8,7 +8,10 @@ import com.example.bumerang.domain.likey.LikeyDao;
 import com.example.bumerang.domain.view.ViewDao;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
-import com.example.bumerang.web.dto.response.jobSearch.*;
+import com.example.bumerang.web.dto.response.jobSearch.BestJobDto;
+import com.example.bumerang.web.dto.response.jobSearch.DetailFormDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -51,18 +54,20 @@ public class JobSearchService {
 	public JobRespDto update(UpdateDto updateDto) {
 		JobSearch jobSearch = updateDto.toJobSearch();
 		jobSearchDao.update(jobSearch);
-		JobRespDto updateResult = jobSearchDao.findByUpdate(updateDto.getJobId());
 		List<String> jobPositionList = updateDto.getJobPositionList();
 		for(String jobPositionTitle : jobPositionList){
 			jobSearchPositionDao.updatePosition(jobPositionTitle, updateDto.getJobId());
 		}
+		JobRespDto updateResult = jobSearchDao.findByUpdate(updateDto.getJobId());
 		updateResult.setJobPositionTitle(jobPositionList);
 		return updateResult;
 	}
 
-	public JobSearch delete(Integer jobId) {
+	public JobRespDto delete(Integer jobId) {
 		jobSearchDao.delete(jobId);
-		JobSearch deleteResult = jobSearchDao.findById(jobId);
+		JobRespDto deleteResult = jobSearchDao.findByDelete(jobId);
+		List<String> jobPositionList = jobSearchPositionDao.findPositionList(jobId);
+		deleteResult.setJobPositionTitle(jobPositionList);
 		return deleteResult;
 	}
 

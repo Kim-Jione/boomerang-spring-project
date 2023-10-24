@@ -87,19 +87,16 @@
         WHERE j.job_id=LAST_INSERT_ID()
     </select>
 
-    <select id="findByResult" resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
-        SELECT
-        j.*,
-        GROUP_CONCAT(jsp.job_position_title)
-        FROM job_search j
-        INNER JOIN job_search_position jsp ON j.job_id = jsp.job_id
-        WHERE j.job_id = #{jobId}
-        GROUP BY j.job_id
-    </select>
-
     <select id="findByUpdate"
             resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
         SELECT * FROM job_search
         WHERE job_id=#{jobId}
+    </select>
+
+    <select id="findByDelete"
+            resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
+        SELECT *
+        FROM job_search j
+        WHERE j.job_id=#{jobId} AND job_status='deleted'
     </select>
 </mapper>

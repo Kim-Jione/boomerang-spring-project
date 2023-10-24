@@ -1,6 +1,5 @@
 package com.example.bumerang.web;
 
-import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.service.JobSearchService;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
@@ -57,7 +56,7 @@ public class JobSearchController {
     // 구인정보 삭제하기 기능
     @DeleteMapping("/jobSearch/delete/{jobId}")
     public @ResponseBody CMRespDto<?> delete(@PathVariable Integer jobId) {
-        JobSearch deleteResult = jobSearchService.delete(jobId);
+        JobRespDto deleteResult = jobSearchService.delete(jobId);
         return new CMRespDto<>(1, "구인정보 삭제하기 성공.", deleteResult);
     }
 }

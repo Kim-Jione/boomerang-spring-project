@@ -34,4 +34,11 @@
         WHERE
         job_id = #{jobId}
     </update>
+
+    <select id="findPositionList"
+            resultType="String">
+        SELECT job_position_title
+        FROM job_search_position jsp
+        WHERE jsp.job_id = #{jobId}
+    </select>
 </mapper>
