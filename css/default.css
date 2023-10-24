@@ -139,6 +139,7 @@ header {
   top: 0;
   z-index: 999;
   background-color: #FFFFFF;
+  width: 100%;
 }
 
 .navbar {
@@ -149,6 +150,7 @@ header {
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 10px; 
+    background-color: #FFFFFF;
 }
 
 .navbar .bot_menu {
