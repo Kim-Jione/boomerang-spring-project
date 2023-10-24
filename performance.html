@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/performance.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>BusanMate with performance</title>
+</head>
+
+<body>
+    <header>
+     <div class="navbar">
+          <div class="bot_menu">
+                <a href=""><img src="image/mainlogo.png"></a>
+                <div class="title">
+                    <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>  
+                </div>
+
+                <ul class="menubar">
+                    <li><a href="index.html"><h3>구인정보</h3></a></li>
+                    <li><a href="performance.html"><h3>전시·공연</h3</a></li>
+                    <li><a href=""><h3>공지사항</h3></a></li>
+                </ul>
+            </div>
+           
+            <ul class="linkes">
+                <li><a href=""><i class="fa-solid fa-pen"></i></a></li>
+                <li><a href=""><i class="fa-solid fa-bell"></i></a></li>
+                <li><a href=""><i class="fa-solid fa-circle-user"></i></a><li>
+            </ul>
+     </div>
+    </header>
+
+    <div class="banner">
+        <swiper-container class="banner_Swiper" pagination="true" pagination-clickable="true"  space-between="30"
+            centered-slides="true" autoplay-delay="4000" autoplay-disable-on-interaction="false" loop="true">
+            <swiper-slide class="banner_slide1"><img src="image/banner1.png"></swiper-slide>
+            <swiper-slide class="banner_slide2"><img src="image/banner2.png"></swiper-slide>
+            <swiper-slide class="banner_slide3"><img src="image/banner3.png"></swiper-slide>
+        </swiper-container>
+    </div>
+
+        <div class="ranking_post">
+            <div class="title_area">
+                <ul class="ranking_post_title">
+                    <li><i class="fa-solid fa-fire"></i></li>
+                    <li><h2>인기 전시 공연글</h2></li>
+                </ul>
+            </div>
+
+            <div class="ranking_list">
+                <div class="ranking_item">
+                    <div class="ranking_img">
+                        <img alt="이미지오류" src="image/img2.jpg"> 
+                    </div>
+                    <ul class="ranking_contens">
+                        <li class="badge_wrapper">
+                            <div class="genre">
+                                뮤지컬
+                            </div>
+                            <div class="freeAndPay">
+                                무료
+                            </div>
+                        </li>
+                        <li class="ranking_title">
+                            <div class="age_limit">
+                                ALL
+                            </div>
+                            <div class="title">
+                                스머프의습격
+                            </div>
+                        </li>
+                        <li class="location">
+                            멀티캠퍼스
+                        </li>
+                        <li class="period">
+                            2023.11.30 ~ 2024.03.10
+                        </li>
+                    </ul>
+                </div>
+            </div>         
+        </div>
+
+        <div class="main_post">
+            <ul class="main_title">
+                <li><i class="fa-solid fa-compact-disc"></i></li>
+                <li><h2>전시 공연 정보</h2></li>
+            </ul>
+
+            <div class="filter">
+                <div class="dropdown_list">
+                    <select id="dropdown">
+                        <option value="옵션1">장르</option>
+                        <option value="옵션2">영화</option>
+                        <option value="옵션3">드라마</option>
+                        <option value="옵션4">연극</option>
+                        <option value="옵션4">소꿉놀이</option>
+                    </select>
+
+                    <select id="dropdown">
+                        <option value="옵션1">연령대</option>
+                        <option value="옵션2">배우</option>
+                        <option value="옵션3">나무1</option>
+                        <option value="옵션4">월급루팡</option>
+                    </select>
+
+                    <select id="dropdown">
+                        <option value="옵션1">상영여부</option>
+                        <option value="옵션2">남자</option>
+                        <option value="옵션3">여자</option>
+                        <option value="옵션4">특별한 성</option>
+                    </select>
+
+                    <select id="dropdown">
+                        <option value="옵션1">유/무료</option>
+                        <option value="옵션2">모집중</option>
+                        <option value="옵션3">마감</option>
+                        <option value="옵션4">둘다</option>
+                    </select>
+                </div>
+                <div class="search_bar">
+                    <input type="text" id="filterText" oninput="filterPosts()" placeholder="제목, 글내용을 입력해보세요.">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+            
+            <!-- 구인글 및 페이지네이션 -->
+            <div class="search_job_container" style="display: none;">
+                <!--해당 부분부터 게시글 목록 (더미데이터)-->
+                <div class="search_job_slide">
+                    <div class="project">
+                        <div class="badge_wrapper">
+                            <div class="badge_movie">
+                                <i class="fa-solid fa-clapperboard"> 영화</i>
+                            </div>
+                            <div class="badge_new">
+                                <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                            </div>
+                        </div>
+
+                        <div class="schedule">
+                            <p>마감일 | </p>
+                            <p>2023.12.24</p>
+                        </div>
+
+                        <h1 class="project_title">
+                            [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 테스트 있어요! 많은 지원 부탁드려요.
+                        </h1>
+
+                        <ul class="position_list">
+                            <li class="position">
+                                배우
+                            </li>
+                            <li class="position">
+                                감독
+                            </li>
+                        </ul>
+
+                        <div class="content">
+                            <a href="https://www.naver.com/" class="more_btn">
+                                <p>자세히보기 </p>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                            <div class="like_btn">
+                                <span class="heart"></span>
+                            </div>
+                        </div>
+
+                        <div class="border"></div>
+
+                        <div class="myinfo">
+                            <div class="user_info">
+                                <div>
+                                    <img class="icon" src="image/chara/bugi13.jpg">
+                                </div>
+                                <div class="nickname">
+                                    <span class="accent">7년차</span>
+                                    <p>두목님</p>
+                                </div>
+                            </div>
+
+                            <div class="viewAndInfo">
+                                <div class="view">
+                                    <i class="fa-regular fa-eye"> 14</i>
+                                </div>
+                                <div class="comment">
+                                    <i class="fa-regular fa-comment"> 1</i>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                
+
+                
+
+            <!-- 여기까지만 복사 -->
+            </div>
+
+            <div class="pagination">
+                <!--<li class="page-item previous-page disable"><a class="page-link" href="#">Prev</a></li>
+                <li class="page-item current-page active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item dots"><a class="page-link" href="#">...</a></li>
+                <li class="page-item current-page"><a class="page-link" href="#">5</a></li>
+                <li class="page-item current-page"><a class="page-link" href="#">6</a></li>
+                <li class="page-item dots"><a class="page-link" href="#">...</a></li>
+                <li class="page-item current-page"><a class="page-link" href="#">10</a></li>
+                <li class="page-item next-page"><a class="page-link" href="#">Next</a></li>-->
+            </div>  
+        </div>
+
+      
+        
+    
+    <footer class="footer">
+        <div class="left_cover"></div>
+    </footer>
+
+
+    
+    
+    <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+    <script src="js/performance.js"></script>
+</body>
+</html>
