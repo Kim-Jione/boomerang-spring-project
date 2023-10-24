@@ -5,11 +5,14 @@ import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
 import com.example.bumerang.web.dto.response.jobSearch.DetailFormDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -35,7 +38,8 @@ public class JobSearchController {
     @GetMapping("/jobSearch/detailForm/{jobId}")
     public @ResponseBody CMRespDto<?> detailForm(@PathVariable Integer jobId, Model model) {
         DetailFormDto jobDetail = jobSearchService.findByJob(jobId);
-        jobDetail.setCommentList(jobSearchService.findByCommentList(jobId));
+        List<JobCommentDto> commentList = jobSearchService.findByCommentList(jobId);
+        jobDetail.setCommentList(commentList);
         return new CMRespDto<>(1, "구인정보 상세보기 화면 불러오기 성공.", jobDetail);
     }
 

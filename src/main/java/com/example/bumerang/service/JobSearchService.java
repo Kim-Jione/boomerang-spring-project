@@ -48,7 +48,10 @@ public class JobSearchService {
 	}
 
 	public DetailFormDto findByJob(Integer jobId) {
-		return jobSearchDao.findByJob(jobId);
+		List<String> jobPositionList = jobSearchPositionDao.findPositionList(jobId);
+		DetailFormDto findByJob = jobSearchDao.findByJob(jobId);
+		findByJob.setJobPositionTitle(jobPositionList);
+		return findByJob;
 	}
 
 	public JobRespDto update(UpdateDto updateDto) {
