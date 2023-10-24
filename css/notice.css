@@ -1,0 +1,55 @@
+:root {
+  /* Color */
+  --white-color: #fff;
+
+  /* Size */
+  --side-padding: 12px;
+
+  /* Font Size */
+  --font-medium: 12px;
+}
+
+/* 기본 속성 */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+caption {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color : inherit;
+}
+
+.board_list_wrap {
+}
+
+.board_list {
+    width: 100%;
+}
+
+.board_list tr {
+    border-bottom: 1px solid #999;
+}
+
+.board_list th,
+.board_list td {
+    padding: 10px;
+    border: 1px solid #999;
+}
+
+.board_list td {
+    text-align: center;
+}
+
+.board_list tbody tr td:nth-child(2) {
+    text-align: left;
+}

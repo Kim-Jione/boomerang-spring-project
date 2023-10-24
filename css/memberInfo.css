@@ -84,6 +84,7 @@ body {
   padding: 20px;
   border: 1px solid #000;
   width: 660px;
+  z-index: 10;
 }
 
 .profile_img #imageSelector img {
