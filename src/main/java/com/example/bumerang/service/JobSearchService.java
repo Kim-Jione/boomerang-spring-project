@@ -8,10 +8,7 @@ import com.example.bumerang.domain.likey.LikeyDao;
 import com.example.bumerang.domain.view.ViewDao;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
-import com.example.bumerang.web.dto.response.jobSearch.BestJobDto;
-import com.example.bumerang.web.dto.response.jobSearch.DetailFormDto;
-import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
-import com.example.bumerang.web.dto.response.jobSearch.WriteJobDto;
+import com.example.bumerang.web.dto.response.jobSearch.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +28,11 @@ public class JobSearchService {
 	private final ViewDao viewDao;
 
 
-	public WriteJobDto write(WriteDto writeDto) {
+	public JobRespDto write(WriteDto writeDto) {
 		JobSearch jobSearch = writeDto.toJobSearch();
 		jobSearchDao.insert(jobSearch);
 		List<String> jobPositionList = writeDto.getJobPositionList();
-		WriteJobDto writeResult = jobSearchDao.findByRecent();
+		JobRespDto writeResult = jobSearchDao.findByRecent();
 		for(String jobPositionTitle : jobPositionList){
 			jobSearchPositionDao.insertPosition(jobPositionTitle, writeResult.getJobId());
 		}
@@ -51,9 +48,16 @@ public class JobSearchService {
 		return jobSearchDao.findByJob(jobId);
 	}
 
-	public JobSearch update(UpdateDto updateDto) {
-		jobSearchDao.update(updateDto.toEntity());
-		return jobSearchDao.findById(updateDto.getJobId());
+	public JobRespDto update(UpdateDto updateDto) {
+		JobSearch jobSearch = updateDto.toJobSearch();
+		jobSearchDao.update(jobSearch);
+		JobRespDto updateResult = jobSearchDao.findByUpdate(updateDto.getJobId());
+		List<String> jobPositionList = updateDto.getJobPositionList();
+		for(String jobPositionTitle : jobPositionList){
+			jobSearchPositionDao.updatePosition(jobPositionTitle, updateDto.getJobId());
+		}
+		updateResult.setJobPositionTitle(jobPositionList);
+		return updateResult;
 	}
 
 	public JobSearch delete(Integer jobId) {

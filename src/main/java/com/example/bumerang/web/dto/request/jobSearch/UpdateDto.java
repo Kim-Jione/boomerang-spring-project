@@ -19,11 +19,11 @@ public class UpdateDto {
     private String jobGender;
     private String jobContact;
     private String jobDeadline;
-    private List<String> jobPositionTitle;
+    private List<String> jobPositionList;
     private Integer userId;
     private Integer jobId;
 
-    public JobSearch toEntity() {
+    public JobSearch toJobSearch() {
         return JobSearch.builder()
                 .jobContentTitle(this.jobContentTitle)
                 .jobContent(this.jobContent)

@@ -21,14 +21,17 @@
         (#{jobPositionTitle}, #{jobId})
     </insert>
 
-    <select id="findAllJob"
-            resultType="String">
-        SELECT jp.job_position_title  FROM job_search_position jp WHERE jp.job_id=#{jobId}
-    </select>
-
     <insert id="insertPosition">
         INSERT INTO job_search_position (job_position_title, job_id)
         VALUES
         (#{jobPositionTitle}, #{jobId})
     </insert>
+
+    <update id="updatePosition">
+        UPDATE job_search_position
+        SET
+        job_position_title = #{jobPositionTitle}
+        WHERE
+        job_id = #{jobId}
+    </update>
 </mapper>

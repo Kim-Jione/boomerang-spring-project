@@ -13,7 +13,7 @@ public interface JobSearchPositionDao {
 
     public void delete(Integer jobPositionId);
 
-    public List<String> findAllJob(Integer jobId);
-
     public void insertPosition(String jobPositionTitle, Integer jobId);
+
+    public void updatePosition(String jobPositionTitle, Integer jobId);
 }

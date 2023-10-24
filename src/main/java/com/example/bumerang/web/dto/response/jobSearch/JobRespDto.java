@@ -8,7 +8,7 @@ import java.util.List;
 
 @Setter
 @Getter
-public class WriteJobDto {
+public class JobRespDto {
     private Integer jobId;
     private String jobContentTitle;
     private String jobContent;
