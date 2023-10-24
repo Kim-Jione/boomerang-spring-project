@@ -12,4 +12,8 @@ public interface JobSearchPositionDao {
     public void update(JobSearchPosition jobPosition);
 
     public void delete(Integer jobPositionId);
+
+    public List<String> findAllJob(Integer jobId);
+
+    public void insertPosition(String jobPositionTitle, Integer jobId);
 }

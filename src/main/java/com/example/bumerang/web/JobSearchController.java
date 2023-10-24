@@ -6,6 +6,7 @@ import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
 import com.example.bumerang.web.dto.response.jobSearch.DetailFormDto;
+import com.example.bumerang.web.dto.response.jobSearch.WriteJobDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,7 @@ public class JobSearchController {
     // 구인정보 작성하기 기능
     @PostMapping("/jobSearch/write")
     public @ResponseBody CMRespDto<?> write(@RequestBody WriteDto writeDto) {
-        JobSearch writeResult = jobSearchService.write(writeDto);
+        WriteJobDto writeResult = jobSearchService.write(writeDto);
         return new CMRespDto<>(1, "구인정보 작성하기 성공.", writeResult);
     }
     
