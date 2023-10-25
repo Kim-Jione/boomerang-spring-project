@@ -75,6 +75,11 @@
   border-bottom: 1px solid #ccc;
 }
 
+.board_list .type,
+.board_list .created_at {
+  width: 250px;
+}
+
 .board_list th,
 .board_list td {
   padding: 10px;
@@ -83,6 +88,7 @@
 
 .board_list td {
   text-align: center;
+  
 }
 
 /* .board_list tbody tr td:nth-child(2) {
@@ -93,11 +99,11 @@
     text-decoration: underline;
 } */
 
-.board_list .tit {
+.board_list .notice_title {
   text-align: left;
 }
 
-.board_list .tit:hover {
+.board_list .notice_title:hover {
   text-decoration: underline;
 }
 

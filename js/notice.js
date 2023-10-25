@@ -16,7 +16,7 @@ let currentPage = 1; // 현재 페이지, 주소창 쿼리에서 받아오게 �
 const makeContent = (id) => {
   const content = document.createElement("tr");
   content.innerHTML =
-    '<td class="notice_type">컨텐츠 공지</td><td class="notice_title">게시물 제목</td><td class="created_at">23.10.22.</td>';
+    '<td class="notice_type">컨텐츠 공지</td><td class="notice_title"><a href="#">여기에 제목이 표시됩니다.</a></td><td class="created_at">23.10.22.</td>';
 
   //데이터 연동 버전, 빈칸 채우기
   // content.innerHTML =
@@ -144,3 +144,9 @@ const render = (currentPage) => {
 
 //초기 페이지 렌더링
 render(currentPage);
+
+
+////////////////////////////
+// 필터링 //
+///////////////////////////
+
