@@ -7,70 +7,89 @@
       src="https://kit.fontawesome.com/bfb14eb01e.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="css/notice.css">
-    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/notice.css" />
     <title>공지사항</title>
   </head>
   <body>
+    <!-- 헤더 -->
     <header class="header_on">
       <div class="navbar">
-           <div class="bot_menu">
-                 <a href=""><img src="image/mainlogo.png"></a>
-                 <div class="title">
-                     <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>  
-                 </div>
- 
-                 <ul class="menubar">
-                     <li><a href="index.html"><h3>구인정보</h3></a></li>
-                     <li><a href="performance.html"><h3>전시·공연</h3</a></li>
-                     <li><a href="notice.html"><h3>공지사항</h3></a></li>
-                 </ul>
-             </div>
-            
-             <ul class="linkes">
-                 <li><a href=""><i class="fa-solid fa-pen"></i></a></li>
-                 <li><a href=""><i class="fa-solid fa-bell"></i></a></li>
-                 <li><a href="login.html"><i class="fa-solid fa-circle-user"></i></a><li>
-             </ul>
+        <div class="bot_menu">
+          <a href=""><img src="image/mainlogo.png" /></a>
+          <div class="title">
+            <h2>
+              부산 <span class="accent">메이트</span
+              ><span class="accent2">랑</span>
+            </h2>
+          </div>
+
+          <ul class="menubar">
+            <li>
+              <a href="index.html"><h3>구인정보</h3></a>
+            </li>
+            <li>
+              <a href="performance.html"><h3>전시·공연</h3></a>
+            </li>
+            <li>
+              <a href="notice.html"><h3>공지사항</h3></a>
+            </li>
+          </ul>
+        </div>
+
+        <ul class="linkes">
+          <li>
+            <a href=""><i class="fa-solid fa-pen"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-bell"></i></a>
+          </li>
+          <li>
+            <a href="login.html"><i class="fa-solid fa-circle-user"></i></a>
+          </li>
+          <li></li>
+        </ul>
       </div>
-     </header>
+    </header>
 
     <div class="container">
-      <div class="top">
-        <h3>공지사항</h3>
-        <div class="search_bar">
-          <input type="text" placeholder="검색어를 입력하세요" />
-          <button><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-      </div>
       <div class="board_list_wrap">
+        <div class="top">
+          <div class="board_name">
+            <i class="fa-solid fa-bullhorn"></i>
+            <h2>공지사항</h2>
+          </div>
+          <!-- 검색창 -->
+          <div class="search_bar">
+            <input type="text" placeholder="검색어를 입력하세요" />
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+        </div>
         <table class="board_list">
-          <caption>
-            게시판 목록
-          </caption>
+          <!-- 게시판 목록 -->
           <thead>
             <tr>
-              <th>공지 종류</th>
+              <th class="type">공지 종류</th>
               <th>제목</th>
-              <th>작성일</th>
+              <th class="created_at">작성일</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="contents_list">
             <tr>
               <td>컨텐츠 공지</td>
-              <td>
+              <td class="tit">
                 <a href="#">커뮤니티 비프에서 여러분의 영화를 상영하세요!</a>
               </td>
               <td>23.10.23.</td>
             </tr>
             <tr>
               <td>서비스 공지</td>
-              <td><a href="#">부메랑에서 팀원을 구해보세요</a></td>
+              <td class="tit"><a href="#">부메랑에서 팀원을 구해보세요</a></td>
               <td>23.10.22.</td>
             </tr>
             <tr>
               <td>컨텐츠 공지</td>
-              <td>
+              <td class="tit">
                 <a href="#">
                   멀티캠퍼스 자체 제작 다큐멘터리 '파이널 프로젝트' 상영회는
                   11월 14일</a
@@ -80,7 +99,10 @@
             </tr>
           </tbody>
         </table>
+        <!-- 페이지네이션 -->
+        <div class="paging"></div>
       </div>
     </div>
+    <script src="./js/notice.js"></script>
   </body>
 </html>
