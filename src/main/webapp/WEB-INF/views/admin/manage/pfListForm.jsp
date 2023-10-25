@@ -23,6 +23,7 @@
                                             <th>제목</th>
                                             <th>장르</th>
                                             <th>조회수</th>
+                                            <th>상태</th>
                                             <th>작성일</th>
                                             <th>수정</th>
                                             <th>삭제</th>
@@ -34,18 +35,20 @@
                                             <th>제목</th>
                                             <th>장르</th>
                                             <th>조회수</th>
+                                            <th>상태</th>
                                             <th>작성일</th>
                                             <th>수정</th>
                                             <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <c:forEach var="pf" items="${pfList}">
+                                        <c:forEach var="pf" items="${pfList}" varStatus="loop">
                                             <tr>
-                                                <td>1</td>
+                                                <td>${loop.index + 1}</td>
                                                 <td>${pf.pfTitle}</td>
                                                 <td>${pf.pfGenre}</td>
                                                 <td>${pf.pfView}</td>
+                                                <td>${pf.pfStatus}</td>
                                                 <td>${pf.createdAt}</td>
                                                 <td>
                                                     <a href="/admin/updateForm/${pf.userId}"

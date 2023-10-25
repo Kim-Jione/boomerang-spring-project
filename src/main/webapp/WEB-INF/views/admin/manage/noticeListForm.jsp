@@ -22,6 +22,7 @@
                                             <th>번호</th>
                                             <th>제목</th>
                                             <th>유형</th>
+                                            <th>상태</th>
                                             <th>작성일</th>
                                             <th>수정</th>
                                             <th>삭제</th>
@@ -32,17 +33,19 @@
                                             <th>번호</th>
                                             <th>제목</th>
                                             <th>유형</th>
+                                            <th>상태</th>
                                             <th>작성일</th>
                                             <th>수정</th>
                                             <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <c:forEach var="notice" items="${noticeList}">
+                                        <c:forEach var="notice" items="${noticeList}" varStatus="loop">
                                             <tr>
-                                                <td>1</td>
+                                                <td>${loop.index + 1}</td>
                                                 <td>${notice.noticeTitle}</td>
                                                 <td>${notice.noticeType}</td>
+                                                <td>${notice.noticeStatus}</td>
                                                 <td>${notice.createdAt}</td>
                                                 <td>
                                                     <a href="/admin/updateForm/${notice.userId}"

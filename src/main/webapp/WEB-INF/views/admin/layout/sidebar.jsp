@@ -19,10 +19,10 @@
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/userManageForm">사용자 관리</a>
-                                <a class="nav-link" href="/jobManageForm">구인정보글 관리</a>
-                                <a class="nav-link" href="/pfManageForm">공연홍보글 관리</a>
-                                <a class="nav-link" href="/noticeManageForm">공지사항 관리</a>
+                                <a class="nav-link" href="/manage/userListForm">사용자 관리</a>
+                                <a class="nav-link" href="/manage/jobListForm">구인정보글 관리</a>
+                                <a class="nav-link" href="/manage/pfListForm">공연홍보글 관리</a>
+                                <a class="nav-link" href="/manage/noticeListForm">공지사항 관리</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -40,12 +40,12 @@
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
+                            data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages2">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             통계
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo"
+                        <div class="collapse" id="collapsePages3" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/chartForm">사용자 통계</a>

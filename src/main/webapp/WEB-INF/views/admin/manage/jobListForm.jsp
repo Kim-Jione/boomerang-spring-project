@@ -4,29 +4,27 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">사용자</h1>
+                        <h1 class="mt-4">구인글</h1>
                         <div class="card mb-4">
                             <div class="card-body">
-                                사용자의 정보를 관리합니다.
+                                구인글의 정보를 관리합니다.
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                사용자 정보
+                                구인글 정보
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>번호</th>
-                                            <th>닉네임</th>
-                                            <th>이메일</th>
-                                            <th>성별</th>
-                                            <th>연령대</th>
-                                            <th>포지션</th>
-                                            <th>경력</th>
-                                            <th>권한</th>
+                                            <th>제목</th>
+                                            <th>장르</th>
+                                            <th>조회수</th>
+                                            <th>상태</th>
+                                            <th>작성일</th>
                                             <th>수정</th>
                                             <th>삭제</th>
                                         </tr>
@@ -34,39 +32,30 @@
                                     <tfoot>
                                         <tr>
                                             <th>번호</th>
-                                            <th>닉네임</th>
-                                            <th>이메일</th>
-                                            <th>성별</th>
-                                            <th>연령대</th>
-                                            <th>포지션</th>
-                                            <th>경력</th>
-                                            <th>권한</th>
+                                            <th>제목</th>
+                                            <th>장르</th>
+                                            <th>조회수</th>
+                                            <th>상태</th>
+                                            <th>작성일</th>
                                             <th>수정</th>
                                             <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <c:forEach var="user" items="${userList}">
+                                        <c:forEach var="job" items="${jobList}" varStatus="loop">
                                             <tr>
-                                                <td>1</td>
-                                                <td>${user.userNickname}</td>
-                                                <td>${user.userEmail}</td>
+                                                <td>${loop.index + 1}</td>
+                                                <td>${job.jobContentTitle}</td>
+                                                <td>${job.jobGenre}</td>
+                                                <td>${job.jobView}</td>
+                                                <td>${job.jobStatus}</td>
+                                                <td>${job.createdAt}</td>
                                                 <td>
-                                                    <c:choose>
-                                                        <c:when test="${user.userGender == true}">남자</c:when>
-                                                        <c:otherwise>여자</c:otherwise>
-                                                    </c:choose>
-                                                </td>
-                                                <td>${user.userAge}</td>
-                                                <td>${user.userPosition}</td>
-                                                <td>${user.userCareer}</td>
-                                                <td>${user.userRole}</td>
-                                                <td>
-                                                    <a href="/admin/updateForm/${user.userId}"
+                                                    <a href="/admin/updateForm/${job.userId}"
                                                         class="btn btn-warning">수정</a>
                                                 </td>
                                                 <td>
-                                                    <form action="/admin/delete/${user.userId}" method="delete"
+                                                    <form action="/admin/delete/${job.userId}" method="delete"
                                                         onsubmit="return confirmDelete()">
                                                         <button type="submit" class="btn btn-danger">
                                                             삭제

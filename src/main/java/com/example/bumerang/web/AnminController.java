@@ -41,35 +41,43 @@ public class AnminController {
         return "admin/tableForm";
     }
 
-    // 사용자 관리 화면
-    @GetMapping("/userManageForm")
-    public String userManageForm(Model model) {
+    // 사용자 관리 목록 화면
+    @GetMapping("/manage/userListForm")
+    public String userListForm(Model model) {
         List<UserListDto> userList = adminService.findUserList();
         model.addAttribute("userList",userList);
-        return "admin/userManageForm";
+        return "admin/manage/userListForm";
     }
 
-    // 구인글 관리 화면
-    @GetMapping("/jobManageForm")
-    public String jobManageForm(Model model) {
+    // 구인글 관리 목록 화면
+    @GetMapping("/manage/jobListForm")
+    public String findManageJobList(Model model) {
         List<JobListDto> jobList = adminService.findJobList();
         model.addAttribute("jobList",jobList);
-        return "admin/jobManageForm";
+        return "admin/manage/jobListForm";
     }
 
-    // 공연글 관리 화면
-    @GetMapping("/pfManageForm")
-    public String pfManageForm(Model model) {
+    // 공연글 관리 목록 화면
+    @GetMapping("/manage/pfListForm")
+    public String findManagePfList(Model model) {
         List<PfListDto> pfList = adminService.findPfList();
         model.addAttribute("pfList",pfList);
-        return "admin/pfManageForm";
+        return "admin/manage/pfListForm";
     }
 
-    // 공지글 관리 화면
-    @GetMapping("/noticeManageForm")
-    public String noticeManageForm(Model model) {
+    // 공지글 관리 목록 화면
+    @GetMapping("/manage/noticeListForm")
+    public String findManageNoticeList(Model model) {
         List<NoticeListDto> noticeList = adminService.findNoticeList();
-        model.addAttribute("noticeList",noticeList);
-        return "admin/noticeManageForm";
+        model.addAttribute("noticeList", noticeList);
+        return "admin/manage/noticeListForm";
+    }
+    
+    // 구인글 신고 목록 화면
+    @GetMapping("/report/jobListForm")
+    public String findReportJobList(Model model) {
+        List<NoticeListDto> reportJobList = adminService.findNoticeList();
+        model.addAttribute("reportJobList", reportJobList);
+        return "admin/report/jobListForm";
     }
 }
