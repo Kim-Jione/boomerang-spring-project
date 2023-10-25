@@ -4,6 +4,8 @@ import com.example.bumerang.domain.jobSearch.JobSearch;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class WriteDto {
@@ -14,13 +16,14 @@ public class WriteDto {
     private String jobStartDate;
     private String jobProductionDate;
     private Integer jobTo;
-    private String jobField;
-    private Boolean jobGender;
+    private String jobPay;
+    private String jobGender;
     private String jobContact;
     private String jobDeadline;
+    private List<String> jobPositionList;
     private Integer userId;
 
-    public JobSearch toEntity() {
+    public JobSearch toJobSearch() {
         return JobSearch.builder()
                 .jobContentTitle(this.jobContentTitle)
                 .jobContent(this.jobContent)
@@ -29,7 +32,7 @@ public class WriteDto {
                 .jobStartDate(this.jobStartDate)
                 .jobProductionDate(this.jobProductionDate)
                 .jobTo(this.jobTo)
-                .jobField(this.jobField)
+                .jobPay(this.jobPay)
                 .jobGender(this.jobGender)
                 .jobContact(this.jobContact)
                 .jobDeadline(this.jobDeadline)
