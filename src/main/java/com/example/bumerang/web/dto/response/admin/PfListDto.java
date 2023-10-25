@@ -1,13 +1,13 @@
-package com.example.bumerang.domain.performance;
-
+package com.example.bumerang.web.dto.response.admin;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import lombok.Setter;
 import java.sql.Timestamp;
 
 @NoArgsConstructor
+@Setter
 @Getter
-public class Performance {
+public class PfListDto {
     private Integer pfId;
     private String pfTitle;
     private String pfContent;
@@ -18,6 +18,7 @@ public class Performance {
     private String pfLocation;
     private String pfRunningtime;
     private Integer pfPrice;
+    private Integer pfView;
     private String pfGenre;
     private String pfThumbnail;
     private Integer userId;

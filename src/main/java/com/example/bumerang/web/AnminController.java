@@ -1,30 +1,27 @@
 package com.example.bumerang.web;
 
-import com.example.bumerang.domain.jobSearch.JobSearch;
-import com.example.bumerang.domain.notice.Notice;
-import com.example.bumerang.domain.performance.Performance;
-import com.example.bumerang.domain.user.User;
-import com.example.bumerang.service.JobSearchService;
-import com.example.bumerang.service.NoticeService;
-import com.example.bumerang.service.PerformanceService;
-import com.example.bumerang.service.UserService;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
+import com.example.bumerang.service.AdminService;
+import com.example.bumerang.web.dto.response.admin.JobListDto;
+import com.example.bumerang.web.dto.response.admin.NoticeListDto;
+import com.example.bumerang.web.dto.response.admin.PfListDto;
+import com.example.bumerang.web.dto.response.admin.UserListDto;
+
+import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
 @Controller
 public class AnminController {
     private final HttpSession session;
-    private final UserService userService;
-    private final JobSearchService jobSearchService;
-    private final PerformanceService performanceService;
-    private final NoticeService noticeService;
+    private final AdminService adminService;
 
     // 메인 화면
     @GetMapping("/indexForm")
@@ -44,34 +41,34 @@ public class AnminController {
         return "admin/tableForm";
     }
 
-    // 사용자관리 화면
+    // 사용자 관리 화면
     @GetMapping("/userManageForm")
     public String userManageForm(Model model) {
-        List<User> userList = userService.findAll();
+        List<UserListDto> userList = adminService.findUserList();
         model.addAttribute("userList",userList);
         return "admin/userManageForm";
     }
 
-    // 구인글관리 화면
+    // 구인글 관리 화면
     @GetMapping("/jobManageForm")
     public String jobManageForm(Model model) {
-        List<JobSearch> jobList = jobSearchService.findAll();
+        List<JobListDto> jobList = adminService.findJobList();
         model.addAttribute("jobList",jobList);
         return "admin/jobManageForm";
     }
 
-    // 구인글관리 화면
+    // 공연글 관리 화면
     @GetMapping("/pfManageForm")
     public String pfManageForm(Model model) {
-        List<Performance> pfList = performanceService.findAll();
+        List<PfListDto> pfList = adminService.findPfList();
         model.addAttribute("pfList",pfList);
         return "admin/pfManageForm";
     }
 
-    // 구인글관리 화면
+    // 공지글 관리 화면
     @GetMapping("/noticeManageForm")
     public String noticeManageForm(Model model) {
-        List<Notice> noticeList = noticeService.findAll();
+        List<NoticeListDto> noticeList = adminService.findNoticeList();
         model.addAttribute("noticeList",noticeList);
         return "admin/noticeManageForm";
     }

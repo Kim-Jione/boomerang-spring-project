@@ -57,9 +57,9 @@
                                                         <c:otherwise>여자</c:otherwise>
                                                     </c:choose>
                                                 </td>
-                                                <td>${user.userAge}대</td>
+                                                <td>${user.userAge}</td>
                                                 <td>${user.userPosition}</td>
-                                                <td>${user.userCareer}년</td>
+                                                <td>${user.userCareer}</td>
                                                 <td>${user.userRole}</td>
                                                 <td>
                                                     <a href="/admin/updateForm/${user.userId}"

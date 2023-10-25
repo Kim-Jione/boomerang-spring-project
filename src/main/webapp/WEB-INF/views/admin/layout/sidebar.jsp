@@ -28,6 +28,20 @@
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            신고관리
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/tableForm">신고된 구인정보글</a>
+                                <a class="nav-link" href="/tableForm">신고된 공연홍보글</a>
+                                <a class="nav-link" href="/tableForm">신고된 댓글</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             통계
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -37,7 +51,6 @@
                                 <a class="nav-link" href="/chartForm">사용자 통계</a>
                                 <a class="nav-link" href="/chartForm">구인정보글 통계</a>
                                 <a class="nav-link" href="/chartForm">공연홍보글 통계</a>
-                                <a class="nav-link" href="/chartForm">공지사항 통계</a>
                             </nav>
                         </div>
                     </div>
