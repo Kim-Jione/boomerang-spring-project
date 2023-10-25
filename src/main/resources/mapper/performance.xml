@@ -16,9 +16,9 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO performance (pf_title, pf_content, pf_agerating, pf_date, pf_bookingmethod, pf_production, pf_location, pf_runningtime, pf_price, pf_genre, pf_thumbnail, user_id)
+        INSERT INTO performance (pf_title, pf_content, pf_agerating, pf_start_date, pf_deadline, pf_bookingmethod, pf_production, pf_location, pf_runningtime, pf_price, pf_genre, pf_thumbnail, user_id)
         VALUES
-        (#{pfTitle}, #{pfContent}, #{pfAgerating}, #{pfDate}, #{pfBookingmethod}, #{pfProduction}, #{pfLocation}, #{pfRunningtime}, #{pfPrice}, #{pfGenre}, #{pfThumbnail}, #{userId},)
+        (#{pfTitle}, #{pfContent}, #{pfAgerating}, #{pfStartDate}, #{pfDeadline}, #{pfBookingmethod}, #{pfProduction}, #{pfLocation}, #{pfRunningtime}, #{pfPrice}, #{pfGenre}, #{pfThumbnail}, #{userId},)
     </insert>
 
     <update id="update">
@@ -27,7 +27,8 @@
         pf_title = #{pfTitle},
         pf_content = #{pfContent},
         pf_agerating = #{pfAgerating},
-        pf_date = #{pfDate},
+        pf_start_date = #{pfStartDate},
+        pf_deadline = #{pfDeadline},
         pf_bookingmethod = #{pfBookingmethod},
         pf_production = #{pfProduction},
         pf_location = #{pfLocation},
@@ -56,4 +57,38 @@
         AND user_id = #{userId}
     </update>
 
+    <select id="findAllPf"
+            resultType="com.example.bumerang.web.dto.response.performance.PfListDto">
+        SELECT  p.pf_title, p.pf_location,
+        CASE WHEN p.pf_price = 0 THEN FALSE
+        ELSE TRUE END AS isPrice,
+        p.pf_start_date, p.pf_deadline, p.pf_thumbnail,
+        COALESCE(v.view_count, 0) AS view_count
+        FROM performance p
+        LEFT JOIN
+        (SELECT pf_id, COUNT(view_id) AS view_count
+        FROM VIEW
+        WHERE pf_id IS NOT NULL
+        GROUP BY pf_id) v
+        ON p.pf_id = v.pf_id
+        WHERE pf_status = 'active'
+    </select>
+
+    <select id="findAllBeestPf"
+            resultType="com.example.bumerang.web.dto.response.performance.PfListDto">
+        SELECT p.pf_title, p.pf_location,
+        CASE WHEN p.pf_price = 0 THEN FALSE
+        ELSE TRUE END AS isPrice,
+        p.pf_start_date, p.pf_deadline, p.pf_thumbnail,
+        COALESCE(v.view_count, 0) AS viewCount
+        FROM performance p
+        LEFT JOIN (
+            SELECT pf_id, COUNT(*) AS view_count
+            FROM view
+            GROUP BY pf_id
+        ) v ON p.pf_id = v.pf_id
+        WHERE p.pf_status = 'active'
+        ORDER BY COALESCE(viewCount, 0) DESC
+        LIMIT 6
+    </select>
 </mapper>
