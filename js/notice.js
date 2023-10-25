@@ -4,7 +4,7 @@
 //변수 및 상수 정의
 const contents = document.querySelector(".contents_list"); //글목록 부모 요소 지정
 const paging = document.querySelector(".paging");
-const pageNums = document.querySelector(".numbers"); //페이지 숫자 부모 요소 지정
+const pageNums = document.querySelector(".paging"); //페이지 숫자 부모 요소 지정
 
 let numOfContents = 230; // 전체 글 개수 - 추후 백에서 받아오는 걸로
 const maxContent = 10; // 한 페이지당 글 최대 개수
@@ -86,10 +86,10 @@ const renderButton = (currentPage) => {
   pageNums.append(last);
 
   // 페이지 이동 버튼 필요성 체크
-  if (currentPage - maxButton < 1){
+  if (currentPage - maxButton < 1) {
     pageNums.removeChild(prev);
     pageNums.removeChild(first);
-}
+  }
   if (currentPage + maxButton > maxPage) {
     pageNums.removeChild(next);
     pageNums.removeChild(last);

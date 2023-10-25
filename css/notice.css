@@ -119,23 +119,21 @@
   display: inline-block;
   /* margin-left: 10px; */
   padding: 5px 10px;
-
   border-radius: 50px;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .board_list_wrap .paging a:first-child {
   /* margin-left: 0; */
 }
 
-.board_list_wrap .paging a.bt {
-  background: #eee;
-  border: 1px solid #eee;
+.board_list_wrap .paging .fa-solid {
+  color : cornflowerblue;
 }
 
 .board_list_wrap .paging a.num {
   border: 1px solid cornflowerblue;
-  font-weight: 600;
+  font-weight: 800;
   color: cornflowerblue;
 }
 
