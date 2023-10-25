@@ -104,14 +104,20 @@
 
 /* 페이지네이션 */
 .board_list_wrap .paging {
+  display: flex;
   margin-top: 20px;
   font-size: 0;
   text-align: center;
+  justify-content: center;
+}
+
+.board_list_wrap .paging *{
+  margin: 0 5px;
 }
 
 .board_list_wrap .paging a {
   display: inline-block;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   padding: 5px 10px;
 
   border-radius: 50px;
@@ -119,7 +125,7 @@
 }
 
 .board_list_wrap .paging a:first-child {
-  margin-left: 0;
+  /* margin-left: 0; */
 }
 
 .board_list_wrap .paging a.bt {
