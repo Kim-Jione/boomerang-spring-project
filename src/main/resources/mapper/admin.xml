@@ -31,4 +31,10 @@
 		FROM notice
     </select>
 
+    <select id="findByUserId" resultType="com.example.bumerang.web.dto.response.admin.UserDetailDto">
+        SELECT *
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+
 </mapper>

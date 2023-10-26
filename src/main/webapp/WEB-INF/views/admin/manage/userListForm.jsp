@@ -51,7 +51,11 @@
                                         <c:forEach var="user" items="${userList}" varStatus="loop">
                                             <tr>
                                                 <td>${loop.index + 1}</td>
-                                                <td>${user.userNickname}</td>
+                                                <td>
+                                                    <a href="/manage/userDetailForm/${user.userId}">
+                                                        ${user.userNickname}
+                                                    </a>
+                                                </td>
                                                 <td>${user.userEmail}</td>
                                                 <td>
                                                     <c:choose>
