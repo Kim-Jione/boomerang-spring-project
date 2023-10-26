@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ include file="./layout/header.jsp" %>
-        <%@ include file="./layout/sidebar.jsp" %>
+    <%@ include file="../layout/header.jsp" %>
+        <%@ include file="../layout/sidebar.jsp" %>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -77,4 +77,4 @@
                     return confirm("정말 삭제하시겠습니까?");
                 }
             </script>
-            <%@ include file="./layout/footer.jsp" %>
+            <%@ include file="../layout/footer.jsp" %>

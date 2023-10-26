@@ -1,20 +1,18 @@
 package com.example.bumerang.web;
 
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
+import com.example.bumerang.domain.admin.AdminDao;
 import com.example.bumerang.service.AdminService;
 import com.example.bumerang.web.dto.response.admin.JobListDto;
 import com.example.bumerang.web.dto.response.admin.NoticeListDto;
 import com.example.bumerang.web.dto.response.admin.PfListDto;
 import com.example.bumerang.web.dto.response.admin.UserListDto;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -22,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class AnminController {
     private final HttpSession session;
     private final AdminService adminService;
+    private final AdminDao adminDao;
 
     // 메인 화면
     @GetMapping("/indexForm")
@@ -80,4 +79,5 @@ public class AnminController {
         model.addAttribute("reportJobList", reportJobList);
         return "admin/report/jobListForm";
     }
+
 }
