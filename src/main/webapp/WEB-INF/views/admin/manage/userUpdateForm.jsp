@@ -144,7 +144,7 @@
                         }).done((res) => {
                             if (res.code == 1) {
                                 alert(res.msg);
-                                location.href = "/manage/userDetailForm/" + data.userId;
+                                location.href = "/manage/userListForm";
                             } else {
                                 alert(res.msg);
                                 location.reload();

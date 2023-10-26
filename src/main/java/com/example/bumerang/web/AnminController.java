@@ -69,6 +69,15 @@ public class AnminController {
         return new CMRespDto<>(1, "사용자 정보 수정 성공.", userPS);
     }
 
+    // 사용자 삭제하기 기능
+    @DeleteMapping("/manage/userDelete/{userId}")
+    public @ResponseBody CMRespDto<?> userDelete(@PathVariable Integer userId) {
+        System.err.println("디버그");
+        UserDetailDto userPS = adminService.deleteUser(userId);
+        System.err.println("디버그2");
+        return new CMRespDto<>(1, "사용자 정보 삭제 성공.", userPS);
+    }
+
     // 구인글 관리 목록 화면
     @GetMapping("/manage/jobListForm")
     public String findManageJobList(Model model) {

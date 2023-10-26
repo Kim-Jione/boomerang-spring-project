@@ -47,4 +47,10 @@ public class AdminService {
         UserDetailDto userPS = adminDao.findByUserId(userDetailDto.getUserId());
         return userPS;
     }
+
+    public UserDetailDto deleteUser(Integer userId) {
+        adminDao.deleteUser(userId);
+        UserDetailDto userPS = adminDao.findByUserId(userId);
+        return userPS;
+    }
 }

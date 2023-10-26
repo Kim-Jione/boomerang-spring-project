@@ -55,4 +55,12 @@
         WHERE
         user_id = #{userId}
     </update>
+
+    <update id="deleteUser">
+        UPDATE user
+        SET
+        user_status = 'deleted'
+        WHERE
+        user_id = #{userId}
+    </update>
 </mapper>
