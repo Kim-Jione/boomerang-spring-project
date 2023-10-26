@@ -18,4 +18,6 @@ public interface AdminDao {
     void updateUser(UserDetailDto userDetailDto);
 
     void deleteUser(Integer userId);
+
+    JobDetailDto findByJobId(Integer jobId);
 }

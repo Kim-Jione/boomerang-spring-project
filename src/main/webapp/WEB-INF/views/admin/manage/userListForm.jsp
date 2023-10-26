@@ -74,8 +74,7 @@
 
                                                 </td>
                                                 <td>
-                                                    <button onclick="remove(${user.userId})"
-                                                        class="btn btn-outline-danger">
+                                                    <button onclick="remove(${user.userId})" class="btn btn-danger">
                                                         삭제
                                                     </button>
 

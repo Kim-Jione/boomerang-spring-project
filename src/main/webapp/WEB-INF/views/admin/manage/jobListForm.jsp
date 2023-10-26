@@ -45,7 +45,11 @@
                                         <c:forEach var="job" items="${jobList}" varStatus="loop">
                                             <tr>
                                                 <td>${loop.index + 1}</td>
-                                                <td>${job.jobContentTitle}</td>
+                                                <td>
+                                                    <a href="/manage/jobDetailForm/${job.jobId}">
+                                                        ${job.jobContentTitle}
+                                                    </a>
+                                                </td>
                                                 <td>${job.jobGenre}</td>
                                                 <td>${job.jobView}</td>
                                                 <td>${job.jobStatus}</td>

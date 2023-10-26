@@ -49,7 +49,7 @@ public class AnminController {
     // 사용자 상세보기 화면
     @GetMapping("/manage/userDetailForm/{userId}")
     public String userDetailForm(@PathVariable Integer userId, Model model) {
-        UserDetailDto userPS = adminService.findById(userId);
+        UserDetailDto userPS = adminService.findByUserId(userId);
         model.addAttribute("userPS",userPS);
         return "admin/manage/userDetailForm";
     }
@@ -57,7 +57,7 @@ public class AnminController {
     // 사용자 수정하기 화면
     @GetMapping("/manage/userUpdateForm/{userId}")
     public String userUpdateForm(@PathVariable Integer userId, Model model) {
-        UserDetailDto userPS = adminService.findById(userId);
+        UserDetailDto userPS = adminService.findByUserId(userId);
         model.addAttribute("userPS",userPS);
         return "admin/manage/userUpdateForm";
     }
@@ -72,9 +72,7 @@ public class AnminController {
     // 사용자 삭제하기 기능
     @DeleteMapping("/manage/userDelete/{userId}")
     public @ResponseBody CMRespDto<?> userDelete(@PathVariable Integer userId) {
-        System.err.println("디버그");
         UserDetailDto userPS = adminService.deleteUser(userId);
-        System.err.println("디버그2");
         return new CMRespDto<>(1, "사용자 정보 삭제 성공.", userPS);
     }
 
@@ -84,6 +82,14 @@ public class AnminController {
         List<JobListDto> jobList = adminService.findJobList();
         model.addAttribute("jobList",jobList);
         return "admin/manage/jobListForm";
+    }
+
+    // 구인글 상세보기 화면
+    @GetMapping("/manage/jobDetailForm/{jobId}")
+    public String jobDetailForm(@PathVariable Integer jobId, Model model) {
+        JobDetailDto jobPS = adminService.findByJobId(jobId);
+        model.addAttribute("jobPS",jobPS);
+        return "admin/manage/jobDetailForm";
     }
 
     // 공연글 관리 목록 화면

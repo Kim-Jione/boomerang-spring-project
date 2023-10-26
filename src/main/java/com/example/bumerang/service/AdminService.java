@@ -37,7 +37,7 @@ public class AdminService {
         return noticeList;
     }
 
-    public UserDetailDto findById(Integer userId) {
+    public UserDetailDto findByUserId(Integer userId) {
         UserDetailDto userPS = adminDao.findByUserId(userId);
         return userPS;
     }
@@ -52,5 +52,10 @@ public class AdminService {
         adminDao.deleteUser(userId);
         UserDetailDto userPS = adminDao.findByUserId(userId);
         return userPS;
+    }
+
+    public JobDetailDto findByJobId(Integer jobId) {
+        JobDetailDto jobPS = adminDao.findByJobId(jobId);
+        return jobPS;
     }
 }
