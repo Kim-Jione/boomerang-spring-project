@@ -2,12 +2,12 @@ package com.example.bumerang.web;
 
 import com.example.bumerang.domain.admin.AdminDao;
 import com.example.bumerang.service.AdminService;
+import com.example.bumerang.web.dto.response.CMRespDto;
 import com.example.bumerang.web.dto.response.admin.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -52,6 +52,21 @@ public class AnminController {
         UserDetailDto userPS = adminService.findById(userId);
         model.addAttribute("userPS",userPS);
         return "admin/manage/userDetailForm";
+    }
+
+    // 사용자 수정하기 화면
+    @GetMapping("/manage/userUpdateForm/{userId}")
+    public String userUpdateForm(@PathVariable Integer userId, Model model) {
+        UserDetailDto userPS = adminService.findById(userId);
+        model.addAttribute("userPS",userPS);
+        return "admin/manage/userUpdateForm";
+    }
+
+    // 사용자 수정하기 기능
+    @PutMapping("/manage/userUpdate")
+    public @ResponseBody CMRespDto<?> userUpdate(@RequestBody UserDetailDto userDetailDto ) {
+        UserDetailDto userPS = adminService.updateUser(userDetailDto);
+        return new CMRespDto<>(1, "사용자 정보 수정 성공.", userPS);
     }
 
     // 구인글 관리 목록 화면

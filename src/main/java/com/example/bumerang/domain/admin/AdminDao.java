@@ -14,4 +14,6 @@ public interface AdminDao {
     List<NoticeListDto> findNoticeList();
 
     UserDetailDto findByUserId(Integer userId);
+
+    void updateUser(UserDetailDto userDetailDto);
 }

@@ -41,4 +41,10 @@ public class AdminService {
         UserDetailDto userPS = adminDao.findByUserId(userId);
         return userPS;
     }
+
+    public UserDetailDto updateUser(UserDetailDto userDetailDto) {
+        adminDao.updateUser(userDetailDto);
+        UserDetailDto userPS = adminDao.findByUserId(userDetailDto.getUserId());
+        return userPS;
+    }
 }

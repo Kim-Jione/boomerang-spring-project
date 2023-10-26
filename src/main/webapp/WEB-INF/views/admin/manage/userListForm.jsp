@@ -69,8 +69,9 @@
                                                 <td>${user.userStatus}</td>
                                                 <td>${user.userRole}</td>
                                                 <td>
-                                                    <a href="/admin/updateForm/${user.userId}"
+                                                    <a href="/manage/userUpdateForm/${user.userId}"
                                                         class="btn btn-warning">수정</a>
+
                                                 </td>
                                                 <td>
                                                     <form action="/admin/delete/${user.userId}" method="delete"

@@ -25,5 +25,4 @@ public class UserDetailDto {
     private String userStatus;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-
 }
