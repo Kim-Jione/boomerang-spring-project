@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Setter
 @Getter
@@ -23,6 +24,7 @@ public class JobDetailDto {
     private Integer userId;
     private String jobStatus;
     private String jobPositionTitles; // 포지션모음
+    private List<String> jobPositionTitle; // 포지션 등록용
     private Timestamp createdAt;
     private Timestamp updatedAt;
 }

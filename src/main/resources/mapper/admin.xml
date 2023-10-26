@@ -70,4 +70,40 @@
         FROM job_search j
         WHERE j.job_id = ${jobId}
     </select>
+
+    <update id="updateJob">
+        UPDATE job_search
+        SET
+        job_content_title = #{jobContentTitle},
+        job_content = #{jobContent},
+        job_genre = #{jobGenre},
+        job_art_title = #{jobArtTitle},
+        job_start_date = #{jobStartDate},
+        job_production_date = #{jobProductionDate},
+        job_to = #{jobTo},
+        job_pay = #{jobPay},
+        job_gender = #{jobGender},
+        job_contact = #{jobContact},
+        job_deadline = #{jobDeadline},
+        job_status = #{jobStatus}
+        WHERE
+        job_id = #{jobId}
+    </update>
+
+    <insert id="insertJobPosition">
+        INSERT INTO job_search_position (job_position_title, job_id)
+        VALUES (#{jobPositionTitle}, #{jobId});
+
+    </insert>
+
+    <select id="findByJobPosition" resultType="String">
+        SELECT jsp.job_position_title
+        FROM job_search_position jsp
+        WHERE jsp.job_id = #{jobId}
+    </select>
+
+    <delete id="deleteJobPosition">
+        DELETE FROM job_search_position
+        WHERE job_id = #{jobId}
+    </delete>
 </mapper>

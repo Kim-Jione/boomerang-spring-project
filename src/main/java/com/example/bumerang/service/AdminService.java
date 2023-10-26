@@ -58,4 +58,20 @@ public class AdminService {
         JobDetailDto jobPS = adminDao.findByJobId(jobId);
         return jobPS;
     }
+
+    public JobDetailDto updateJob(JobDetailDto jobDetailDto) {
+        adminDao.updateJob(jobDetailDto);
+        List<String> jobPositionList = jobDetailDto.getJobPositionTitle();
+        adminDao.deleteJobPosition(jobDetailDto.getJobId());
+        for(String jobPositionTitle : jobPositionList){
+            adminDao.insertJobPosition(jobPositionTitle, jobDetailDto.getJobId());
+        }
+        JobDetailDto jobPS = adminDao.findByJobId(jobDetailDto.getJobId());
+        return jobPS;
+    }
+
+    public List<String> findByJobPosition(Integer jobId) {
+        List<String> jobPositionTitle = adminDao.findByJobPosition(jobId);
+        return jobPositionTitle;
+    }
 }

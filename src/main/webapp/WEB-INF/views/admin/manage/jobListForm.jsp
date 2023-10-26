@@ -55,11 +55,11 @@
                                                 <td>${job.jobStatus}</td>
                                                 <td>${job.createdAt}</td>
                                                 <td>
-                                                    <a href="/admin/updateForm/${job.userId}"
+                                                    <a href="/manage/jobUpdateForm/${job.jobId}"
                                                         class="btn btn-warning">수정</a>
                                                 </td>
                                                 <td>
-                                                    <form action="/admin/delete/${job.userId}" method="delete"
+                                                    <form action="/manage/jobUpdateForm/${job.userId}" method="delete"
                                                         onsubmit="return confirmDelete()">
                                                         <button type="submit" class="btn btn-danger">
                                                             삭제

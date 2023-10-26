@@ -20,4 +20,12 @@ public interface AdminDao {
     void deleteUser(Integer userId);
 
     JobDetailDto findByJobId(Integer jobId);
+
+    void updateJob(JobDetailDto jobDetailDto);
+
+    void insertJobPosition(String jobPositionTitle, Integer jobId);
+
+    List<String> findByJobPosition(Integer jobId);
+
+    void deleteJobPosition(Integer jobId);
 }

@@ -4,10 +4,10 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">사용자</h1>
+                        <h1 class="mt-4">구인글</h1>
                         <div class="card mb-4">
                             <div class="card-body">
-                                사용자의 정보를 관리합니다.
+                                구인글의 정보를 관리합니다.
                             </div>
                         </div>
                         <div class="mb-3 mt-3">
