@@ -25,32 +25,32 @@ public class CommentController {
     public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }
-
+    // 댓글 리스트 불러오기
     @GetMapping("/comment")
     public @ResponseBody CMRespDto<?> commentsForm(Model model) {
         List<Comment> comments = commentService.findComments();
         model.addAttribute("comments", comments);
-        return new CMRespDto<>(1, "댓글 불러오기 성공.", null);
+        return new CMRespDto<>(1, "댓글 불러오기 성공.", comments);
     }
-
+    // 댓글 생성
     @PostMapping("/comment")
     public @ResponseBody CMRespDto<?> createComment(@RequestBody CommentDto commentDto) {
         commentService.createComment(commentDto.toComment());
 
-        return new CMRespDto<>(1, "댓글 생성 성공.", null);
+        return new CMRespDto<>(1, "댓글 생성 성공.", commentDto);
     }
-
+    // 댓글 삭제
     @DeleteMapping("/comment/delete")
     public @ResponseBody CMRespDto<?> deleteComment(@RequestBody CommentDto commentDto) {
         commentService.deleteComment(commentDto.getCommentId());
 
-        return new CMRespDto<>(1, "댓글 삭제 성공.", null);
+        return new CMRespDto<>(1, "댓글 삭제 성공.", commentDto);
     }
-
+    // 댓글 수정
     @PutMapping("/comment/update")
     public @ResponseBody CMRespDto<?> updateComment(@RequestBody CommentDto commentDto) {
         commentService.updateComment(commentDto.getCommentId(), commentDto.getCommentContent());
 
-        return new CMRespDto<>(1, "댓글 수정 성공.", null);
+        return new CMRespDto<>(1, "댓글 수정 성공.", commentDto);
     }
 }
