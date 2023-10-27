@@ -7,7 +7,7 @@ const paging = document.querySelector(".paging");
 const pageNums = document.querySelector(".paging"); //페이지 숫자 부모 요소 지정
 
 let numOfContents = 230; // 전체 글 개수 - 추후 백에서 받아오는 걸로
-const maxContent = 20; // 한 페이지당 글 최대 개수
+const maxContent = 15; // 한 페이지당 글 최대 개수
 const maxButton = 5; // 한 화면에 보여지는 페이지 버튼의 최대 개수
 let maxPage = Math.ceil(numOfContents / maxContent); // 총 페이지 개수
 let currentPage = 1; // 현재 페이지, 주소창 쿼리에서 받아오게 만들면.
@@ -16,7 +16,7 @@ let currentPage = 1; // 현재 페이지, 주소창 쿼리에서 받아오게 �
 const makeContent = (id) => {
   const content = document.createElement("tr");
   content.innerHTML =
-    '<td class="notice_type">컨텐츠 공지</td><td class="notice_title"><a href="#">여기에 제목이 표시됩니다.</a></td><td class="created_at">23.10.22.</td>';
+    '<td class="notice_type">컨텐츠 공지</td><td class="notice_title"><a href="viewNotice.html">여기에 제목이 표시됩니다.</a></td><td class="created_at">23.10.22.</td>';
 
   //데이터 연동 버전, 빈칸 채우기
   // content.innerHTML =
