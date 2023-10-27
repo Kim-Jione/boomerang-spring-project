@@ -85,4 +85,10 @@ public class AdminService {
         PfDetailDto pfPS = adminDao.findByPfId(pfId);
         return pfPS;
     }
+
+    public PfDetailDto updatePf(PfDetailDto pfDetailDto) {
+        adminDao.updatePf(pfDetailDto);
+        PfDetailDto pfPS = adminDao.findByPfId(pfDetailDto.getPfId());
+        return pfPS;
+    }
 }

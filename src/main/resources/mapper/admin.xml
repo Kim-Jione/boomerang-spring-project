@@ -11,24 +11,24 @@
 
     <select id="findJobList" resultType="com.example.bumerang.web.dto.response.admin.JobListDto">
         SELECT j.*, COUNT(v.view_id) AS job_view
-		FROM job_search j
-		LEFT JOIN VIEW v
-		ON j.job_id = v.job_id
-		GROUP BY j.job_id
+        FROM job_search j
+        LEFT JOIN VIEW v
+        ON j.job_id = v.job_id
+        GROUP BY j.job_id
     </select>
 
     <select id="findPfList" resultType="com.example.bumerang.web.dto.response.admin.PfListDto">
         SELECT p.*, COUNT(v.view_id) AS pf_view
-		FROM performance p
-		LEFT JOIN VIEW v
-		ON p.pf_id = v.pf_id
-		GROUP BY p.pf_id
+        FROM performance p
+        LEFT JOIN VIEW v
+        ON p.pf_id = v.pf_id
+        GROUP BY p.pf_id
     </select>
 
-    
+
     <select id="findNoticeList" resultType="com.example.bumerang.web.dto.response.admin.NoticeListDto">
         SELECT *
-		FROM notice
+        FROM notice
     </select>
 
     <select id="findByUserId" resultType="com.example.bumerang.web.dto.response.admin.UserDetailDto">
@@ -92,8 +92,7 @@
 
     <insert id="insertJobPosition">
         INSERT INTO job_search_position (job_position_title, job_id)
-        VALUES (#{jobPositionTitle}, #{jobId});
-
+        VALUES (#{jobPositionTitle}, #{jobId})
     </insert>
 
     <select id="findByJobPosition" resultType="String">
@@ -120,4 +119,24 @@
         FROM performance p
         WHERE p.pf_id = #{pfId}
     </select>
+
+    <update id="updatePf">
+        UPDATE performance
+        SET
+        pf_title = #{pfTitle},
+        pf_content = #{pfContent},
+        pf_agerating = #{pfAgerating},
+        pf_start_date = #{pfStartDate},
+        pf_deadline = #{pfDeadline},
+        pf_bookingmethod = #{pfBookingmethod},
+        pf_production = #{pfProduction},
+        pf_location = #{pfLocation},
+        pf_runningtime = #{pfRunningtime},
+        pf_price = #{pfPrice},
+        pf_genre = #{pfGenre},
+        pf_thumbnail = #{pfThumbnail},
+        pf_status = #{pfStatus}
+        WHERE
+        pf_id = #{pfId}
+    </update>
 </mapper>

@@ -35,10 +35,10 @@
                             공연 장소 : ${pfPS.pfLocation}
                         </div>
                         <div class="mb-3 mt-3">
-                            공연시간 : ${pfPS.pfRunningtime}
+                            공연시간 : ${pfPS.pfRunningtime} 분
                         </div>
                         <div class="mb-3 mt-3">
-                            공연 가격 : ${pfPS.pfPrice}
+                            공연 가격 : ${pfPS.pfPrice} 원
                         </div>
                         <div class="mb-3 mt-3">
                             공연 장르 : ${pfPS.pfGenre}

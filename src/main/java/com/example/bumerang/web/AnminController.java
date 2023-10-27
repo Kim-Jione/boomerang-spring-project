@@ -131,6 +131,21 @@ public class AnminController {
         model.addAttribute("pfPS", pfPS);
         return "admin/manage/pfDetailForm";
     }
+
+    // 공연글 수정하기 화면
+    @GetMapping("/manage/pfUpdateForm/{pfId}")
+    public String pfUpdateForm(@PathVariable Integer pfId, Model model) {
+        PfDetailDto pfPS = adminService.findByPfId(pfId);
+        model.addAttribute("pfPS", pfPS);
+        return "admin/manage/pfUpdateForm";
+    }
+    
+    // 공연글 수정하기 기능
+    @PutMapping("/manage/pfUpdate")
+    public @ResponseBody CMRespDto<?> pfUpdate(@RequestBody PfDetailDto pfDetailDto) {
+        PfDetailDto pfPS = adminService.updatePf(pfDetailDto);
+        return new CMRespDto<>(1, "공연글 정보 수정 성공.", pfPS);
+    }
     
     // 공지글 관리 목록 화면
     @GetMapping("/manage/noticeListForm")

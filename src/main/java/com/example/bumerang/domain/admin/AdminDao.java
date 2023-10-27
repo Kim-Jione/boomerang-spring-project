@@ -32,4 +32,6 @@ public interface AdminDao {
     void deleteJob(Integer jobId);
 
     PfDetailDto findByPfId(Integer pfId);
+
+    void updatePf(PfDetailDto pfDetailDto);
 }
