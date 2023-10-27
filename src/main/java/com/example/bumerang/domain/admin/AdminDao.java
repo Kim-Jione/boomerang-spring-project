@@ -34,4 +34,6 @@ public interface AdminDao {
     PfDetailDto findByPfId(Integer pfId);
 
     void updatePf(PfDetailDto pfDetailDto);
+
+    void deletePf(Integer pfId);
 }

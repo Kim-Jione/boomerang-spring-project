@@ -91,4 +91,10 @@ public class AdminService {
         PfDetailDto pfPS = adminDao.findByPfId(pfDetailDto.getPfId());
         return pfPS;
     }
+
+    public PfDetailDto deletePf(Integer pfId) {
+        adminDao.deletePf(pfId);
+        PfDetailDto pfPS = adminDao.findByPfId(pfId);
+        return pfPS;
+    }
 }

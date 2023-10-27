@@ -139,4 +139,12 @@
         WHERE
         pf_id = #{pfId}
     </update>
+
+    <update id="deletePf">
+        UPDATE performance
+        SET
+        pf_status = 'deleted'
+        WHERE
+        pf_id = #{pfId}
+    </update>
 </mapper>

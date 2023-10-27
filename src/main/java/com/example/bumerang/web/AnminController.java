@@ -146,7 +146,14 @@ public class AnminController {
         PfDetailDto pfPS = adminService.updatePf(pfDetailDto);
         return new CMRespDto<>(1, "공연글 정보 수정 성공.", pfPS);
     }
-    
+
+    // 공연글 삭제하기 기능
+    @DeleteMapping("/manage/pfDelete/{pfId}")
+    public @ResponseBody CMRespDto<?> pfDelete(@PathVariable Integer pfId) {
+        PfDetailDto pfPS = adminService.deletePf(pfId);
+        return new CMRespDto<>(1, "공연글 정보 삭제 성공.", pfPS);
+    }
+
     // 공지글 관리 목록 화면
     @GetMapping("/manage/noticeListForm")
     public String findManageNoticeList(Model model) {
