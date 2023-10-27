@@ -114,4 +114,10 @@
         WHERE
         job_id = #{jobId}
     </update>
+
+    <select id="findByPfId" resultType="com.example.bumerang.web.dto.response.admin.PfDetailDto">
+        SELECT *
+        FROM performance p
+        WHERE p.pf_id = #{pfId}
+    </select>
 </mapper>

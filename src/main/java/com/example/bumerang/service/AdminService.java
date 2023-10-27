@@ -80,4 +80,9 @@ public class AdminService {
         JobDetailDto jobPS = adminDao.findByJobId(jobId);
         return jobPS;
     }
+
+    public PfDetailDto findByPfId(Integer pfId) {
+        PfDetailDto pfPS = adminDao.findByPfId(pfId);
+        return pfPS;
+    }
 }

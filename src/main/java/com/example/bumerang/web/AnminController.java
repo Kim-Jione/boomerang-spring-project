@@ -120,10 +120,18 @@ public class AnminController {
     @GetMapping("/manage/pfListForm")
     public String findManagePfList(Model model) {
         List<PfListDto> pfList = adminService.findPfList();
-        model.addAttribute("pfList",pfList);
+        model.addAttribute("pfList", pfList);
         return "admin/manage/pfListForm";
     }
 
+    // 공연글 상세보기 화면
+    @GetMapping("/manage/pfDetailForm/{pfId}")
+    public String pfDetailForm(@PathVariable Integer pfId, Model model) {
+        PfDetailDto pfPS = adminService.findByPfId(pfId);
+        model.addAttribute("pfPS", pfPS);
+        return "admin/manage/pfDetailForm";
+    }
+    
     // 공지글 관리 목록 화면
     @GetMapping("/manage/noticeListForm")
     public String findManageNoticeList(Model model) {

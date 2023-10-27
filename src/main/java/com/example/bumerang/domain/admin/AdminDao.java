@@ -30,4 +30,6 @@ public interface AdminDao {
     void deleteJobPosition(Integer jobId);
 
     void deleteJob(Integer jobId);
+
+    PfDetailDto findByPfId(Integer pfId);
 }
