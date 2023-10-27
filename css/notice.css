@@ -62,7 +62,7 @@
 
 .board_list {
   width: 100%;
-  border-top: 2px solid navy;
+  border-top: 2px solid black;
 }
 
 .board_list a {
@@ -153,6 +153,11 @@
   color: #fff;
 }
 
+.board_list_wrap .paging a.num:hover {
+  background: black;
+  color: #fff;
+}
+
 /* 공지사항 쓰기 버튼 */
 .board_list_wrap .board_bot .write {
   border: 1px solid black;
@@ -167,4 +172,9 @@
 
 .board_list_wrap .board_bot .write.active {
   display: block;
+}
+
+.board_list_wrap .board_bot .write.active:hover {
+  color: white;
+  background: black;
 }
