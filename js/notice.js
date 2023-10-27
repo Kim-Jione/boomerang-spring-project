@@ -145,8 +145,10 @@ const render = (currentPage) => {
 //초기 페이지 렌더링
 render(currentPage);
 
-
 ////////////////////////////
-// 필터링 //
+// 공지 쓰기 버튼 // 설정 필요 없으면 삭제하세요
 ///////////////////////////
-
+let userId = admin;
+if (userId !== "adimin") { //관리자 로그인이 아닌 경우, 공지 쓰기 버튼 삭제
+  document.querySelector(".write").classList.remove("active");
+}
