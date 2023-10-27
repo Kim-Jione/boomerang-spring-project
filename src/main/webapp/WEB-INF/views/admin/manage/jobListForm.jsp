@@ -59,12 +59,9 @@
                                                         class="btn btn-warning">수정</a>
                                                 </td>
                                                 <td>
-                                                    <form action="/manage/jobUpdateForm/${job.userId}" method="delete"
-                                                        onsubmit="return confirmDelete()">
-                                                        <button type="submit" class="btn btn-danger">
-                                                            삭제
-                                                        </button>
-                                                    </form>
+                                                    <button onclick="remove(${job.jobId})" class="btn btn-danger">
+                                                        삭제
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -77,8 +74,24 @@
             </div>
             </div>
             <script>
-                function confirmDelete() {
-                    return confirm("정말 삭제하시겠습니까?");
+                function remove(jobId) {
+                    if (confirm("구인글을 삭제하시겠습니까?")) {
+                        $.ajax({
+                            url: "/manage/jobDelete/" + jobId,
+                            type: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json; charset=utf-8",
+                            },
+                        }).done((res) => {
+                            if (res.code == 1) {
+                                alert(res.msg);
+                                location.href = "/manage/jobListForm";
+                            } else {
+                                alert(res.msg);
+                                location.reload();
+                            }
+                        });
+                    }
                 }
             </script>
             <%@ include file="../layout/footer.jsp" %>

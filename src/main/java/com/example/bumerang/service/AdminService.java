@@ -74,4 +74,10 @@ public class AdminService {
         List<String> jobPositionTitle = adminDao.findByJobPosition(jobId);
         return jobPositionTitle;
     }
+
+    public JobDetailDto deleteJob(Integer jobId) {
+        adminDao.deleteJob(jobId);
+        JobDetailDto jobPS = adminDao.findByJobId(jobId);
+        return jobPS;
+    }
 }

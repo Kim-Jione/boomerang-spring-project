@@ -106,4 +106,12 @@
         DELETE FROM job_search_position
         WHERE job_id = #{jobId}
     </delete>
+
+    <update id="deleteJob">
+        UPDATE job_search
+        SET
+        job_status = 'deleted'
+        WHERE
+        job_id = #{jobId}
+    </update>
 </mapper>

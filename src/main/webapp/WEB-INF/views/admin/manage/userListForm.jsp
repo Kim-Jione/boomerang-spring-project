@@ -77,7 +77,6 @@
                                                     <button onclick="remove(${user.userId})" class="btn btn-danger">
                                                         삭제
                                                     </button>
-
                                                 </td>
                                             </tr>
                                         </c:forEach>

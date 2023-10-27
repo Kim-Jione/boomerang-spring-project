@@ -105,12 +105,15 @@ public class AnminController {
     // 구인글 수정하기 기능
     @PutMapping("/manage/jobUpdate")
     public @ResponseBody CMRespDto<?> jobUpdate(@RequestBody JobDetailDto jobDetailDto ) {
-        System.err.println("디버그: getJobPositionTitle "+jobDetailDto.getJobPositionTitle().get(0));
-        System.err.println("디버그: getJobPositionTitle "+jobDetailDto.getJobPositionTitle().get(1));
-        System.err.println("디버그: getJobPositionTitle "+jobDetailDto.getJobPositionTitle().get(2));
-        System.err.println("디버그: getJobPositionTitles "+jobDetailDto.getJobPositionTitles());
         JobDetailDto jobPS = adminService.updateJob(jobDetailDto);
         return new CMRespDto<>(1, "구인글 정보 수정 성공.", jobPS);
+    }
+
+    // 구인글 삭제하기 기능
+    @DeleteMapping("/manage/jobDelete/{jobId}")
+    public @ResponseBody CMRespDto<?> jobDelete(@PathVariable Integer jobId) {
+        JobDetailDto jobPS = adminService.deleteJob(jobId);
+        return new CMRespDto<>(1, "구인글 정보 삭제 성공.", jobPS);
     }
 
     // 공연글 관리 목록 화면

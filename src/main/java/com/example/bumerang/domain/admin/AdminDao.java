@@ -28,4 +28,6 @@ public interface AdminDao {
     List<String> findByJobPosition(Integer jobId);
 
     void deleteJobPosition(Integer jobId);
+
+    void deleteJob(Integer jobId);
 }
