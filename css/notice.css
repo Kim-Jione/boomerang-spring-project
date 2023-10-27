@@ -1,21 +1,3 @@
-:root {
-  /* Color */
-  --white-color: #fff;
-
-  /* Size */
-  --side-padding: 12px;
-
-  /* Font Size */
-  --font-medium: 12px;
-}
-
-/* 기본 속성 */
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 table {
     border-collapse: collapse;
 }

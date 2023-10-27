@@ -211,6 +211,7 @@
   .project {
     display: flex;
     flex-direction: column;
+    width: 250px;
   }
 
   .project .badge_wrapper {
@@ -219,7 +220,9 @@
     margin-top: 5px;
   }
 
+  /*****************/
   /* 구인 글 뱃지 */
+  /****************/
 
     /* 영화 뱃지 */
   .project .badge_wrapper .badge_movie {
