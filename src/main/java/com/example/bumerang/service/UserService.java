@@ -5,6 +5,7 @@ import com.example.bumerang.domain.user.UserDao;
 import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.user.JoinDto;
 import com.example.bumerang.web.dto.request.user.LoginDto;
+import com.example.bumerang.web.dto.request.user.SearchDto;
 import com.example.bumerang.web.dto.request.user.UpdateDto;
 import com.example.bumerang.web.dto.response.user.UserRespDto;
 import lombok.RequiredArgsConstructor;
@@ -51,9 +52,13 @@ public class UserService {
 		return userPS;
 	}
 
-
 	public UserRespDto findByDetail(Integer userId) {
 		UserRespDto userDetail = userDao.findByDetail(userId);
 		return userDetail;
+	}
+
+	public SearchDto findAccount(SearchDto searchDto) {
+		SearchDto searchId = userDao.findByEmail(searchDto.getUserEmail());
+		return searchId;
 	}
 }
