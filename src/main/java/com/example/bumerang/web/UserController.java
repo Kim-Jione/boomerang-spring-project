@@ -102,13 +102,13 @@ public class UserController {
     public @ResponseBody CMRespDto<?> searchPasswordForm() {
         return new CMRespDto<>(1, "아이디 찾기 화면 불러오기 성공.", null);
     }
-    // 아이디 찾기 기능
+    // 아이디 찾기
     @PostMapping("/user/help/searchId")
     public @ResponseBody CMRespDto<?> searchId(@RequestBody SearchDto searchDto) {
         SearchDto userId = userService.findAccount(searchDto);
         return new CMRespDto<>(1, "아이디 찾기 성공.", userId);
     }
-    // 비밀번호 찾기 기능
+    // 비밀번호 찾기
     @PostMapping("/user/help/searchPassword")
     public @ResponseBody CMRespDto<?> searchPassword(@RequestBody SearchDto searchDto) {
         SearchDto userPassword = userService.findAccount(searchDto);
@@ -121,3 +121,4 @@ public class UserController {
         return new CMRespDto<>(1, "비밀번호 찾기 성공.", message);
     }
 }
+
