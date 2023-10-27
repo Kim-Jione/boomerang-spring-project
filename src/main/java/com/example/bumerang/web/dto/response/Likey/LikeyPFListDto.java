@@ -11,16 +11,16 @@ public class LikeyPFListDto {
     private String userNickname;
     private String userProfileImg;
     //  performance에서 가져올 정보
-
-    private String title;
+    private Integer PFId;
+    private String PfTitle;
+    private String Genre;
     private String location;
     private String startdate;
     private String deadline;
-    private String agerationg;
     private String runningTime;
-    private String thmbnail;
-
-    // 새로 가공할 정보
+    private String thumbnail;
+        // comment에서 가져와서 새로 가공할 정보
     private Integer CommentCount;
+        // view에서 가져와서 새로 가공할 정보
     private Integer ViewCount;
 }
