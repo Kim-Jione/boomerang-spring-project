@@ -71,7 +71,6 @@
         FROM view
         GROUP BY job_id
         ) v ON j.job_id = v.job_id
-        WHERE u.user_id= 1;
     </select>
     <select id="likeyFindPFList" resultType="com.example.bumerang.web.dto.response.Likey.LikeyPFListDto">
         SELECT
@@ -99,6 +98,5 @@
         FROM view
         GROUP BY pf_id
         ) v ON p.pf_id = v.pf_id
-        WHERE u.user_id=1;
     </select>
 </mapper>
