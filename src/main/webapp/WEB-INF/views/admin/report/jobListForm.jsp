@@ -4,16 +4,16 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">구인글</h1>
+                        <h1 class="mt-4">신고된 구인글</h1>
                         <div class="card mb-4">
                             <div class="card-body">
-                                구인글의 정보를 관리합니다.
+                                신고된 구인글의 정보를 관리합니다.
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                구인글 정보
+                                신고된 구인글 정보
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -25,7 +25,6 @@
                                             <th>조회수</th>
                                             <th>상태</th>
                                             <th>작성일</th>
-                                            <th>수정</th>
                                             <th>삭제</th>
                                         </tr>
                                     </thead>
@@ -37,7 +36,6 @@
                                             <th>조회수</th>
                                             <th>상태</th>
                                             <th>작성일</th>
-                                            <th>수정</th>
                                             <th>삭제</th>
                                         </tr>
                                     </tfoot>
@@ -45,22 +43,20 @@
                                         <c:forEach var="job" items="${jobList}" varStatus="loop">
                                             <tr>
                                                 <td>${loop.index + 1}</td>
-                                                <td>${job.jobContentTitle}</td>
+                                                <td>
+                                                    <a href="/report/jobDetailForm/${job.jobId}">
+                                                        ${job.jobContentTitle}
+                                                    </a>
+                                                </td>
                                                 <td>${job.jobGenre}</td>
                                                 <td>${job.jobView}</td>
                                                 <td>${job.jobStatus}</td>
                                                 <td>${job.createdAt}</td>
+
                                                 <td>
-                                                    <a href="/admin/updateForm/${job.userId}"
-                                                        class="btn btn-warning">수정</a>
-                                                </td>
-                                                <td>
-                                                    <form action="/admin/delete/${job.userId}" method="delete"
-                                                        onsubmit="return confirmDelete()">
-                                                        <button type="submit" class="btn btn-danger">
-                                                            삭제
-                                                        </button>
-                                                    </form>
+                                                    <button onclick="remove(${job.jobId})" class="btn btn-danger">
+                                                        삭제
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -73,8 +69,24 @@
             </div>
             </div>
             <script>
-                function confirmDelete() {
-                    return confirm("정말 삭제하시겠습니까?");
+                function remove(jobId) {
+                    if (confirm("구인글을 삭제하시겠습니까?")) {
+                        $.ajax({
+                            url: "/manage/jobDelete/" + jobId,
+                            type: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json; charset=utf-8",
+                            },
+                        }).done((res) => {
+                            if (res.code == 1) {
+                                alert(res.msg);
+                                location.href = "/manage/jobListForm";
+                            } else {
+                                alert(res.msg);
+                                location.reload();
+                            }
+                        });
+                    }
                 }
             </script>
             <%@ include file="../layout/footer.jsp" %>

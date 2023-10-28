@@ -34,9 +34,9 @@
                         <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/tableForm">신고된 구인정보글</a>
-                                <a class="nav-link" href="/tableForm">신고된 공연홍보글</a>
-                                <a class="nav-link" href="/tableForm">신고된 댓글</a>
+                                <a class="nav-link" href="/report/jobListForm">신고된 구인정보글</a>
+                                <a class="nav-link" href="/report/pfListForm">신고된 공연홍보글</a>
+                                <a class="nav-link" href="/report/commentListForm">신고된 댓글</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
