@@ -204,4 +204,18 @@
         ON r.comment_id = c.comment_id
         ORDER BY r.created_at DESC
     </select>
+
+    <update id="deleteComment">
+        UPDATE comment
+        SET
+        comment_status = 'deleted'
+        WHERE
+        comment_id = #{commentId}
+    </update>
+
+    <select id="findByCommentId" resultType="com.example.bumerang.web.dto.response.admin.CommentDetailDto">
+        SELECT *
+        FROM comment c
+        WHERE c.comment_id = #{commentId}
+    </select>
 </mapper>

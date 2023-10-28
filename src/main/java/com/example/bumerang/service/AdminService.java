@@ -129,4 +129,10 @@ public class AdminService {
         List<CommentListDto> commentList = adminDao.findReportCommentList();
         return commentList;
     }
+
+    public CommentDetailDto deleteComment(Integer commentId) {
+        adminDao.deleteComment(commentId);
+        CommentDetailDto commentPS = adminDao.findByCommentId(commentId);
+        return commentPS;
+    }
 }

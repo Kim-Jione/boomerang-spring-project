@@ -215,4 +215,11 @@ public class AnminController {
         model.addAttribute("commentList", reportCommentList);
         return "admin/report/commentListForm";
     }
+
+    // 댓글 삭제하기 기능
+    @DeleteMapping("/manage/commentDelete/{commentId}")
+    public @ResponseBody CMRespDto<?> deleteComment(@PathVariable Integer commentId) {
+        CommentDetailDto commentPS = adminService.deleteComment(commentId);
+        return new CMRespDto<>(1, "댓글 정보 삭제 성공.", commentPS);
+    }
 }

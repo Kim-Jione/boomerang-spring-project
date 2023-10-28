@@ -48,4 +48,8 @@ public interface AdminDao {
     List<PfListDto>  findReportPfList();
 
     List<CommentListDto> findReportCommentList();
+
+    void deleteComment(Integer commentId);
+
+    CommentDetailDto findByCommentId(Integer commentId);
 }
