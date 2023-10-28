@@ -108,4 +108,10 @@ public class AdminService {
         NoticeDetailDto noticePS = adminDao.findByNoticeId(noticeDetailDto.getNoticeId());
         return noticePS;
     }
+
+    public NoticeDetailDto deleteNotice(Integer noticeId) {
+        adminDao.deleteNotice(noticeId);
+        NoticeDetailDto noticePS = adminDao.findByNoticeId(noticeId);
+        return noticePS;
+    }
 }

@@ -40,4 +40,6 @@ public interface AdminDao {
     NoticeDetailDto findByNoticeId(Integer noticeId);
 
     void updateNotice(NoticeDetailDto noticeDetailDto);
+
+    void deleteNotice(Integer noticeId);
 }

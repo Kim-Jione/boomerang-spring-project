@@ -164,4 +164,13 @@
         WHERE
         notice_id = #{noticeId}
     </update>
+
+    <update id="deleteNotice">
+        UPDATE notice
+        SET
+        notice_status = 'deleted'
+        WHERE
+        notice_id = #{noticeId}
+    </update>
+
 </mapper>
