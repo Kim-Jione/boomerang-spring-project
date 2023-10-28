@@ -207,4 +207,12 @@ public class AnminController {
         model.addAttribute("pfList", reportPfList);
         return "admin/report/pfListForm";
     }
+
+    // 댓글 신고 목록 화면
+    @GetMapping("/report/commentListForm")
+    public String findReportCommentListForm(Model model) {
+        List<CommentListDto> reportCommentList = adminService.findReportCommentList();
+        model.addAttribute("commentList", reportCommentList);
+        return "admin/report/commentListForm";
+    }
 }

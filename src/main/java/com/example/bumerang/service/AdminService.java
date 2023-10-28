@@ -124,4 +124,9 @@ public class AdminService {
         List<PfListDto> pfList = adminDao.findReportPfList();
         return pfList;
     }
+
+    public List<CommentListDto> findReportCommentList() {
+        List<CommentListDto> commentList = adminDao.findReportCommentList();
+        return commentList;
+    }
 }

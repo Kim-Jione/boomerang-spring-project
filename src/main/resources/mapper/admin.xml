@@ -196,4 +196,12 @@
         ON r.pf_id = p.pf_id
         ORDER BY r.created_at DESC
     </select>
+
+    <select id="findReportCommentList" resultType="com.example.bumerang.web.dto.response.admin.CommentListDto">
+        SELECT r.*, c.*, r.created_at AS reportCreatedAt
+        FROM (SELECT * FROM report r WHERE r.comment_id IS NOT NULL) r
+        LEFT JOIN comment c
+        ON r.comment_id = c.comment_id
+        ORDER BY r.created_at DESC
+    </select>
 </mapper>

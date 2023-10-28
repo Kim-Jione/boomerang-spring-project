@@ -1,19 +1,21 @@
-package com.example.bumerang.domain.comment;
+package com.example.bumerang.web.dto.response.admin;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
 @NoArgsConstructor
+@Setter
 @Getter
-public class Comment {
+public class CommentListDto {
     private Integer commentId;
     private String commentContent;
-    private Integer jobId;
-    private Integer pfId;
-    private Integer userId;
     private String commentStatus;
+    private String reportType;
+    private String reportContent;
+    private String reportCreatedAt;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 }

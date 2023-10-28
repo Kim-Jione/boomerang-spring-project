@@ -45,5 +45,7 @@ public interface AdminDao {
 
     List<JobListDto> findReportJobList();
 
-    List<PfListDto> findReportPfList();
+    List<PfListDto>  findReportPfList();
+
+    List<CommentListDto> findReportCommentList();
 }
