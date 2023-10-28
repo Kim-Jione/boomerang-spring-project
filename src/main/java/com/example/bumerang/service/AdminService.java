@@ -102,4 +102,10 @@ public class AdminService {
         NoticeDetailDto noticePS = adminDao.findByNoticeId(noticeId);
         return noticePS;
     }
+
+    public NoticeDetailDto updateNotice(NoticeDetailDto noticeDetailDto) {
+        adminDao.updateNotice(noticeDetailDto);
+        NoticeDetailDto noticePS = adminDao.findByNoticeId(noticeDetailDto.getNoticeId());
+        return noticePS;
+    }
 }

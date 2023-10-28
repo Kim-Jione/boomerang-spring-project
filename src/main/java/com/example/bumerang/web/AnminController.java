@@ -170,6 +170,21 @@ public class AnminController {
         return "admin/manage/noticeDetailForm";
     }
     
+    // 구인글 수정하기 화면
+    @GetMapping("/manage/noticeUpdateForm/{noticeId}")
+    public String noticeUpdateForm(@PathVariable Integer noticeId, Model model) {
+        NoticeDetailDto noticePS = adminService.findByNoticeId(noticeId);
+        model.addAttribute("noticePS",noticePS);
+        return "admin/manage/noticeUpdateForm";
+    }
+
+    // 구인글 수정하기 기능
+    @PutMapping("/manage/noticeUpdate")
+    public @ResponseBody CMRespDto<?> noticeUpdate(@RequestBody NoticeDetailDto noticeDetailDto) {
+        NoticeDetailDto noticePS = adminService.updateNotice(noticeDetailDto);
+        return new CMRespDto<>(1, "공지글 정보 수정 성공.", noticePS);
+    }
+    
     // 구인글 신고 목록 화면
     @GetMapping("/report/jobListForm")
     public String findReportJobList(Model model) {

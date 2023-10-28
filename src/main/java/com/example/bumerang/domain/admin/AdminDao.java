@@ -38,4 +38,6 @@ public interface AdminDao {
     void deletePf(Integer pfId);
 
     NoticeDetailDto findByNoticeId(Integer noticeId);
+
+    void updateNotice(NoticeDetailDto noticeDetailDto);
 }

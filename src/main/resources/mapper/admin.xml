@@ -153,4 +153,15 @@
         FROM notice n
         WHERE n.notice_id = #{noticeId}
     </select>
+
+    <update id="updateNotice">
+        UPDATE notice
+        SET
+        notice_title = #{noticeTitle},
+        notice_content = #{noticeContent},
+        notice_type = #{noticeType},
+        notice_status = #{noticeStatus}
+        WHERE
+        notice_id = #{noticeId}
+    </update>
 </mapper>
