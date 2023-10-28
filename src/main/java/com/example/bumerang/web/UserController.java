@@ -8,6 +8,10 @@ import com.example.bumerang.web.dto.request.user.LoginDto;
 import com.example.bumerang.web.dto.request.user.SearchDto;
 import com.example.bumerang.web.dto.request.user.UpdateDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
+import com.example.bumerang.web.dto.response.Likey.LikeyJSListDto;
+import com.example.bumerang.web.dto.response.Likey.LikeyPFListDto;
+import com.example.bumerang.web.dto.response.Likey.LikeyRespDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobMainDto;
 import com.example.bumerang.web.dto.response.user.UserRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -98,6 +103,8 @@ public class UserController {
         return new CMRespDto<>(1, "아이디 찾기 화면 불러오기 성공.", null);
     }
 
+  
+    // 비밀번호 찾기 화면
     @GetMapping("/user/help/searchPassword")
     public @ResponseBody CMRespDto<?> searchPasswordForm() {
         return new CMRespDto<>(1, "아이디 찾기 화면 불러오기 성공.", null);
@@ -109,6 +116,15 @@ public class UserController {
         return new CMRespDto<>(1, "아이디 찾기 성공.", null);
     }
 
+  
+    // 아이디 찾기
+    @PostMapping("/user/help/searchId")
+    public @ResponseBody CMRespDto<?> searchId(@RequestBody SearchDto searchDto) {
+        SearchDto userId = userService.findAccount(searchDto);
+        return new CMRespDto<>(1, "아이디 찾기 성공.", userId);
+    }
+  
+    // 비밀번호 찾기
     @PostMapping("/user/help/searchPassword")
     public @ResponseBody CMRespDto<?> searchPassword(@RequestBody SearchDto searchDto) {
         SearchDto userPassword = userService.findAccount(searchDto);
@@ -118,6 +134,17 @@ public class UserController {
         message.setSubject("비밀번호 찾기 성공 !");
         message.setText("비밀번호는 " + userPassword.getUserPassword() + "입니다.");
         emailSender.send(message);
-        return new CMRespDto<>(1, "비밀번호 찾기 성공.", null);
+        return new CMRespDto<>(1, "비밀번호 찾기 성공.", message);
+      
+    // 관심목록 화면
+    @GetMapping("user/likeyList")
+    public @ResponseBody CMRespDto<?> liketyJSListForm(){
+        LikeyRespDto LikeyResp = new LikeyRespDto();
+        List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList();
+        List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList();
+        LikeyResp.setLJSList(LikeyJSDetail);
+        LikeyResp.setLPFList(LikeyPFDetail);
+        return new CMRespDto<>(1, "관심목록 불러오기 성공.", LikeyResp);
     }
 }
+
