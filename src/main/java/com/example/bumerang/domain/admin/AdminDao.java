@@ -42,4 +42,8 @@ public interface AdminDao {
     void updateNotice(NoticeDetailDto noticeDetailDto);
 
     void deleteNotice(Integer noticeId);
+
+    List<JobListDto> findReportJobList();
+
+    List<PfListDto> findReportPfList();
 }

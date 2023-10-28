@@ -23,6 +23,9 @@ public class PfListDto {
     private String pfThumbnail;
     private Integer userId;
     private String pfStatus;
+    private String reportType;
+    private String reportContent;
+    private String reportCreatedAt;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 }

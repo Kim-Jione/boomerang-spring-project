@@ -4,16 +4,16 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">신고된 구인글</h1>
+                        <h1 class="mt-4">신고된 공연글</h1>
                         <div class="card mb-4">
                             <div class="card-body">
-                                신고된 구인글의 정보를 관리합니다.
+                                신고된 공연글의 정보를 관리합니다.
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                신고된 구인글 정보
+                                신고된 공연글 정보
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -44,22 +44,22 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <c:forEach var="job" items="${jobList}" varStatus="loop">
+                                        <c:forEach var="pf" items="${pfList}" varStatus="loop">
                                             <tr>
                                                 <td>${loop.index + 1}</td>
                                                 <td>
-                                                    <a href="/report/jobDetailForm/${job.jobId}">
-                                                        ${job.jobContentTitle}
+                                                    <a href="/report/pfDetailForm/${pf.pfId}">
+                                                        ${pf.pfTitle}
                                                     </a>
                                                 </td>
-                                                <td>${job.reportType}</td>
-                                                <td>${job.reportContent}</td>
-                                                <td>${job.jobView}</td>
-                                                <td>${job.jobStatus}</td>
-                                                <td>${job.createdAt}</td>
-                                                <td>${job.reportCreatedAt}</td>
+                                                <td>${pf.reportType}</td>
+                                                <td>${pf.reportContent}</td>
+                                                <td>${pf.pfView}</td>
+                                                <td>${pf.pfStatus}</td>
+                                                <td>${pf.createdAt}</td>
+                                                <td>${pf.reportCreatedAt}</td>
                                                 <td>
-                                                    <button onclick="remove(${job.jobId})" class="btn btn-danger">
+                                                    <button onclick="remove(${pf.pfId})" class="btn btn-danger">
                                                         삭제
                                                     </button>
                                                 </td>
@@ -74,10 +74,10 @@
             </div>
             </div>
             <script>
-                function remove(jobId) {
-                    if (confirm("구인글을 삭제하시겠습니까?")) {
+                function remove(pfId) {
+                    if (confirm("공연글을 삭제하시겠습니까?")) {
                         $.ajax({
-                            url: "/manage/jobDelete/" + jobId,
+                            url: "/manage/pfDelete/" + pfId,
                             type: "DELETE",
                             headers: {
                                 "Content-Type": "application/json; charset=utf-8",
@@ -85,7 +85,7 @@
                         }).done((res) => {
                             if (res.code == 1) {
                                 alert(res.msg);
-                                location.href = "/report/jobListForm";
+                                location.href = "/report/pfListForm";
                             } else {
                                 alert(res.msg);
                                 location.reload();

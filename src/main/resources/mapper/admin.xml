@@ -173,4 +173,27 @@
         notice_id = #{noticeId}
     </update>
 
+    <select id="findReportJobList" resultType="com.example.bumerang.web.dto.response.admin.JobListDto">
+        SELECT j.*, r.*, r.created_at AS reportCreatedAt
+        FROM (SELECT * FROM report r WHERE r.job_id IS NOT NULL) r
+        LEFT JOIN (SELECT j.*, COUNT(v.view_id) AS job_view
+        FROM job_search j
+        LEFT JOIN VIEW v
+        ON j.job_id = v.job_id
+        GROUP BY j.job_id) j ON r.job_id = j.job_id
+        ORDER BY j.created_at DESC 
+    </select>
+
+    <select id="findReportPfList" resultType="com.example.bumerang.web.dto.response.admin.PfListDto">
+        SELECT p.*, r.*, r.created_at AS reportCreatedAt
+        FROM (SELECT * FROM report r WHERE r.pf_id IS NOT NULL) r
+        LEFT JOIN (
+        SELECT p.*, COUNT(v.view_id) AS pf_view
+        FROM performance p
+        LEFT JOIN VIEW v
+        ON p.pf_id = v.pf_id
+        GROUP BY p.pf_id) p
+        ON r.pf_id = p.pf_id
+        ORDER BY r.created_at DESC
+    </select>
 </mapper>

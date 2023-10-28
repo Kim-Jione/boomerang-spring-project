@@ -195,9 +195,16 @@ public class AnminController {
     // 구인글 신고 목록 화면
     @GetMapping("/report/jobListForm")
     public String findReportJobListForm(Model model) {
-        List<JobListDto> reportJobList = adminService.findJobList();
-        model.addAttribute("jobList",reportJobList);
+        List<JobListDto> reportJobList = adminService.findReportJobList();
+        model.addAttribute("jobList", reportJobList);
         return "admin/report/jobListForm";
     }
 
+    // 공연글 신고 목록 화면
+    @GetMapping("/report/pfListForm")
+    public String findReportPfListForm(Model model) {
+        List<PfListDto> reportPfList = adminService.findReportPfList();
+        model.addAttribute("pfList", reportPfList);
+        return "admin/report/pfListForm";
+    }
 }

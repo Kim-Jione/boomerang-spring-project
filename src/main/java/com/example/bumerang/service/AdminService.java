@@ -114,4 +114,14 @@ public class AdminService {
         NoticeDetailDto noticePS = adminDao.findByNoticeId(noticeId);
         return noticePS;
     }
+
+    public List<JobListDto> findReportJobList() {
+        List<JobListDto> jobList = adminDao.findReportJobList();
+        return jobList;
+    }
+
+        public List<PfListDto> findReportPfList() {
+        List<PfListDto> pfList = adminDao.findReportPfList();
+        return pfList;
+    }
 }

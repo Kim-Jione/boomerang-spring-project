@@ -23,6 +23,9 @@ public class JobListDto {
     private Integer userId;
     private String jobStatus;
     private String jobView;
+    private String reportType;
+    private String reportContent;
+    private String reportCreatedAt;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 }
