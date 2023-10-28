@@ -161,6 +161,14 @@ public class AnminController {
         model.addAttribute("noticeList", noticeList);
         return "admin/manage/noticeListForm";
     }
+
+    // 공지글 상세보기 화면
+    @GetMapping("/manage/noticeDetailForm/{noticeId}")
+    public String noticeDetailForm(@PathVariable Integer noticeId, Model model) {
+        NoticeDetailDto noticePS = adminService.findByNoticeId(noticeId);
+        model.addAttribute("noticePS", noticePS);
+        return "admin/manage/noticeDetailForm";
+    }
     
     // 구인글 신고 목록 화면
     @GetMapping("/report/jobListForm")

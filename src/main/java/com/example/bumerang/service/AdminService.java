@@ -97,4 +97,9 @@ public class AdminService {
         PfDetailDto pfPS = adminDao.findByPfId(pfId);
         return pfPS;
     }
+
+    public NoticeDetailDto findByNoticeId(Integer noticeId) {
+        NoticeDetailDto noticePS = adminDao.findByNoticeId(noticeId);
+        return noticePS;
+    }
 }

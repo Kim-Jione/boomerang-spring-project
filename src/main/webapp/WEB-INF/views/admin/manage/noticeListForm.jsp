@@ -43,21 +43,20 @@
                                         <c:forEach var="notice" items="${noticeList}" varStatus="loop">
                                             <tr>
                                                 <td>${loop.index + 1}</td>
-                                                <td>${notice.noticeTitle}</td>
+                                                <td> <a
+                                                        href="/manage/noticeDetailForm/${notice.noticeId}">${notice.noticeTitle}</a>
+                                                </td>
                                                 <td>${notice.noticeType}</td>
                                                 <td>${notice.noticeStatus}</td>
                                                 <td>${notice.createdAt}</td>
                                                 <td>
-                                                    <a href="/admin/updateForm/${notice.userId}"
+                                                    <a href="/manage/noticeUpdateForm/${notice.noticeId}"
                                                         class="btn btn-warning">수정</a>
                                                 </td>
                                                 <td>
-                                                    <form action="/admin/delete/${notice.userId}" method="delete"
-                                                        onsubmit="return confirmDelete()">
-                                                        <button type="submit" class="btn btn-danger">
-                                                            삭제
-                                                        </button>
-                                                    </form>
+                                                    <button onclick="remove(${notice.noticeId})" class="btn btn-danger">
+                                                        삭제
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -70,8 +69,24 @@
             </div>
             </div>
             <script>
-                function confirmDelete() {
-                    return confirm("정말 삭제하시겠습니까?");
+                function remove(noticeId) {
+                    if (confirm("공지글을 삭제하시겠습니까?")) {
+                        $.ajax({
+                            url: "/manage/noticeDelete/" + noticeId,
+                            type: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json; charset=utf-8",
+                            },
+                        }).done((res) => {
+                            if (res.code == 1) {
+                                alert(res.msg);
+                                location.href = "/manage/noticeListForm";
+                            } else {
+                                alert(res.msg);
+                                location.reload();
+                            }
+                        });
+                    }
                 }
             </script>
             <%@ include file="../layout/footer.jsp" %>

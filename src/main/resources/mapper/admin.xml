@@ -147,4 +147,10 @@
         WHERE
         pf_id = #{pfId}
     </update>
+
+    <select id="findByNoticeId" resultType="com.example.bumerang.web.dto.response.admin.NoticeDetailDto">
+        SELECT *
+        FROM notice n
+        WHERE n.notice_id = #{noticeId}
+    </select>
 </mapper>
