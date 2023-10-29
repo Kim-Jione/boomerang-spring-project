@@ -36,6 +36,7 @@
                                         <i class="fas fa-chart-pie me-1"></i>
                                         장르별 통계
                                         <input id="jobPS" type="hidden" value="${jobPS}">
+                                        Pie Chart Example
                                     </div>
                                     <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas>
                                     </div>
