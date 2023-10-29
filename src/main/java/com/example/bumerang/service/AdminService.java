@@ -135,4 +135,9 @@ public class AdminService {
         CommentDetailDto commentPS = adminDao.findByCommentId(commentId);
         return commentPS;
     }
+
+    public List<GenreDto> findByGenreJob() {
+        List<GenreDto> jobPS = adminDao.findByGenreJob();
+        return jobPS;
+    }
 }

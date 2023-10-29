@@ -2,6 +2,7 @@ package com.example.bumerang.web;
 
 import com.example.bumerang.domain.admin.AdminDao;
 import com.example.bumerang.service.AdminService;
+import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
 import com.example.bumerang.web.dto.response.admin.*;
 import lombok.RequiredArgsConstructor;
@@ -182,7 +183,7 @@ public class AnminController {
     @PutMapping("/manage/noticeUpdate")
     public @ResponseBody CMRespDto<?> updateNotice(@RequestBody NoticeDetailDto noticeDetailDto) {
         NoticeDetailDto noticePS = adminService.updateNotice(noticeDetailDto);
-        return new CMRespDto<>(1, "공지글 정보 수정 성공.", noticePS);
+            return new CMRespDto<>(1, "공지글 정보 수정 성공.", noticePS);
     }
     
     // 공지글 삭제하기 기능
@@ -219,7 +220,23 @@ public class AnminController {
     // 댓글 삭제하기 기능
     @DeleteMapping("/manage/commentDelete/{commentId}")
     public @ResponseBody CMRespDto<?> deleteComment(@PathVariable Integer commentId) {
+        SessionUserDto userPS = (SessionUserDto)session.getAttribute("principal");
+        if(userPS==null){
+            return new CMRespDto<>(-1, "로그인 해주세요.", null);
+        }
         CommentDetailDto commentPS = adminService.deleteComment(commentId);
         return new CMRespDto<>(1, "댓글 정보 삭제 성공.", commentPS);
+    }
+
+    // 구인글 통계 화면
+    @GetMapping("/statistics/jobChartForm")
+    public String findJobChartForm(Model model) {
+//        TotalWVDto totalWeeklyViews = adminService.findByWV();
+        List<GenreDto> jobStatistics = adminService.findByGenreJob();
+//        TotalMVDto totalMonthlyViews = adminService.findByTotalMV();
+//        model.addAttribute("totalWV",totalWeeklyViews);
+//        model.addAttribute("totalMV",totalMonthlyViews);
+        model.addAttribute("jobPS",jobStatistics);
+        return "admin/statistics/jobChartForm";
     }
 }

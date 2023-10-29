@@ -218,4 +218,16 @@
         FROM comment c
         WHERE c.comment_id = #{commentId}
     </select>
+
+    <select id="findByGenreJob" resultType="com.example.bumerang.web.dto.response.admin.GenreDto">
+        SELECT job_genre, COUNT(*) AS genre_count
+        FROM job_search
+        GROUP BY job_genre
+    </select>
+
+    <select id="findByGenrePf" resultType="com.example.bumerang.web.dto.response.admin.GenreDto">
+        SELECT pf_genre, COUNT(*) AS genre_count
+        FROM performance
+        GROUP BY pf_genre
+    </select>
 </mapper>
