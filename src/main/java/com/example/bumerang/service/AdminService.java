@@ -135,4 +135,24 @@ public class AdminService {
         CommentDetailDto commentPS = adminDao.findByCommentId(commentId);
         return commentPS;
     }
+
+    public List<GenreDto> findByGenreJob() {
+        List<GenreDto> jobPS = adminDao.findByGenreJob();
+        return jobPS;
+    }
+
+    public List<PostListDto> findAllPost() {
+        List<PostListDto> postPS = adminDao.findAllPost();
+        return postPS;
+    }
+
+    public ViewListDto findByView() {
+        ViewListDto viewPS = adminDao.findByView();
+        return viewPS;
+    }
+
+    public ExitListDto findByExit() {
+        ExitListDto exitPS = adminDao.findByExit();
+        return exitPS;
+    }
 }

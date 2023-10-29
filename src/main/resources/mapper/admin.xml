@@ -218,4 +218,75 @@
         FROM comment c
         WHERE c.comment_id = #{commentId}
     </select>
+
+    <select id="findByGenreJob" resultType="com.example.bumerang.web.dto.response.admin.GenreDto">
+        SELECT job_genre, COUNT(*) AS genre_count
+        FROM job_search
+        GROUP BY job_genre
+    </select>
+
+    <select id="findByGenrePf" resultType="com.example.bumerang.web.dto.response.admin.GenreDto">
+        SELECT pf_genre, COUNT(*) AS genre_count
+        FROM performance
+        GROUP BY pf_genre
+    </select>
+
+    <select id="findAllPost" resultType="com.example.bumerang.web.dto.response.admin.PostListDto">
+        SELECT
+        job_id AS content_id,
+        job_content_title AS title,
+        (
+        SELECT COUNT(*)
+        FROM view
+        WHERE job_id = job_search.job_id
+        ) AS view_count,
+        job_genre AS genre,
+        job_status AS status,
+        created_at,
+        'job' AS type
+        FROM job_search
+        UNION
+        SELECT
+        pf_id AS content_id,
+        pf_title AS title,
+        (
+        SELECT COUNT(*)
+        FROM view
+        WHERE pf_id = performance.pf_id
+        ) AS view_count,
+        pf_genre AS genre,
+        pf_status AS status,
+        created_at,
+        'performance' AS type
+        FROM performance
+        ORDER BY created_at DESC
+    </select>
+
+    <select id="findByView" resultType="com.example.bumerang.web.dto.response.admin.ViewListDto">
+        SELECT
+        (
+        SELECT COUNT(*)
+        FROM view
+        WHERE DATE(created_at) = CURDATE()
+        ) AS dailyView,
+        (
+        SELECT COUNT(*)
+        FROM view
+        WHERE YEARWEEK(created_at, 1) = YEARWEEK(NOW(), 1)
+        ) AS weeklyView
+    </select>
+
+    <select id="findByExit" resultType="com.example.bumerang.web.dto.response.admin.ExitListDto">
+        SELECT
+        (SELECT
+        COUNT(*)
+        FROM user
+        WHERE DATE(updated_at) = CURDATE() AND user_status = 'deleted'
+        GROUP BY DATE(updated_at)) AS dailyExitCount,
+        (SELECT
+        COUNT(*)
+        FROM user
+        WHERE YEARWEEK(updated_at, 1) = YEARWEEK(NOW(), 1) AND user_status = 'deleted'
+        GROUP BY YEARWEEK(updated_at, 1)) AS weeklyExitCount
+    </select>
 </mapper>

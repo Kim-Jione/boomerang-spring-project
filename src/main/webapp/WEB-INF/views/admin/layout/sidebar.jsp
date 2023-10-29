@@ -48,8 +48,7 @@
                         <div class="collapse" id="collapsePages3" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/chartForm">사용자 통계</a>
-                                <a class="nav-link" href="/chartForm">구인정보글 통계</a>
+                                <a class="nav-link" href="/statistics/jobChartForm">구인정보글 통계</a>
                                 <a class="nav-link" href="/chartForm">공연홍보글 통계</a>
                             </nav>
                         </div>

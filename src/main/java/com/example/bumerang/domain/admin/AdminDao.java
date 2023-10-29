@@ -52,4 +52,14 @@ public interface AdminDao {
     void deleteComment(Integer commentId);
 
     CommentDetailDto findByCommentId(Integer commentId);
+
+    List<GenreDto> findByGenreJob();
+
+    List<GenreDto> findByGenrePf();
+
+    List<PostListDto> findAllPost();
+
+    ViewListDto findByView();
+
+    ExitListDto findByExit();
 }
