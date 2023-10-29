@@ -223,4 +223,17 @@ header {
 }
 
 /* ---------------------------footer--------------------------- */
+.size {
+    background-color: #409FF1;
+}
+
+
+.footer {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    width: 100%;
+    height: 180px;
+    background-color: #f9f9f9;
+}
 

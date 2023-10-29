@@ -52,26 +52,41 @@
 
 /* 인기 전시 타이틀 */
 .ranking_post {
-  max-width: 1360px;
+  max-width: 1310px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 50px
 }
 
 .ranking_post .title_area {
   display: flex;
   align-items: center;
-  font-size: 24px;
+  font-size: 20px;
+  margin-left: 20px;
 }
 
 .ranking_post .title_area .fa-fire {
   color: rgba(255, 0, 0, 0.747);
-  font-size: 44px;
+  font-size: 40px;
   margin-right: 12px;
 }
 
 /* 인기 전시 공연목록 */
 .top_list {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.top_list .top {
+  display: flex;
+}
+
+.medal {
+  width: 70px;
+  height: 100px;
+  margin-top: 20px;
 }
 
 
@@ -82,15 +97,16 @@
   /********************/
   .main_post {
     min-height: 100vh;
-    max-width: 1360px;
+    max-width: 1310px;
     margin: 0 auto;
-    margin-top: 130px;
+    margin-top: 100px;
   }
 
   .main_post .main_title {
     display: flex;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 25px;
+    font-size: 17px;
   }
 
   .main_post .main_title .fa-compact-disc {
@@ -105,7 +121,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 12px;
+    padding: 0 25px;
   }
 
   .main_post .filter .dropdown_list {
@@ -128,7 +144,7 @@
     -webkit-box-align: center;
     align-items: center;
     border-radius: 36px;
-    margin: 24px 24px 24px 0px;
+    margin: 20px 25px 20px 0px;
   }
 
 /******************/
@@ -139,17 +155,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 1360px;
+  max-width: 1310px;
   margin: 0 auto;
   margin-bottom: 200px;
   flex-wrap: wrap;
 }
 
 .poster {
-  margin: 25px 20px;
+  margin: 25px 25px;
   background-color: #fff;
-  width: 300px;
-  height: 420px;
+  width: 267px;
+  height: 380px;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
@@ -184,13 +200,13 @@
 
 /* 포스터 이미지 및 호버 */
 .poster .img {
-  height: 270px;
+  height: 235px;
 }
 
 .poster .img-hover {
   object-fit: cover;
   width: 100%;
-  height: 270px;
+  height: 235px;
   position: absolute;
   top: 0;
   transition: 0.2s all ease-out;
@@ -222,9 +238,9 @@
 
 /* 뱃지 장르 표시 */
 .category {
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 20px;
-  padding: 5px 12px;
+  padding: 4px 12px;
 }
 
 .forMovie {
@@ -244,7 +260,7 @@
 
 /* 뱃지 연령대 표시 */
 .age {
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 20px;
   padding: 4px 12px;
 }
@@ -267,11 +283,11 @@
   }
 
 .charge {
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 20px;
   padding: 4px 12px;
   background: #fdf7a5;
-  color: #9b6c16;
+  color: #000000;
 }
 
 /*************************************/
@@ -371,17 +387,6 @@
     background: #ccc;
   }
  
-
-
-
-  /* 푸터 */
-  .footer {
-      display: flex;
-      align-items: center;
-      margin-top: 30px;
-      height: 180px;
-      background-color: #f9f9f9;
-  }
 
 
 
