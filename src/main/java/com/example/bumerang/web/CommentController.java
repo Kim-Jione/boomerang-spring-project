@@ -34,8 +34,14 @@ public class CommentController {
     // 댓글 생성
     @PostMapping("/s/api/comment/write")
     public @ResponseBody CMRespDto<?> write(@RequestBody CommentDto commentDto) {
-        commentService.create(commentDto.toComment());
-        return new CMRespDto<>(1, "댓글 생성 성공.", commentDto);
+        SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
+        Integer userId = commentDto.getUserId();
+        Integer userPId = principal.getUserId();
+        if(userId == userPId){
+            commentService.create(commentDto.toComment());
+            return new CMRespDto<>(1, "댓글 생성 성공.", commentDto);
+        }
+        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
 
     // 댓글 삭제
@@ -44,11 +50,11 @@ public class CommentController {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = commentDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId != userPId){
-            return new CMRespDto<>(-1, "본인이 작성한 댓글이 아닙니다.", null);
+        if(userId == userPId){
+            commentService.delete(commentDto.getCommentId());
+            return new CMRespDto<>(1, "댓글 삭제 성공.", commentDto);
         }
-        commentService.delete(commentDto.getCommentId());
-        return new CMRespDto<>(1, "댓글 삭제 성공.", commentDto);
+        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
     
     // 댓글 수정
@@ -57,10 +63,10 @@ public class CommentController {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = commentDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId != userPId){
-            return new CMRespDto<>(-1, "본인이 작성한 댓글이 아닙니다.", null);
+        if(userId == userPId){
+            commentService.update(commentDto.getCommentId(), commentDto.getCommentContent());
+            return new CMRespDto<>(1, "댓글 수정 성공.", commentDto);
         }
-        commentService.update(commentDto.getCommentId(), commentDto.getCommentContent());
-        return new CMRespDto<>(1, "댓글 수정 성공.", commentDto);
+        return new CMRespDto<>(-1, "본인이 작성한 댓글이 아닙니다.", null);
     }
 }
