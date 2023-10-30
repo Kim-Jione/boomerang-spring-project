@@ -13,9 +13,17 @@ import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
 import com.example.bumerang.web.dto.response.user.UserRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -51,7 +59,6 @@ public class UserService {
 
 	public User update(UpdateDto updateDto){
 		userDao.update(updateDto.toEntity());
-		System.err.println("디버그 updateDto.getUserId()"+updateDto.getUserId());
 		User userPS = userDao.findById(updateDto.getUserId());
 		return userPS;
 	}
@@ -67,11 +74,37 @@ public class UserService {
 	}
   
 	public List<LikeyJSListDto> likeyfindAllJSList() {
-
 		return likeyDao.likeyFindSJList();
 	}
 
   public List<LikeyPFListDto> likeyfindAllPFList() {
+    public List<LikeyPFListDto> likeyfindAllPFList() {
 		return likeyDao.likeyFindPFList();
     }
+
+
+//  이미지 업로드 기능
+	private final String imageUploadPath = "C:/project/Spring Project/load"; // 여기서 경로 수정
+
+	public String uploadProfileImage(MultipartFile profileImage) {
+		if (!profileImage.isEmpty()) {
+			try {
+				// 이미지 파일 이름을 랜덤으로 생성
+				String fileName = UUID.randomUUID() + "_" + profileImage.getOriginalFilename();
+				Path imagePath = Paths.get(imageUploadPath + fileName);
+
+				// 이미지 저장
+				profileImage.transferTo(imagePath.toFile());
+
+				// 이미지 파일 경로를 반환
+				return imageUploadPath + fileName;
+			} catch (IOException e) {
+				e.printStackTrace();
+				// 이미지 업로드 실패 처리
+				return null;
+			}
+		}
+		return null;
+	}
+
 }

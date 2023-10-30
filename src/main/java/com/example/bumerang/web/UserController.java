@@ -18,6 +18,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -83,12 +84,21 @@ public class UserController {
         return new CMRespDto<>(1, "로그아웃 성공.", principal);
     }
     // 회원수정기능
-    @PutMapping("/user/update")
-    public @ResponseBody CMRespDto<?> update(@RequestBody UpdateDto updateDto) {
-        User userUpdateResult = userService.update(updateDto);
-        return new CMRespDto<>(1, "회원수정 성공.", userUpdateResult );
+    @PutMapping("user/update")
+    public @ResponseBody CMRespDto<?> updateUser(@RequestPart("profileImage") MultipartFile profileImage, @RequestPart UpdateDto updateDto) {
+        try {
+            // 이미지 업로드 및 업데이트
+            String imagePath = userService.uploadProfileImage(profileImage);
+            // UpdateDto에 imagePath를 설정
+            updateDto.setUserProfileImg(imagePath);
+            // 사용자 정보 업데이트
+            User userUpdateResult = userService.update(updateDto);
+            return new CMRespDto<>(1, "회원 수정 성공.", userUpdateResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new CMRespDto<>(-1, "회원 수정 실패.", null);
+        }
     }
-
     // 계정 상세 화면
     @GetMapping("/user/detailForm/{userId}")
     public @ResponseBody CMRespDto<?> detailForm(@PathVariable Integer userId) {
@@ -140,4 +150,3 @@ public class UserController {
         return new CMRespDto<>(1, "관심목록 불러오기 성공.", LikeyResp);
     }
 }
-
