@@ -38,8 +38,8 @@ public class CommentController {
         Integer userId = commentDto.getUserId();
         Integer userPId = principal.getUserId();
         if(userId == userPId){
-            commentService.create(commentDto.toComment());
-            return new CMRespDto<>(1, "댓글 생성 성공.", commentDto);
+            Comment commentPS = commentService.create(commentDto.toComment());
+            return new CMRespDto<>(1, "댓글 생성 성공.", commentPS);
         }
         return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
@@ -51,8 +51,8 @@ public class CommentController {
         Integer userId = commentDto.getUserId();
         Integer userPId = principal.getUserId();
         if(userId == userPId){
-            commentService.delete(commentDto.getCommentId());
-            return new CMRespDto<>(1, "댓글 삭제 성공.", commentDto);
+            Comment commentPS = commentService.delete(commentDto.getCommentId());
+            return new CMRespDto<>(1, "댓글 삭제 성공.", commentPS);
         }
         return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
@@ -64,9 +64,9 @@ public class CommentController {
         Integer userId = commentDto.getUserId();
         Integer userPId = principal.getUserId();
         if(userId == userPId){
-            commentService.update(commentDto.getCommentId(), commentDto.getCommentContent());
-            return new CMRespDto<>(1, "댓글 수정 성공.", commentDto);
+            Comment commentPS = commentService.update(commentDto.getCommentId(), commentDto.getCommentContent());
+            return new CMRespDto<>(1, "댓글 수정 성공.", commentPS);
         }
-        return new CMRespDto<>(-1, "본인이 작성한 댓글이 아닙니다.", null);
+        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
 }
