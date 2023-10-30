@@ -62,6 +62,7 @@
     </select>
 
     <select id="findToPw" resultType="com.example.bumerang.web.dto.response.user.SearchPwDto">
+    </select>
 
     <select id="myJSList"
             resultType="com.example.bumerang.web.dto.response.user.UserJobSearchDto">
