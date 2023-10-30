@@ -9,11 +9,12 @@ public interface CommentDao {
 
     public List<Comment> findAll();
 
-    public void insert(Comment comment);
+    public void create(Comment comment);
 
-    public void update(Comment comment);
+    public void update(Integer commentId, String commentContent);
 
     public void delete(Integer commentId);
 
     public  List<JobCommentDto> findByCommentList(Integer jobId);
+
 }
