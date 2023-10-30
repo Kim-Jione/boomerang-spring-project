@@ -16,8 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -78,7 +76,6 @@ public class UserService {
 	}
 
   public List<LikeyPFListDto> likeyfindAllPFList() {
-    public List<LikeyPFListDto> likeyfindAllPFList() {
 		return likeyDao.likeyFindPFList();
     }
 
@@ -106,5 +103,4 @@ public class UserService {
 		}
 		return null;
 	}
-
 }
