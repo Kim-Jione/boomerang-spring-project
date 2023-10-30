@@ -6,6 +6,8 @@ import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.user.JoinDto;
 import com.example.bumerang.web.dto.request.user.LoginDto;
 import com.example.bumerang.web.dto.request.user.UpdateDto;
+import com.example.bumerang.web.dto.response.user.UserJobSearchDto;
+import com.example.bumerang.web.dto.response.user.UserPerformanceDto;
 import com.example.bumerang.web.dto.response.user.UserRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,6 +42,7 @@ public class UserService {
 		List<User> userList = userDao.findAll();
 		return userList;
 	}
+
 	public User findById(Integer userId){
 		return userDao.findById(userId);
 	}
@@ -51,9 +54,18 @@ public class UserService {
 		return userPS;
 	}
 
-
 	public UserRespDto findByDetail(Integer userId) {
 		UserRespDto userDetail = userDao.findByDetail(userId);
 		return userDetail;
+	}
+
+	public List<UserJobSearchDto> myJSList(Integer userId) {
+		List<UserJobSearchDto> myJSList = userDao.myJSList(userId);
+		return myJSList;
+	}
+
+	public List<UserPerformanceDto> myPfList(Integer userId) {
+		List<UserPerformanceDto> myPfList = userDao.myPfList(userId);
+		return myPfList;
 	}
 }
