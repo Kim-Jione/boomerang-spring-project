@@ -13,7 +13,6 @@ import com.example.bumerang.web.dto.response.user.SearchPwDto;
 import com.example.bumerang.web.dto.response.user.UserRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
