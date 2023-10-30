@@ -5,12 +5,16 @@ import com.example.bumerang.service.UserService;
 import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.user.*;
 import com.example.bumerang.web.dto.response.CMRespDto;
+import com.example.bumerang.web.dto.response.user.UserCreateRespoDto;
+import com.example.bumerang.web.dto.response.user.UserJobSearchDto;
+import com.example.bumerang.web.dto.response.user.UserPerformanceDto;
 import com.example.bumerang.web.dto.response.likey.LikeyJSListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyRespDto;
 import com.example.bumerang.web.dto.response.user.SearchIdDto;
 import com.example.bumerang.web.dto.response.user.SearchPwDto;
 import com.example.bumerang.web.dto.response.user.UserRespDto;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
@@ -83,13 +87,24 @@ public class UserController {
         return new CMRespDto<>(1, "계정정보 불러오기 성공.", userDetail);
     }
 
+    // 내가 작성한 구인글 화면
+    @GetMapping("/user/{userId}/posts")
+    public @ResponseBody CMRespDto<?> jobPostsForm(@PathVariable Integer userId) {
+        UserCreateRespoDto respoDto = new UserCreateRespoDto();
+        List<UserJobSearchDto> myJSList = userService.myJSList(userId);
+        List<UserPerformanceDto> myPfList = userService.myPfList(userId);
+        respoDto.setMyJSList(myJSList);
+        respoDto.setMyPfList(myPfList);
+        return new CMRespDto<>(1, "작성한 글 불러오기 성공.", respoDto);
+    }
+
     // 아이디 찾기 화면
     @GetMapping("/user/searchIdForm")
     public @ResponseBody CMRespDto<?> searchIdForm() {
         return new CMRespDto<>(1, "아이디 찾기 화면 불러오기 성공.", null);
     }
 
-  
+
     // 비밀번호 찾기 화면
     @GetMapping("/user/searchPwForm")
     public @ResponseBody CMRespDto<?> searchPwForm() {
@@ -102,7 +117,7 @@ public class UserController {
         SearchIdDto userPS = userService.findByLoginId(searchIdDto);
         return new CMRespDto<>(1, "아이디 찾기 성공.", userPS);
     }
-  
+
     // 비밀번호 찾기
     @PostMapping("/user/searchPw")
     public @ResponseBody CMRespDto<?> searchPw(@RequestBody SearchPwDto searchPwDto) {
