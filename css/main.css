@@ -137,7 +137,7 @@
     display: flex;
   }
 
-  .main_post .filter .dropdown_list #dropdown {
+  .main_post .filter .dropdown_list .dropdown {
     -webkit-box-pack: justify;
     justify-content: space-between;
     padding-left: 18px;
@@ -185,6 +185,7 @@
   /* 구인정보 게시글 */
   /******************/
   .main_post .search_job_container {
+    display: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -281,12 +282,25 @@
     grid-gap: 5px;
     gap: 5px;
     height: 22px;
-    background: #f2f4f8;
+    background: #e9eefa;
     border-radius: 15px;
     font-weight: 700;
     font-size: 13px;
     line-height: 16px;
     color: #3e86f5;
+  }
+
+  .project .position_list .gender {
+    padding: 3px 10px;
+    grid-gap: 5px;
+    gap: 5px;
+    height: 22px;
+    background: rgb(250, 237, 250);
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgb(180, 110, 180);
   }
 
   /* 자세히보기 및 좋아요 버튼 구분 */

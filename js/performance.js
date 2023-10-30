@@ -1,28 +1,3 @@
-////////////////////////////
-// 핫게시물 반응형 슬라이드 //
-///////////////////////////
-const swiperEl = document.querySelector('.hot_swiper')
-Object.assign(swiperEl, {
-  slidesPerView: 1,
-  spaceBetween: 10,
-  
-  breakpoints: {
-    640: {
-      slidesPerView: 2,
-      spaceBetween: 30,
-    },
-    900: {
-      slidesPerView: 3,
-      spaceBetween: 30,
-    },
-    1340: {
-      slidesPerView: 4,
-      spaceBetween: 30,
-    },
-  },
-});
-swiperEl.initialize();
-
 //////////////////////
 // 좋아요 애니메이션 //     //추후 아이디값 넣어서 변하게 설정 할것
 /////////////////////
@@ -37,13 +12,13 @@ $(document).ready(function(){
 /////////////
 function filterPosts() {
   var filterText = document.getElementById('filterText').value.toLowerCase();
-  var posts = document.getElementsByClassName('search_job_slide');
+  var posts = document.getElementsByClassName('search');
 
   for (var i = 0; i < posts.length; i++) {
-      var title = posts[i].getElementsByClassName('project_title')[0].textContent.toLowerCase();
-      var nickname = posts[i].getElementsByClassName('nickname')[0].textContent.toLowerCase();
+      var title = posts[i].getElementsByClassName('title')[0].textContent.toLowerCase();
+      var charge = posts[i].getElementsByClassName('category')[0].textContent.toLowerCase();
 
-      if (title.includes(filterText) || nickname.includes(filterText)) {
+      if (title.includes(filterText) || charge.includes(filterText)) {
           posts[i].style.display = 'block';
       } else {
           posts[i].style.display = 'none';
@@ -51,7 +26,7 @@ function filterPosts() {
   }
 }
 
- ////////////////
+////////////////
 // pagination //
 ///////////////
 function getPageList(totalPages, page, maxLength){
@@ -79,8 +54,8 @@ function getPageList(totalPages, page, maxLength){
 }
 
 $(function(){
-  var numberOfItems = $(".search_job_slide").length;
-  var limitPerPage = 16; //How many search_job_slide items visible per a page
+  var numberOfItems = $(".search").length;
+  var limitPerPage = 12; //How many poster_wrapper items visible per a page
   var totalPages = Math.ceil(numberOfItems / limitPerPage);
   var paginationSize = 7; //How many page elements visible in the pagination
   var currentPage;
@@ -90,7 +65,7 @@ $(function(){
 
     currentPage = whichPage;
 
-    $(".search_job_slide").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+    $(".search").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
 
     $(".pagination li").slice(1, -1).remove();
 
@@ -110,7 +85,7 @@ $(function(){
     $("<li>").addClass("page-item").addClass("next-page").append($("<a>").addClass("page-link").attr({href: "javascript:void(0)"}).text("Next"))
   );
 
-  $(".search_job_container").show();
+  $(".poster_wrapper").show();
   showPage(1);
 
   $(document).on("click", ".pagination li.current-page:not(.active)", function(){

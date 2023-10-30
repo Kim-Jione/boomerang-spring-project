@@ -41,7 +41,7 @@
 
   .banner .banner_Swiper swiper-slide img {
     display: block;
-    width: 1350px;
+    max-width: 1350px;
     height: 330px;
     object-fit: cover;
   }
@@ -128,7 +128,7 @@
     display: flex;
   }
 
-  .main_post .filter .dropdown_list #dropdown {
+  .main_post .filter .dropdown_list .dropdown {
     -webkit-box-pack: justify;
     justify-content: space-between;
     padding-left: 18px;
@@ -152,12 +152,12 @@
 /*****************/
 
 .poster_wrapper {
+  display: none;
   display: flex;
   justify-content: center;
   align-items: center;
   max-width: 1310px;
   margin: 0 auto;
-  margin-bottom: 200px;
   flex-wrap: wrap;
 }
 
@@ -176,27 +176,6 @@
     cubic-bezier(0.1, 0.8, 0, 1);
 }
 
-/* info-hover 란 */
-.poster .info-hover {
-  position: absolute;
-  padding: 16px;
-  width: 100%;
-  color: #AD7D52;
-}
-
-.clock-info {
-  float: right;
-  margin-top: -6px;
-}
-
-.info-hover ion-icon:nth-child(3) {
-  float: right;
-  margin-right: 5px;
-}
-
-.clock-info span {
-  font-size: 12px;
-}
 
 /* 포스터 이미지 및 호버 */
 .poster .img {
@@ -218,18 +197,18 @@
   transform: scale(1.05);
 }
 
-.poster:hover .img-hover {
+.poster:hover .img-hover:hover {
   height: 100%;
-  opacity: 0.3;
+  opacity: 1;
 }
 
 /* 포스터 정보 표시 */
-.info {
+.poster .info {
   z-index: 2;
   padding: 12px 20px 20px 20px;
 }
 
-.info .badge {
+.poster .info .badge {
   display: flex;
   gap: 10px;
 }
@@ -237,7 +216,7 @@
 /* 뱃지 타이틀 */
 
 /* 뱃지 장르 표시 */
-.category {
+.poster .info .badge .category {
   font-size: 12px;
   border-radius: 20px;
   padding: 4px 12px;
@@ -259,7 +238,7 @@
 }
 
 /* 뱃지 연령대 표시 */
-.age {
+.poster .info .badge .age {
   font-size: 12px;
   border-radius: 20px;
   padding: 4px 12px;
@@ -282,7 +261,7 @@
    background-color: rgb(255, 212, 212);
   }
 
-.charge {
+  .poster .info .badge .charge {
   font-size: 12px;
   border-radius: 20px;
   padding: 4px 12px;
@@ -291,23 +270,27 @@
 }
 
 /*************************************/
-.title {
+.poster .info .title {
   font-size: 22px;
-  margin-top: 7px;
+  margin-top: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  word-break: break-all;
+  overflow: hidden;
 }
 
-.location {
+.poster .info .location {
   font-size: 15px;
   margin-top: 3px;
   color: #11528b;
 }
 
-.date {
+.poster .info .date {
   font-size: 12px;
-  margin-top: 16px;
+  margin-top: 12px;
   color: #818181;
 }
-
 
 
   /* 검색창 */

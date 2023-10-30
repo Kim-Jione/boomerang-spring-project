@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 필터링</title>
+    <script>
+        // JavaScript 함수를 사용하여 필터링 기능을 구현
+        function filterPosts() {
+            var filterGenre = document.getElementById('filterGenre').value;
+            var posts = document.getElementsByClassName('post');
+
+            for (var i = 0; i < posts.length; i++) {
+                var genre = posts[i].getElementsByClassName('post-genre')[0].textContent;
+
+                if (filterGenre === 'all' || filterGenre === genre) {
+                    posts[i].style.display = 'block'; // 선택한 장르에 맞는 게시물만 표시
+                } else {
+                    posts[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>게시판 필터링</h1>
+
+    <!-- 드롭다운 메뉴를 사용하여 필터 조건 선택 -->
+    <label for="filterGenre">장르:</label>
+    <select id="filterGenre" onchange="filterPosts()">
+        <option value="all">모든 게시물</option>
+        <option value="영화">영화</option>
+        <option value="드라마">드라마</option>
+        <option value="연극">연극</option>
+        <option value="기타">기타</option>
+    </select>
+    <br>
+
+    <!-- 게시물 목록 -->
+    <div class="post">
+        <h2 class="post-title">게시물 1: 영화 게시물</h2>
+        <p class="post-genre">영화</p>
+    </div>
+
+    <div class="post">
+        <h2 class="post-title">게시물 2: 드라마 게시물</h2>
+        <p class="post-genre">드라마</p>
+    </div>
+
+    <div class="post">
+        <h2 class="post-title">게시물 3: 연극 게시물</h2>
+        <p class="post-genre">연극</p>
+    </div>
+
+    <div class="post">
+        <h2 class="post-title">게시물 4: 기타 게시물</h2>
+        <p class="post-genre">기타</p>
+    </div>
+</body>
+</html>

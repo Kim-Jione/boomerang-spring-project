@@ -24,7 +24,7 @@
 
                 <ul class="menubar">
                     <li><a href="index.html"><h3>구인정보</h3></a></li>
-                    <li><a href="performance.html"><h3>전시·공연</h3</a></li>
+                    <li><a href="performance.html"><h3>전시·공연</h3></a></li>
                     <li><a href="notice.html"><h3>공지사항</h3></a></li>
                 </ul>
             </div>
@@ -572,33 +572,36 @@
 
             <div class="filter">
                 <div class="dropdown_list">
-                    <select id="dropdown">
-                        <option value="옵션1">장르</option>
-                        <option value="옵션2">영화</option>
-                        <option value="옵션3">드라마</option>
-                        <option value="옵션4">연극</option>
-                        <option value="옵션4">소꿉놀이</option>
+                    <select id="filterGenre" onchange="filterPosts()" class="dropdown">
+                        <option value="all">장르</option>
+                        <option value="영화">영화</option>
+                        <option value="연극">연극</option>
+                        <option value="뮤지컬">뮤지컬</option>
+                        <option value="전시/행사">전시/행사</option>
                     </select>
 
-                    <select id="dropdown">
-                        <option value="옵션1">포지션</option>
-                        <option value="옵션2">배우</option>
-                        <option value="옵션3">나무1</option>
-                        <option value="옵션4">월급루팡</option>
+                    <select id="filterPosition" onchange="filterPosts()" class="dropdown">
+                        <option value="all">분야</option>
+                        <option value=“배우“>배우</option>
+                        <option value=“연출“>연출</option>
+                        <option value=“음향“>음향</option>
+                        <option value=“카메라“>카메라</option>
+                        <option value=“조명“>조명</option>
+                        <option value=“작가“>작가</option>
+                        <option value=“기타“>기타</option>
                     </select>
 
-                    <select id="dropdown">
-                        <option value="옵션1">성별</option>
-                        <option value="옵션2">남자</option>
-                        <option value="옵션3">여자</option>
-                        <option value="옵션4">특별한 성</option>
+                    <select id="filterGender" onchange="filterPosts()" class="dropdown">
+                        <option value="all">성별</option>
+                        <option value="남자">남자</option>
+                        <option value="여자">여자</option>
+                        <option value="성별무관">성별무관</option>
                     </select>
 
-                    <select id="dropdown">
-                        <option value="옵션1">모집여부</option>
-                        <option value="옵션2">모집중</option>
-                        <option value="옵션3">마감</option>
-                        <option value="옵션4">둘다</option>
+                    <select id="filterOpening" onchange="filterPosts()" class="dropdown">
+                        <option value="all">모집 여부</option>
+                        <option value="모집중">모집중</option>
+                        <option value="모집 마감">모집 마감</option>
                     </select>
                 </div>
                 <div class="search_bar">
@@ -608,7 +611,7 @@
             </div>
             
             <!-- 구인글 및 페이지네이션 -->
-            <div class="search_job_container" style="display: none;">
+            <div class="search_job_container">
                 <!--해당 부분부터 게시글 목록 (더미데이터)-->
                 <div class="search_job_slide">
                     <div class="project">
@@ -806,7 +809,7 @@
                     <div class="project">
                         <div class="badge_wrapper">
                             <div class="badge_movie">
-                                <i class="fa-solid fa-clapperboard"> 영화</i>
+                                <i class="fa-solid fa-clapperboard"> 뮤지컬</i>
                             </div>
                             <div class="badge_new">
                                 <i class="fa-solid fa-gift"> 새로 올라온 글</i>
@@ -870,7 +873,7 @@
                     <div class="project">
                         <div class="badge_wrapper">
                             <div class="badge_movie">
-                                <i class="fa-solid fa-clapperboard"> 영화</i>
+                                <i class="fa-solid fa-clapperboard"> 연극</i>
                             </div>
                             <div class="badge_new">
                                 <i class="fa-solid fa-gift"> 새로 올라온 글</i>
@@ -934,7 +937,7 @@
                     <div class="project">
                         <div class="badge_wrapper">
                             <div class="badge_movie">
-                                <i class="fa-solid fa-clapperboard"> 영화</i>
+                                <i class="fa-solid fa-clapperboard"> 연극</i>
                             </div>
                             <div class="badge_new">
                                 <i class="fa-solid fa-gift"> 새로 올라온 글</i>
@@ -1062,7 +1065,7 @@
                     <div class="project">
                         <div class="badge_wrapper">
                             <div class="badge_movie">
-                                <i class="fa-solid fa-clapperboard"> 영화</i>
+                                <i class="fa-solid fa-clapperboard"> 뮤지컬</i>
                             </div>
                             <div class="badge_new">
                                 <i class="fa-solid fa-gift"> 새로 올라온 글</i>
@@ -1126,7 +1129,7 @@
                     <div class="project">
                         <div class="badge_wrapper">
                             <div class="badge_movie">
-                                <i class="fa-solid fa-clapperboard"> 영화</i>
+                                <i class="fa-solid fa-clapperboard"> 전시</i>
                             </div>
                             <div class="badge_new">
                                 <i class="fa-solid fa-gift"> 새로 올라온 글</i>
@@ -1148,6 +1151,9 @@
                             </li>
                             <li class="position">
                                 감독
+                            </li>
+                            <li class="gender">
+                                남자
                             </li>
                         </ul>
 
@@ -1254,7 +1260,7 @@
                     <div class="project">
                         <div class="badge_wrapper">
                             <div class="badge_movie">
-                                <i class="fa-solid fa-clapperboard"> 영화</i>
+                                <p>전시/행사</p>
                             </div>
                             <div class="badge_new">
                                 <i class="fa-solid fa-gift"> 새로 올라온 글</i>
@@ -1341,6 +1347,9 @@
                             <li class="position">
                                 감독
                             </li>
+                            <li class="gender">
+                                여자
+                            </li>
                         </ul>
 
                         <div class="content">
@@ -1404,6 +1413,9 @@
                             </li>
                             <li class="position">
                                 감독
+                            </li>
+                            <li class="gender">
+                                성별무관
                             </li>
                         </ul>
 
@@ -1469,6 +1481,9 @@
                             <li class="position">
                                 감독
                             </li>
+                            <li class="gender">
+                                남자
+                            </li>
                         </ul>
 
                         <div class="content">
@@ -1533,6 +1548,9 @@
                             <li class="position">
                                 감독
                             </li>
+                            <li class="gender">
+                                성별무관
+                            </li>
                         </ul>
 
                         <div class="content">
@@ -1574,7 +1592,7 @@
                     <div class="project">
                         <div class="badge_wrapper">
                             <div class="badge_movie">
-                                <i class="fa-solid fa-clapperboard"> 영화</i>
+                                <i class="fa-solid fa-clapperboard"> 연극</i>
                             </div>
                             <div class="badge_new">
                                 <i class="fa-solid fa-gift"> 새로 올라온 글</i>
@@ -1592,10 +1610,13 @@
 
                         <ul class="position_list">
                             <li class="position">
-                                배우
+                                연출
                             </li>
                             <li class="position">
-                                감독
+                                음향
+                            </li>
+                            <li class="gender">
+                                여자
                             </li>
                         </ul>
 
@@ -1661,6 +1682,9 @@
                             <li class="position">
                                 감독
                             </li>
+                            <li class="position">
+                                작가
+                            </li>
                         </ul>
 
                         <div class="content">
@@ -1725,6 +1749,9 @@
                             <li class="position">
                                 감독
                             </li>
+                            <li class="position">
+                                카메라
+                            </li>
                         </ul>
 
                         <div class="content">
@@ -1769,7 +1796,7 @@
                                 <i class="fa-solid fa-clapperboard"> 영화</i>
                             </div>
                             <div class="badge_new">
-                                <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                <i class="fa-solid fa-gift"> 마감</i>
                             </div>
                         </div>
 
@@ -1833,7 +1860,7 @@
                                 <i class="fa-solid fa-clapperboard"> 영화</i>
                             </div>
                             <div class="badge_new">
-                                <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                <i class="fa-solid fa-gift"> 모집중</i>
                             </div>
                         </div>
 
@@ -1848,10 +1875,13 @@
 
                         <ul class="position_list">
                             <li class="position">
-                                배우
+                                작가
                             </li>
                             <li class="position">
                                 감독
+                            </li>
+                            <li class="position">
+                                배우
                             </li>
                         </ul>
 
@@ -1897,7 +1927,7 @@
                                 <i class="fa-solid fa-clapperboard"> 영화</i>
                             </div>
                             <div class="badge_new">
-                                <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                <i class="fa-solid fa-gift"> 마감</i>
                             </div>
                         </div>
 
@@ -1915,7 +1945,7 @@
                                 배우
                             </li>
                             <li class="position">
-                                감독
+                                음향
                             </li>
                         </ul>
 
@@ -1961,7 +1991,7 @@
                                 <i class="fa-solid fa-clapperboard"> 영화</i>
                             </div>
                             <div class="badge_new">
-                                <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                <i class="fa-solid fa-gift"> 모집중</i>
                             </div>
                         </div>
 
@@ -1976,10 +2006,10 @@
 
                         <ul class="position_list">
                             <li class="position">
-                                배우
+                                기타
                             </li>
                             <li class="position">
-                                감독
+                                음향
                             </li>
                         </ul>
 
