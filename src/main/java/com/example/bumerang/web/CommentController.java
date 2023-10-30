@@ -28,24 +28,21 @@ public class CommentController {
     // 댓글 생성
     @PostMapping("/comment/write")
     public @ResponseBody CMRespDto<?> write(@RequestBody CommentDto commentDto) {
-        commentService.createComment(commentDto.toComment());
-
+        commentService.create(commentDto.toComment());
         return new CMRespDto<>(1, "댓글 생성 성공.", commentDto);
     }
 
     // 댓글 삭제
     @DeleteMapping("/comment/delete")
     public @ResponseBody CMRespDto<?> delete(@RequestBody CommentDto commentDto) {
-        commentService.deleteComment(commentDto.getCommentId());
-
+        commentService.delete(commentDto.getCommentId());
         return new CMRespDto<>(1, "댓글 삭제 성공.", commentDto);
     }
     
     // 댓글 수정
     @PutMapping("/comment/update")
     public @ResponseBody CMRespDto<?> update(@RequestBody CommentDto commentDto) {
-        commentService.updateComment(commentDto.getCommentId(), commentDto.getCommentContent());
-
+        commentService.update(commentDto.getCommentId(), commentDto.getCommentContent());
         return new CMRespDto<>(1, "댓글 수정 성공.", commentDto);
     }
 }
