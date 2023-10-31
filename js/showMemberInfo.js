@@ -14,10 +14,10 @@ function closeCopy() {
 //복사 버튼 클릭시 클립보드에 복사 및 팝업 출현
 function copy() {
   let text = document.querySelector("#contact");
-  console.log(text.textContent);
+  console.log(text.value);
 
   navigator.clipboard
-    .writeText(text.textContent)
+    .writeText(text.value)
     .then(function () {
       openCopyPop();
       setTimeout(function () {
