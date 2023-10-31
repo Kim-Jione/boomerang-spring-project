@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <title>BusanMate with culutre</title>
 </head>
@@ -30,9 +33,38 @@
             </div>
            
             <ul class="linkes">
-                <li><a href=""><i class="fa-solid fa-pen"></i></a></li>
-                <li><a href=""><i class="fa-solid fa-bell"></i></a></li>
-                <li><a href="login.html"><i class="fa-solid fa-circle-user"></i></a><li>
+                <li>
+                    글쓰기
+                </li>
+             
+                <li>
+                    <div class="action">
+                        <div class="profile" onclick="menuToggle();">
+                            <img src="image/chara/bugi1.jpg" alt="User">
+                        </div>
+                
+                        <div class="menu">
+                            <ul>
+                                <li>
+                                    <span class="material-icons icons-size">person</span>
+                                    <a href="#">My Profile</a>
+                                </li>
+                                <li>
+                                    <span class="material-icons icons-size">mode</span>
+                                    <a href="#">Edit Account</a>
+                                </li>
+                                <li>
+                                    <span class="material-icons icons-size">insert_comment</span>
+                                    <a href="#">Comments</a>
+                                </li>
+                                <li>
+                                    <span class="material-icons icons-size">account_balance_wallet</span>
+                                    <a href="#">로그아웃</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
             </ul>
      </div>
     </header>
@@ -605,7 +637,7 @@
                     </select>
                 </div>
                 <div class="search_bar">
-                    <input type="text" id="filterText" oninput="filterPosts()" placeholder="제목, 글내용을 입력해보세요.">
+                    <input type="text" id="filterText" oninput="filterSearch()" placeholder="제목, 닉네임을 입력해보세요.">
                     <button><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </div>
@@ -617,7 +649,8 @@
                     <div class="project">
                         <div class="badge_wrapper">
                             <div class="badge_movie">
-                                <i class="fa-solid fa-clapperboard"> 영화</i>
+                                <i class="fa-solid fa-clapperboard"></i>
+                                <p class="badge_genre">영화</p>
                             </div>
                             <div class="badge_new">
                                 <i class="fa-solid fa-gift"> 새로 올라온 글</i>
@@ -681,7 +714,7 @@
                     <div class="project">
                         <div class="badge_wrapper">
                             <div class="badge_movie">
-                                <i class="fa-solid fa-clapperboard"> 영화</i>
+                                <i class="fa-solid fa-clapperboard"> 연극</i> 
                             </div>
                             <div class="badge_new">
                                 <i class="fa-solid fa-gift"> 새로 올라온 글</i>
@@ -2706,6 +2739,7 @@
 
     <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+    <script src="js/default.js"></script>
     <script src="js/main.js"></script>
 
 </body>

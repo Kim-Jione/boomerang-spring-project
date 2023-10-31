@@ -4,57 +4,326 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 필터링</title>
-    <script>
-        // JavaScript 함수를 사용하여 필터링 기능을 구현
-        function filterPosts() {
-            var filterGenre = document.getElementById('filterGenre').value;
-            var posts = document.getElementsByClassName('post');
+    <style>
+        /* 스타일을 추가해주세요 */
+    </style>
+    <div class="main_post">
+        <ul class="main_title">
+            <li><i class="fa-solid fa-rocket"></i></li>
+            <li><h2>부메랑 구인 목록</h2></li>
+        </ul>
 
-            for (var i = 0; i < posts.length; i++) {
-                var genre = posts[i].getElementsByClassName('post-genre')[0].textContent;
+        <div class="filter">
+            <div class="dropdown_list">
+                <select id="filterGenre" onchange="filterPosts()" class="dropdown">
+                    <option value="all">장르</option>
+                    <option value="영화">영화</option>
+                    <option value="연극">연극</option>
+                    <option value="뮤지컬">뮤지컬</option>
+                    <option value="전시/행사">전시/행사</option>
+                </select>
 
-                if (filterGenre === 'all' || filterGenre === genre) {
-                    posts[i].style.display = 'block'; // 선택한 장르에 맞는 게시물만 표시
-                } else {
-                    posts[i].style.display = 'none';
-                }
-            }
-        }
-    </script>
-</head>
-<body>
-    <h1>게시판 필터링</h1>
+                <select id="filterPosition" onchange="filterPosts()" class="dropdown">
+                    <option value="all">분야</option>
+                    <option value=“배우“>배우</option>
+                    <option value=“연출“>연출</option>
+                    <option value=“음향“>음향</option>
+                    <option value=“카메라“>카메라</option>
+                    <option value=“조명“>조명</option>
+                    <option value=“작가“>작가</option>
+                    <option value=“기타“>기타</option>
+                </select>
 
-    <!-- 드롭다운 메뉴를 사용하여 필터 조건 선택 -->
-    <label for="filterGenre">장르:</label>
-    <select id="filterGenre" onchange="filterPosts()">
-        <option value="all">모든 게시물</option>
-        <option value="영화">영화</option>
-        <option value="드라마">드라마</option>
-        <option value="연극">연극</option>
-        <option value="기타">기타</option>
-    </select>
-    <br>
+                <select id="filterGender" onchange="filterPosts()" class="dropdown">
+                    <option value="all">성별</option>
+                    <option value="남자">남자</option>
+                    <option value="여자">여자</option>
+                    <option value="성별무관">성별무관</option>
+                </select>
 
-    <!-- 게시물 목록 -->
-    <div class="post">
-        <h2 class="post-title">게시물 1: 영화 게시물</h2>
-        <p class="post-genre">영화</p>
-    </div>
+                <select id="filterOpening" onchange="filterPosts()" class="dropdown">
+                    <option value="all">모집 여부</option>
+                    <option value="모집중">모집중</option>
+                    <option value="모집 마감">모집 마감</option>
+                </select>
+            </div>
+            <div class="search_bar">
+                <input type="text" id="filterText" oninput="filterSearch()" placeholder="제목, 닉네임을 입력해보세요.">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+        
+        <!-- 구인글 및 페이지네이션 -->
+        <div class="search_job_container">
+            <!--해당 부분부터 게시글 목록 (더미데이터)-->
+            <div class="search_job_slide">
+                <div class="project">
+                    <div class="badge_wrapper">
+                        <div class="badge_movie">
+                            <i class="fa-solid fa-clapperboard"></i>
+                            <p class="badge_genre">영화</p>
+                        </div>
+                        <div class="badge_new">
+                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                        </div>
+                    </div>
 
-    <div class="post">
-        <h2 class="post-title">게시물 2: 드라마 게시물</h2>
-        <p class="post-genre">드라마</p>
-    </div>
+                    <div class="schedule">
+                        <p>마감일 | </p>
+                        <p>2023.12.24</p>
+                    </div>
 
-    <div class="post">
-        <h2 class="post-title">게시물 3: 연극 게시물</h2>
-        <p class="post-genre">연극</p>
-    </div>
+                    <h1 class="project_title">
+                        [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 테스트 있어요! 많은 지원 부탁드려요.
+                    </h1>
 
-    <div class="post">
-        <h2 class="post-title">게시물 4: 기타 게시물</h2>
-        <p class="post-genre">기타</p>
-    </div>
+                    <ul class="position_list">
+                        <li class="position">
+                            배우
+                        </li>
+                        <li class="position">
+                            감독
+                        </li>
+                    </ul>
+
+                    <div class="content">
+                        <a href="https://www.naver.com/" class="more_btn">
+                            <p>자세히보기 </p>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <div class="like_btn">
+                            <span class="heart"></span>
+                        </div>
+                    </div>
+
+                    <div class="border"></div>
+
+                    <div class="myinfo">
+                        <div class="user_info">
+                            <div>
+                                <img class="icon" src="image/chara/bugi13.jpg">
+                            </div>
+                            <div class="nickname">
+                                <span class="accent">7년차</span>
+                                <p>두목님</p>
+                            </div>
+                        </div>
+
+                        <div class="viewAndInfo">
+                            <div class="view">
+                                <i class="fa-regular fa-eye"> 14</i>
+                            </div>
+                            <div class="comment">
+                                <i class="fa-regular fa-comment"> 1</i>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search_job_slide">
+                <div class="project">
+                    <div class="badge_wrapper">
+                        <div class="badge_movie">
+                            <i class="fa-solid fa-clapperboard"></i>
+                            <p class="badge_genre">연극</p>
+                        </div>
+                        <div class="badge_new">
+                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                        </div>
+                    </div>
+
+                    <div class="schedule">
+                        <p>마감일 | </p>
+                        <p>2023.12.24</p>
+                    </div>
+
+                    <h1 class="project_title">
+                        [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 테스트 있어요! 많은 지원 부탁드려요.
+                    </h1>
+
+                    <ul class="position_list">
+                        <li class="position">
+                            배우
+                        </li>
+                        <li class="position">
+                            감독
+                        </li>
+                    </ul>
+
+                    <div class="content">
+                        <a href="https://www.naver.com/" class="more_btn">
+                            <p>자세히보기 </p>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <div class="like_btn">
+                            <span class="heart"></span>
+                        </div>
+                    </div>
+
+                    <div class="border"></div>
+
+                    <div class="myinfo">
+                        <div class="user_info">
+                            <div>
+                                <img class="icon" src="image/chara/bugi13.jpg">
+                            </div>
+                            <div class="nickname">
+                                <span class="accent">7년차</span>
+                                <p>두목님</p>
+                            </div>
+                        </div>
+
+                        <div class="viewAndInfo">
+                            <div class="view">
+                                <i class="fa-regular fa-eye"> 14</i>
+                            </div>
+                            <div class="comment">
+                                <i class="fa-regular fa-comment"> 1</i>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search_job_slide">
+                <div class="project">
+                    <div class="badge_wrapper">
+                        <div class="badge_movie">
+                            <i class="fa-solid fa-clapperboard"></i>
+                            <p class="badge_genre">뮤지컬</p>
+                        </div>
+                        <div class="badge_new">
+                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                        </div>
+                    </div>
+
+                    <div class="schedule">
+                        <p>마감일 | </p>
+                        <p>2023.12.24</p>
+                    </div>
+
+                    <h1 class="project_title">
+                        [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 테스트 있어요! 많은 지원 부탁드려요.
+                    </h1>
+
+                    <ul class="position_list">
+                        <li class="position">
+                            음향
+                        </li>
+                        <li class="position">
+                            연출
+                        </li>
+                        <li class="gender">
+                            여자
+                        </li>
+                    </ul>
+
+                    <div class="content">
+                        <a href="https://www.naver.com/" class="more_btn">
+                            <p>자세히보기 </p>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <div class="like_btn">
+                            <span class="heart"></span>
+                        </div>
+                    </div>
+
+                    <div class="border"></div>
+
+                    <div class="myinfo">
+                        <div class="user_info">
+                            <div>
+                                <img class="icon" src="image/chara/bugi13.jpg">
+                            </div>
+                            <div class="nickname">
+                                <span class="accent">7년차</span>
+                                <p>두목님</p>
+                            </div>
+                        </div>
+
+                        <div class="viewAndInfo">
+                            <div class="view">
+                                <i class="fa-regular fa-eye"> 14</i>
+                            </div>
+                            <div class="comment">
+                                <i class="fa-regular fa-comment"> 1</i>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search_job_slide">
+                <div class="project">
+                    <div class="badge_wrapper">
+                        <div class="badge_movie">
+                            <i class="fa-solid fa-clapperboard"></i>
+                            <p class="badge_genre">전시/행사</p>
+                        </div>
+                        <div class="badge_new">
+                            <p class="badge_opening">모집중</p>
+
+                        </div>
+                    </div>
+
+                    <div class="schedule">
+                        <p>마감일 | </p>
+                        <p>2023.12.24</p>
+                    </div>
+
+                    <h1 class="project_title">
+                        [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 테스트 있어요! 많은 지원 부탁드려요.
+                    </h1>
+
+                    <ul class="position_list">
+                        <li class="position">
+                            작가
+                        </li>
+                        <li class="position">
+                            연출
+                        </li>
+                        <li class="gender">
+                            남자
+                        </li>
+                    </ul>
+
+                    <div class="content">
+                        <a href="https://www.naver.com/" class="more_btn">
+                            <p>자세히보기 </p>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <div class="like_btn">
+                            <span class="heart"></span>
+                        </div>
+                    </div>
+
+                    <div class="border"></div>
+
+                    <div class="myinfo">
+                        <div class="user_info">
+                            <div>
+                                <img class="icon" src="image/chara/bugi13.jpg">
+                            </div>
+                            <div class="nickname">
+                                <span class="accent">7년차</span>
+                                <p>두목님</p>
+                            </div>
+                        </div>
+
+                        <div class="viewAndInfo">
+                            <div class="view">
+                                <i class="fa-regular fa-eye"> 14</i>
+                            </div>
+                            <div class="comment">
+                                <i class="fa-regular fa-comment"> 1</i>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            </div>
 </body>
 </html>

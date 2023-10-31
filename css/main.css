@@ -228,6 +228,10 @@
 
     /* 영화 뱃지 */
   .project .badge_wrapper .badge_movie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     font-size: 14px;
     border-radius: 20px;
     padding: 4px 12px;
