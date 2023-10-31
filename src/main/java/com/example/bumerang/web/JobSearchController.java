@@ -1,6 +1,17 @@
 package com.example.bumerang.web;
 
-import com.example.bumerang.domain.comment.Comment;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.example.bumerang.service.JobSearchService;
 import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
@@ -8,12 +19,8 @@ import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
 import com.example.bumerang.web.dto.response.jobSearch.DetailFormDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobRespDto;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
@@ -35,7 +42,7 @@ public class JobSearchController {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = writeDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId == userPId){
+        if(userId.equals(userPId)){
             JobRespDto writeResult = jobSearchService.write(writeDto);
             return new CMRespDto<>(1, "구인정보 작성하기 성공.", writeResult);
         }
@@ -66,7 +73,7 @@ public class JobSearchController {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = updateDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId == userPId){
+        if(userId.equals(userPId)){
             JobRespDto updateResult = jobSearchService.update(updateDto);
             return new CMRespDto<>(1, "구인정보 수정하기 성공.", updateResult);
         }
@@ -80,7 +87,7 @@ public class JobSearchController {
         Integer userId = detailFormDto.getUserId();
         Integer jobId = detailFormDto.getJobId();
         Integer userPId = principal.getUserId();
-        if(userId == userPId){
+        if(userId.equals(userPId)){
             JobRespDto deleteResult = jobSearchService.delete(jobId);
             return new CMRespDto<>(1, "구인정보 삭제하기 성공.", deleteResult);
         }

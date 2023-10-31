@@ -1,25 +1,44 @@
 package com.example.bumerang.web;
 
-import com.example.bumerang.domain.admin.AdminDao;
-import com.example.bumerang.service.AdminService;
-import com.example.bumerang.web.dto.SessionUserDto;
-import com.example.bumerang.web.dto.response.CMRespDto;
-import com.example.bumerang.web.dto.response.admin.*;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.bumerang.service.AdminService;
+import com.example.bumerang.web.dto.response.CMRespDto;
+import com.example.bumerang.web.dto.response.admin.CommentDetailDto;
+import com.example.bumerang.web.dto.response.admin.CommentListDto;
+import com.example.bumerang.web.dto.response.admin.ExitListDto;
+import com.example.bumerang.web.dto.response.admin.GenreDto;
+import com.example.bumerang.web.dto.response.admin.JobDetailDto;
+import com.example.bumerang.web.dto.response.admin.JobListDto;
+import com.example.bumerang.web.dto.response.admin.NoticeDetailDto;
+import com.example.bumerang.web.dto.response.admin.NoticeListDto;
+import com.example.bumerang.web.dto.response.admin.PfDetailDto;
+import com.example.bumerang.web.dto.response.admin.PfListDto;
+import com.example.bumerang.web.dto.response.admin.PostListDto;
+import com.example.bumerang.web.dto.response.admin.UserDetailDto;
+import com.example.bumerang.web.dto.response.admin.UserListDto;
+import com.example.bumerang.web.dto.response.admin.ViewListDto;
+
+import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
 @Controller
 public class AnminController {
+
     private final HttpSession session;
     private final AdminService adminService;
-    private final AdminDao adminDao;
 
     // 메인 화면
     @GetMapping("/s/api/auth/indexForm")
@@ -34,13 +53,13 @@ public class AnminController {
     }
 
     // 차트 화면
-    @GetMapping("/s/api/auth/chartForm")
+    @GetMapping("/chartForm")
     public String chartForm() {
         return "admin/chartForm";
     }
 
     // 테이블 화면
-    @GetMapping("/s/api/auth/tableForm")
+    @GetMapping("/tableForm")
     public String tableForm() {
         return "admin/tableForm";
     }
@@ -226,10 +245,6 @@ public class AnminController {
     // 댓글 삭제하기 기능
     @DeleteMapping("/s/api/auth/manage/commentDelete/{commentId}")
     public @ResponseBody CMRespDto<?> deleteComment(@PathVariable Integer commentId) {
-        SessionUserDto userPS = (SessionUserDto)session.getAttribute("principal");
-        if(userPS==null){
-            return new CMRespDto<>(-1, "로그인 해주세요.", null);
-        }
         CommentDetailDto commentPS = adminService.deleteComment(commentId);
         return new CMRespDto<>(1, "댓글 정보 삭제 성공.", commentPS);
     }

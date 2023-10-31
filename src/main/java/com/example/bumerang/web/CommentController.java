@@ -1,27 +1,23 @@
 package com.example.bumerang.web;
 
 
-import com.example.bumerang.domain.comment.Comment;
-import com.example.bumerang.domain.user.User;
-import com.example.bumerang.service.CommentService;
-import com.example.bumerang.service.UserService;
-import com.example.bumerang.web.dto.SessionUserDto;
-import com.example.bumerang.web.dto.request.comment.CommentDto;
-import com.example.bumerang.web.dto.response.CMRespDto;
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
+import com.example.bumerang.domain.comment.Comment;
+import com.example.bumerang.service.CommentService;
+import com.example.bumerang.service.UserService;
+import com.example.bumerang.web.dto.SessionUserDto;
+import com.example.bumerang.web.dto.request.comment.CommentDto;
+import com.example.bumerang.web.dto.response.CMRespDto;
+
+import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
@@ -29,7 +25,6 @@ import javax.servlet.http.HttpSession;
 public class CommentController {
     private final HttpSession session;
     private final CommentService commentService;
-    private final UserService userService;
 
     // 댓글 생성
     @PostMapping("/s/api/comment/write")
@@ -37,7 +32,7 @@ public class CommentController {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = commentDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId == userPId){
+        if(userId.equals(userPId)){
             Comment commentPS = commentService.create(commentDto.toComment());
             return new CMRespDto<>(1, "댓글 생성 성공.", commentPS);
         }
@@ -50,7 +45,7 @@ public class CommentController {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = commentDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId == userPId){
+        if(userId.equals(userPId)){
             Comment commentPS = commentService.delete(commentDto.getCommentId());
             return new CMRespDto<>(1, "댓글 삭제 성공.", commentPS);
         }
@@ -63,7 +58,7 @@ public class CommentController {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = commentDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId == userPId){
+        if(userId.equals(userPId)){
             Comment commentPS = commentService.update(commentDto.getCommentId(), commentDto.getCommentContent());
             return new CMRespDto<>(1, "댓글 수정 성공.", commentPS);
         }

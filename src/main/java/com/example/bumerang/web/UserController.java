@@ -1,27 +1,35 @@
 package com.example.bumerang.web;
 
-import com.example.bumerang.domain.comment.Comment;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.example.bumerang.domain.user.User;
 import com.example.bumerang.service.UserService;
 import com.example.bumerang.web.dto.SessionUserDto;
-import com.example.bumerang.web.dto.request.user.*;
+import com.example.bumerang.web.dto.request.user.JoinDto;
+import com.example.bumerang.web.dto.request.user.LoginDto;
+import com.example.bumerang.web.dto.request.user.UpdateDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
-import com.example.bumerang.web.dto.response.user.UserCreateRespoDto;
-import com.example.bumerang.web.dto.response.user.UserJobSearchDto;
-import com.example.bumerang.web.dto.response.user.UserPerformanceDto;
 import com.example.bumerang.web.dto.response.likey.LikeyJSListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyRespDto;
 import com.example.bumerang.web.dto.response.user.SearchIdDto;
 import com.example.bumerang.web.dto.response.user.SearchPwDto;
+import com.example.bumerang.web.dto.response.user.UserCreateRespoDto;
+import com.example.bumerang.web.dto.response.user.UserJobSearchDto;
+import com.example.bumerang.web.dto.response.user.UserPerformanceDto;
 import com.example.bumerang.web.dto.response.user.UserRespDto;
-import java.util.List;
-import lombok.RequiredArgsConstructor;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
@@ -80,7 +88,7 @@ public class UserController {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = updateDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId == userPId){
+        if(userId.equals(userPId)){
             User userUpdateResult = userService.update(updateDto);
             return new CMRespDto<>(1, "회원정보 수정 성공.", userUpdateResult );
         }
