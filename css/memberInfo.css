@@ -1,268 +1,226 @@
-:root {
-  /* Color */
-  --white-color: #fff;
-
-  /* Size */
-  --side-padding: 12px;
-
-  /* Font Size */
-  --font-medium: 12px;
-}
-
-/* 기본 속성 */
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 /* body 기본 설정 */
 body {
-  background-color: rgba(250, 250, 250, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.container {
+  /* background-color: rgba(250, 250, 250, 1); */
   background-color: rgba(255, 255, 255, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 100px;
-  width: 700px;
-  border: 2px dashed rgba(0, 0, 0, 1);
-  border-radius: 10%;
-  padding: 40px;
 }
 
-.form_container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 600px;
-}
-
-/* 프로필 아이콘 */
-.profile_img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 40px;
-  height: 100%;
-}
-
-.profile_img .icon {
-  display: flex;
-  border-radius: 100%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-  width: 200px;
-  height: 200px;
-  margin-bottom: 30px;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.profile_img .icon img {
-  border-radius: 100%;
-  width: 80%;
-  height: 80%;
-}
-
-/* 프로필 이미지 셀렉터 */
-.profile_img #imageSelector {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #000;
-  width: 660px;
-  z-index: 10;
-}
-
-.profile_img #imageSelector img {
-  border-radius: 100%;
-  width: 100px;
-  height: 100px;
-  margin: 30px 10px;
-}
-
-/* 환영 문구 */
-.profile_img .welcome {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-/* 폼 태그 */
-.form_container form {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 40px;
-  width: 600px;
-  margin: 10px;
-  height: 100%;
-}
-
-/* 레이블 */
-.form_container .profile_info label {
-  font-weight: 600;
-}
-
-/* 인풋 태그 */
-.form_container .profile_info input {
-    background-color: #fff;
-    border: solid rgb(232, 232, 232) 1px;
-    margin: 8px 0;
-    margin-bottom: 30px;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 8px;
-    width: 100%;
-    height: 50px;
-    outline: none;
-  }
-
-/* 비밀번호 확인 */
-.form_container .profile_info .user_password_confirm {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  position: relative;
-  width: 500px;
-  margin-bottom: 30px;
-}
-
-.form_container .profile_info #user_password_confirm {
-  margin-bottom: 3px;
-  width: 420px;
-}
-
-.form_container .profile_info #passwordError {
-  /* margin-bottom: 20px; */
-  display: none;
-  position: absolute;
-  top: 110%;
-  left: 20%;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-}
-
-/* 성별 선택 */
-.form_container .profile_info .gender span {
-  font-weight: 600;
-  margin-right: 50px;
-}
-
-.form_container .profile_info .gender label {
-  margin-left: 15px;
-}
-
-.form_container .profile_info .gender input {
-  height: 15px;
-  width: 20px;
-}
-
-/* 셀렉트-옵션 태그들 */
-.form_container .profile_info select {
-  background-color: #fff;
-  border: solid rgb(232, 232, 232) 1px;
-  margin: 8px 0;
-  margin-bottom: 20px;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 8px;
-  width: 300px;
-  outline: none;
-}
-
-/* 자기소개 */
-.form_container .profile_info #intro {
-  background-color: #fff;
-  border: solid rgb(232, 232, 232) 1px;
-  margin: 8px 0;
-  margin-bottom: 30px;
-  padding: 10px 15px;
-  font-size: var(--font-medium) * 1.5;
-  border-radius: 8px;
+.myPage {
+  /* background-color: rgba(255, 255, 255, 1); */
+  background: linear-gradient(
+    to bottom,
+    #e8e8e8 298px,
+    rgba(255, 255, 255, 0) 0
+  );
+  /* margin: 100px; */
   width: 100%;
-  height: 200px;
-  outline: none;
-  resize: none;
 }
 
-/* 저장 버튼 */
-.form_container button {
-  background-color: #1899d6;
-  border: solid transparent;
-  border-radius: 16px;
-  border-width: 0 0 4px;
-  box-sizing: border-box;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: din-round, sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  line-height: 20px;
-  margin: 0;
-  outline: none;
-  overflow: visible;
-  padding: 13px 16px;
+/*/////////////*/
+/* 프로필 랩 시작 */
+/*/////////////*/
+.profile_wrap {
+  background: linear-gradient(
+    to bottom,
+    #e8e8e8 214px,
+    rgba(255, 255, 255, 0) 0
+  );
+  width: 100%;
+}
+
+.container {
+  padding-top: 30px;
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+}
+
+/* 프로필 사진부 */
+.pro_left {
+  margin-right: 100px;
+  margin-bottom: 45px;
   text-align: center;
-  text-transform: uppercase;
-  touch-action: manipulation;
-  transform: translateZ(0);
-  transition: filter 0.2s;
-  user-select: none;
-  -webkit-user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
+}
+
+.pro_left .pro_img {
+  width: 360px;
+  height: 360px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 180px;
+}
+
+.pro_left .pro_img img {
   width: 100%;
-  filter: brightness(1.1);
-  -webkit-filter: brightness(1.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* height: auto; */
+  min-height: 100%;
+  vertical-align: middle;
 }
 
-/* 탈퇴 버튼 */
-.form_container .withdrawal .btn_withdrawal {
-  background-color: #d61818;
+.pro_right {
+  margin-top: 130px;
+  width: 60%;
 }
 
-.form_container .withdrawal .confirm_withdrwal {
-  display: none;
+.pro_right .name {
+  padding-top: 80px;
+  display: flex;
+}
+.pro_right .name p {
+  font-size: 32px;
+  margin-right: 20px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.pro_right .name .edit_btn {
+  border: none;
+  vertical-align: middle;
+  font-size: 10px;
+  color: #fff;
+  background-color: #28c7ab;
+  border-radius: 100px;
+  padding: 0px 15px;
+  margin-left: 10px;
+}
+
+.pro_right .profile_con {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.pro_right .profile_con .profile_txt:first-child {
+  padding-right: 30px;
+}
+
+.pro_right .profile_con .profile_txt {
+  width: 50%;
+}
+
+.pro_right .profile_con .pro_txt {
+  margin-top: 50px;
+}
+
+.pro_right .profile_con .pro_info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.pro_tit {
+  color: #459fee;
+  line-height: 1;
+  font-weight: 900;
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-family: sans-serif;
+}
+
+.pro_right .profile_con .pro_info .pro_tit {
+  width: 100%;
+}
+
+.pro_right .profile_con .pro_info .pro_info1 {
+  width: 30%;
+}
+
+.pro_right .profile_con .pro_info .pro_info1 li,
+.pro_right .profile_con .pro_info .pro_info2 li {
+  height: 25px;
+  line-height: 1.2;
+  font-size: 16px;
+  padding-bottom: 30px;
+}
+
+.pro_right .profile_con .pro_info .pro_info1 li {
+  font-weight: 600;
+  color: #585858;
+}
+
+.pro_right .profile_con .pro_info .pro_info2 {
+  width: 70%;
+}
+
+.pro_right .profile_con .pro_info .pro_info2 li,
+.pro_right .profile_con .pro_txt .pro_data {
+  height: 25px;
+  line-height: 1.2;
+  font-weight: 600;
+  font-size: 16px;
+  color: #6c6c6c;
+}
+
+.pro_right .profile_con .pro_txt #contact  {
+  display: inline;
+}
+
+.pro_right .profile_con .pro_txt .fa-copy {
+  font-size: 18px;
+  margin-left: 5px;
+  color: #459fee;
+}
+
+.pro_right .profile_con .pro_txt #copy_pop {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 20px;
-  border: 1px solid #000;
-  width: 400px;
+  border: 1px solid #ccc;
+  width: 142px;
+  align-items: center;
+  color: #569aff;
 }
 
-.form_container .withdrawal .confirm_withdrwal * {
-  margin: 10px 0;
-  font-size: var(--font-medium) * 1.2;
-  font-weight: 600;
+/*/////////////*/
+/* 필모그래피 랩 시작 */
+/*/////////////*/
+
+.filmo_wrap {
+  width: 100%;
+  margin-bottom: 65px;
 }
 
-.form_container .withdrawal .confirm_withdrwal .btn_withdrawal_confirm {
-  background-color: black;
+.filmo_wrap .profile_con {
+  width: 100%;
 }
 
-.form_container .withdrawal .confirm_withdrwal .btn_withdrawal_close {
-  background-color: white;
-  color: black;
-  border: solid 1px black;
+.filmo_wrap .filmo_table {
+  width: 100%;
+  table-layout: fixed;
+  border: gray;
+  border-collapse: separate;
+}
+
+.filmo_wrap .filmo_table thead th {
+  text-align: center;
+  background: #569aff;
+  font-weight: 500;
+  color: #fff;
+  padding: 13px 5px;
+}
+
+.filmo_wrap .filmo_table tbody td {
+  text-align: center;
+  color: #333;
+  padding: 10px 5px;
+}
+
+.filmo_wrap .filmo_table tbody tr:nth-child(2n) {
+  background: #f9f9f9;
 }

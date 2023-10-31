@@ -1,16 +1,30 @@
+//변수 연결
+let copyBtn = document.querySelector(".fa-regular.fa-copy");
+let copyPop = document.getElementById("copy_pop");
+copyBtn.addEventListener("click", copy);
 
-//데이터 출력 : user_** 값들은 서버로부터 받아온다.
-function printInfo() {
-    gender.value = '남자';
-    age.value = '20대';
-    position.value = '연출';
-    career.value = '1~3년';
+function openCopyPop() {
+  copyPop.style.display = "block";
 }
 
-//변수 연결
-let gender = document.querySelector('#user_gender');
-let age = document.querySelector('#user_age');
-let position = document.querySelector('#user_position');
-let career = document.querySelector('#user_career');
+function closeCopy() {
+  copyPop.style.display = "none";
+}
 
-window.addEventListener("load", printInfo);
+//복사 버튼 클릭시 클립보드에 복사 및 팝업 출현
+function copy() {
+  let text = document.querySelector("#contact");
+  console.log(text.textContent);
+
+  navigator.clipboard
+    .writeText(text.textContent)
+    .then(function () {
+      openCopyPop();
+      setTimeout(function () {
+        closeCopy();
+      }, 1000);
+    })
+    .catch(function (err) {
+      console.error("복사에 실패했습니다.", err);
+    });
+}
