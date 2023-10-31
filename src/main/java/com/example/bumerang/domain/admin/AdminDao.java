@@ -55,7 +55,7 @@ public interface AdminDao {
 
     List<GenreDto> findByGenreJob();
 
-    List<GenreDto> findByGenrePf();
+    List<PfGenreDto> findByGenrePf();
 
     List<PostListDto> findAllPost();
 

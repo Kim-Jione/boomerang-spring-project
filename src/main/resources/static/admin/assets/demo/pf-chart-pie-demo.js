@@ -3,21 +3,24 @@ Chart.defaults.global.defaultFontFamily =
   '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = "#292b2c";
 
-let jobPositionTitle = document.querySelectorAll(".jobGenre");
-let genreCount = document.querySelectorAll(".genreCount");
+let pfGenre = document.querySelectorAll(".pfGenre");
+let pfGenreCount = document.querySelectorAll(".pfGenreCount");
 
-jobGenre = Array.from(jobGenre).map((element) => element.value);
-genreCount = Array.from(genreCount).map((element) => element.value);
+pfGenre = Array.from(pfGenre).map((element) => element.value);
+pfGenreCount = Array.from(pfGenreCount).map((element) => element.value);
+
+alert(pfGenreCount);
+alert(pfGenre);
 
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: "pie",
   data: {
-    labels: jobGenre,
+    labels: pfGenre,
     datasets: [
       {
-        data: genreCount,
+        data: pfGenreCount,
         backgroundColor: ["#007bff", "#dc3545", "#ffc107", "#28a745"]
       }
     ]

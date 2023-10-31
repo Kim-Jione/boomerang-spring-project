@@ -155,4 +155,9 @@ public class AdminService {
         ExitListDto exitPS = adminDao.findByExit();
         return exitPS;
     }
+
+    public List<PfGenreDto> findByGenrePf() {
+        List<PfGenreDto> PfPS = adminDao.findByGenrePf();
+        return PfPS;
+    }
 }

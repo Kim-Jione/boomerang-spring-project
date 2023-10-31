@@ -220,13 +220,13 @@
     </select>
 
     <select id="findByGenreJob" resultType="com.example.bumerang.web.dto.response.admin.GenreDto">
-        SELECT job_genre, COUNT(*) AS genre_count
-        FROM job_search
-        GROUP BY job_genre
+        SELECT job_position_title, COUNT(*) AS genre_count
+        FROM job_search_position
+        GROUP BY job_position_title;
     </select>
 
-    <select id="findByGenrePf" resultType="com.example.bumerang.web.dto.response.admin.GenreDto">
-        SELECT pf_genre, COUNT(*) AS genre_count
+    <select id="findByGenrePf" resultType="com.example.bumerang.web.dto.response.admin.PfGenreDto">
+        SELECT pf_genre, COUNT(*) AS pf_genre_count
         FROM performance
         GROUP BY pf_genre
     </select>

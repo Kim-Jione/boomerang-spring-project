@@ -6,6 +6,7 @@
     <script src="/admin/assets/demo/chart-area-demo.js"></script>
     <script src="/admin/assets/demo/chart-bar-demo.js"></script>
     <script src="/admin/assets/demo/chart-pie-demo.js"></script>
+    <script src="/admin/assets/demo/pf-chart-pie-demo.js"></script>
     </body>
 
     </html>
