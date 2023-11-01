@@ -45,7 +45,7 @@
         UPDATE performance
         SET
         pf_status = 'deleted'
-        WHERE performance_id = #{performanceId}
+        WHERE pf_id = #{pfId}
     </delete>
 
     <update id="dead">

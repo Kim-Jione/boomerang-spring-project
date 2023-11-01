@@ -96,13 +96,19 @@ public class PerformanceService {
 		return performanceDao.findById(pfId);
 	}
 
-	public PfRespDto update(UpdateDto updateDto) {
+	public Performance update(UpdateDto updateDto) {
 		Performance performance = updateDto.toPerformance();
 		System.err.println("디버그getPfId: "+performance.getPfId());
 		System.err.println("디버그getUserId: "+performance.getUserId());
 		System.err.println("getPfContent: "+performance.getPfContent());
 		performanceDao.update(performance);
-		PfRespDto updateResult = performanceDao.findByUpdateResult(updateDto.getPfId());
+		Performance updateResult = performanceDao.findById(updateDto.getPfId());
 		return updateResult;
+	}
+
+	public Performance delete(Integer pfId) {
+		performanceDao.delete(pfId);
+		Performance deleteResult = performanceDao.findById(pfId);
+		return deleteResult;
 	}
 }

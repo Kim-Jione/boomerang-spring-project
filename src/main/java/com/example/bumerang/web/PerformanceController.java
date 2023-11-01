@@ -89,11 +89,25 @@ public class PerformanceController {
                 // UpdateDto에 imagePath를 설정
                 updateDto.setPfThumbnail(imagePath);
                 // 공연글 수정 업데이트
-                PfRespDto updateResult = performanceService.update(updateDto);
+                Performance updateResult = performanceService.update(updateDto);
                 return new CMRespDto<>(1, "공연글 수정 성공.", updateResult);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+    }
+
+    // 공연글 삭제하기 기능
+    @DeleteMapping("/s/api/performance/delete")
+    public @ResponseBody CMRespDto<?> delete(@RequestBody DetailFormDto detailFormDto) {
+        SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
+        Integer userId = detailFormDto.getUserId();
+        Integer pfId = detailFormDto.getPfId();
+        Integer userPId = principal.getUserId();
+        if(userId.equals(userPId)){
+            Performance deleteResult = performanceService.delete(pfId);
+            return new CMRespDto<>(1, "공연글 삭제하기 성공.", deleteResult);
         }
         return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
