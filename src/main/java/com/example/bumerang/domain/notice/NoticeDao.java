@@ -16,4 +16,6 @@ public interface NoticeDao {
     public void delete(Integer noticeId);
 
     public DetailFormDto findByNotice(Integer noticeId);
+
+    DetailFormDto findByRecent();
 }

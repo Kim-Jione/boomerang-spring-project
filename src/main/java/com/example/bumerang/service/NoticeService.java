@@ -1,5 +1,6 @@
 package com.example.bumerang.service;
 
+import com.example.bumerang.domain.comment.Comment;
 import com.example.bumerang.domain.notice.Notice;
 import com.example.bumerang.domain.notice.NoticeDao;
 import com.example.bumerang.web.dto.response.notice.DetailFormDto;
@@ -31,4 +32,10 @@ public class NoticeService {
 	public DetailFormDto findByNotice(Integer noticeId) {
 		return noticeDao.findByNotice(noticeId);
 	}
+
+    public DetailFormDto write(Notice writeDto) {
+		noticeDao.insert(writeDto);
+		DetailFormDto noticePS = noticeDao.findByRecent();
+		return noticePS;
+    }
 }

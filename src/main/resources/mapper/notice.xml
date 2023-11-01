@@ -48,4 +48,10 @@
         ON u.user_id = n.user_id
         WHERE n.notice_id = #{noticeId}
     </select>
+
+    <select id="findByRecent" resultType="com.example.bumerang.web.dto.response.notice.DetailFormDto">
+        SELECT *
+        FROM notice n
+        WHERE n.notice_id=LAST_INSERT_ID()
+    </select>
 </mapper>
