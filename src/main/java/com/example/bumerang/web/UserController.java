@@ -104,10 +104,8 @@ public class UserController {
     }
 
     // 계정 상세 화면
-    @GetMapping("/s/api/user/detailForm")
-    public @ResponseBody CMRespDto<?> detailForm() {
-        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-        Integer userId = principal.getUserId();
+    @GetMapping("/s/api/user/detailForm/{userId}")
+    public @ResponseBody CMRespDto<?> detailForm(@PathVariable Integer userId) {
         UserRespDto userDetail = userService.findByDetail(userId);
         return new CMRespDto<>(1, "계정정보 불러오기 성공.", userDetail);
     }

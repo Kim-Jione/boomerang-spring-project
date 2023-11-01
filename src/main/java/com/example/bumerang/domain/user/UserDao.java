@@ -1,5 +1,6 @@
 package com.example.bumerang.domain.user;
 
+import com.example.bumerang.domain.userPortfolio.UserPortfolio;
 import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.user.LoginDto;
 import com.example.bumerang.web.dto.response.user.SearchIdDto;
@@ -33,4 +34,5 @@ public interface UserDao {
 
     List<UserPerformanceDto> myPfList(Integer userId);
 
+    List<UserPortfolio> findByPortfolioList(Integer userId);
 }

@@ -3,6 +3,7 @@ package com.example.bumerang.service;
 import com.example.bumerang.domain.likey.LikeyDao;
 import com.example.bumerang.domain.user.User;
 import com.example.bumerang.domain.user.UserDao;
+import com.example.bumerang.domain.userPortfolio.UserPortfolio;
 import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.user.JoinDto;
 import com.example.bumerang.web.dto.request.user.LoginDto;
@@ -78,6 +79,8 @@ public class UserService {
     //userId로 사용자 정보 보기
     public UserRespDto findByDetail(Integer userId) {
         UserRespDto userDetail = userDao.findByDetail(userId);
+        List<UserPortfolio> userPortfolioList = userDao.findByPortfolioList(userId);
+        userDetail.setUserPortfolio(userPortfolioList);
         return userDetail;
     }
 
