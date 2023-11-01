@@ -23,6 +23,31 @@
     font-family: inherit;
 }
 
+/* 스크롤바 효과 */
+* {
+    scrollbar-width: normal;
+    scrollbar-color: #777 #555;
+}
+
+* ::-webkit-scrollbar {
+    width: 10px;
+}
+
+* ::-webkit-scrollbar-thumb {
+    background-color: #9cc7ff;
+    border-radius: 10px;
+}
+
+* ::-webkit-scrollbar-thumb:hover {
+    background-color: #67a7fa;
+}
+
+* ::-webkit-scrollbar-track {
+    background-color: #d1e5ff;
+    border-radius: 10px;
+}
+
+
 body {
     font-family: "Noto Sans KR", serif;
     color: #000;
@@ -231,19 +256,6 @@ header {
 }
 
 
-.action .profile{
-    border-radius: 50%;
-    cursor: pointer;
-    width: 60px;
-    height: 60px;
-    position: relative;
-    border: 1px solid #ddd;
-}
-.action .profile img{
-    width: 100%;
-    object-fit: cover;
-    height: 100%;
-}
 
 .action .menu{
     background-color:#fff;
@@ -316,9 +328,9 @@ header {
 .footer {
     display: flex;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 50px;
     width: 100%;
-    height: 180px;
+    height: 230px;
     background-color: #eeeeee;
 }
 

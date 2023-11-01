@@ -1,50 +1,51 @@
 /* URL */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto:wght@700&family=Shrikhand&family=Single+Day&family=Source+Code+Pro:wght@600&family=Source+Sans+3:wght@600;700&display=swap');
 
+
 /* 광고, 행사 배너 */
 .banner {
-    display: flex;
-    justify-content: center;
-  }
+  display: flex;
+  justify-content: center;
+}
 
-  .banner .banner_Swiper {
-    width: 100%;
-    height: 100%;
-  }
+.banner .banner_Swiper {
+  width: 100%;
+  height: 100%;
+}
 
-  .banner .banner_Swiper .banner_slide1 {
-    text-align: center;
-    font-size: 18px;
-    background: #d8d2ee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.banner .banner_Swiper .banner_slide1 {
+  text-align: center;
+  font-size: 18px;
+  background: #d8d2ee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .banner .banner_Swiper .banner_slide2 {
-    text-align: center;
-    font-size: 18px;
-    background: #f2edc7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.banner .banner_Swiper .banner_slide2 {
+  text-align: center;
+  font-size: 18px;
+  background: #f2edc7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .banner .banner_Swiper .banner_slide3 {
-    text-align: center;
-    font-size: 18px;
-    background: #ffc1d6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.banner .banner_Swiper .banner_slide3 {
+  text-align: center;
+  font-size: 18px;
+  background: #ffc1d6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .banner .banner_Swiper swiper-slide img {
-    display: block;
-    max-width: 1350px;
-    height: 330px;
-    object-fit: cover;
-  }
+.banner .banner_Swiper swiper-slide img {
+  display: block;
+  width: 1350px;
+  height: 330px;
+  object-fit: cover;
+}
 
 /********************/
 /* 인기 전시 공연글 */
@@ -88,8 +89,6 @@
   height: 100px;
   margin-top: 20px;
 }
-
-
 
 
   /********************/
