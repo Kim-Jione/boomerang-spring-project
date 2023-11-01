@@ -27,4 +27,6 @@ public interface PerformanceDao {
     PfRespDto findByRecent();
 
     DetailFormDto findByPf(Integer pfId);
+
+    PfRespDto findByUpdateResult(Integer pfId);
 }

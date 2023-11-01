@@ -5,6 +5,7 @@ import com.example.bumerang.domain.performance.Performance;
 import com.example.bumerang.domain.performance.PerformanceDao;
 import com.example.bumerang.domain.view.ViewDao;
 import com.example.bumerang.web.dto.request.jobSearch.DeadlineDto;
+import com.example.bumerang.web.dto.request.performance.UpdateDto;
 import com.example.bumerang.web.dto.request.performance.WriteDto;
 import com.example.bumerang.web.dto.response.performance.DetailFormDto;
 import com.example.bumerang.web.dto.response.performance.PfCommentDto;
@@ -91,4 +92,17 @@ public class PerformanceService {
 		return findByPf;
 	}
 
+	public Performance findById(Integer pfId) {
+		return performanceDao.findById(pfId);
+	}
+
+	public PfRespDto update(UpdateDto updateDto) {
+		Performance performance = updateDto.toPerformance();
+		System.err.println("디버그getPfId: "+performance.getPfId());
+		System.err.println("디버그getUserId: "+performance.getUserId());
+		System.err.println("getPfContent: "+performance.getPfContent());
+		performanceDao.update(performance);
+		PfRespDto updateResult = performanceDao.findByUpdateResult(updateDto.getPfId());
+		return updateResult;
+	}
 }

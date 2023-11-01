@@ -108,4 +108,11 @@
         ON p.user_id = u.user_id
         WHERE p.pf_id = #{pfId}
     </select>
+
+    <select id="findByUpdateResult"
+            resultType="com.example.bumerang.web.dto.response.performance.PfRespDto">
+        SELECT * FROM performance
+        WHERE pf_id=#{pfId}
+    </select>
+
 </mapper>

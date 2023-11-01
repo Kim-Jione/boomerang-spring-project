@@ -66,7 +66,7 @@ public class JobSearchService {
 		for(String jobPositionTitle : jobPositionList){
 			jobSearchPositionDao.updatePosition(jobPositionTitle, updateDto.getJobId());
 		}
-		JobRespDto updateResult = jobSearchDao.findByUpdate(updateDto.getJobId());
+		JobRespDto updateResult = jobSearchDao.findByUpdateResult(updateDto.getJobId());
 		updateResult.setJobPositionTitle(jobPositionList);
 		return updateResult;
 	}

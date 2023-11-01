@@ -29,7 +29,8 @@ public class Performance {
 
 
     @Builder
-    public Performance(String pfTitle, String pfContent, String pfAgerating, String pfStartDate, String pfDeadline, String pfBookingmethod, String pfProduction, String pfLocation,  Integer pfRunningtime, Integer pfPrice, String pfGenre, String pfThumbnail, Integer userId) {
+    public Performance(Integer pfId, String pfTitle, String pfContent, String pfAgerating, String pfStartDate, String pfDeadline, String pfBookingmethod, String pfProduction, String pfLocation,  Integer pfRunningtime, Integer pfPrice, String pfGenre, String pfThumbnail, Integer userId) {
+        this.pfId = pfId;
         this.pfTitle = pfTitle;
         this.pfContent = pfContent;
         this.pfAgerating = pfAgerating;

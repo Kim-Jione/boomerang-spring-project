@@ -116,7 +116,7 @@
         WHERE j.job_id=LAST_INSERT_ID()
     </select>
 
-    <select id="findByUpdate"
+    <select id="findByUpdateResult"
             resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
         SELECT * FROM job_search
         WHERE job_id=#{jobId}
