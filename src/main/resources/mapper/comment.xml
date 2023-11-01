@@ -55,5 +55,6 @@
         LEFT JOIN comment c
         ON u.user_id = c.user_id
         WHERE c.pf_id = #{pfId}
+        AND c.comment_status != 'deleted'
     </select>
 </mapper>

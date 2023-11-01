@@ -71,7 +71,7 @@
         WHERE pf_id IS NOT NULL
         GROUP BY pf_id) v
         ON p.pf_id = v.pf_id
-        WHERE pf_status = 'active'
+        WHERE pf_status != 'deleted'
     </select>
 
     <select id="findAllBestPf"
@@ -87,7 +87,7 @@
             FROM view
             GROUP BY pf_id
         ) v ON p.pf_id = v.pf_id
-        WHERE p.pf_status = 'active'
+        WHERE p.pf_status != 'deleted'
         ORDER BY COALESCE(viewCount, 0) DESC
         LIMIT 6
     </select>
@@ -107,12 +107,7 @@
         LEFT JOIN user u
         ON p.user_id = u.user_id
         WHERE p.pf_id = #{pfId}
-    </select>
-
-    <select id="findByUpdateResult"
-            resultType="com.example.bumerang.web.dto.response.performance.PfRespDto">
-        SELECT * FROM performance
-        WHERE pf_id=#{pfId}
+        AND p.pf_status != 'deleted'
     </select>
 
 </mapper>

@@ -80,6 +80,7 @@
         WHERE job_id IS NOT NULL
         GROUP BY job_id
         ) v ON j.job_id = v.job_id
+        WHERE j.job_status != 'deleted'
         ORDER BY j.created_at DESC
     </select>
 
@@ -107,6 +108,7 @@
         WHERE job_id IS NOT NULL
         GROUP BY job_id
         ) v ON j.job_id = v.job_id
+        WHERE j.job_status != 'deleted'
         ORDER BY view_count DESC
     </select>
 
