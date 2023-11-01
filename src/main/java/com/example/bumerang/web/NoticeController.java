@@ -55,4 +55,17 @@ public class NoticeController {
         }
         return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
+
+    // 공지사항 삭제
+    @DeleteMapping("/s/api/notice/delete")
+    public @ResponseBody CMRespDto<?> delete(@RequestBody WriteDto deleteDto) {
+        SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
+        Integer userId = deleteDto.getUserId();
+        Integer userPId = principal.getUserId();
+        if(userId.equals(userPId)){
+            Notice noticePS = noticeService.delete(deleteDto.getNoticeId());
+            return new CMRespDto<>(1, "공지사항 삭제 성공.", noticePS);
+        }
+        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+    }
 }

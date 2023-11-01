@@ -45,4 +45,10 @@ public class NoticeService {
 		Notice noticePS = noticeDao.findById(updateDto.getNoticeId());
 		return noticePS;
 	}
+
+	public Notice delete(Integer noticeId) {
+		noticeDao.delete(noticeId);
+		Notice noticePS = noticeDao.findById(noticeId);
+		return noticePS;
+	}
 }
