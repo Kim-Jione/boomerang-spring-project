@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WriteDto {
+    private Integer noticeId;
     private String noticeTitle;
     private String noticeContent;
     private String noticeType;

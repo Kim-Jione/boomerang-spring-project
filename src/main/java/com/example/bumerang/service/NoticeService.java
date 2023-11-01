@@ -3,6 +3,7 @@ package com.example.bumerang.service;
 import com.example.bumerang.domain.comment.Comment;
 import com.example.bumerang.domain.notice.Notice;
 import com.example.bumerang.domain.notice.NoticeDao;
+import com.example.bumerang.web.dto.request.notice.WriteDto;
 import com.example.bumerang.web.dto.response.notice.DetailFormDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,9 +34,15 @@ public class NoticeService {
 		return noticeDao.findByNotice(noticeId);
 	}
 
-    public DetailFormDto write(Notice writeDto) {
+    public Notice write(Notice writeDto) {
 		noticeDao.insert(writeDto);
-		DetailFormDto noticePS = noticeDao.findByRecent();
+		Notice noticePS = noticeDao.findByRecent();
 		return noticePS;
     }
+
+	public Notice update(WriteDto updateDto) {
+		noticeDao.updatNotice(updateDto);
+		Notice noticePS = noticeDao.findById(updateDto.getNoticeId());
+		return noticePS;
+	}
 }

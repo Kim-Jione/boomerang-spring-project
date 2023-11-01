@@ -39,7 +39,20 @@ public class NoticeController {
     // 공지사항 등록
     @PostMapping("/s/api/auth/notice/write")
     public @ResponseBody CMRespDto<?> write(@RequestBody WriteDto writeDto) {
-        DetailFormDto noticePS = noticeService.write(writeDto.toEntity());
+        Notice noticePS = noticeService.write(writeDto.toEntity());
         return new CMRespDto<>(1, "공지사항 등록 성공.", noticePS);
+    }
+
+    // 공지사항 수정
+    @PutMapping("/s/api/auth/notice/update")
+    public @ResponseBody CMRespDto<?> update(@RequestBody WriteDto updateDto) {
+        SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
+        Integer userId = updateDto.getUserId();
+        Integer userPId = principal.getUserId();
+        if(userId.equals(userPId)){
+            Notice noticePS = noticeService.update(updateDto);
+            return new CMRespDto<>(1, "공지사항 수정 성공.", noticePS);
+        }
+        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
 }

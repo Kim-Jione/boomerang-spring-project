@@ -25,9 +25,9 @@
     <update id="update">
         UPDATE notice
         SET
-        notice_title = #{newNoticeTitle},
-        notice_content = #{newNoticeContent},
-        notice_type = #{newNoticeType}
+        notice_title = #{noticeTitle},
+        notice_content = #{noticeContent},
+        notice_type = #{noticeType}
         WHERE
         notice_title = #{noticeTitle}
         AND user_id = #{userId}
@@ -49,9 +49,21 @@
         WHERE n.notice_id = #{noticeId}
     </select>
 
-    <select id="findByRecent" resultType="com.example.bumerang.web.dto.response.notice.DetailFormDto">
+    <select id="findByRecent" resultType="com.example.bumerang.domain.notice.Notice">
         SELECT *
         FROM notice n
         WHERE n.notice_id=LAST_INSERT_ID()
     </select>
+
+    <update id="updatNotice">
+        UPDATE notice
+        SET
+        notice_title = #{noticeTitle},
+        notice_content = #{noticeContent},
+        notice_type = #{noticeType}
+        WHERE
+        notice_id = #{noticeId}
+        AND user_id = #{userId}
+    </update>
+
 </mapper>
