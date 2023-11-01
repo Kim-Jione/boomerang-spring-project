@@ -74,7 +74,7 @@
         WHERE pf_status = 'active'
     </select>
 
-    <select id="findAllBeestPf"
+    <select id="findAllBestPf"
             resultType="com.example.bumerang.web.dto.response.performance.PfListDto">
         SELECT p.pf_title, p.pf_location,
         CASE WHEN p.pf_price = 0 THEN FALSE
@@ -91,4 +91,12 @@
         ORDER BY COALESCE(viewCount, 0) DESC
         LIMIT 6
     </select>
+
+    <select id="findByRecent"
+            resultType="com.example.bumerang.web.dto.response.performance.PfRespDto">
+        SELECT *
+        FROM performance p
+        WHERE p.pf_id=LAST_INSERT_ID()
+    </select>
+
 </mapper>

@@ -2,13 +2,21 @@ package com.example.bumerang.service;
 
 import com.example.bumerang.domain.performance.Performance;
 import com.example.bumerang.domain.performance.PerformanceDao;
+import com.example.bumerang.domain.user.User;
 import com.example.bumerang.web.dto.request.jobSearch.DeadlineDto;
+import com.example.bumerang.web.dto.request.performance.WriteDto;
 import com.example.bumerang.web.dto.response.performance.PfListDto;
+import com.example.bumerang.web.dto.response.performance.PfRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -17,6 +25,7 @@ public class PerformanceService {
 
 	private final PerformanceDao performanceDao;
 	private final HttpSession session;
+	private final String imageUploadPath = "C:/bumerang/img/"; // 여기서 경로 수정
 
 	//공연글 목록
 	public List<Performance> findAll() {
@@ -38,7 +47,34 @@ public class PerformanceService {
 
 	// 공연글 베스트 목록
 	public List<PfListDto> findAllBeestPf() {
-		List<PfListDto> bestPfList = performanceDao.findAllBeestPf();
+		List<PfListDto> bestPfList = performanceDao.findAllBestPf();
 		return bestPfList;
+	}
+
+	public String uploadThumbnail(MultipartFile thumbnail) {
+		if (!thumbnail.isEmpty()) {
+			try {
+				// 이미지 파일 이름을 랜덤으로 생성
+				String fileName = UUID.randomUUID() + "_" + thumbnail.getOriginalFilename();
+				Path imagePath = Paths.get(imageUploadPath + fileName);
+
+				// 이미지 저장
+				thumbnail.transferTo(imagePath.toFile());
+
+				// 이미지 파일 경로를 반환
+				return imageUploadPath + fileName;
+			} catch (IOException e) {
+				e.printStackTrace();
+				// 이미지 업로드 실패 처리
+				return null;
+			}
+		}
+		return null;
+	}
+
+	public PfRespDto write(WriteDto writeDto) {
+		performanceDao.insert(writeDto.toPerformance());
+		PfRespDto pfPS = performanceDao.findByRecent();
+		return pfPS;
 	}
 }
