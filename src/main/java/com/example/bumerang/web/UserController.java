@@ -79,6 +79,14 @@ public class UserController {
         return new CMRespDto<>(1, "로그아웃 성공.", principal);
     }
 
+    // 내 회원정보 수정 화면
+    @GetMapping("/s/api/user/detailForm")
+    public @ResponseBody CMRespDto<?> detailForm() {
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        UserRespDto userDetail = userService.findByDetail(principal.getUserId());
+        return new CMRespDto<>(1, "계정정보 불러오기 성공.", userDetail);
+    }
+
     // 회원수정기능
     @PutMapping("/s/api/user/update")
     public @ResponseBody CMRespDto<?> updateUser(@RequestPart("profileImage") MultipartFile profileImage, @RequestPart("updateDto") UpdateDto updateDto) {
