@@ -11,6 +11,7 @@ public class WriteDto {
     private String noticeTitle;
     private String noticeContent;
     private String noticeType;
+    private String noticeStatus;
     private Integer userId;
 
     public Notice toEntity() {
