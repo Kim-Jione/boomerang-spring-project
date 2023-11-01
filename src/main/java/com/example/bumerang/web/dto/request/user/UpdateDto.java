@@ -1,8 +1,11 @@
 package com.example.bumerang.web.dto.request.user;
 
 import com.example.bumerang.domain.user.User;
+import com.example.bumerang.domain.userPortfolio.UserPortfolio;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,23 +24,6 @@ public class UpdateDto {
     private String userEducation;
     private String userContactLink;
     private String userProfileImg;
-
-    public User toEntity(){
-        return User.builder()
-                .userPassword(this.userPassword)
-                .userEmail(this.userEmail)
-                .userNickname(this.userNickname)
-                .userGender(this.userGender)
-                .userHeight(this.userHeight)
-                .userForm(this.userForm)
-                .userTone(this.userTone)
-                .userAge(this.userAge)
-                .userCareer(this.userCareer)
-                .userSkill(this.userSkill)
-                .userEducation(this.userEducation)
-                .userContactLink(this.userContactLink)
-                .userProfileImg(this.userProfileImg)
-                .userId(this.userId)
-                .build();
-    }
+    private List<String> uftitle;
+    private List<UserPortfolio> userPortfolio;
 }

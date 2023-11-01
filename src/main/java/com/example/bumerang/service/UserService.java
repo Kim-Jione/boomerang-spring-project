@@ -70,10 +70,25 @@ public class UserService {
     }
 
     // 사용자 정보 수정
-    public User update(UpdateDto updateDto){
-        userDao.update(updateDto.toEntity());
-        User userPS = userDao.findById(updateDto.getUserId());
-        return userPS;
+    public UserRespDto update(UpdateDto updateDto){
+        // 사용자 정보 수정
+        userDao.updateUser(updateDto);
+        // 사용자 분야 수정
+        List<String> uftitleList = updateDto.getUftitle();
+        userDao.fieldDelete(updateDto.getUserId());
+        for(String ufTitle : uftitleList){
+            userDao.fieldInsert(ufTitle, updateDto.getUserId());
+        }
+        // 사용자 포트폴리오 수정
+        List<UserPortfolio> upList = updateDto.getUserPortfolio();
+        userDao.portfolioDelete(updateDto.getUserId());
+        for(UserPortfolio userPortfolio : upList){
+            userDao.portfolioInsert(userPortfolio);
+        }
+        UserRespDto updateResult = userDao.findByDetail(updateDto.getUserId());
+        List<UserPortfolio> userPortfolioList = userDao.findByPortfolioList(updateDto.getUserId());
+        updateResult.setUserPortfolio(userPortfolioList);
+        return updateResult;
     }
 
     //userId로 사용자 정보 보기

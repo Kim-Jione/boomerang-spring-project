@@ -125,4 +125,48 @@
         FROM user_portfolio
         WHERE user_id = #{userId}
     </select>
+
+    <update id="updateUser">
+        UPDATE user
+        SET
+        user_password = #{userPassword},
+        user_email = #{userEmail},
+        user_nickname = #{userNickname},
+        user_gender = #{userGender},
+        user_height = #{userHeight},
+        user_form = #{userForm},
+        user_tone = #{userTone},
+        user_age = #{userAge},
+        user_career = #{userCareer},
+        user_skill = #{userSkill},
+        user_education = #{userEducation},
+        user_contact_link = #{userContactLink},
+        user_profile_img = #{userProfileImg}
+        WHERE
+        user_id = #{userId}
+    </update>
+
+    <delete id="fieldDelete">
+        DELETE FROM user_field
+        WHERE user_id = #{userId};
+    </delete>
+
+    <insert id="fieldInsert">
+        INSERT
+        INTO user_field (uf_title, user_id)
+        VALUES
+        (#{ufTitle}, #{userId})
+    </insert>
+
+    <delete id="portfolioDelete">
+        DELETE FROM user_portfolio
+        WHERE user_id = #{userId};
+    </delete>
+
+    <insert id="portfolioInsert">
+        INSERT
+        INTO user_portfolio (up_title, up_prod_year, up_role, up_genre, up_director, up_history, user_id)
+        VALUES
+        (#{upTitle}, #{upProdYear}, #{upRole}, #{upGenre}, #{upDirector}, #{upHistory}, #{userId})
+    </insert>
 </mapper>
