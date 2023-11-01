@@ -50,11 +50,11 @@ public class JobSearchService {
 	//구인글 상세보기
 	public DetailFormDto findByJob(Integer userId, Integer jobId) {
 		List<String> jobPositionList = jobSearchPositionDao.findPositionList(jobId);
-		List<JobCommentDto> findByCommentList = commentDao.findByCommentList(jobId);
+		List<JobCommentDto> findByCommentList = commentDao.findByJobCommentList(jobId);
 		DetailFormDto findByJob = jobSearchDao.findByJob(jobId);
 		findByJob.setJobPositionTitle(jobPositionList);
 		findByJob.setCommentList(findByCommentList);
-		viewDao.count(jobId, userId);
+		viewDao.count(null,jobId, userId);
 		return findByJob;
 	}
 

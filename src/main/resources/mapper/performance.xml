@@ -99,4 +99,13 @@
         WHERE p.pf_id=LAST_INSERT_ID()
     </select>
 
+    <select id="findByPf" resultType="com.example.bumerang.web.dto.response.performance.DetailFormDto">
+        SELECT *,
+        (SELECT COUNT(*) FROM likey WHERE pf_id = #{pfId}) as likeyCount,
+        (SELECT COUNT(*) FROM view WHERE pf_id = #{pfId}) as viewCount
+        FROM performance p
+        LEFT JOIN user u
+        ON p.user_id = u.user_id
+        WHERE p.pf_id = #{pfId}
+    </select>
 </mapper>

@@ -6,6 +6,7 @@ import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.performance.UpdateDto;
 import com.example.bumerang.web.dto.request.performance.WriteDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
+import com.example.bumerang.web.dto.response.performance.DetailFormDto;
 import com.example.bumerang.web.dto.response.performance.PfRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -50,5 +51,15 @@ public class PerformanceController {
         }
         return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
+
+    // 공연글 상세보기 화면
+    @GetMapping("/s/api/performance/detailForm/{pfId}")
+    public @ResponseBody CMRespDto<?> detailForm(@PathVariable Integer pfId, Model model) {
+        SessionUserDto userPS = (SessionUserDto)session.getAttribute("principal");
+        Integer userId = userPS.getUserId();
+        DetailFormDto pfDetail = performanceService.findByPf(userId, pfId);
+        return new CMRespDto<>(1, "공연글 상세보기 화면 불러오기 성공.", pfDetail);
+    }
+
 
 }

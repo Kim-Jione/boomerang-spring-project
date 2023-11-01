@@ -1,10 +1,13 @@
 package com.example.bumerang.service;
 
+import com.example.bumerang.domain.comment.CommentDao;
 import com.example.bumerang.domain.performance.Performance;
 import com.example.bumerang.domain.performance.PerformanceDao;
-import com.example.bumerang.domain.user.User;
+import com.example.bumerang.domain.view.ViewDao;
 import com.example.bumerang.web.dto.request.jobSearch.DeadlineDto;
 import com.example.bumerang.web.dto.request.performance.WriteDto;
+import com.example.bumerang.web.dto.response.performance.DetailFormDto;
+import com.example.bumerang.web.dto.response.performance.PfCommentDto;
 import com.example.bumerang.web.dto.response.performance.PfListDto;
 import com.example.bumerang.web.dto.response.performance.PfRespDto;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +27,8 @@ import java.util.UUID;
 public class PerformanceService {
 
 	private final PerformanceDao performanceDao;
+	private final CommentDao commentDao;
+	private final ViewDao viewDao;
 	private final HttpSession session;
 	private final String imageUploadPath = "C:/bumerang/img/"; // 여기서 경로 수정
 
@@ -77,4 +82,13 @@ public class PerformanceService {
 		PfRespDto pfPS = performanceDao.findByRecent();
 		return pfPS;
 	}
+
+	public DetailFormDto findByPf(Integer userId, Integer pfId) {
+		List<PfCommentDto> findByCommentList = commentDao.findByPfCommentList(pfId);
+		DetailFormDto findByPf = performanceDao.findByPf(pfId);
+		findByPf.setCommentList(findByCommentList);
+		viewDao.count(pfId,null,userId);
+		return findByPf;
+	}
+
 }
