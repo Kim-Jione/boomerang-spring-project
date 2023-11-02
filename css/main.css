@@ -8,7 +8,6 @@
     justify-content: center;
   }
 
-
   .banner .banner_Swiper {
     width: 100%;
     height: 100%;
@@ -53,7 +52,7 @@
   .hot_post {
     max-width: 1340px;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 50px;
   }
 
   .hot_post .title_area {
@@ -61,18 +60,17 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 28px;
-    margin-bottom: 30px;
+    font-size: 20px;
+    margin-left: 20px;
   }
 
   .hot_post .title_area .hot_title {
     display: flex;
-
-
   }
 
   .hot_post .title_area .hot_title .fa-fire {
     color: rgba(255, 0, 0, 0.747);
-    font-size: 32px;
+    font-size: 40px;
     margin-right: 12px;
   }
 
@@ -84,15 +82,16 @@
 
 /* 인기글 스와이퍼 */
   .hot_swiper{
-    max-width: 1290px;
+    max-width: 1210px;
     margin: 0 auto;
+    margin-top: 25px;
   }
 
   .hot_swiper swiper-slide {
     display: flex;
-    padding: 20px 25px 0;
-    width: 300px;
-    height: 330px;
+    padding: 15px 25px 0;
+    width: 280px;
+    height: 308px;
     background: #fff;
     border: 2px solid #d1d1d1;
     border-radius: 30px;
@@ -106,15 +105,16 @@
   /********************/
   .main_post {
     min-height: 100vh;
-    max-width: 1340px;
+    max-width: 1310px;
     margin: 0 auto;
-    margin-top: 130px;
+    margin-top: 100px;
   }
 
   .main_post .main_title {
     display: flex;
     align-items: center;
-    padding: 0 28px;
+    padding: 0 40px;
+    font-size: 17px;
   }
 
   .main_post .main_title .fa-rocket {
@@ -129,14 +129,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 28px;
+    padding: 0 40px;
   }
 
   .main_post .filter .dropdown_list {
     display: flex;
   }
 
-  .main_post .filter .dropdown_list #dropdown {
+  .main_post .filter .dropdown_list .dropdown {
     -webkit-box-pack: justify;
     justify-content: space-between;
     padding-left: 18px;
@@ -152,7 +152,7 @@
     -webkit-box-align: center;
     align-items: center;
     border-radius: 36px;
-    margin: 24px 24px 24px 0px;
+    margin: 20px 25px 25px 0px;
   }
 
 
@@ -180,22 +180,23 @@
     font-size: 20px;
 }
 
-
+  /*******************/
   /* 구인정보 게시글 */
+  /******************/
   .main_post .search_job_container {
+    display: none;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 10px;
   }
 
   .main_post .search_job_container .search_job_slide  {
     display: flex;
     margin: 15px;
-    padding: 20px 25px 0;
-    width: 300px;
-    height: 330px;
+    padding: 15px 25px 0;
+    width: 280px;
+    height: 308px;
     background: #fff;
     border: 2px solid #d1d1d1;
     border-radius: 30px;
@@ -211,6 +212,7 @@
   .project {
     display: flex;
     flex-direction: column;
+    width: 230px;
   }
 
   .project .badge_wrapper {
@@ -219,10 +221,16 @@
     margin-top: 5px;
   }
 
+  /*****************/
   /* 구인 글 뱃지 */
+  /****************/
 
     /* 영화 뱃지 */
   .project .badge_wrapper .badge_movie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     font-size: 14px;
     border-radius: 20px;
     padding: 4px 12px;
@@ -246,7 +254,7 @@
     gap: 8px;
     color: #999;
     font-weight: 500;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   /* 구인글 타이틀 */
@@ -256,7 +264,7 @@
     line-height: 28px;
     font-weight: 500;
     letter-spacing: -.05em;
-    margin: 7px 0 10px;
+    margin: 10px 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -268,7 +276,6 @@
   .project .position_list {
     height: 22px;
     display: flex;
-    margin-bottom: 20px;
     grid-gap: 3px;
     gap: 3px;
   }
@@ -278,7 +285,7 @@
     grid-gap: 5px;
     gap: 5px;
     height: 22px;
-    background: #f2f4f8;
+    background: #e9eefa;
     border-radius: 15px;
     font-weight: 700;
     font-size: 13px;
@@ -286,9 +293,22 @@
     color: #3e86f5;
   }
 
+  .project .position_list .gender {
+    padding: 3px 10px;
+    grid-gap: 5px;
+    gap: 5px;
+    height: 22px;
+    background: rgb(250, 237, 250);
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgb(180, 110, 180);
+  }
+
   /* 자세히보기 및 좋아요 버튼 구분 */
   .project .content{
-    margin-bottom: 15px;
+    margin: 15px 0;
     display: flex;
     justify-content: space-between;
   }
@@ -356,7 +376,7 @@
     font-weight: 500;
     justify-content: space-between;
     letter-spacing: -.04em;
-    margin-top: 18px;
+    margin-top: 15px;
   }
 
   .project .myinfo .user_info {
@@ -443,16 +463,6 @@
   }
  
 
-
-
-  /* 푸터 */
-  .footer {
-      display: flex;
-      align-items: center;
-      margin-top: 30px;
-      height: 180px;
-      background-color: #f9f9f9;
-  }
 
 
 

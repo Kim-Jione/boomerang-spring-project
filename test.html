@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #scrollable-textarea {
+      resize: none;
+      overflow: hidden;
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <textarea id="scrollable-textarea"></textarea>
+  <script>
+    const textarea = document.getElementById('scrollable-textarea');
+
+    textarea.addEventListener('input', function () {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
+
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  </script>
+</body>
+</html>

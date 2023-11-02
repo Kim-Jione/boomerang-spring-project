@@ -133,9 +133,6 @@
   font-size: 16px;
 }
 
-.board_list_wrap .paging a:first-child {
-  /* margin-left: 0; */
-}
 
 .board_list_wrap .paging .fa-solid {
   color: black;
@@ -177,3 +174,4 @@
   color: white;
   background: black;
 }
+

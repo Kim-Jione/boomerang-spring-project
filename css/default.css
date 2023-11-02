@@ -23,6 +23,31 @@
     font-family: inherit;
 }
 
+/* 스크롤바 효과 */
+* {
+    scrollbar-width: normal;
+    scrollbar-color: #777 #555;
+}
+
+* ::-webkit-scrollbar {
+    width: 10px;
+}
+
+* ::-webkit-scrollbar-thumb {
+    background-color: #9cc7ff;
+    border-radius: 10px;
+}
+
+* ::-webkit-scrollbar-thumb:hover {
+    background-color: #67a7fa;
+}
+
+* ::-webkit-scrollbar-track {
+    background-color: #d1e5ff;
+    border-radius: 10px;
+}
+
+
 body {
     font-family: "Noto Sans KR", serif;
     color: #000;
@@ -140,13 +165,14 @@ header {
   z-index: 999;
   background-color: #FFFFFF;
   width: 100%;
+  box-shadow: 5px 10px 5px -7px #0000001A;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1350px;
+    max-width: 1500px;
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 10px; 
@@ -203,7 +229,8 @@ header {
 /* 마이페이지 */
 .navbar .linkes {
     display: flex;
-    font-size: 24px;
+    font-size: 32px;
+    gap: 10px;
 }
 
 .navbar .linkes li {
@@ -222,5 +249,88 @@ header {
     color: #1084e9;
 }
 
+/* 드랍 다운 메뉴 */
+.icons-size{
+    color: #333;
+    font-size: 14px;
+}
+
+
+
+.action .menu{
+    background-color:#fff;
+    box-sizing:0 5px 25px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    padding: 10px 20px;
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    width: 200px;
+    transition: 0.5s; 
+    visibility: hidden;
+    opacity: 0;
+    border: 3px solid #eee;
+    
+}
+.action .menu.active{
+    opacity: 1;
+    top: 80px;
+    visibility: visible;
+}
+.action .menu::before{
+    background-color:#fff;
+    content: '';
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    transform:rotate(45deg);
+    width: 20px;
+    border-top: 3px solid #eeeeee;
+    border-left: 3px solid #eeeeee;
+}
+
+.action .menu ul li{
+    align-items: center;
+    border-bottom:2px solid rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: left;
+    list-style: none;
+    padding: 10px 0px;
+}
+.action .menu ul li img{
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5;
+    transition:0.5s
+}
+.action .menu ul li a{
+    display: inline-block;
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.action .menu ul li:hover a{
+    color:#1084e9;
+}
+
+.action .menu ul li:hover .icons-size {
+    color: #1084e9;
+}
+
 /* ---------------------------footer--------------------------- */
+
+
+.footer {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+    height: 230px;
+    background-color: #eeeeee;
+}
 
