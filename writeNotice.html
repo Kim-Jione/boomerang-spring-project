@@ -8,7 +8,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="css/default.css" />
-    <link rel="stylesheet" href="css/notice.css" />
+    <link rel="stylesheet" href="css/writeNotice.css" />
     <title>공지사항</title>
   </head>
   <body>
@@ -53,58 +53,48 @@
     </header>
 
     <div class="container">
-      <div class="board_list_wrap">
+      <div class="board_write_wrap">
         <div class="top">
           <div class="board_name">
             <i class="fa-solid fa-bullhorn"></i>
             <h2>공지사항</h2>
           </div>
-          <!-- 검색창 -->
-          <div class="search_bar">
-            <input id='filterText' type="text" placeholder="검색어를 입력하세요" />
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="board_write">
+          <div class="title">
+            <dl>
+              <dt>제목</dt>
+              <dd>
+                <input
+                  type="text"
+                  placeholder="글 제목을 입력하세요"
+                  value=""
+                />
+              </dd>
+            </dl>
+          </div>
+          <div class="info">
+            <dl>
+              <dt>글쓴이</dt>
+              <dd><input placeholder="글쓴이를 입력하세요" type="text" /></dd>
+            </dl>
+            <dl>
+              <dt>공지 유형</dt>
+              <dd>
+                <select>
+                  <option>컨텐츠 공지</option>
+                  <option>서비스 공지</option>
+                </select>
+              </dd>
+            </dl>
+          </div>
+          <div class="content">
+            <textarea placeholder="내용 입력"></textarea>
           </div>
         </div>
-        <table class="board_list">
-          <!-- 게시판 목록 -->
-          <thead>
-            <tr>
-              <th class="type">공지 종류</th>
-              <th>제목</th>
-              <th class="created_at">작성일</th>
-            </tr>
-          </thead>
-          <tbody class="contents_list">
-            <tr>
-              <td>컨텐츠 공지</td>
-              <td class="tit">
-                <a href="#">커뮤니티 비프에서 여러분의 영화를 상영하세요!</a>
-              </td>
-              <td>23.10.23.</td>
-            </tr>
-            <tr>
-              <td>서비스 공지</td>
-              <td class="tit"><a href="#">부메랑에서 팀원을 구해보세요</a></td>
-              <td>23.10.22.</td>
-            </tr>
-            <tr>
-              <td>컨텐츠 공지</td>
-              <td class="tit">
-                <a href="#">
-                  멀티캠퍼스 자체 제작 다큐멘터리 '파이널 프로젝트' 상영회는
-                  11월 14일</a
-                >
-              </td>
-              <td>23. 5.22.</td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- 글목록 하단 -->
-        <div class="board_bot">
-          <!-- 페이지네이션 -->
-          <div class="paging"></div>
-          <!-- 글쓰기 버튼 -->
-          <a class="write active" href="writeNotice.html">공지 쓰기</a>
+        <div class="bt_wrap">
+          <a href="viewNotice.html" class="save">등록</a>
+          <a href="notice.html" class="cancel">취소</a>
         </div>
       </div>
     </div>
