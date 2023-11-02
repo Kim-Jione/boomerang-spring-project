@@ -1,6 +1,7 @@
 package com.example.bumerang.domain.admin;
 
 import com.example.bumerang.web.dto.response.admin.*;
+import com.example.bumerang.web.dto.response.admin.UserRespDto;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface AdminDao {
 
     List<NoticeListDto> findNoticeList();
 
-    UserDetailDto findByUserId(Integer userId);
+    UserRespDto findByUserId(Integer userId);
 
     void updateUser(UserDetailDto userDetailDto);
 
