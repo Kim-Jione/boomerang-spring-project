@@ -3,7 +3,8 @@ function menuToggle(){
     toggleMenu.classList.toggle('active')
 }
 
-function menuToggle2(){
+function menu2Toggle(){
     const toggleMenu = document.querySelector('.menu2');
-    toggleMenu.classList.toggle('active2')
+    toggleMenu.classList.toggle('active')
 }
+
