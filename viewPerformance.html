@@ -6,10 +6,9 @@
 
     <link rel="stylesheet" href="css/viewPerformance.css" />
     <link rel="stylesheet" href="css/default.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 
     <title>BusanMate with Write</title>
   </head>
@@ -17,42 +16,72 @@
   <body>
     <header>
       <div class="navbar">
-        <div class="bot_menu">
-          <a href=""><img src="image/mainlogo.png" /></a>
-          <div class="title">
-            <h2>
-              부산 <span class="accent">메이트</span
-              ><span class="accent2">랑</span>
-            </h2>
-          </div>
+           <div class="bot_menu">
+                 <a href=""><img src="image/mainlogo.png"></a>
+                 <div class="title">
+                     <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>  
+                 </div>
+ 
+                 <ul class="menubar">
+                     <li><a href="index.html"><h3>구인정보</h3></a></li>
+                     <li><a href="performance.html"><h3>전시·공연</h3></a></li>
+                     <li>
+                       <a href="notice.html"><h3>공지사항</h3></a>
+                     </li>
+                 </ul>
+             </div>
+            
+             <ul class="linkes">
+                 <li class="action">
+                      <div class="profile" onclick="menuToggle();">
+                      <i class="fa-solid fa-pen"></i>
+                      </div>
 
-          <ul class="menubar">
-            <li>
-              <a href="index.html"><h3>구인정보</h3></a>
-            </li>
-            <li>
-              <a href="performance.html"><h3>전시·공연</h3></a>
-            </li>
-            <li>
-              <a href="notice.html"><h3>공지사항</h3></a>
-            </li>
-          </ul>
-        </div>
+                      <div class="menu">
+                          <ul>
+                              <li>
+                                  <span class="material-icons icons-size">person</span>
+                                  <a href="#">구인 글 쓰기</a>
+                              </li>
+                              <li>
+                                  <span class="material-icons icons-size">mode</span>
+                                  <a href="https://www.naver.com">공연 글 쓰기</a>
+                              </li>
+                          </ul>
+                      </div>
+                  </li>
+                  
+                 <li><a href=""><i class="fa-solid fa-bell"></i></a></li>
 
-        <ul class="linkes">
-          <li>
-            <a href=""><i class="fa-solid fa-pen"></i></a>
-          </li>
-          <li>
-            <a href=""><i class="fa-solid fa-bell"></i></a>
-          </li>
-          <li>
-            <a href=""><i class="fa-solid fa-circle-user"></i></a>
-          </li>
-          <li></li>
-        </ul>
+                 <li class="action">
+                  <div class="profile" onclick="menu2Toggle();">
+                      <i class="fa-solid fa-circle-user"></i>
+                  </div>
+
+                  <div class="menu2">
+                      <ul>
+                          <li>
+                              <span class="material-icons icons-size">insert_comment</span>
+                              <a href="#">내 작성글</a>
+                          </li>
+                          <li>
+                              <span class="material-icons icons-size">insert_comment</span>
+                              <a href="https://www.naver.com">내 관심글</a>
+                          </li>
+                          <li>
+                              <span class="material-icons icons-size">person</span>
+                              <a href="viewMemberInfo.html">계정 관리</a>
+                          </li>
+                          <li>
+                              <span class="material-icons icons-size">account_balance_wallet</span>
+                              <a href="https://www.naver.com">로그 아웃</a>
+                          </li>
+                      </ul>
+                  </div>
+              </li>
+             </ul>
       </div>
-    </header>
+     </header>
 
     <div class="pf_container">
       <div class="pf_title_area">
@@ -183,6 +212,7 @@
       src="https://kit.fontawesome.com/3f247b3389.js"
       crossorigin="anonymous"
     ></script>
-    <script src="./js/viewPerformance.js"></script>
+    <script src="js/viewPerformance.js"></script>
+    <script src="js/default.js"></script>
   </body>
 </html>
