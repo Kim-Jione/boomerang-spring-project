@@ -305,6 +305,7 @@ form .write_comment .form_info {
 
 .comment_card .comment {
   border: none;
+  border-radius: 20px;
   color: #666;
   width: 100%;
   font-size: 18px;
@@ -312,5 +313,6 @@ form .write_comment .form_info {
   resize: none;
   outline: none;
   overflow: hidden;
+  
 }
 
