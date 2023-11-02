@@ -134,9 +134,26 @@ function removeComment() {
 
 //  댓글 신고하기
 function reportComment() {
+  var nWidth = "500";
+  var nHeight = "600";
+  var xPos = document.body.clientWidth / 2 - nWidth / 2;
+  xPos += window.screenLeft; //듀얼 모니터
+  var yPos = screen.availHeight / 2 - nHeight / 2;
 
+  window.open(
+    "./report.html",
+    "신고하기",
+    "width=" +
+      nWidth +
+      ",height=" +
+      nHeight +
+      ",left=" +
+      xPos +
+      ", top=" +
+      yPos +
+      ",toolbar=no"
+  );
 }
-
 
 // textarea 높이 조절 함수
 // 새로운 댓글이 추가됐을 때 댓글창 height값을 지정해주기 위해 필요
