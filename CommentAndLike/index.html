@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/boomerang-spring-project/css/default.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <title>Video Comment & Like</title>
+  </head>
+  <body>
+    <div class="comment_container center_display">
+      <div class="top">
+        <!-- 댓글 작성부 여기부터 -->
+        <form>
+          <div class="write_comment">
+            <div class="comment_img center_display">
+              <img src="" alt="image" />
+            </div>
+            <div class="form_info center_display">
+              <input type="hidden" name="user" id="user" value="김휴고" />
+              <textarea
+                type="text"
+                name="comment"
+                id="comment"
+                placeholder="댓글을 입력하세요"
+              ></textarea>
+            </div>
+          </div>
+          <button type="submit" class="submit_btn">등록</button>
+        </form>
+        <!-- 여기까지 -->
+      </div>
+
+      <!-- 댓글 달리는 부분 여기부터 -->
+      <div class="comments_container center_display">
+        <div class="comment_card">
+          <div class="comment_top">
+            <div class="comment_info">
+              <div class="pic center_display">
+                <img src="" alt="image" />
+              </div>
+              <div class="comment_info_txt">
+                <p class="nickname">김휴고</p>
+                <p class="created_date">
+                  Thu Nov 02 2023 12:21:27 GMT+0900 (한국 표준시)
+                </p>
+              </div>
+            </div>
+            <div class="comment_btns">
+              <button>수정</button>
+              <button>삭제</button>
+              <button>신고</button>
+            </div>
+          </div>
+          <textarea readonly class="comment textarea">댓글 테스트
+            rls
+            dffsdf
+            sdfadsf
+
+            asdf
+            asd
+            fasdf
+          </textarea>
+        </div>
+      </div>
+      <!-- 여기까지 -->
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
