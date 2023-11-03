@@ -1,161 +1,184 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="css/viewJobSearch.css">
-    <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="css/viewJobSearch.css" />
+    <link rel="stylesheet" href="css/default.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet"
+    />
 
     <title>BusanMate with Write</title>
-</head>
+  </head>
 
-<body>
-  <header>
-    <div class="navbar">
-         <div class="bot_menu">
-               <a href=""><img src="image/mainlogo.png"></a>
-               <div class="title">
-                   <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>  
-               </div>
+  <body>
+    <header>
+      <div class="navbar">
+        <div class="bot_menu">
+          <a href=""><img src="image/mainlogo.png" /></a>
+          <div class="title">
+            <h2>
+              부산 <span class="accent">메이트</span
+              ><span class="accent2">랑</span>
+            </h2>
+          </div>
 
-               <ul class="menubar">
-                   <li><a href="index.html"><h3>구인정보</h3></a></li>
-                   <li><a href="performance.html"><h3>전시·공연</h3></a></li>
-                   <li>
-                     <a href="notice.html"><h3>공지사항</h3></a>
-                   </li>
-               </ul>
-           </div>
-          
-           <ul class="linkes">
-               <li class="action">
-                    <div class="profile" onclick="menuToggle();">
-                    <i class="fa-solid fa-pen"></i>
-                    </div>
-
-                    <div class="menu">
-                        <ul>
-                            <li>
-                                <span class="material-icons icons-size">person</span>
-                                <a href="#">구인 글 쓰기</a>
-                            </li>
-                            <li>
-                                <span class="material-icons icons-size">mode</span>
-                                <a href="https://www.naver.com">공연 글 쓰기</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                
-               <li><a href=""><i class="fa-solid fa-bell"></i></a></li>
-
-               <li class="action">
-                <div class="profile" onclick="menu2Toggle();">
-                    <i class="fa-solid fa-circle-user"></i>
-                </div>
-
-                <div class="menu2">
-                    <ul>
-                        <li>
-                            <span class="material-icons icons-size">insert_comment</span>
-                            <a href="#">내 작성글</a>
-                        </li>
-                        <li>
-                            <span class="material-icons icons-size">insert_comment</span>
-                            <a href="https://www.naver.com">내 관심글</a>
-                        </li>
-                        <li>
-                            <span class="material-icons icons-size">person</span>
-                            <a href="viewMemberInfo.html">계정 관리</a>
-                        </li>
-                        <li>
-                            <span class="material-icons icons-size">account_balance_wallet</span>
-                            <a href="https://www.naver.com">로그 아웃</a>
-                        </li>
-                    </ul>
-                </div>
+          <ul class="menubar">
+            <li>
+              <a href="index.html"><h3>구인정보</h3></a>
             </li>
-           </ul>
-    </div>
-   </header>
+            <li>
+              <a href="performance.html"><h3>전시·공연</h3></a>
+            </li>
+            <li>
+              <a href="notice.html"><h3>공지사항</h3></a>
+            </li>
+          </ul>
+        </div>
+
+        <ul class="linkes">
+          <li class="action">
+            <div class="profile" onclick="menuToggle();">
+              <i class="fa-solid fa-pen"></i>
+            </div>
+
+            <div class="menu">
+              <ul>
+                <li>
+                  <span class="material-icons icons-size">person</span>
+                  <a href="#">구인 글 쓰기</a>
+                </li>
+                <li>
+                  <span class="material-icons icons-size">mode</span>
+                  <a href="https://www.naver.com">공연 글 쓰기</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <a href=""><i class="fa-solid fa-bell"></i></a>
+          </li>
+
+          <li class="action">
+            <div class="profile" onclick="menu2Toggle();">
+              <i class="fa-solid fa-circle-user"></i>
+            </div>
+
+            <div class="menu2">
+              <ul>
+                <li>
+                  <span class="material-icons icons-size">insert_comment</span>
+                  <a href="#">내 작성글</a>
+                </li>
+                <li>
+                  <span class="material-icons icons-size">insert_comment</span>
+                  <a href="https://www.naver.com">내 관심글</a>
+                </li>
+                <li>
+                  <span class="material-icons icons-size">person</span>
+                  <a href="viewMemberInfo.html">계정 관리</a>
+                </li>
+                <li>
+                  <span class="material-icons icons-size"
+                    >account_balance_wallet</span
+                  >
+                  <a href="https://www.naver.com">로그 아웃</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </header>
 
     <div class="pf_container">
-        <div class="pf_title_area">
-            <div class="pf_display">
-                <div class="myinfo">
-                    <h1 class="pf_title">[로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 시는분 구합니다. 
-                      시는분 구합니다. 테스트 있어요! </h1>
-                    <div class="pf_label">
-                        <div class="user_info">
-                          <img class="pf_img" src="image/chara/bugi1.jpg">
-                          <p class="pf_nickname">검은조직 조장님</p>
-                          <p class="line">|</p>
-                          <p class="pf_creation_date">2023.10.10</p>
-                        </div>
+      <div class="pf_title_area">
+        <div class="pf_display">
+          <div class="myinfo">
+            <h1 class="pf_title">
+              [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 시는분 구합니다.
+              시는분 구합니다. 테스트 있어요!
+            </h1>
+            <div class="pf_label">
+              <div class="user_info">
+                <img class="pf_img" src="image/chara/bugi1.jpg" />
+                <p class="pf_nickname">검은조직 조장님</p>
+                <p class="line">|</p>
+                <p class="pf_creation_date">2023.10.10</p>
+              </div>
 
-                        <div class="pf_status">
-                          <i class="fa-solid fa-eye"></i> <p class="view_count">243</p>
-                          <i class="fa-solid fa-heart"></i> <p class="like_count">52</p>
-                          <img src="image/siren.png"> <p class="report">신고하기</p>
-                        </div>
-                    </div>
-                </div>
+              <div class="pf_status">
+                <i class="fa-solid fa-eye"></i>
+                <p class="view_count">243</p>
+                <i class="fa-solid fa-heart"></i>
+                <p class="like_count">52</p>
+                <img src="image/siren.png" />
+                <p class="report">신고하기</p>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="border"></div>
+      </div>
+      <div class="border"></div>
 
-        <div class="pf_info">
-            
-            <div class="column">
-                <ul class="detail_info">
-                  <li>
-                    <span class="accent">공연 기간</span>
-                    <p>2023.10.14 ~ 23.11.07</p> 
-                  </li>
-                  <li>
-                    <span class="accent">장르</span>
-                    <p>영화</p> 
-                  </li>
-                   
-                    <li>
-                      <span class="accent">관람 연령</span>
-                      <p>12세 이상</p> 
-                    </li>
-                    
-                    <li>
-                      <span class="accent">제작</span>
-                      <p>극단멀캠</p> 
-                    </li>
+      <div class="pf_info">
+        <div class="column">
+          <ul class="detail_info">
+            <li>
+              <span class="accent">공연 기간</span>
+              <p>2023.10.14 ~ 23.11.07</p>
+            </li>
+            <li>
+              <span class="accent">장르</span>
+              <p>영화</p>
+            </li>
 
-                    <li>
-                      <span class="accent">공연 시간</span>
-                      <p>120분</p> 
-                    </li>
-                   
-                    <li>
-                      <span class="accent">가격</span>
-                      <p>무료</p> 
-                    </li>
+            <li>
+              <span class="accent">관람 연령</span>
+              <p>12세 이상</p>
+            </li>
 
-                    <li>
-                      <span class="accent">예매 방법</span>
-                      <p>오픈톡</p> 
-                    </li>
-                    <li>
-                      <span class="accent">위치</span>
-                      <p>부산 국제 영화제</p> 
-                    </li>
-                </ul>
+            <li>
+              <span class="accent">제작</span>
+              <p>극단멀캠</p>
+            </li>
 
-                <div class="pf_intro">
-                    <h4>구인글 소개</h4>
-                  <div class="border"></div>
-                  <textarea readonly class="introduce">
+            <li>
+              <span class="accent">공연 시간</span>
+              <p>120분</p>
+            </li>
+
+            <li>
+              <span class="accent">가격</span>
+              <p>무료</p>
+            </li>
+
+            <li>
+              <span class="accent">예매 방법</span>
+              <p>오픈톡</p>
+            </li>
+            <li>
+              <span class="accent">위치</span>
+              <p>부산 국제 영화제</p>
+            </li>
+          </ul>
+
+          <div class="pf_intro">
+            <h4>구인글 소개</h4>
+            <div class="border"></div>
+            <textarea readonly class="introduce textarea">
                     [강아지.. 좋아하세요?]
                     강아지를 좋아하는 기획자 두 명이 모인 팀입니다.
                     
@@ -234,26 +257,50 @@
                     📧 hyunseo.nikita.lee@gmail.com
                     
                     📧 wognsdlekt2@gmail.com
-                  </textarea>
-                </div>
-            </div>
+                  </textarea
+            >
+          </div>
         </div>
-
+      </div>
     </div>
 
+    <div class="comment_container center_display">
+      <!-- 댓글 작성부 여기부터 -->
+      <div class="top">
+        <form>
+          <div class="write_comment">
+            <div class="comment_img center_display">
+              <img src="image/chara/bugi1.jpg" alt="image" />
+            </div>
+            <div class="form_info center_display">
+              <input type="hidden" name="user" id="user" value="김휴고" />
+              <textarea
+                type="text"
+                name="comment"
+                id="comment"
+                placeholder="댓글을 입력하세요"
+              ></textarea>
+            </div>
+          </div>
+          <button type="button" class="submit_btn">등록</button>
+        </form>
+      </div>
+      <!-- 여기까지 -->
 
-        
+      <div class="comments_container center_display">
+        <!-- 댓글이 달리는 부분 -->
+      </div>
+    </div>
 
-        
+    <footer class="footer">
+      <div class="left_cover"></div>
+    </footer>
 
-
-        <footer class="footer">
-          <div class="left_cover"></div>
-        </footer>
-
-    <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/3f247b3389.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="js/viewJobSearch.js"></script>
     <script src="js/default.js"></script>
-
-</body>
+  </body>
 </html>
