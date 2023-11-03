@@ -18,6 +18,10 @@
       href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
       rel="stylesheet"
     />
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+    <link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet" />
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
     <title>BusanMate with Write</title>
   </head>
@@ -107,8 +111,12 @@
       <div class="board_write_wrap">
         <div class="top">
           <div class="board_name">
-            <i class="fa-solid fa-rocket"></i>
+            <i class="fa-solid fa-feather-pointed"></i>
             <h2>구인정보 쓰기</h2>
+          </div>
+          <div class="bt_wrap">
+            <a href="viewNotice.html" class="save">등록</a>
+            <a href="notice.html" class="cancel">취소</a>
           </div>
         </div>
         <div class="board_write">
@@ -344,12 +352,8 @@
             </dl>
           </div>
           <div class="content">
-            <textarea placeholder="내용 입력"></textarea>
+            <div id="editor-container"></div>
           </div>
-        </div>
-        <div class="bt_wrap">
-          <a href="viewNotice.html" class="save">등록</a>
-          <a href="notice.html" class="cancel">취소</a>
         </div>
       </div>
     </div>
