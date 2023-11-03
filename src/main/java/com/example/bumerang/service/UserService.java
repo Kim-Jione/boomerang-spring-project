@@ -1,5 +1,6 @@
 package com.example.bumerang.service;
 
+import com.example.bumerang.config.EncrypterConfig;
 import com.example.bumerang.domain.likey.LikeyDao;
 import com.example.bumerang.domain.user.User;
 import com.example.bumerang.domain.user.UserDao;
@@ -18,10 +19,12 @@ import com.example.bumerang.web.dto.response.user.UserRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -38,13 +41,42 @@ public class UserService {
     private final LikeyDao likeyDao;
     private final JavaMailSender emailSender;
     private final String imageUploadPath = "C:/bumerang/img/profile/"; // 여기서 경로 수정
+    private final EncrypterConfig encrypterConfig;
+    private final BCryptPasswordEncoder encoder;
+
 
     //회원가입
+
     public SessionUserDto join(JoinDto joinDto) {
-        userDao.insert(joinDto.toEntity());
+        // userDao.insert(joinDto.toEntity(encrypterConfig.encodePwd().encode(joinDto.getUserPassword())));
+         //SessionUserDto joinResult = userDao.findByUser(joinDto.toLoginDto());
+        // 사용자가 입력한 비밀번호
+        String userPassword = joinDto.getUserPassword();
+
+        // encrypterConfig를 사용하여 비밀번호를 암호화하고 인코딩
+        String encryptedPassword = encrypterConfig.encodePwd().encode(userPassword);
+
+        // 암호화된 비밀번호를 사용하여 데이터베이스에 저장
+         userDao.insert(joinDto.toEntity(encryptedPassword));
+        //
+        // 사용자 정보 검색
         SessionUserDto joinResult = userDao.findByUser(joinDto.toLoginDto());
+
+        // 데이터베이스에서 저장된 암호화된 비밀번호 가져오기
+         joinDto.setUserPassword(encryptedPassword);
+         String storedEncryptedPassword = joinResult.getPassword();
+
+        // 암호화된 비밀번호와 저장된 비밀번호 비교
+        if (encryptedPassword.equals(storedEncryptedPassword)) {
+            System.out.println("비밀번호가 정상적으로 암호화되었습니다.");
+        } else {
+            System.out.println("비밀번호 암호화에 문제가 있습니다.");
+        }
+
         return joinResult;
     }
+
+
 
 
     //로그인 정보와 맞는 사용자 찾기
