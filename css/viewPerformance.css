@@ -240,12 +240,20 @@ form .write_comment .form_info {
   touch-action: manipulation;
   transition: filter 0.2s;
 }
-
-.top button:hover {
+/* 
+.top button:hover:not(:disabled) {
   filter: brightness(1.1);
   -webkit-filter: brightness(1.1);
 }
 
+.top button:disabled {
+  cursor: auto;
+}
+
+.top button:active {
+  border-width: 4px 0 0;
+  background: none;
+} */
 
 /* COMMENTS */
 .comments_container {
