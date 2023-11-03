@@ -169,4 +169,19 @@
         VALUES
         (#{upTitle}, #{upProdYear}, #{upRole}, #{upGenre}, #{upDirector}, #{upHistory}, #{userId})
     </insert>
+
+    <select id="findByLoginId"
+            resultType="com.example.bumerang.domain.user.User">
+        SELECT * FROM user WHERE user_login_id=#{userLoginId}
+    </select>
+
+    <select id="findByNickname"
+            resultType="com.example.bumerang.domain.user.User">
+        SELECT * FROM user WHERE user_nickname=#{userNickname}
+    </select>
+
+    <select id="findByEmail"
+            resultType="com.example.bumerang.domain.user.User">
+        SELECT * FROM user WHERE user_email=#{userEmail}
+    </select>
 </mapper>
