@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/login.css">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- AJax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Welcome to Bumerang</title>
 </head>
 
@@ -15,7 +19,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form id="joinForm">
                 <h1>회원 가입</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -23,11 +27,11 @@
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
-                <input type="text" name="user_login_id" placeholder="아이디">
+                <input type="text" name="user_login_id" id="userLoginId"  placeholder="아이디">
                 <input type="password" name="user_password" id="password" placeholder="비밀번호">
                 <input type="password" name="user_password_check" id="password_check" placeholder="비밀번호">
-                <input type="email" name="user_email" placeholder="email@xxxx">
-                <input type="text" name="user_nickname" placeholder="닉네임">
+                <input type="email" name="user_email" id="userEmail" placeholder="email@xxxx">
+                <input type="text" name="user_nickname" id="userNickname" placeholder="닉네임">
                 <!-- <input type="number" name="user_age" placeholder="만 나이(숫자만)">
                 <label for="male">남성</label>
                 <input type="radio" name="user_gender" value="true">
@@ -40,11 +44,11 @@
                 <input type="text" name="user_contact_lin" placeholder="연락 방법 ex:전화번호, 오픈톡 등">
                 <input type="text" name="user_profile_img" placeholder="프로필 이미지"> -->
                 <input type="hidden" name="user_role" value="normal">
-                <button>가입하기</button>
+                <button id="joinBtn">가입하기</button>
             </form>
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form id="loginForm">
                 <h1>로그인</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -53,10 +57,10 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             
-                <input type="id" name="user_login_id" placeholder="아이디">
-                <input type="password" name="user_password" placeholder="비밀번호">
+                <input id="userLoginId" type="id" name="userLoginId" placeholder="아이디">
+                <input id="userPassword" type="password" name="userPassword" placeholder="비밀번호">
                 <a href="#">비밀번호를 잊으셨나요?</a>
-                <button>로그인</button>
+                <button type="submit" id="loginBtn">로그인</button>
             </form>
         </div>
         <div class="toggle-container">
