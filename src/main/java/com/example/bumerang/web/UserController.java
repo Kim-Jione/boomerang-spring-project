@@ -64,8 +64,8 @@ public class UserController {
     }
     // 로그인 화면
     @GetMapping("/user/loginForm")
-    public @ResponseBody CMRespDto<?> loginForm() {
-        return new CMRespDto<>(1, "로그인 화면 불러오기 성공.", null);
+    public String loginForm() {
+        return "loginForm";
     }
 
     // 로그인 기능
