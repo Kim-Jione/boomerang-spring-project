@@ -257,6 +257,18 @@
     margin-top: 10px;
   }
 
+  .deadline{
+    z-index: 9999;
+    position: absolute;
+    text-align: center;
+    display: block;
+    width: 90%;
+    margin-top: 20px;
+    opacity: 0.7;
+
+  }
+
+
   /* 구인글 타이틀 */
   .project .project_title {
     font-size: 17px;
