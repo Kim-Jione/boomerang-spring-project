@@ -34,24 +34,23 @@
 }
 
 .board_write input {
-  width: 80%;
+  width: 90%;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid black;
   border-radius: 5px;
 }
 
-.board_write .title,
 .board_write .info {
+  display: flex;
   padding: 15px;
+  justify-content: space-between;
 }
 
 .board_write dl {
   margin: 10px 0px;
 }
 
-.board_write .title dt,
-.board_write .title dd,
 .board_write .info dt,
 .board_write .info dd {
   display: inline-block;
@@ -59,12 +58,10 @@
   font-size: 20px;
 }
 
-.board_write .title dt,
 .board_write .info dt {
   width: 100px;
 }
 
-.board_write .title dd,
 .board_write .info dd {
   width: calc(100% - 100px);
   font-weight: 100;
@@ -76,18 +73,18 @@
   font-size: 0;
 }
 
-.board_write .info dl {
+.board_write .info .title {
   display: inline-block;
-  width: 50%;
+  width: 70%;
   vertical-align: middle;
 }
 
-.board_write .title dl {
-  font-size: 0;
+.board_write .info .type {
+  width: 30%;
 }
 
 .board_write .info select {
-  width: 60%;
+  width: 90%;
   height: 43px;
   padding-left: 10px;
   border-radius: 5px;
@@ -145,4 +142,35 @@
 .bt_wrap a.cancel:hover {
   background: #000;
   color: #fff;
+}
+
+/* 내용 영역 */
+#editor-container {
+  height: 375px;
+  font-size: 18px;
+  font-family: inherit;
+}
+#editor-container h1 {
+  font-size: 36px;
+  font-family: inherit;
+}
+#editor-container h2 {
+  font-size: 32px;
+  font-family: inherit;
+}
+#editor-container h3 {
+  font-size: 28px;
+  font-family: inherit;
+}
+#editor-container h4 {
+  font-size: 24px;
+  font-family: inherit;
+}
+#editor-container h5 {
+  font-size: 20px;
+  font-family: inherit;
+}
+#editor-container h6 {
+  font-size: 16px;
+  font-family: inherit;
 }
