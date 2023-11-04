@@ -25,7 +25,7 @@
 }
 
 .top .board_name .fa-solid {
-  color: cornflowerblue;
+  color: yellowgreen;
   font-size: 32px;
   margin-right: 12px;
 }
@@ -209,48 +209,59 @@
 }
 
 /* 내용 영역 */
-.board_write .content {
-  border-bottom: 1px solid #000;
+.content {
+  margin-top: 30px;
 }
 
-.board_write .content textarea {
-  display: block;
-  width: 100%;
-  height: 300px;
-  padding: 15px;
-  box-sizing: border-box;
-  border: 0;
-  resize: vertical;
-}
-
-.board_write .content p {
-  display: block;
-  width: 100%;
-  height: 300px;
-  padding: 15px;
-  box-sizing: border-box;
-  border: 0;
-  resize: vertical;
-}
+#editor-container {
+  height: 375px;
+  font-size: 18px;
+  font-family: inherit;
+ }
+ #editor-container h1 {
+  font-size: 36px;
+  font-family: inherit;
+ }
+ #editor-container h2 {
+  font-size: 32px;
+  font-family: inherit;
+ }
+ #editor-container h3 {
+  font-size: 28px;
+  font-family: inherit;
+ }
+ #editor-container h4 {
+  font-size: 24px;
+  font-family: inherit;
+ }
+ #editor-container h5 {
+  font-size: 20px;
+  font-family: inherit;
+ }
+ #editor-container h6 {
+  font-size: 16px;
+  font-family: inherit;
+ }
 
 /* 버튼 */
 .bt_wrap {
-  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
   text-align: center;
 }
 
 .bt_wrap a {
   display: inline-block;
-  /* min-width: 50px; */
+  width: 70px;
   margin-left: 10px;
   padding: 10px;
-  border: 1px solid #000;
-  border-radius: 50px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 .bt_wrap a.save {
-  background: #000;
-  color: #fff;
+  background:#c8e4fd;
+  color: rgb(52, 52, 253);
 }
 
 .bt_wrap a.save:hover {
