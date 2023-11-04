@@ -1,8 +1,8 @@
 .findbox {
-    width: 40%;
-    height: 45%;
+    width: 50%;
+    height: 50%;
     top: 30%;
-    left: 30%;
+    left: 25%;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -17,7 +17,6 @@
     width: 100%;
     flex-wrap: wrap;
     cursor: pointer;
-    position: absolute
 }
 .pwbox h3, .idbox h3{
     width: 100%;
@@ -50,10 +49,10 @@
     margin-top: 4%;
 }
 .button_box{
-    width: 40%;
+    width: 50%;
     height: 5%;
-    top: 68%;
-    left: 30%;
+    top: 74%;
+    left: 25%;
     position: absolute;
     display: flex;
     align-items: center;
@@ -75,7 +74,7 @@
     color: #569aff;
 }
 .pwbox{
-    visibility: hidden;
+    display: none;
 }
 
 .loginlink{
@@ -95,8 +94,4 @@
     text-align: center;
     font-size: 1.2rem;
     margin-bottom: 10px;
-}
-
-.textarea{
-    display: flex;
 }

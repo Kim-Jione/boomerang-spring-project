@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.bumerang.domain.user.User;
@@ -35,12 +36,6 @@ public class UserController {
     private final HttpSession session;
     private final UserService userService;
 
-    // 회원가입 화면
-    @GetMapping("/user/joinForm")
-    public @ResponseBody CMRespDto<?> joinForm() {
-        return new CMRespDto<>(1, "회원가입 화면 불러오기 성공.", null);
-    }
-
     // 회원가입 기능
     @PostMapping("/user/join")
     public @ResponseBody CMRespDto<?> join(@RequestBody JoinDto joinDto) {
@@ -62,10 +57,11 @@ public class UserController {
         SessionUserDto joinResult = userService.join(joinDto);
         return new CMRespDto<>(1, "회원가입 성공.", joinResult);
     }
+
     // 로그인 화면
     @GetMapping("/user/loginForm")
-    public @ResponseBody CMRespDto<?> loginForm() {
-        return new CMRespDto<>(1, "로그인 화면 불러오기 성공.", null);
+    public String loginForm() {
+        return "loginForm";
     }
 
     // 로그인 기능
@@ -80,14 +76,10 @@ public class UserController {
     }
 
     // 로그아웃
-    @PostMapping("/s/api/user/logout")
-    public @ResponseBody CMRespDto<?> logout() {
-        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-        if(principal==null){
-            return new CMRespDto<>(-1, "로그인 상태가 아닙니다.", null);
-        }
+    @GetMapping("/s/api/user/logout")
+    public String logout() {
         session.invalidate();
-        return new CMRespDto<>(1, "로그아웃 성공.", principal);
+        return "redirect:/";
     }
 
     // 내 회원정보 수정 화면
@@ -130,7 +122,7 @@ public class UserController {
 
     // 내가 작성한 글 화면
     @GetMapping("/s/api/user/writeListForm")
-    public @ResponseBody CMRespDto<?> writeListForm() {
+    public String writeListForm() {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = principal.getUserId();
         UserCreateRespoDto userWriteList = new UserCreateRespoDto();
@@ -138,7 +130,7 @@ public class UserController {
         List<UserPerformanceDto> myPfList = userService.myPfList(userId);
         userWriteList.setMyJSList(myJSList);
         userWriteList.setMyPfList(myPfList);
-        return new CMRespDto<>(1, "작성한 글 불러오기 성공.", userWriteList);
+        return "writeListForm";
     }
 
     // 아이디 찾기 화면
@@ -171,19 +163,21 @@ public class UserController {
         if(userPassword==null){
             return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
         }
-        SimpleMailMessage message = userService.sendMessage(userPassword, searchPwDto);
+        SimpleMailMessage message = userService.sendMessage(searchPwDto);
         return new CMRespDto<>(1, "비밀번호 찾기 성공.", message);
     }
 
     // 관심목록 화면
-    @GetMapping("/s/api/user/likeyListForm")
-    public @ResponseBody CMRespDto<?> likeyListForm(){
+    @GetMapping("/user/likeyListForm")
+    public String likeyListForm(Model model){
         LikeyRespDto userLikeyList = new LikeyRespDto();
         List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList();
         List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList();
         userLikeyList.setLJSList(LikeyJSDetail);
         userLikeyList.setLPFList(LikeyPFDetail);
-        return new CMRespDto<>(1, "관심목록 불러오기 성공.", userLikeyList);
+        model.addAttribute("LikeyJSDetail", LikeyPFDetail);
+        model.addAttribute("LikeyPFDetail", LikeyPFDetail);
+        return "/likeyListForm";
     }
 
 }
