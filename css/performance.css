@@ -187,6 +187,7 @@
   height: 235px;
   position: absolute;
   top: 0;
+  z-index: 3;
   transition: 0.2s all ease-out;
 }
 
@@ -289,6 +290,48 @@
   font-size: 12px;
   margin-top: 12px;
   color: #818181;
+}
+
+/* 구인글 좋아요 버튼 */
+.like_plus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.like_btn{
+    transform: translate(-50%,-50%);
+}
+
+.like_btn .heart{
+  position: absolute;
+  background: url("/image/img.png") no-repeat;
+  background-position: left;
+  background-size: 2900%;
+  height: 90px;
+  width: 90px;
+  left: -20px;
+  top: 10px;
+  transform: translate(-50%,-50%);
+  z-index: 2;
+}
+
+.like_btn .heart:hover {
+  cursor: pointer;
+}
+
+.like_btn .heart.heart-active{
+  animation: animate .8s steps(28) 1;
+  background-position: right;
+}
+
+@keyframes animate {
+  0%{
+    background-position: left;
+  }
+  100%{
+    background-position: right;
+  }
 }
 
 
