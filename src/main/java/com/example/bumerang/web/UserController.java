@@ -160,6 +160,9 @@ public class UserController {
     @PostMapping("/user/searchId")
     public @ResponseBody CMRespDto<?> searchId(@RequestBody SearchIdDto searchIdDto) {
         SearchIdDto userLoginId = userService.findByLoginId(searchIdDto);
+        if(userLoginId==null){
+            return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
+        }
         return new CMRespDto<>(1, "아이디 찾기 성공.", userLoginId);
     }
 
@@ -167,6 +170,9 @@ public class UserController {
     @PostMapping("/user/searchPw")
     public @ResponseBody CMRespDto<?> searchPw(@RequestBody SearchPwDto searchPwDto) {
         SearchPwDto userPassword = userService.findByPw(searchPwDto);
+        if(userPassword==null){
+            return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
+        }
         SimpleMailMessage message = userService.sendMessage(userPassword, searchPwDto);
         return new CMRespDto<>(1, "비밀번호 찾기 성공.", message);
     }
