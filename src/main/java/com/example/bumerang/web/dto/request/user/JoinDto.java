@@ -12,7 +12,7 @@ public class JoinDto {
     private String userNickname;
     private String userEmail;
 
-    public User toEntity(String encode) {
+    public User toEntity() {
         return User.builder()
                 .userLoginId(this.userLoginId)
                 .userPassword(this.userPassword)

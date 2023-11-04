@@ -119,7 +119,7 @@ public class UserController {
         return new CMRespDto<>(1, "계정정보 불러오기 성공.", userDetail);
     }
 
-    // 내가 작성한 구인글 화면
+    // 내가 작성한 글 화면
     @GetMapping("/s/api/user/writeListForm")
     public @ResponseBody CMRespDto<?> writeListForm() {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");

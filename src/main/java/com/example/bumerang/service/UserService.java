@@ -55,23 +55,16 @@ public class UserService {
 
         // encrypterConfig를 사용하여 비밀번호를 암호화하고 인코딩
         String encryptedPassword = encrypterConfig.encodePwd().encode(userPassword);
+        joinDto.setUserPassword(encryptedPassword);
+        System.err.println("디버그getUserPassword: "+joinDto.getUserPassword());
+
+        User user = joinDto.toEntity();
 
         // 암호화된 비밀번호를 사용하여 데이터베이스에 저장
-         userDao.insert(joinDto.toEntity(encryptedPassword));
-        //
+         userDao.insert(user);
+
         // 사용자 정보 검색
         SessionUserDto joinResult = userDao.findByUser(joinDto.toLoginDto());
-
-        // 데이터베이스에서 저장된 암호화된 비밀번호 가져오기
-         joinDto.setUserPassword(encryptedPassword);
-         String storedEncryptedPassword = joinResult.getPassword();
-
-        // 암호화된 비밀번호와 저장된 비밀번호 비교
-        if (encryptedPassword.equals(storedEncryptedPassword)) {
-            System.out.println("비밀번호가 정상적으로 암호화되었습니다.");
-        } else {
-            System.out.println("비밀번호 암호화에 문제가 있습니다.");
-        }
 
         return joinResult;
     }
