@@ -37,7 +37,7 @@ out/
 ### VS Code ###
 .vscode/
 
+### 휴고파일 무시해주세요 ###
 .DS_Store
-
 ignoreFiles/
 
