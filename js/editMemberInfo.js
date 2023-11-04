@@ -1,4 +1,6 @@
+/******************/
 /* 비밀번호 검사 컨트롤*/
+/******************/
 //유효성 검사. 하나 이상의 영어대소문자와 숫자, 특수문자 포함, 8글자 이상.
 function openPasswdChanger() {
   let PasswdChanger = document.querySelector(".passwordChanger");
@@ -42,8 +44,9 @@ document.querySelector(".edit_passwd").addEventListener("click", openPasswdChang
 document.querySelector("#closeChanger").addEventListener("click", closePasswdChanger);
 document.querySelector("#saveChanger").addEventListener("click", savePasswdChanger);
 
-
+/***********************/
 /* 프로필 이미지 변환 컨트롤 */
+/***********************/
 //이미지 셀렉터 열기
 function openImageEditor() {
   let imageEditor = document.querySelector(".img_editor");
@@ -65,29 +68,37 @@ document.querySelector(".edit_img").addEventListener("click", openImageEditor);
 document.querySelector("#close_editor").addEventListener("click", closeImageEditor);
 document.querySelector("#save_editor").addEventListener("click", saveImageEditor);
 
-// 과거 마이페이지 코드
-// var iconImages = document.querySelectorAll(".icon_imgs");
-// iconImages.forEach(function (iconImage) {
-//   iconImage.addEventListener("click", function () {
-//     changeImage(iconImage.src);
-//   });
-// });
 
+/****************/
 /* 회원 탈퇴 컨트롤 */
+/****************/
 //회원탈퇴 창 열기
 function openWithdrawalConfirmer() {
-  let confirmer = document.querySelector(".confirm_withdrwal");
-  confirmer.style.display = "block";
+  let confirmer = document.querySelector(".withdrawal_comfirm");
+  confirmer.style.display = "flex";
 }
 
 //회원탈퇴 창 닫기
 function closeWithdrawalConfirmer() {
-  let confirmer = document.querySelector(".confirm_withdrwal");
+  let confirmer = document.querySelector(".withdrawal_comfirm");
   confirmer.style.display = "none";
 }
 
+//회원탈퇴 확정
+function confirmWithdrawal() {
+  let confirmer = document.querySelector(".withdrawal_comfirm");
+  confirmer.style.display = "none";
+  //회원탈퇴 코드 추가
+}
 
-//필모그래피 컨트롤
+//이벤트리스너
+document.querySelector(".withdrawal_btn").addEventListener("click", openWithdrawalConfirmer);
+document.querySelector("#closeWithdrawal").addEventListener("click", closeWithdrawalConfirmer);
+document.querySelector("#confirmWithdrawal").addEventListener("click", saveImageEditor);
+
+/*****************/
+/* 필모그래피 컨트롤 */
+/*****************/
 let filmoNum = 2;
 
 let add = document.querySelector(".filmo_add");
