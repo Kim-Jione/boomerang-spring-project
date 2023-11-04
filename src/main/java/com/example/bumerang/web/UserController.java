@@ -105,8 +105,6 @@ public class UserController {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = updateDto.getUserId();
         Integer userPId = principal.getUserId();
-        System.err.println("디버그userId: "+userId);
-        System.err.println("디버그userPId: "+userPId);
         if (userId.equals(userPId)) {
             try {
                 // 이미지 업로드 및 업데이트

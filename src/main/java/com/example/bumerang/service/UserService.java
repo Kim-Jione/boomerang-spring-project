@@ -91,6 +91,9 @@ public class UserService {
 
     // 사용자 정보 수정
     public UserRespDto update(UpdateDto updateDto){
+        String userPassword = updateDto.getUserPassword();
+        String encryptedPassword = encrypterConfig.encodePwd().encode(userPassword);
+        updateDto.setUserPassword(encryptedPassword);
         // 사용자 정보 수정
         userDao.updateUser(updateDto);
         // 사용자 분야 수정
@@ -138,7 +141,6 @@ public class UserService {
         List<UserPerformanceDto> myPfList = userDao.myPfList(userId);
         return myPfList;
     }
-
 
     // loginId로 사용자 정보 찾기
     public SearchIdDto findByLoginId(SearchIdDto searchIdDto) {
