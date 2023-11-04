@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bumerang.domain.jobSearch.JobSearchDao">
+
+    <select id="findById"
+            resultType="com.example.bumerang.domain.jobSearch.JobSearch">
+        SELECT * FROM job_search
+        WHERE job_id=#{jobId}
+    </select>
+
+    <select id="findAll"
+            resultType="com.example.bumerang.domain.jobSearch.JobSearch">
+        SELECT *
+        FROM job_search
+    </select>
+
+    <insert id="insert">
+        INSERT INTO job_search (job_content_title, job_content, job_genre, job_art_title, job_start_date, job_production_date, job_to, job_pay, job_gender, job_contact, job_deadline, user_id)
+        VALUES (#{jobContentTitle}, #{jobContent}, #{jobGenre}, #{jobArtTitle}, #{jobStartDate}, #{jobProductionDate}, #{jobTo}, #{jobPay}, #{jobGender}, #{jobContact}, #{jobDeadline}, #{userId})
+    </insert>
+
+    <update id="update">
+        UPDATE job_search
+        SET
+        job_content_title = #{jobContentTitle},
+        job_content = #{jobContent},
+        job_genre = #{jobGenre},
+        job_art_title = #{jobArtTitle},
+        job_start_date = #{jobStartDate},
+        job_production_date = #{jobProductionDate},
+        job_to = #{jobTo},
+        job_gender = #{jobGender},
+        job_contact = #{jobContact},
+        job_deadline = #{jobDeadline}
+        WHERE
+        job_id = #{jobId}
+        AND user_id = #{userId}
+    </update>
+
+    <delete id="delete">
+        UPDATE job_search
+        SET
+        job_status = 'deleted'
+        WHERE job_id = #{jobId}
+    </delete>
+
+    <select id="findByJob" resultType="com.example.bumerang.web.dto.response.jobSearch.DetailFormDto">
+        SELECT *,
+        (SELECT COUNT(*) FROM likey WHERE job_id = #{jobId}) as likeyCount,
+        (SELECT COUNT(*) FROM view WHERE job_id = #{jobId}) as viewCount
+        FROM job_search j
+        LEFT JOIN user u
+        ON j.user_id = u.user_id
+        WHERE j.job_id = #{jobId}
+    </select>
+
+    <select id="findAllJob" resultType="com.example.bumerang.web.dto.response.jobSearch.JobListDto">
+        SELECT
+        j.job_id,
+        j.job_genre,
+        j.job_deadline,
+        j.job_content_title,
+        u.user_profile_img,
+        u.user_nickname,
+        j.user_id,
+        COALESCE(view_count, 0) AS view_count,
+        COALESCE(comment_count, 0) AS comment_count
+        FROM job_search j
+        INNER JOIN user u ON j.user_id = u.user_id
+        LEFT JOIN (
+        SELECT job_id, COUNT(comment_id) AS comment_count
+        FROM comment
+        GROUP BY job_id
+        ) c ON j.job_id = c.job_id
+        LEFT JOIN (
+        SELECT job_id, COUNT(view_id) AS view_count
+        FROM view
+        WHERE job_id IS NOT NULL
+        GROUP BY job_id
+        ) v ON j.job_id = v.job_id
+        WHERE j.job_status != 'deleted'
+        ORDER BY j.created_at DESC
+    </select>
+
+    <select id="findAllBestJob" resultType="com.example.bumerang.web.dto.response.jobSearch.JobListDto">
+        SELECT
+        j.job_id,
+        j.job_genre,
+        j.job_deadline,
+        j.job_content_title,
+        u.user_profile_img,
+        u.user_nickname,
+        j.user_id,
+        COALESCE(view_count, 0) AS view_count,
+        COALESCE(comment_count, 0) AS comment_count
+        FROM job_search j
+        INNER JOIN user u ON j.user_id = u.user_id
+        LEFT JOIN (
+        SELECT job_id, COUNT(comment_id) AS comment_count
+        FROM comment
+        GROUP BY job_id
+        ) c ON j.job_id = c.job_id
+        LEFT JOIN (
+        SELECT job_id, COUNT(view_id) AS view_count
+        FROM view
+        WHERE job_id IS NOT NULL
+        GROUP BY job_id
+        ) v ON j.job_id = v.job_id
+        WHERE j.job_status != 'deleted'
+        ORDER BY view_count DESC
+    </select>
+
+    <select id="findByRecent" resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
+        SELECT *
+        FROM job_search j
+        WHERE j.job_id=LAST_INSERT_ID()
+    </select>
+
+    <select id="findByUpdateResult"
+            resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
+        SELECT * FROM job_search
+        WHERE job_id=#{jobId}
+    </select>
+
+    <select id="findByDelete"
+            resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
+        SELECT *
+        FROM job_search j
+        WHERE j.job_id=#{jobId} AND job_status='deleted'
+    </select>
+
+    <update id="dead">
+        UPDATE job_search
+        SET
+        job_status = 'dead'
+        WHERE
+        job_id = #{jobId}
+        AND user_id = #{userId}
+    </update>
+</mapper>
