@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bumerang.domain.comment.CommentDao">
+
+    <select id="findById"
+            resultType="com.example.bumerang.domain.comment.Comment">
+        SELECT * FROM comment WHERE comment_id=#{commentId}
+    </select>
+
+    <select id="findAll"
+            resultType="com.example.bumerang.domain.comment.Comment">
+        SELECT *
+        FROM comment
+    </select>
+
+    <insert id="create">
+        INSERT
+        INTO comment(comment_content, job_id, pf_id, user_id)
+        VALUES(#{commentContent},  #{jobId}, #{pfId}, #{userId})
+    </insert>
+
+    <update id="update">
+        UPDATE comment
+        SET
+        comment_content = #{commentContent}
+        WHERE comment_id = #{commentId}
+    </update>
+
+    <delete id="delete">
+        UPDATE comment
+        SET
+        comment_status = 'deleted'
+        WHERE comment_id = #{commentId}
+    </delete>
+
+    <select id="findByJobCommentList" resultType="com.example.bumerang.web.dto.response.jobSearch.JobCommentDto">
+        SELECT *
+        FROM user u
+        LEFT JOIN comment c
+        ON u.user_id = c.user_id
+        WHERE c.job_id = #{jobId}
+    </select>
+
+    <select id="findByRecent" resultType="com.example.bumerang.domain.comment.Comment">
+        SELECT *
+        FROM comment c
+        WHERE c.comment_id=LAST_INSERT_ID()
+    </select>
+
+    <select id="findByPfCommentList" resultType="com.example.bumerang.web.dto.response.performance.PfCommentDto">
+        SELECT *
+        FROM user u
+        LEFT JOIN comment c
+        ON u.user_id = c.user_id
+        WHERE c.pf_id = #{pfId}
+        AND c.comment_status != 'deleted'
+    </select>
+</mapper>
