@@ -252,16 +252,22 @@
 
 .bt_wrap a {
   display: inline-block;
-  width: 70px;
   margin-left: 10px;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 50px;
+  border-width: 0 0 4px;
+  width: 80px;
+  height: 50px;
+  outline: none;
+  margin: 5px;
+  background-color: palevioletred;
+  color: white;
 }
 
 .bt_wrap a.save {
-  background:#c8e4fd;
-  color: rgb(52, 52, 253);
+  background-color: #459fee;
+  
 }
 
 .bt_wrap a.save:hover {
