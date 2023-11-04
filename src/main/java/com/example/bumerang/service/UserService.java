@@ -48,15 +48,13 @@ public class UserService {
     //회원가입
 
     public SessionUserDto join(JoinDto joinDto) {
-        // userDao.insert(joinDto.toEntity(encrypterConfig.encodePwd().encode(joinDto.getUserPassword())));
-         //SessionUserDto joinResult = userDao.findByUser(joinDto.toLoginDto());
         // 사용자가 입력한 비밀번호
         String userPassword = joinDto.getUserPassword();
 
         // encrypterConfig를 사용하여 비밀번호를 암호화하고 인코딩
         String encryptedPassword = encrypterConfig.encodePwd().encode(userPassword);
         joinDto.setUserPassword(encryptedPassword);
-        System.err.println("디버그getUserPassword: "+joinDto.getUserPassword());
+//        System.err.println("디버그getUserPassword: "+joinDto.getUserPassword());
 
         User user = joinDto.toEntity();
 
@@ -68,9 +66,6 @@ public class UserService {
 
         return joinResult;
     }
-
-
-
 
     //로그인 정보와 맞는 사용자 찾기
     public SessionUserDto findByUser(LoginDto loginDto) {
@@ -188,4 +183,19 @@ public class UserService {
         }
         return null;
     }
+
+    public User findByLogin(String userLoginId) {
+        User userPS = userDao.findByLoginId(userLoginId);
+        return userPS;
     }
+
+    public User findByNickname(String userNickname) {
+        User userPS = userDao.findByNickname(userNickname);
+        return userPS;
+    }
+
+    public User findByEmail(String userEmail) {
+        User userPS = userDao.findByEmail(userEmail);
+        return userPS;
+    }
+}
