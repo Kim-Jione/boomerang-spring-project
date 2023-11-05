@@ -33,11 +33,8 @@ public class MainController {
 	// 구인정보글 메인 화면
 	@GetMapping({"/","/jobSearch/mainForm"})
 	public String jobMainForm(Model model) {
-		JobMainDto jobMainResp = new JobMainDto();
 		List<JobListDto> jobList = jobSearchService.findAllJob();
 		List<JobListDto> bestJobList = jobSearchService.findAllBeestJob();
-		jobMainResp.setJobList(jobList);
-		jobMainResp.setBestJobList(bestJobList);
 		model.addAttribute("jobList",jobList);
 		model.addAttribute("bestJobList",bestJobList);
 		return "jobMainForm";

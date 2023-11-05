@@ -1,5 +1,7 @@
 package com.example.bumerang.web.dto.response.jobSearch;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +12,7 @@ public class JobListDto {
     private String jobGenre;
     private String jobDeadline;
     private String jobContentTitle;
+    private List<String> jobPositionTitle;
     private String userProfileImg;
     private String userNickname;
     private String userCareer;
@@ -17,4 +20,5 @@ public class JobListDto {
     private Integer viewCount;
     private Integer commentCount;
     private Integer likeyCount;
+    private Boolean isToday;
 }
