@@ -12,7 +12,9 @@ public class JobListDto {
     private String jobContentTitle;
     private String userProfileImg;
     private String userNickname;
+    private String userCareer;
     private Integer userId;
     private Integer viewCount;
     private Integer commentCount;
+    private Integer likeyCount;
 }
