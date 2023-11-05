@@ -40,6 +40,7 @@ public class JobSearchController {
     // 구인정보 작성하기 기능
     @PostMapping("/s/api/jobSearch/write")
     public @ResponseBody CMRespDto<?> write(@RequestBody WriteDto writeDto) {
+        System.err.println("디버그");
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = writeDto.getUserId();
         Integer userPId = principal.getUserId();

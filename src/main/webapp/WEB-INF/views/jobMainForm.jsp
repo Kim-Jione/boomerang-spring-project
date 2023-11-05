@@ -86,7 +86,11 @@
                                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                             </div>
                                             <div class="like_btn">
-                                                <span class="heart"></span>
+                                                <!-- <span class="heart"></span> -->
+                                                <i id="iconLove"
+                                                    class='${job.loved ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
+                                                <span id="countLove">${post.loveCount}</span>
+                                                <span style="padding-left: 30px;">${job.likeyCount}</span>
                                             </div>
                                         </div>
 

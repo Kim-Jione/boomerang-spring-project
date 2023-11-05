@@ -17,8 +17,10 @@ public class JobListDto {
     private String userNickname;
     private String userCareer;
     private Integer userId;
-    private Integer viewCount;
-    private Integer commentCount;
-    private Integer likeyCount;
-    private Boolean isToday;
+    private Integer viewCount; // 조회수
+    private Integer commentCount; // 댓글수
+    private Integer likeyCount; // 좋아요수
+    private Boolean isToday; // 오늘 마감됐는지 확인 여부
+    private Boolean isLoved; // 본인의 게시글 추천 여부
+    
 }
