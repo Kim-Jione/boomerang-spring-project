@@ -1,3 +1,58 @@
+/***************/
+/* 본문 하단 버튼 */
+/***************/
+
+const editBtn = document.querySelector(".edit_btn");
+const deleteBtn = document.querySelector(".delete_btn");
+const reportBtn = document.querySelector(".report");
+
+editBtn.addEventListener("click", editPost);
+deleteBtn.addEventListener("click", openDeleteConfirm);
+reportBtn.addEventListener("click", reportPost);
+
+function editPost() {
+  window.location.href = "writePerformance.html";
+}
+
+// 삭제확인창 열기
+function openDeleteConfirm() {
+  let deleteConfirm = document.querySelector(".delete_confirm");
+  deleteConfirm.style.display = "flex";
+}
+
+// 삭제버튼들 연결
+const confirmDelete = document.querySelector("#confirmDelete");
+confirmDelete.addEventListener("click", () => {
+  window.location.href = "performance.html";
+});
+const closeDelete = document.querySelector("#closeDelete");
+closeDelete.addEventListener("click", () => {
+  let deleteConfirm = document.querySelector(".delete_confirm");
+  deleteConfirm.style.display = "none";
+});
+
+function reportPost() {
+  var nWidth = "500";
+  var nHeight = "600";
+  var xPos = document.body.clientWidth / 2 - nWidth / 2;
+  xPos += window.screenLeft; //듀얼 모니터
+  var yPos = screen.availHeight / 2 - nHeight / 2;
+
+  window.open(
+    "./report.html",
+    "신고하기",
+    "width=" +
+      nWidth +
+      ",height=" +
+      nHeight +
+      ",left=" +
+      xPos +
+      ", top=" +
+      yPos +
+      ",toolbar=no"
+  );
+}
+
 /*******/
 /* 댓글 */
 /*******/
