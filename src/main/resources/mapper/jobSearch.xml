@@ -98,23 +98,31 @@
         u.user_nickname AS userNickname,
         u.user_career AS userCareer,
         u.user_id AS userId,
+        lu.likey_id,
         COALESCE(v.view_count, 0) AS viewCount,
         COALESCE(c.comment_count, 0) AS commentCount,
-        COALESCE(l.likey_count, 0) AS likeyCount
-      FROM job_search j
-      JOIN user u ON j.user_id = u.user_id
-      LEFT JOIN (
+        COALESCE(l.likey_count, 0) AS likeyCount,
+        IF(DATEDIFF(j.job_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
+        IF(lu.job_id IS NOT NULL, TRUE, FALSE) AS isLikey
+        FROM job_search j
+        JOIN user u ON j.user_id = u.user_id
+        LEFT JOIN (
         SELECT job_id, COUNT(*) AS view_count FROM view GROUP BY job_id
-      ) v ON j.job_id = v.job_id
-      LEFT JOIN (
+        ) v ON j.job_id = v.job_id
+        LEFT JOIN (
         SELECT job_id, COUNT(*) AS comment_count FROM comment WHERE comment_status = 'active' GROUP BY job_id
-      ) c ON j.job_id = c.job_id
-      LEFT JOIN (
+        ) c ON j.job_id = c.job_id
+        LEFT JOIN (
         SELECT job_id, COUNT(*) AS likey_count FROM likey GROUP BY job_id
-      ) l ON j.job_id = l.job_id
-      WHERE j.job_status = 'active'
-      ORDER BY likeyCount DESC
-      LIMIT 8
+        ) l ON j.job_id = l.job_id
+        LEFT JOIN (
+        SELECT *
+        FROM likey
+        WHERE user_id = 1
+        ) lu ON j.job_id = lu.job_id
+        WHERE j.job_status = 'active'
+        ORDER BY likeyCount DESC
+        LIMIT 8
     </select>
 
     <select id="findByRecent" resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">

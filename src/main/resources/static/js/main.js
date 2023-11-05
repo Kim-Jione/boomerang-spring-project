@@ -9,17 +9,17 @@ Object.assign(swiperEl, {
   breakpoints: {
     640: {
       slidesPerView: 2,
-      spaceBetween: 30,
+      spaceBetween: 30
     },
     900: {
       slidesPerView: 3,
-      spaceBetween: 30,
+      spaceBetween: 30
     },
     1340: {
       slidesPerView: 4,
-      spaceBetween: 30,
-    },
-  },
+      spaceBetween: 30
+    }
+  }
 });
 swiperEl.initialize();
 
@@ -32,66 +32,71 @@ swiperEl.initialize();
 //   });
 // });
 
-
 //////////////////////
 // 좋아요 애니메이션 //     //변경 버전
 /////////////////////
 $("#iconLove").click(() => {
   let isLovedState = $("#iconLove").hasClass("fa-solid"); // hasClass => fa-solid 갖고 있으면 true 없으면 false
   if (isLovedState) {
-      deleteLove();
+    deleteLove();
   } else {
-      insertLove();
+    insertLove();
   }
 });
 
 // DB에 insert 요청하기
 function insertLove() {
-  let postId = $("#postId").val();
+  alert("insertLove");
+  let data = {
+    jobId: $("#jobId").val(),
+    userId: $("#userId").val()
+  };
 
-  $.ajax("/s/api/post/love/" + postId, {
-      type: "POST",
-      dataType: "json",
+  $.ajax("/s/api/likey", {
+    type: "POST",
+    data: JSON.stringify(data),
+    dataType: "json"
   }).done((res) => {
-      if (res.code == 1) {
-          renderLoves();
-          let count = $("#countLove").text();
-          $("#countLove").text(Number(count) + 1);
-          $("#loveId").val(res.data.loveId);
-      } else {
-          alert(res.msg);
-          location.href = "/user/loginForm";
-      }
+    if (res.code == 1) {
+      renderLoves();
+      let count = $("#countLove").text();
+      $("#countLove").text(Number(count) + 1);
+      $("#likeyId").val(res.data.likeyId);
+    } else {
+      alert(res.msg);
+      location.href = "/user/loginForm";
+    }
   });
 }
 
 // DB에 delete 요청하기
 function deleteLove() {
-  let postId = $("#postId").val();
-  let loveId = $("#loveId").val();
-
-  $.ajax("/s/api/post/love/" + postId + "/" + loveId, {
-      type: "DELETE",
-      dataType: "json",
+  alert("deleteLove");
+  let likeyId = $("#likeyId").val();
+  $.ajax("/s/api/likey/" + likeyId, {
+    type: "DELETE",
+    dataType: "json"
   }).done((res) => {
-      if (res.code == 1) {
-          renderCancelLoves();
-          let count = $("#countLove").text();
-          $("#countLove").text(Number(count) - 1);
-      } else {
-          alert("좋아요 취소에 실패했습니다");
-      }
+    if (res.code == 1) {
+      renderCancelLoves();
+      let count = $("#countLove").text();
+      $("#countLove").text(Number(count) - 1);
+    } else {
+      alert("좋아요 취소에 실패했습니다");
+    }
   });
 }
 
 // 빨간색 하트 그리기
 function renderLoves() {
+  alert("renderLoves");
   $("#iconLove").removeClass("fa-regular");
   $("#iconLove").addClass("fa-solid");
 }
 
 // 검정색 하트 그리기
 function renderCancelLoves() {
+  alert("renderCancelLoves");
   $("#iconLove").removeClass("fa-solid");
   $("#iconLove").addClass("fa-regular");
 }
@@ -117,7 +122,7 @@ function filterPosts() {
 //////////////
 // 검색기능 //
 /////////////
- function filterSearch() {
+function filterSearch() {
   var filterText = document.getElementById("filterText").value.toLowerCase();
   var search = document.getElementsByClassName("search_job_slide");
 
@@ -135,7 +140,7 @@ function filterPosts() {
       search[i].style.display = "none";
     }
   }
-} 
+}
 
 ////////////////
 // pagination //
@@ -256,4 +261,3 @@ $(function () {
 ////////////////
 // deadline //
 ///////////////
-

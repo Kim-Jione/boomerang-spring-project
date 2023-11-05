@@ -53,11 +53,12 @@ public class JobSearchController {
     
     // 구인정보 상세보기 화면
     @GetMapping("/s/api/jobSearch/detailForm/{jobId}")
-    public @ResponseBody CMRespDto<?> detailForm(@PathVariable Integer jobId, Model model) {
+    public String detailForm(@PathVariable Integer jobId, Model model) {
         SessionUserDto userPS = (SessionUserDto)session.getAttribute("principal");
         Integer userId = userPS.getUserId();
         DetailFormDto jobDetail = jobSearchService.findByJob(userId, jobId);
-        return new CMRespDto<>(1, "구인정보 상세보기 화면 불러오기 성공.", jobDetail);
+        model.addAttribute("job", jobDetail);
+        return "jobDetailForm";
     }
 
     // 구인정보 수정하기 화면

@@ -18,6 +18,7 @@ public class DetailFormDto {
     private String jobStartDate;
     private String jobProductionDate;
     private String jobTo;
+    private String jobPay;
     private String jobGender;
     private String jobContact;
     private String jobDeadline;

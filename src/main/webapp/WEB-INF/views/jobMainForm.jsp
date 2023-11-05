@@ -20,7 +20,10 @@
 
                 <link rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+                <!-- JQuery -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                <!-- AJax -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
                 <title>BusanMate with culture</title>
             </head>
@@ -51,6 +54,9 @@
 
                         <swiper-container class="hot_swiper" space-between="30" init="false">
                             <c:forEach var="job" items="${bestJobList}">
+                                <input id="jobId" type="hidden" value="${job.jobId}" />
+                                <input id="userId" type="hidden" value="${principal.userId}" />
+                                <input id="likeyId" type="hidden" value="${job.likeyId}" />
                                 <swiper-slide>
                                     <div class="project">
                                         <div class="badge_wrapper">
@@ -73,7 +79,7 @@
 
                                         <ul class="position_list">
                                             <li class="position">
-                                                배우
+                                                배우${job.jobId}배우${principal.userId}배우${job.likeyId}
                                             </li>
                                             <li class="position">
                                                 감독
@@ -82,13 +88,13 @@
 
                                         <div class="content">
                                             <div class="more_btn">
-                                                <p>자세히보기 </p>
+                                                <p><a href="/s/api/jobSearch/detailForm/${job.jobId}">자세히보기</a> </p>
                                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                             </div>
                                             <div class="like_btn">
                                                 <!-- <span class="heart"></span> -->
                                                 <i id="iconLove"
-                                                    class='${job.loved ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
+                                                    class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
                                                 <span id="countLove">${post.loveCount}</span>
                                                 <span style="padding-left: 30px;">${job.likeyCount}</span>
                                             </div>
