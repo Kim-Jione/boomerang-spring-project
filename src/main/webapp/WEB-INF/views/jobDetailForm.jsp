@@ -52,7 +52,8 @@
                     <div class="pf_status">
                       <i class="fa-solid fa-eye"></i>
                       <p class="view_count">${job.viewCount}</p>
-                      <i id="iconLove" class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
+                      <i id="iconLove"
+                        class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
                       <p class="like_count" id="countLikey">${job.likeyCount}</p>
 
                       <p class="report"><img src="/image/siren.png" /><button class='jobReportBtn'>신고하기</button></p>

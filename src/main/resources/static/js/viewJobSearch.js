@@ -1,3 +1,36 @@
+/***************/
+/* 본문 하단 버튼 */
+/***************/
+
+const editBtn = document.querySelector(".edit_btn");
+const deleteBtn = document.querySelector(".delete_btn");
+const reportBtn = document.querySelector(".report");
+
+editBtn.addEventListener("click", editPost);
+deleteBtn.addEventListener("click", openDeleteConfirm);
+reportBtn.addEventListener("click", reportJob);
+
+function editPost() {
+  window.location.href = "writeJobSearch.html";
+}
+
+// 삭제확인창 열기
+function openDeleteConfirm() {
+  let deleteConfirm = document.querySelector(".delete_confirm");
+  deleteConfirm.style.display = "flex";
+}
+
+// 삭제버튼들 연결
+const confirmDelete = document.querySelector("#confirmDelete");
+confirmDelete.addEventListener("click", () => {
+  deleteJob();
+});
+const closeDelete = document.querySelector("#closeDelete");
+closeDelete.addEventListener("click", () => {
+  let deleteConfirm = document.querySelector(".delete_confirm");
+  deleteConfirm.style.display = "none";
+});
+
 /*******/
 /* 댓글 */
 /*******/
@@ -241,7 +274,6 @@ function insertLove() {
 
 // 구인글 추천 취소하기
 function deleteLove() {
-
   let likeyId = $("#likeyId").val();
 
   $.ajax("/s/api/unlikey/" + likeyId, {
@@ -268,4 +300,29 @@ function renderLoves() {
 function renderCancelLoves() {
   $("#iconLove").removeClass("fa-solid");
   $("#iconLove").addClass("fa-regular");
+}
+
+// 구인글 삭제
+function deleteJob() {
+  let data = {
+    jobId: $("#jobId").val(),
+    userId: $("#userId").val()
+  };
+
+  $.ajax("/s/api/jobSearch/delete", {
+    type: "DELETE",
+    data: JSON.stringify(data),
+    dataType: "json",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/jobSearch/mainForm";
+    } else {
+      alert(res.msg);
+      return false;
+    }
+  });
 }
