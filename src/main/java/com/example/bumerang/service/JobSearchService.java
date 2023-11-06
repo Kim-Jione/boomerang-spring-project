@@ -81,7 +81,12 @@ public class JobSearchService {
 
 
 	public List<JobListDto> findAllJob() {
-		return jobSearchDao.findAllJob();
+		List<JobListDto> findAllJob = jobSearchDao.findAllJob();
+		for (int i = 0; i < findAllJob.size(); i++) {
+			List<String> jobPositionTitle = jobSearchPositionDao.findById(findAllJob.get(i).getJobId());
+			findAllJob.get(i).setJobPositionTitle(jobPositionTitle);
+		}
+		return findAllJob;
 	}
 
 	public List<JobListDto> findAllBestJob() {

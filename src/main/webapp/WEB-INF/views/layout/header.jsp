@@ -41,6 +41,12 @@
                                                 <span class="material-icons icons-size">mode</span>
                                                 <a href="/s/api/performance/writeForm">공연 글 쓰기</a>
                                             </li>
+                                            <c:if test="${principal.userRole=='관리자'}">
+                                                <li>
+                                                    <span class="material-icons icons-size">mode</span>
+                                                    <a href="/s/api/auth/notice/writeForm">공지 글 쓰기</a>
+                                                </li>
+                                            </c:if>
                                         </ul>
                                     </div>
                                 </li>
