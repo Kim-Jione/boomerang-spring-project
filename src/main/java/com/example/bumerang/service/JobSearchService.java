@@ -86,7 +86,7 @@ public class JobSearchService {
 		return jobSearchDao.findAllJob();
 	}
 
-	public List<JobListDto> findAllBeestJob() {
+	public List<JobListDto> findAllBestJob() {
 		return jobSearchDao.findAllBestJob();
 	}
 

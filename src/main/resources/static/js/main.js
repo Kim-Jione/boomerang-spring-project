@@ -26,80 +26,11 @@ swiperEl.initialize();
 //////////////////////
 // 좋아요 애니메이션 //     //추후 아이디값 넣어서 변하게 설정 할것
 /////////////////////
-// $(document).ready(function () {
-//   $(".heart").click(function () {
-//     $(".heart").toggleClass("heart-active");
-//   });
-// });
-
-//////////////////////
-// 좋아요 애니메이션 //     //변경 버전
-/////////////////////
-$("#iconLove").click(() => {
-  let isLovedState = $("#iconLove").hasClass("fa-solid"); // hasClass => fa-solid 갖고 있으면 true 없으면 false
-  if (isLovedState) {
-    deleteLove();
-  } else {
-    insertLove();
-  }
+$(document).ready(function () {
+  $(".heart").click(function () {
+    $(".heart").toggleClass("heart-active");
+  });
 });
-
-// DB에 insert 요청하기
-function insertLove() {
-  alert("insertLove");
-  let data = {
-    jobId: $("#jobId").val(),
-    userId: $("#userId").val()
-  };
-
-  $.ajax("/s/api/likey", {
-    type: "POST",
-    data: JSON.stringify(data),
-    dataType: "json"
-  }).done((res) => {
-    if (res.code == 1) {
-      renderLoves();
-      let count = $("#countLove").text();
-      $("#countLove").text(Number(count) + 1);
-      $("#likeyId").val(res.data.likeyId);
-    } else {
-      alert(res.msg);
-      location.href = "/user/loginForm";
-    }
-  });
-}
-
-// DB에 delete 요청하기
-function deleteLove() {
-  alert("deleteLove");
-  let likeyId = $("#likeyId").val();
-  $.ajax("/s/api/likey/" + likeyId, {
-    type: "DELETE",
-    dataType: "json"
-  }).done((res) => {
-    if (res.code == 1) {
-      renderCancelLoves();
-      let count = $("#countLove").text();
-      $("#countLove").text(Number(count) - 1);
-    } else {
-      alert("좋아요 취소에 실패했습니다");
-    }
-  });
-}
-
-// 빨간색 하트 그리기
-function renderLoves() {
-  alert("renderLoves");
-  $("#iconLove").removeClass("fa-regular");
-  $("#iconLove").addClass("fa-solid");
-}
-
-// 검정색 하트 그리기
-function renderCancelLoves() {
-  alert("renderCancelLoves");
-  $("#iconLove").removeClass("fa-solid");
-  $("#iconLove").addClass("fa-regular");
-}
 
 /////////////////////////////
 // 드랍다운 필터링 - 장르 //

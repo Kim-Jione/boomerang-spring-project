@@ -54,6 +54,10 @@ public class JobSearchController {
     // 구인정보 상세보기 화면
     @GetMapping("/s/api/jobSearch/detailForm/{jobId}")
     public String detailForm(@PathVariable Integer jobId, Model model) {
+        JobSearch jobPS = jobSearchService.findById(jobId);
+        if (jobPS == null) {
+            return "redirect:/404";
+        }
         SessionUserDto userPS = (SessionUserDto)session.getAttribute("principal");
         Integer userId = userPS.getUserId();
         DetailFormDto jobDetail = jobSearchService.findByJob(userId, jobId);

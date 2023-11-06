@@ -63,9 +63,11 @@
                                             <div class="badge_movie">
                                                 <i class="fa-solid fa-clapperboard"> ${job.jobGenre}</i>
                                             </div>
-                                            <div class="badge_new">
-                                                <i class="fa-solid fa-gift"> 새로 올라온 글</i>
-                                            </div>
+                                            <c:if test="${job.isToday}">
+                                                <div class="badge_new">
+                                                    <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                </div>
+                                            </c:if>
                                         </div>
 
                                         <div class="schedule">
@@ -79,7 +81,7 @@
 
                                         <ul class="position_list">
                                             <li class="position">
-                                                배우${job.jobId}배우${principal.userId}배우${job.likeyId}
+                                                배우
                                             </li>
                                             <li class="position">
                                                 감독
@@ -92,11 +94,7 @@
                                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                             </div>
                                             <div class="like_btn">
-                                                <!-- <span class="heart"></span> -->
-                                                <i id="iconLove"
-                                                    class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
-                                                <span id="countLove">${post.loveCount}</span>
-                                                <span style="padding-left: 30px;">${job.likeyCount}</span>
+                                                추천수: ${job.likeyCount}
                                             </div>
                                         </div>
 
@@ -105,7 +103,9 @@
                                         <div class="myinfo">
                                             <div class="user_info">
                                                 <div>
-                                                    <img class="icon" src="/img/${job.userProfileImg}">
+                                                    <a href="/s/api/user/detailForm/${job.userId}">
+                                                        <img class="icon" src="/img/${job.userProfileImg}">
+                                                    </a>
                                                 </div>
                                                 <div class="nickname">
                                                     <span class="accent">${job.userCareer}</span>

@@ -34,11 +34,8 @@ public class MainController {
 	@GetMapping({"/","/jobSearch/mainForm"})
 	public String jobMainForm(Model model) {
 		SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-		if (principal == null) {
-			
-		}
 		List<JobListDto> jobList = jobSearchService.findAllJob();
-		List<JobListDto> bestJobList = jobSearchService.findAllBeestJob();
+		List<JobListDto> bestJobList = jobSearchService.findAllBestJob();
 		model.addAttribute("jobList",jobList);
 		model.addAttribute("bestJobList",bestJobList);
 		return "jobMainForm";
@@ -77,7 +74,7 @@ public class MainController {
 	public String pfMainForm() {
 		PfMainDto pfMainResp = new PfMainDto();
 		List<PfListDto> pfList = performanceService.findAllPf();
-		List<PfListDto> bestPfList = performanceService.findAllBeestPf();
+		List<PfListDto> bestPfList = performanceService.findAllBestPf();
 		pfMainResp.setPfList(pfList);
 		pfMainResp.setBestPfList(bestPfList);
 		return "pfMainForm";

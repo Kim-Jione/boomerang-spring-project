@@ -52,7 +52,7 @@ public class PerformanceService {
 	}
 
 	// 공연글 베스트 목록
-	public List<PfListDto> findAllBeestPf() {
+	public List<PfListDto> findAllBestPf() {
 		List<PfListDto> bestPfList = performanceDao.findAllBestPf();
 		return bestPfList;
 	}
