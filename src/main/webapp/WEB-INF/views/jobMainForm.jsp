@@ -100,15 +100,16 @@
 
                                         <div class="myinfo">
                                             <div class="user_info">
-                                                <div>
-                                                    <a href="/s/api/user/detailForm/${job.userId}">
+                                                <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
+                                                    <div>
                                                         <img class="icon" src="/img/${job.userProfileImg}">
-                                                    </a>
-                                                </div>
-                                                <div class="nickname">
-                                                    <span class="accent">${job.userCareer}</span>
-                                                    <p>${job.userNickname}</p>
-                                                </div>
+
+                                                    </div>
+                                                    <div class="nickname">
+                                                        <span class="accent">${job.userCareer}</span>
+                                                        <p>${job.userNickname}</p>
+                                                    </div>
+                                                </a>
                                             </div>
 
                                             <div class="viewAndInfo">

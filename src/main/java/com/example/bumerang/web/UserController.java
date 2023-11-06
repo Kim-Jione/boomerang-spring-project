@@ -58,7 +58,7 @@ public class UserController {
         return new CMRespDto<>(1, "회원가입 성공.", joinResult);
     }
     
-    // 로그인 화면
+    // 로그인과 회원가입 화면
     @GetMapping("/user/loginForm")
     public String loginForm() {
         return "loginForm";
@@ -135,17 +135,10 @@ public class UserController {
         return "writeListForm";
     }
 
-    // 아이디 찾기 화면
-    @GetMapping("/user/searchIdForm")
-    public @ResponseBody CMRespDto<?> searchIdForm() {
-        return new CMRespDto<>(1, "아이디 찾기 화면 불러오기 성공.", null);
-    }
-
-
-    // 비밀번호 찾기 화면
-    @GetMapping("/user/searchPwForm")
-    public @ResponseBody CMRespDto<?> searchPwForm() {
-        return new CMRespDto<>(1, "비밀번호 찾기 화면 불러오기 성공.", null);
+    // 아이디 비밀번호 찾기 화면
+    @GetMapping("/user/searchIdPwForm")
+    public String searchIdForm() {
+        return "searchIdPwForm";
     }
 
     // 아이디 찾기

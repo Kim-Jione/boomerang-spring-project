@@ -132,6 +132,37 @@ function removeComment() {
   commentsCont.removeChild(commentCard);
 }
 
+// 구인글 신고하기
+$(".jobReportBtn").click(() => {
+  reportJob();
+});
+
+//  구인글 신고하기
+function reportJob() {
+  let jobId = $("#jobId").val();
+  let userId = $("#jobUserId").val();
+
+  var nWidth = "500";
+  var nHeight = "600";
+  var xPos = document.body.clientWidth / 2 - nWidth / 2;
+  xPos += window.screenLeft; //듀얼 모니터
+  var yPos = screen.availHeight / 2 - nHeight / 2;
+
+  window.open(
+    "/s/api/reportForm/" + jobId + "/" + userId,
+    "신고하기",
+    "width=" +
+      nWidth +
+      ",height=" +
+      nHeight +
+      ",left=" +
+      xPos +
+      ", top=" +
+      yPos +
+      ",toolbar=no"
+  );
+}
+
 //  댓글 신고하기
 function reportComment() {
   var nWidth = "500";
@@ -154,7 +185,6 @@ function reportComment() {
       ",toolbar=no"
   );
 }
-
 /************************/
 /* textarea 높이 조절 함수 */
 /************************/

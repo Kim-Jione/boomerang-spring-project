@@ -16,12 +16,18 @@
         <link
           href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
           rel="stylesheet" />
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- AJax -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         <title>BusanMate with Write</title>
       </head>
 
       <body>
         <%@ include file="layout/header.jsp" %>
+          <input type="hidden" id="jobId" value="${job.jobId}">
+          <input type="hidden" id="jobUserId" value="${job.userId}">
           <div class="pf_container">
             <div class="pf_title_area">
               <div class="pf_display">
@@ -31,8 +37,10 @@
                   </h1>
                   <div class="pf_label">
                     <div class="user_info">
-                      <img class="pf_img" src="/img/${job.userProfileImg}" />
-                      <p class="pf_nickname">${job.userNickname}</p>
+                      <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
+                        <img class="pf_img" src="/img/${job.userProfileImg}" />
+                        <p class="pf_nickname">${job.userNickname}</p>
+                      </a>
                       <p class="line">|</p>
                       <p class="pf_creation_date">
                         <fmt:formatDate value="${job.createdAt}" pattern="yyyy-MM-dd" />
@@ -42,10 +50,10 @@
                     <div class="pf_status">
                       <i class="fa-solid fa-eye"></i>
                       <p class="view_count">${job.viewCount}</p>
-                      <i class="fa-solid fa-heart"></i>
+                      <i id="iconLove" class='${job.loved ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
                       <p class="like_count">${job.likeyCount}</p>
 
-                      <p class="report"><img src="/image/siren.png" />신고하기</p>
+                      <p class="report"><img src="/image/siren.png" /><button class='jobReportBtn'>신고하기</button></p>
                     </div>
                   </div>
                 </div>
@@ -113,17 +121,20 @@
                 </div>
               </div>
             </div>
-            <div class="button_wrap">
-              <button type="button" class="edit_btn">수정</button>
-              <button type="button" class="delete_btn">삭제</button>
-              <div class="delete_confirm">
-                <h2 class="pro_tit">정말로 삭제하시겠습니까?</h2>
-                <div>
-                  <button id="confirmDelete">삭제</button>
-                  <button id="closeDelete">닫기</button>
+            <c:if test="${principal.userId == job.userId}">
+              <div class="button_wrap">
+                <button type="button" class="edit_btn"><a
+                    href="/s/api/jobSearch/updateForm/${job.jobId}">수정</a></button>
+                <button type="button" class="delete_btn">삭제</button>
+                <div class="delete_confirm">
+                  <h2 class="pro_tit">정말로 삭제하시겠습니까?</h2>
+                  <div>
+                    <button id="confirmDelete">삭제</button>
+                    <button id="closeDelete">닫기</button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </c:if>
 
             <div class="comment_container center_display">
               <!-- 댓글 작성부 여기부터 -->

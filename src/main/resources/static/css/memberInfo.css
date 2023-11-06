@@ -95,7 +95,7 @@ body {
   line-height: 1;
 }
 
-.pro_right .name .edit_btn {
+/* .pro_right .name .edit_btn {
   border: none;
   vertical-align: middle;
   font-size: 13px;
@@ -104,7 +104,7 @@ body {
   border-radius: 100px;
   padding: 0px 15px;
   margin-left: 10px;
-}
+} */
 
 .pro_right .profile_con {
   display: flex;

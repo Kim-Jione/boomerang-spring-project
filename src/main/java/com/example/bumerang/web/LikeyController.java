@@ -69,7 +69,7 @@ public class LikeyController {
         return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
     
-    @DeleteMapping("/s/api/likey/{likeyId}")
+    @DeleteMapping("/s/api/unlikey/{likeyId}")
     public @ResponseBody CMRespDto<?> likey(@PathVariable Integer likeyId) {
         Likey likeyPS = likeyService.findById(likeyId);
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
