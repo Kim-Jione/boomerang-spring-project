@@ -52,10 +52,14 @@
     <select id="findByJob" resultType="com.example.bumerang.web.dto.response.jobSearch.DetailFormDto">
         SELECT *,
         (SELECT COUNT(*) FROM likey WHERE job_id = #{jobId}) as likeyCount,
-        (SELECT COUNT(*) FROM view WHERE job_id = #{jobId}) as viewCount
+        (SELECT COUNT(*) FROM view WHERE job_id = #{jobId}) as viewCount,
+        if(l.likey_id IS NOT NULL, TRUE, FALSE) as isLikey,
+        l.likey_id
         FROM job_search j
         LEFT JOIN user u
         ON j.user_id = u.user_id
+        LEFT JOIN  (SELECT * FROM likey WHERE user_id = #{userId}) l
+        ON j.job_id = l.job_id
         WHERE j.job_id = #{jobId}
         AND j.job_status != 'deleted'
     </select>

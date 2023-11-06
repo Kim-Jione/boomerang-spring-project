@@ -49,7 +49,7 @@ public class JobSearchService {
 	public DetailFormDto findByJob(Integer userId, Integer jobId) {
 		String jobPositionLists = jobSearchPositionDao.findPositionList(jobId);
 		List<JobCommentDto> findByCommentList = commentDao.findByJobCommentList(jobId);
-		DetailFormDto findByJob = jobSearchDao.findByJob(jobId);
+		DetailFormDto findByJob = jobSearchDao.findByJob(userId, jobId);
 		findByJob.setJobPositionTitles(jobPositionLists);
 		findByJob.setCommentList(findByCommentList);
 		viewDao.count(null,jobId, userId);

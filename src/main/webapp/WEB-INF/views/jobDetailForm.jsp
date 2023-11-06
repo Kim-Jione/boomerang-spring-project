@@ -27,7 +27,9 @@
       <body>
         <%@ include file="layout/header.jsp" %>
           <input type="hidden" id="jobId" value="${job.jobId}">
-          <input type="hidden" id="jobUserId" value="${job.userId}">
+          <input type="hidden" id="jobUserId" value="${job.userId}"><!--작성자 ID-->
+          <input type="hidden" id="userId" value="${principal.userId}"><!--추천자 ID-->
+          <input type="hidden" id="likeyId" value="${job.likeyId}">
           <div class="pf_container">
             <div class="pf_title_area">
               <div class="pf_display">
@@ -50,8 +52,8 @@
                     <div class="pf_status">
                       <i class="fa-solid fa-eye"></i>
                       <p class="view_count">${job.viewCount}</p>
-                      <i id="iconLove" class='${job.loved ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
-                      <p class="like_count">${job.likeyCount}</p>
+                      <i id="iconLove" class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
+                      <p class="like_count" id="countLikey">${job.likeyCount}</p>
 
                       <p class="report"><img src="/image/siren.png" /><button class='jobReportBtn'>신고하기</button></p>
                     </div>

@@ -29,7 +29,6 @@ public class LikeyController {
     // 추천 기능
     @PostMapping("/s/api/likey")
     public @ResponseBody CMRespDto<?> likey(@RequestBody LikeyDto likeyDto) {
-        System.err.println("디버그============");
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = likeyDto.getUserId();
         Integer userPId = principal.getUserId();

@@ -201,3 +201,71 @@ function resizeTextarea() {
 // 페이지가 처음 로드될 때 기존 teaxtarea들의 height값을 지정
 window.addEventListener("load", resizeTextarea);
 activeCommentBtn();
+
+// 추천 아이콘 클릭
+$("#iconLove").click(() => {
+  let isLovedState = $("#iconLove").hasClass("fa-solid"); // hasClass => fa-solid 갖고 있으면 true 없으면 false
+  if (isLovedState) {
+    deleteLove();
+  } else {
+    insertLove();
+  }
+});
+
+// 구인글 추천하기
+function insertLove() {
+  let data = {
+    jobId: $("#jobId").val(),
+    userId: $("#userId").val()
+  };
+
+  $.ajax("/s/api/likey", {
+    type: "POST",
+    data: JSON.stringify(data),
+    dataType: "json",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      renderLoves();
+      let count = $("#countLikey").text();
+      $("#countLikey").text(Number(count) + 1);
+      $("#likeyId").val(res.data.likeyId);
+    } else {
+      alert(res.msg);
+      location.href = "/user/loginForm";
+    }
+  });
+}
+
+// 구인글 추천 취소하기
+function deleteLove() {
+
+  let likeyId = $("#likeyId").val();
+
+  $.ajax("/s/api/unlikey/" + likeyId, {
+    type: "DELETE",
+    dataType: "json"
+  }).done((res) => {
+    if (res.code == 1) {
+      renderCancelLoves();
+      let count = $("#countLikey").text();
+      $("#countLikey").text(Number(count) - 1);
+    } else {
+      alert("구인글 추천 취소에 실패했습니다");
+    }
+  });
+}
+
+// 하트 그리기
+function renderLoves() {
+  $("#iconLove").removeClass("fa-regular");
+  $("#iconLove").addClass("fa-solid");
+}
+
+// 하트 지우기
+function renderCancelLoves() {
+  $("#iconLove").removeClass("fa-solid");
+  $("#iconLove").addClass("fa-regular");
+}
