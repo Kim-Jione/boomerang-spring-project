@@ -12,6 +12,11 @@
         <link rel="stylesheet" href="/css/writeNotice.css" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap"
           rel="stylesheet">
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- AJax -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
         <link
           href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
           rel="stylesheet">
@@ -21,6 +26,8 @@
       <body>
         <!-- 헤더 -->
         <%@ include file="layout/header.jsp" %>
+          <input type="hidden" value="${notice.noticeId}" id="noticeId">
+
           <div class="container">
             <div class="board_write_wrap">
               <div class="top">
@@ -61,8 +68,8 @@
               <div class="bt_wrap">
                 <c:if test="${notice.userId==principal.userId}">
                   <a href="/s/api/auth/notice/updateForm/${notice.noticeId}" class="save">수정</a>
+                  <a class="cancel" id="noticeDeleteBtn">삭제</a>
                 </c:if>
-                <a href="notice.html" class="cancel">뒤로</a>
               </div>
             </div>
           </div>

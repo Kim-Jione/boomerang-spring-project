@@ -68,26 +68,14 @@ public class NoticeController {
     // 공지글 등록하기 기능
     @PostMapping("/s/api/auth/noticeWrite")
     public @ResponseBody CMRespDto<?> write(@RequestBody WriteDto writeDto) {
-        System.err.println("디버그 컨트롤러도착");
-        System.err.println("디버그 getNoticeTitle: "+writeDto.getNoticeTitle());
-        System.err.println("디버그 getNoticeContent: "+writeDto.getNoticeContent());
-        System.err.println("디버그 getNoticeType: "+writeDto.getNoticeType());
-        System.err.println("디버그 getUserId: "+writeDto.getUserId());
         Notice noticePS = noticeService.writeNotice(writeDto);
-        System.err.println("디버그 서비스끝");
         return new CMRespDto<>(1, "공지사항 등록 성공.", noticePS);
     }
 
     // 공지글 수정하기 기능
     @PutMapping("/s/api/auth/noticeUpdate")
     public @ResponseBody CMRespDto<?> updateNotice(@RequestBody NoticeDetailDto noticeDetailDto) {
-        System.err.println("디버그 컨트롤러도착");
-        System.err.println("디버그 getNoticeTitle: "+noticeDetailDto.getNoticeTitle());
-        System.err.println("디버그 getNoticeContent: "+noticeDetailDto.getNoticeContent());
-        System.err.println("디버그 getNoticeType: "+noticeDetailDto.getNoticeType());
-        System.err.println("디버그 getUserId: "+noticeDetailDto.getUserId());
         Notice noticePS = noticeService.updateNotice(noticeDetailDto);
-        System.err.println("디버그 서비스끝");
         return new CMRespDto<>(1, "공지글 정보 수정 성공.", noticePS);
     }
 
@@ -95,6 +83,6 @@ public class NoticeController {
     @DeleteMapping("/s/api/auth/noticeDelete/{noticeId}")
     public @ResponseBody CMRespDto<?> deleteNotice(@PathVariable Integer noticeId) {
         Notice noticePS = noticeService.deleteNotice(noticeId);
-        return new CMRespDto<>(1, "공지글 정보 삭제 성공.", noticePS);
+        return new CMRespDto<>(1, "공지글 삭제 성공.", noticePS);
     }
 }

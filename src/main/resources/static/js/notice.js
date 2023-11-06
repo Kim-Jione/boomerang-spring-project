@@ -273,3 +273,29 @@ if (userId !== "adimin") { //관리자 로그인이 아닌 경우, 공지 쓰기
 }
 
 */
+
+// 공지글 삭제
+$("#noticeDeleteBtn").click(() => {
+  let noticeId = $("#noticeId").val();
+  deleteNotice(noticeId);
+});
+
+function deleteNotice(noticeId) {
+  if (confirm("정말 삭제하시겠습니까?")) {
+    $.ajax({
+      url: "/s/api/auth/noticeDelete/" + noticeId,
+      type: "DELETE",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    }).done((res) => {
+      if (res.code == 1) {
+        alert(res.msg);
+        location.href = "/notice/listForm";
+      } else {
+        alert(res.msg);
+        location.reload();
+      }
+    });
+  }
+}
