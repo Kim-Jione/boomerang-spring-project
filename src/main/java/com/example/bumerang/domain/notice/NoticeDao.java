@@ -27,5 +27,4 @@ public interface NoticeDao {
 
     void deleteNotice(Integer noticeId);
 
-    Notice findByNoticeId(Integer noticeId);
 }

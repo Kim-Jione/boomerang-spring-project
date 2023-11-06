@@ -16,6 +16,10 @@
           href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
           rel="stylesheet">
         <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- AJax -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet" />
         <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
         <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
@@ -24,7 +28,8 @@
 
       <body>
         <%@ include file="layout/header.jsp" %>
-
+          <input type="hidden" id="noticeId" value="${notice.noticeId}">
+          <input type="hidden" id="userId" value="${principal.userId}">
 
           <div class="container">
             <div class="board_write_wrap">
@@ -34,7 +39,7 @@
                   <h2>공지사항</h2>
                 </div>
                 <div class="bt_wrap">
-                  <a href="viewNotice.html" class="save">수정</a>
+                  <a class="save" id="noticeUpdateBtn">수정</a>
                   <a href="notice.html" class="cancel">취소</a>
                 </div>
               </div>
@@ -43,15 +48,16 @@
                   <dl class="title">
                     <dt>제목</dt>
                     <dd>
-                      <input type="text" value="${notice.noticeTitle}" />
+                      <input type="text" id="noticeTitle" value="${notice.noticeTitle}" />
                     </dd>
                   </dl>
                   <dl class="type">
                     <dt>공지 유형</dt>
                     <dd>
-                      <select value="${notice.noticeType}">
-                        <option>컨텐츠 공지</option>
-                        <option>서비스 공지</option>
+                      <select id="noticeType">
+                        <option>${notice.noticeType}</option>
+                        <option value="컨텐츠 공지">컨텐츠 공지</option>
+                        <option value="서비스 공지">서비스 공지</option>
                       </select>
                     </dd>
                   </dl>

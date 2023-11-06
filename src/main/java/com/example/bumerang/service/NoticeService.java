@@ -45,13 +45,13 @@ public class NoticeService {
 	//공지 수정
 	public Notice updateNotice(NoticeDetailDto noticeDetailDto) {
 		noticeDao.updateNotice(noticeDetailDto);
-		Notice noticePS = noticeDao.findByNoticeId(noticeDetailDto.getNoticeId());
+		Notice noticePS = noticeDao.findById(noticeDetailDto.getNoticeId());
 		return noticePS;
 	}
 
 	//공지 삭제
 	public Notice deleteNotice(Integer noticeId) {
 		noticeDao.deleteNotice(noticeId);
-		return noticeDao.findByNoticeId(noticeId);
+		return noticeDao.findById(noticeId);
 	}
 }

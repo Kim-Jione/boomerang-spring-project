@@ -91,6 +91,7 @@
         SELECT job_id, COUNT(*) AS likey_count FROM likey GROUP BY job_id
         ) l ON j.job_id = l.job_id
         WHERE j.job_status = 'active'
+        ORDER BY j.created_at DESC;
     </select>
 
     <select id="findAllBestJob" resultType="com.example.bumerang.web.dto.response.jobSearch.JobListDto">

@@ -47,3 +47,39 @@ function writeNotice() {
   });
   return false;
 }
+
+// 공지글 수정하기
+$("#noticeUpdateBtn").click(() => {
+  updateNotice();
+});
+
+function updateNotice() {
+  // Quill 에디터에서 작성한 내용 가져오기
+  let noticeContent = quill.root.innerHTML;
+  let noticeId = $("#noticeId").val();
+
+  let data = {
+    noticeTitle: $("#noticeTitle").val(),
+    noticeContent: noticeContent,
+    noticeType: $("#noticeType").val(),
+    userId: $("#userId").val(),
+    noticeId: noticeId
+  };
+
+  $.ajax("/s/api/auth/noticeUpdate", {
+    type: "PUT",
+    dataType: "json",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/notice/detailForm/" + noticeId;
+    } else {
+      alert(res.msg);
+    }
+  });
+  return false;
+}
