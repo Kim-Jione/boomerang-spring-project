@@ -57,6 +57,13 @@
         WHERE n.notice_id=LAST_INSERT_ID()
     </select>
 
+    <insert id="writeNotice">
+        INSERT INTO notice
+        (notice_title, notice_content, notice_type, user_id)
+        VALUES
+        (#{noticeTitle}, #{noticeContent}, #{noticeType}, #{userId})
+    </insert>
+
     <update id="updatNotice">
         UPDATE notice
         SET
@@ -69,4 +76,11 @@
         AND notice_status != 'deleted'
     </update>
 
+    <update id="deleteNotice">
+        UPDATE notice
+        SET
+        notice_status = 'deleted'
+        WHERE
+        notice_id = #{noticeId}
+    </update>
 </mapper>

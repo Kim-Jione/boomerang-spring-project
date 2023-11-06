@@ -17,6 +17,7 @@ public class DetailFormDto {
     private Timestamp createdAt;
     // 구인글 작성자 정보
     private Integer userId;
+    private Integer userRole;
     private String userNickname;
     private String userProfileImg;
 }

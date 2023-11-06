@@ -17,6 +17,10 @@
           rel="stylesheet">
         <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
         <link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet" />
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- AJax -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
         <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
         <title>공지사항</title>
@@ -25,7 +29,7 @@
       <body>
         <%@ include file="layout/header.jsp" %>
 
-
+          <input type="hidden" value="${principal.userId}" id="userId">
           <div class="container">
             <div class="board_write_wrap">
               <div class="top">
@@ -34,8 +38,8 @@
                   <h2>공지사항</h2>
                 </div>
                 <div class="bt_wrap">
-                  <a href="viewNotice.html" class="save">등록</a>
-                  <a href="notice.html" class="cancel">취소</a>
+                  <a class="save" id="noticeWriteBtn">등록</a>
+                  <a href="/jobSearch/mainForm" class="cancel">취소</a>
                 </div>
               </div>
               <div class="board_write">
@@ -43,21 +47,22 @@
                   <dl class="title">
                     <dt>제목</dt>
                     <dd>
-                      <input type="text" placeholder="글 제목을 입력하세요" value="" />
+                      <input type="text" placeholder="글 제목을 입력하세요" id="noticeTitle" />
                     </dd>
                   </dl>
                   <dl class="type">
                     <dt>공지 유형</dt>
                     <dd>
-                      <select>
-                        <option>컨텐츠 공지</option>
-                        <option>서비스 공지</option>
+                      <select id="noticeType">
+                        <option>유형 선택</option>
+                        <option value="컨텐츠 공지">컨텐츠 공지</option>
+                        <option value="서비스 공지">서비스 공지</option>
                       </select>
                     </dd>
                   </dl>
                 </div>
                 <div class="content">
-                  <div id="editor-container"></div>
+                  <div id="editor-container" id="noticeContent"></div>
                 </div>
               </div>
 
