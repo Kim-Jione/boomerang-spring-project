@@ -25,6 +25,7 @@ public class DetailFormDto {
     private Timestamp createdAt;
     // 구인글 포지션 목록
     private List<String> jobPositionTitle;
+    private String jobPositionTitles;
     // 구인글 작성자 정보
     private Integer userId;
     private String userNickname;

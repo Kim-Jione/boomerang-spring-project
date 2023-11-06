@@ -80,12 +80,11 @@
                                         </h1>
 
                                         <ul class="position_list">
-                                            <li class="position">
-                                                배우
-                                            </li>
-                                            <li class="position">
-                                                감독
-                                            </li>
+                                            <c:forEach var="position" items="${job.jobPositionTitle}">
+                                                <li class="position">
+                                                    ${position.jobPositionTitle}
+                                                </li>
+                                            </c:forEach>
                                         </ul>
 
                                         <div class="content">

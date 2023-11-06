@@ -26,7 +26,7 @@ function submitFeedback(e) {
       id: 1,
       userName: userForm,
       userComment: commentForm,
-      createdDate: currentTime.toString(),
+      createdDate: currentTime.toString()
     };
     // add new feedback to array
     feedbackArr.push(newFeedback);
@@ -141,7 +141,7 @@ function reportComment() {
   var yPos = screen.availHeight / 2 - nHeight / 2;
 
   window.open(
-    "./report.html",
+    "/s/api/reportForm",
     "신고하기",
     "width=" +
       nWidth +

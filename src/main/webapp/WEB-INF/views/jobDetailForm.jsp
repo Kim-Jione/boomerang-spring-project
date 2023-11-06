@@ -86,8 +86,17 @@
                   </li>
 
                   <li>
+                    <span class="accent">모집 분야</span>
+                    <p>${job.jobPositionTitles}</p>
+                  </li>
+
+                  <li>
                     <span class="accent">마감일</span>
                     <p>${job.jobDeadline}</p>
+                  </li>
+                  <li>
+                    <span class="accent">제작 기간</span>
+                    <p>${job.jobProductionDate}</p>
                   </li>
                   <li>
                     <span class="accent">출연료</span>
@@ -136,6 +145,29 @@
 
               <div class="comments_container center_display">
                 <!-- 댓글이 달리는 부분 -->
+                <c:forEach var="comment" items="${job.commentList}">
+                  <div class="comment_card">
+                    <div class="comment_top">
+                      <div class="comment_info">
+                        <div class="pic center_display">
+                          <img src="/img/${comment.userProfileImg}" alt="image" />
+                        </div>
+                        <div class="comment_info_txt">
+                          <p class="nickname">
+                            ${comment.userNickname}
+                          </p>
+                          <p class="created_date">${comment.createdAt}</p>
+                        </div>
+                      </div>
+                      <div class="comment_btns">
+                        <button class='editBtn'>수정</button>
+                        <button class='removeBtn'>삭제</button>
+                        <button class='reportBtn'>신고하기</button>
+                      </div>
+                    </div>
+                    <textarea class="comment textarea" readonly>${comment.commentContent}</textarea>
+                  </div>
+                </c:forEach>
               </div>
             </div>
 
