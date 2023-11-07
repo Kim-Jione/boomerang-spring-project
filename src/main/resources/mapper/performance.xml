@@ -61,37 +61,57 @@
 
     <select id="findAllPf"
             resultType="com.example.bumerang.web.dto.response.performance.PfListDto">
-        SELECT  p.pf_title, p.pf_location,
-        CASE WHEN p.pf_price = 0 THEN FALSE
-        ELSE TRUE END AS isPrice,
-        p.pf_start_date, p.pf_deadline, p.pf_thumbnail, p.pf_agerating,
-        COALESCE(v.view_count, 0) AS view_count
+        SELECT
+            p.pf_id AS pfId,
+            p.pf_title AS pfTitle,
+            p.pf_location AS pfLocation,
+            p.pf_genre AS pfGenre,
+            CASE WHEN p.pf_price = 0 THEN FALSE ELSE TRUE END AS isPrice,
+            p.pf_start_date AS pfStartDate,
+            p.pf_deadline AS pfDeadline,
+            CASE WHEN p.pf_deadline >= CURDATE() THEN TRUE ELSE FALSE END AS isDead,  -- 마감 여부를 나타내는 열 추가
+            p.pf_thumbnail AS pfThumbnail,
+            p.pf_agerating AS pfAgeRating,
+            COALESCE(v.view_count, 0) AS viewCount
         FROM performance p
-        LEFT JOIN
-        (SELECT pf_id, COUNT(view_id) AS view_count
-        FROM VIEW
-        WHERE pf_id IS NOT NULL
-        GROUP BY pf_id) v
-        ON p.pf_id = v.pf_id
-        WHERE pf_status != 'deleted'
+                 LEFT JOIN (
+            SELECT pf_id, COUNT(view_id) AS view_count
+            FROM VIEW
+            WHERE pf_id IS NOT NULL
+            GROUP BY pf_id
+        ) v ON p.pf_id = v.pf_id
+        WHERE p.pf_status != 'deleted'
+        ORDER BY pfId DESC;
     </select>
 
     <select id="findAllBestPf"
             resultType="com.example.bumerang.web.dto.response.performance.PfListDto">
-        SELECT p.pf_title, p.pf_location,
-        CASE WHEN p.pf_price = 0 THEN FALSE
-        ELSE TRUE END AS isPrice,
-        p.pf_start_date, p.pf_deadline, p.pf_thumbnail, p.pf_agerating
-        COALESCE(v.view_count, 0) AS viewCount
+        SELECT
+            p.pf_id AS pfId,
+            p.pf_title AS pfTitle,
+            p.pf_location AS pfLocation,
+            p.pf_genre AS pfGenre,
+            CASE WHEN p.pf_price = 0 THEN FALSE ELSE TRUE END AS isPrice,
+            p.pf_start_date AS pfStartDate,
+            p.pf_deadline AS pfDeadline,
+            p.pf_thumbnail AS pfThumbnail,
+            p.pf_agerating AS pfAgeRating,
+            COALESCE(v.view_count, 0) AS viewCount,
+            CASE
+                WHEN ROW_NUMBER() OVER (ORDER BY COALESCE(viewCount, 0) DESC) = 1 THEN '/image/ranking1.png'
+                WHEN ROW_NUMBER() OVER (ORDER BY COALESCE(viewCount, 0) DESC) = 2 THEN '/image/ranking2.png'
+                WHEN ROW_NUMBER() OVER (ORDER BY COALESCE(viewCount, 0) DESC) = 3 THEN '/image/ranking3.png'
+                END AS imgPath
         FROM performance p
-        LEFT JOIN (
+                 LEFT JOIN (
             SELECT pf_id, COUNT(*) AS view_count
             FROM view
             GROUP BY pf_id
         ) v ON p.pf_id = v.pf_id
         WHERE p.pf_status != 'deleted'
         ORDER BY COALESCE(viewCount, 0) DESC
-        LIMIT 6
+            LIMIT 3;
+
     </select>
 
     <select id="findByRecent"
