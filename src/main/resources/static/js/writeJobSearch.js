@@ -100,9 +100,12 @@ function write() {
   let jobGender = document.querySelector("#jobGender").innerText;
   let jobPositionTitle = checkedTexts;
 
+  let quillContent = document.querySelector(".ql-editor");
+  let jobContent = quillContent.innerHTML;
+
   let data = {
     jobContentTitle: $("#jobContentTitle").val(),
-    jobContent: $("#editor-container").val(),
+    jobContent: jobContent,
     jobPositionList: jobPositionTitle, // 모집분야를 배열로 선언
     jobArtTitle: $("#jobArtTitle").val(),
     jobGenre: jobGenre,
@@ -116,7 +119,7 @@ function write() {
     userId: $("#userId").val()
   };
 
-  alert(data.jobContent);
+  alert("jobContent: " + data.jobContent);
 
   $.ajax("/s/api/jobSearch/write", {
     type: "POST",
