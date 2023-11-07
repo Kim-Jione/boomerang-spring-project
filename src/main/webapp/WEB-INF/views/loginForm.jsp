@@ -28,7 +28,7 @@
                             <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                             <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                         </div>
-                        <input type="text" name="user_login_id" id="userLoginId" placeholder="아이디" required>
+                        <input type="text" name="user_login_id" id="userJoinId" placeholder="아이디" required>
                         <input type="password" name="user_password" id="password" placeholder="비밀번호">
                         <input type="password" name="user_password_check" id="password_check" placeholder="비밀번호"
                             required>

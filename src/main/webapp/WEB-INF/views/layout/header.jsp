@@ -74,7 +74,7 @@
                                             <span class="material-symbols-outlined">
                                                 assignment_ind
                                             </span>
-                                            <a href="viewMemberInfo.html">계정 관리</a>
+                                            <a href="/user/detailForm/${userid}">계정 관리</a>
                                         </li>
                                         <li>
                                             <span class="material-symbols-outlined">
@@ -133,7 +133,7 @@
                                         </li>
                                         <li>
                                             <span class="material-icons icons-size">person</span>
-                                            <a href="viewMemberInfo.html">계정 관리</a>
+                                            <a href="/user/detailForm/${userid}">계정 관리</a>
                                         </li>
                                         <li>
                                             <span class="material-icons icons-size">account_balance_wallet</span>

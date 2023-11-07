@@ -29,7 +29,7 @@ function login() {
     userLoginId: $("#userLoginId").val(),
     userPassword: $("#userPassword").val()
   };
-
+alert(data.userLoginId);
   $.ajax("/user/login", {
     type: "POST",
     dataType: "json",
@@ -58,7 +58,7 @@ function join() {
   }
 
   let data = {
-    userLoginId: $("#userLoginId").val(),
+    userLoginId: $("#userJoinId").val(),
     userPassword: $("#password").val(),
     userNickname: $("#userNickname").val(),
     userEmail: $("#userEmail").val()

@@ -114,10 +114,14 @@ public class UserController {
     }
 
     // 계정 상세 화면
-    @GetMapping("/s/api/user/detailForm/{userId}")
-    public @ResponseBody CMRespDto<?> detailForm(@PathVariable Integer userId) {
+    @GetMapping("/user/detailForm/{userId}")
+    public String detailForm(@PathVariable Integer userId, Model model) {
         UserRespDto userDetail = userService.findByDetail(userId);
-        return new CMRespDto<>(1, "계정정보 불러오기 성공.", userDetail);
+        model.addAttribute("userDetail",userDetail);
+        if(userId == null){
+            return "404";
+        }
+        return "detailForm";
     }
 
     // 내가 작성한 글 화면
@@ -168,7 +172,7 @@ public class UserController {
     }
 
     // 관심목록 화면
-    @GetMapping("/s/api/user/likeyListForm")
+    @GetMapping("/user/likeyListForm")
     public String likeyListForm(Model model){
         LikeyRespDto userLikeyList = new LikeyRespDto();
         List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList();
