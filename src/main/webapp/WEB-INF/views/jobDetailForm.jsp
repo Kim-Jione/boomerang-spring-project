@@ -124,7 +124,7 @@
             </div>
             <c:if test="${principal.userId == job.userId}">
               <div class="button_wrap">
-                <button type="button" class="edit_btn"><a
+                <button type="" class=""><a
                     href="/s/api/jobSearch/updateForm/${job.jobId}">수정</a></button>
                 <button type="button" class="delete_btn">삭제</button>
                 <div class="delete_confirm">
@@ -147,10 +147,10 @@
                     </div>
                     <div class="form_info center_display">
                       <input type="hidden" name="user" id="user" value="김휴고" />
-                      <textarea type="text" name="comment" id="comment" placeholder="댓글을 입력하세요"></textarea>
+                      <textarea type="text" name="comment" id="commentContent" placeholder="댓글을 입력하세요"></textarea>
                     </div>
                   </div>
-                  <button type="button" class="submit_btn">등록</button>
+                  <button type="button" class="submit_btn" id="commentWriteBtn">등록</button>
                 </form>
               </div>
               <!-- 여기까지 -->

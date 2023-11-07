@@ -26,7 +26,7 @@ document
 
 function login() {
   let data = {
-    userLoginId: $("#userLoginId").val(),
+    userLoginId: $("#userJoinId").val(),
     userPassword: $("#userPassword").val()
   };
 

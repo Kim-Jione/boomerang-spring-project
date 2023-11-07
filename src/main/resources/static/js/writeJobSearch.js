@@ -90,7 +90,7 @@ var quill = new Quill("#editor-container", {
   theme: "snow" // or 'bubble'
 });
 
-// 구인 글
+// 구인 글 작성
 $("#jobWriteBtn").click(() => {
   write();
 });

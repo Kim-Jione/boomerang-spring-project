@@ -274,7 +274,6 @@ function insertLove() {
 
 // 구인글 추천 취소하기
 function deleteLove() {
-
   let likeyId = $("#likeyId").val();
 
   $.ajax("/s/api/unlikey/" + likeyId, {
@@ -321,6 +320,36 @@ function deleteJob() {
     if (res.code == 1) {
       alert(res.msg);
       location.href = "/jobSearch/mainForm";
+    } else {
+      alert(res.msg);
+      return false;
+    }
+  });
+}
+
+// 댓글 작성
+$("#commentWriteBtn").click(() => {
+  write();
+});
+
+function write() {
+  let data = {
+    commentContent: $("#commentContent").val(),
+    jobId: $("#jobId").val(),
+    userId: $("#userId").val()
+  };
+
+  $.ajax("/s/api/comment/write", {
+    type: "POST",
+    dataType: "json",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/s/api/jobSearch/detailForm/" + data.jobId;
     } else {
       alert(res.msg);
       return false;
