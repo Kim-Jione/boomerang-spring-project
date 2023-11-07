@@ -143,7 +143,7 @@
       src="https://kit.fontawesome.com/bfb14eb01e.js"
       crossorigin="anonymous"
     ></script>
-    <script src="js/showMemberInfo.js" crossorigin="anonymous"></script>
-    <script src="js/default.js"></script>
+    <script src="/js/showMemberInfo.js" crossorigin="anonymous"></script>
+    <script src="/js/default.js"></script>
   </body>
 </html>
