@@ -2,34 +2,34 @@
 /* 본문 하단 버튼 */
 /***************/
 
-const editBtn = document.querySelector(".edit_btn");
-const deleteBtn = document.querySelector(".delete_btn");
-const reportBtn = document.querySelector(".report");
-
-editBtn.addEventListener("click", editPost);
-deleteBtn.addEventListener("click", openDeleteConfirm);
-reportBtn.addEventListener("click", reportJob);
-
-function editPost() {
-  window.location.href = "writeJobSearch.html";
-}
-
-// 삭제확인창 열기
-function openDeleteConfirm() {
-  let deleteConfirm = document.querySelector(".delete_confirm");
-  deleteConfirm.style.display = "flex";
-}
-
-// 삭제버튼들 연결
-const confirmDelete = document.querySelector("#confirmDelete");
-confirmDelete.addEventListener("click", () => {
-  deleteJob();
-});
-const closeDelete = document.querySelector("#closeDelete");
-closeDelete.addEventListener("click", () => {
-  let deleteConfirm = document.querySelector(".delete_confirm");
-  deleteConfirm.style.display = "none";
-});
+//const editBtn = document.querySelector(".edit_btn");
+//const deleteBtn = document.querySelector(".delete_btn");
+//const reportBtn = document.querySelector(".report");
+//
+//editBtn.addEventListener("click", editPost);
+//deleteBtn.addEventListener("click", openDeleteConfirm);
+//reportBtn.addEventListener("click", reportJob);
+//
+//function editPost() {
+//  window.location.href = "writeJobSearch.html";
+//}
+//
+//// 삭제확인창 열기
+//function openDeleteConfirm() {
+//  let deleteConfirm = document.querySelector(".delete_confirm");
+//  deleteConfirm.style.display = "flex";
+//}
+//
+//// 삭제버튼들 연결
+//const confirmDelete = document.querySelector("#confirmDelete");
+//confirmDelete.addEventListener("click", () => {
+//  deleteJob();
+//});
+//const closeDelete = document.querySelector("#closeDelete");
+//closeDelete.addEventListener("click", () => {
+//  let deleteConfirm = document.querySelector(".delete_confirm");
+//  deleteConfirm.style.display = "none";
+//});
 
 /*******/
 /* 댓글 */
@@ -52,7 +52,7 @@ function submitFeedback(e) {
   // get feedback
   const commentForm = comment.value;
   const currentTime = new Date();
-  // if inputs are not empty
+  // if inputs are not empt삭
   if (userForm && commentForm !== "") {
     // create new feedback
     newFeedback = {
@@ -106,7 +106,7 @@ function addFeedback(item) {
             </div>
         </div>
         <textarea class="comment textarea" readonly>${item.userComment}</textarea>
-        
+
     `;
   // insert feedback into the list
   commentsCont.insertAdjacentElement("beforeend", div);
@@ -175,8 +175,8 @@ function reportJob() {
   let jobId = $("#jobId").val();
   let userId = $("#jobUserId").val();
 
-  var nWidth = "500";
-  var nHeight = "600";
+  var nWidth = "700";
+  var nHeight = "900";
   var xPos = document.body.clientWidth / 2 - nWidth / 2;
   xPos += window.screenLeft; //듀얼 모니터
   var yPos = screen.availHeight / 2 - nHeight / 2;
@@ -274,6 +274,7 @@ function insertLove() {
 
 // 구인글 추천 취소하기
 function deleteLove() {
+
   let likeyId = $("#likeyId").val();
 
   $.ajax("/s/api/unlikey/" + likeyId, {

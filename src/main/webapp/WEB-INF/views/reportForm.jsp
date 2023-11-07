@@ -24,7 +24,7 @@
         <div class="report_container">
           <h1>신고하기</h1>
           <input type="hidden" value="${targetId}" id="targetId">
-          <input type="hidden" value="${userId}" id="userId">
+          <input type="hidden" value="${principal.userId}" id="userId">
 
           <div class="target_info" id="targetInfo">
             <div><span>작 성</span><span>김휴고</span></div>

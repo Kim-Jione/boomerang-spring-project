@@ -26,6 +26,12 @@ public class ReportController {
     // 신고 기능
     @PostMapping("/s/api/report")
     public @ResponseBody CMRespDto<?> report(@RequestBody ReportDto reportDto) {
+        System.err.println("디버그getJobId: "+reportDto.getJobId());
+        System.err.println("디버그getPfId: "+reportDto.getPfId());
+        System.err.println("디버그getCommentId: "+reportDto.getCommentId());
+        System.err.println("디버그getReportContent: "+reportDto.getReportContent());
+        System.err.println("디버그getReportType: "+reportDto.getReportType());
+        System.err.println("디버그getUserId: "+reportDto.getUserId());
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = reportDto.getUserId();
         Integer userPId = principal.getUserId();
