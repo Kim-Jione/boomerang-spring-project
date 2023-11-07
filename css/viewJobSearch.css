@@ -152,17 +152,53 @@
 }
 
 .pf_info .column .pf_intro .introduce {
-  font-size: 18px;
   padding: 0 5px;
   margin-top: 30px;
   overflow: hidden;
   width: 100%;
   height: auto;
   outline: none;
-  resize: none;
   border: none;
   border-bottom: solid 2px #eee;
+  font-family: inherit;
+  
 }
+/* 글내용 폰트 관련 */
+.pf_info .column .pf_intro .introduce p {
+  font-size: 18px;
+  margin: 10px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h1 {
+  font-size: 36px;
+  margin: 15px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h2 {
+  font-size: 32px;
+  margin: 15px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h3 {
+  font-size: 28px;
+  margin: 15px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h4 {
+  font-size: 24px;
+  margin: 13px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h5 {
+  font-size: 20px;
+  margin: 10px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h6 {
+  font-size: 16px;
+  margin: 10px 0px;
+}
+
 
 /***************/
 /* 본문 하단 버튼 */
