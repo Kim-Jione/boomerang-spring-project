@@ -12,6 +12,7 @@ public class PfListDto {
     private String pfDeadline;
     private String pfThumbnail;
     private Integer viewCount;
+    private String pfAgerating;
     // DB 칼럼 아님
     private Boolean isPrice; // true = 유료 false = 무료
 }

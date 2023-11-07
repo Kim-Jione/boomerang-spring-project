@@ -17,13 +17,17 @@
           href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
           rel="stylesheet">
 
-        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<%--        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>--%>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
         <title>BusanMate with performance</title>
       </head>
 
       <body>
         <%@ include file="layout/header.jsp" %>
-          <div class="banner">
+        <input type="hidden" id="userId" value="${principal.userId}"><!--추천자 ID-->
+
+        <div class="banner">
             <swiper-container class="banner_Swiper" pagination="true" pagination-clickable="true" space-between="30"
               centered-slides="true" autoplay-delay="4000" autoplay-disable-on-interaction="false" loop="true">
               <swiper-slide class="banner_slide1"><img src="/image/banner1.png"></swiper-slide>
@@ -50,8 +54,8 @@
                   </a>
                   <div class="info">
                     <div class="badge">
-                      <div class="category forMusical"> <i class="fa-solid fa-music"> 뮤지컬</i> </div>
-                      <div class="age for19">19</div>
+                      <div class="category forMusical"> <i class="fa-solid fa-music"> </i>${bestPfList.pfTitle}</div>
+                      <div class="age for19">${bestPfList.pfAgerating}</div>
                       <div class="charge">유료</div>
                     </div>
                     <h3 class="title">밑바닥에서</h3>

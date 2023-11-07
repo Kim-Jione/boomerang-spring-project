@@ -64,7 +64,7 @@
         SELECT  p.pf_title, p.pf_location,
         CASE WHEN p.pf_price = 0 THEN FALSE
         ELSE TRUE END AS isPrice,
-        p.pf_start_date, p.pf_deadline, p.pf_thumbnail,
+        p.pf_start_date, p.pf_deadline, p.pf_thumbnail, p.pf_agerating,
         COALESCE(v.view_count, 0) AS view_count
         FROM performance p
         LEFT JOIN
@@ -81,7 +81,7 @@
         SELECT p.pf_title, p.pf_location,
         CASE WHEN p.pf_price = 0 THEN FALSE
         ELSE TRUE END AS isPrice,
-        p.pf_start_date, p.pf_deadline, p.pf_thumbnail,
+        p.pf_start_date, p.pf_deadline, p.pf_thumbnail, p.pf_agerating
         COALESCE(v.view_count, 0) AS viewCount
         FROM performance p
         LEFT JOIN (
