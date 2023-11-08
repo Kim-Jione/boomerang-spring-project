@@ -42,3 +42,16 @@ var quill = new Quill('#editor-container', {
   theme: 'snow'  // or 'bubble'
 });
 
+function isClickSelect(event) {
+  //싱글 드랍박스 조작
+  selectOneBtn.forEach((selectOneBtn) => {
+    if (!selectOneBtn.parentElement.contains(event.target)) {
+      if (selectOneBtn.classList.contains("open")) {
+        selectOneBtn.classList.toggle("open");
+      }
+    }
+  });
+}
+document.addEventListener("click", function (event) {
+  isClickSelect(event);
+});

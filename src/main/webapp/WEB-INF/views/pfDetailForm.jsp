@@ -3,17 +3,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="stylesheet" href="/css/viewPerformance.css"/>
     <link rel="stylesheet" href="/css/default.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap"
           rel="stylesheet">
+    <link
+            href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+            rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <title>BusanMate with Write</title>
 </head>
 
@@ -63,6 +68,7 @@
                     <p>${pf.pfGenre}</p>
                 </li>
 
+
                 <li>
                     <span class="accent">관람 연령</span>
                     <p>${pf.pfAgerating}</p>
@@ -96,7 +102,7 @@
             <div class="pf_intro">
                 <h4>작품 소개</h4>
                 <div class="border"></div>
-                <textarea readonly class="introduce">${pf.pfContent}</textarea>
+                <div class="introduce">${pf.pfContent}</div>
             </div>
         </div>
     </div>
@@ -126,15 +132,10 @@
         <form>
             <div class="write_comment">
                 <div class="comment_img center_display">
-                    <img src="/img/${principal.userProfileImg}" alt="image"/>
+                    <img src="/img/${principal.userProfileImg}" alt="image" />
                 </div>
                 <div class="form_info center_display">
-                    <textarea
-                            type="text"
-                            name="comment"
-                            id="commentContent"
-                            placeholder="댓글을 입력하세요"
-                    ></textarea>
+                    <textarea type="text" name="comment" id="commentContent" placeholder="댓글을 입력하세요"></textarea>
                 </div>
             </div>
             <button type="button" class="submit_btn" id="commentWriteBtn">등록</button>
@@ -151,15 +152,15 @@
                     <div class="comment_info">
                         <div class="pic center_display">
                             <a href="/s/api/user/detailForm/${comment.userId}" style="display: flex;">
-                                <img src="/img/${comment.userProfileImg}" alt="image" />
+                                <img src="/img/${comment.userProfileImg}" alt="image"/>
+                            </a>
                         </div>
                         <div class="comment_info_txt">
                             <p class="nickname">
                                     ${comment.userNickname}
                             </p>
-                            </a>
                             <p class="created_date">
-                                <fmt:formatDate value="${comment.createdAt}" pattern="yy.MM.dd kk:mm" type="date" />
+                                <fmt:formatDate value="${comment.createdAt}" pattern="yy.MM.dd kk:mm" type="date"/>
                             </p>
                         </div>
                     </div>
@@ -171,22 +172,20 @@
                         <button class='reportBtn'>신고하기</button>
                     </div>
                 </div>
-                <textarea class="comment textarea" readonly>${comment.commentContent}${comment.commentId}</textarea>
+                <textarea class="comment textarea" readonly>${comment.commentContent}</textarea>
             </div>
         </c:forEach>
     </div>
 </div>
 
+
 <footer class="footer">
     <div class="left_cover"></div>
 </footer>
 
-<script
-        src="https://kit.fontawesome.com/3f247b3389.js"
-        crossorigin="anonymous"
-></script>
+<script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
 <script src="/js/viewPerformance.js"></script>
 <script src="/js/default.js"></script>
 </body>
-</html>
 
+</html>

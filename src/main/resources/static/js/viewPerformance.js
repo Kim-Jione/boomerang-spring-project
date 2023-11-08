@@ -2,35 +2,38 @@
 /* 본문 하단 버튼 */
 /***************/
 
-const editBtn = document.querySelector(".edit_btn");
-const deleteBtn = document.querySelector(".delete_btn");
+if (
+    document.querySelector(".edit_btn") &&
+    document.querySelector(".delete_btn")
+) {
+  const editBtn = document.querySelector(".edit_btn");
+  const deleteBtn = document.querySelector(".delete_btn");
+  editBtn.addEventListener("click", editPost);
+  deleteBtn.addEventListener("click", openDeleteConfirm);
+  function editPost() {
+    window.location.href = "/s/api/jobSearch/updateForm/" + pfId;
+  }
+
+  // 삭제확인창 열기
+  function openDeleteConfirm() {
+    let deleteConfirm = document.querySelector(".delete_confirm");
+    deleteConfirm.style.display = "flex";
+  }
+  // 삭제버튼들 연결
+  const confirmDelete = document.querySelector("#confirmDelete");
+  confirmDelete.addEventListener("click", () => {
+    deleteJob();
+  });
+  const closeDelete = document.querySelector("#closeDelete");
+  closeDelete.addEventListener("click", () => {
+    let deleteConfirm = document.querySelector(".delete_confirm");
+    deleteConfirm.style.display = "none";
+  });
+}
 const reportBtn = document.querySelector(".report");
 let pfId = $("#pfId").val();
 
-editBtn.addEventListener("click", editPost);
-deleteBtn.addEventListener("click", openDeleteConfirm);
-reportBtn.addEventListener("click", reportPf);
-
-function editPost() {
-  window.location.href = "/s/api/performance/updateForm/" + pfId;
-}
-
-// 삭제확인창 열기
-function openDeleteConfirm() {
-  let deleteConfirm = document.querySelector(".delete_confirm");
-  deleteConfirm.style.display = "flex";
-}
-
-// 삭제버튼들 연결
-const confirmDelete = document.querySelector("#confirmDelete");
-confirmDelete.addEventListener("click", () => {
-  deletePf();
-});
-const closeDelete = document.querySelector("#closeDelete");
-closeDelete.addEventListener("click", () => {
-  let deleteConfirm = document.querySelector(".delete_confirm");
-  deleteConfirm.style.display = "none";
-});
+reportBtn.addEventListener("click", reportJob);
 
 /*******/
 /* 댓글 */
@@ -53,14 +56,14 @@ function submitFeedback(e) {
   // get feedback
   const commentForm = comment.value;
   const currentTime = new Date();
-  // if inputs are not empty
+  // if inputs are not empt삭
   if (userForm && commentForm !== "") {
     // create new feedback
     newFeedback = {
       id: 1,
       userName: userForm,
       userComment: commentForm,
-      createdDate: currentTime.toString(),
+      createdDate: currentTime.toString()
     };
     // add new feedback to array
     feedbackArr.push(newFeedback);
@@ -210,6 +213,54 @@ function removeComment() {
   }
 }
 
+//  구인글 신고하기
+function reportJob() {
+  let pfId = $("#pfId").val();
+  let userId = $("#pfUserId").val();
+
+  var nWidth = "700";
+  var nHeight = "900";
+  var xPos = document.body.clientWidth / 2 - nWidth / 2;
+  xPos += window.screenLeft; //듀얼 모니터
+  var yPos = screen.availHeight / 2 - nHeight / 2;
+
+  window.open(
+      "/s/api/reportForm/" + pfId + "/" + userId,
+      "신고하기",
+      "width=" +
+      nWidth +
+      ",height=" +
+      nHeight +
+      ",left=" +
+      xPos +
+      ", top=" +
+      yPos +
+      ",toolbar=no"
+  );
+}
+
+//  댓글 신고하기
+function reportComment() {
+  var nWidth = "500";
+  var nHeight = "600";
+  var xPos = document.body.clientWidth / 2 - nWidth / 2;
+  xPos += window.screenLeft; //듀얼 모니터
+  var yPos = screen.availHeight / 2 - nHeight / 2;
+
+  window.open(
+      "/s/api/reportForm",
+      "신고하기",
+      "width=" +
+      nWidth +
+      ",height=" +
+      nHeight +
+      ",left=" +
+      xPos +
+      ", top=" +
+      yPos +
+      ",toolbar=no"
+  );
+}
 // 구인글 신고하기
 $(".pfReportBtn").click(() => {
   reportPf();
@@ -395,6 +446,40 @@ function deletePf() {
     if (res.code == 1) {
       alert(res.msg);
       location.href = "/performance/mainForm";
+    } else {
+      alert(res.msg);
+      return false;
+    }
+  });
+}
+
+// 댓글 작성
+$("#commentWriteBtn").click(() => {
+  write();
+});
+
+function write() {
+  let data = {
+    commentContent: $("#commentContent").val(),
+    pfId: $("#pfId").val(),
+    userId: $("#userId").val()
+  };
+  if (data.commentContent.length < 1) {
+    alert("댓글을 입력해주세요.");
+    return;
+  }
+
+  $.ajax("/s/api/comment/write", {
+    type: "POST",
+    dataType: "json",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/s/api/performance/detailForm/" + data.pfId;
     } else {
       alert(res.msg);
       return false;

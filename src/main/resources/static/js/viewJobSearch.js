@@ -2,35 +2,38 @@
 /* 본문 하단 버튼 */
 /***************/
 
-const editBtn = document.querySelector(".edit_btn");
-const deleteBtn = document.querySelector(".delete_btn");
+if (
+  document.querySelector(".edit_btn") &&
+  document.querySelector(".delete_btn")
+) {
+  const editBtn = document.querySelector(".edit_btn");
+  const deleteBtn = document.querySelector(".delete_btn");
+  editBtn.addEventListener("click", editPost);
+  deleteBtn.addEventListener("click", openDeleteConfirm);
+  function editPost() {
+    window.location.href = "/s/api/jobSearch/updateForm/" + jobId;
+  }
+
+  // 삭제확인창 열기
+  function openDeleteConfirm() {
+    let deleteConfirm = document.querySelector(".delete_confirm");
+    deleteConfirm.style.display = "flex";
+  }
+  // 삭제버튼들 연결
+  const confirmDelete = document.querySelector("#confirmDelete");
+  confirmDelete.addEventListener("click", () => {
+    deleteJob();
+  });
+  const closeDelete = document.querySelector("#closeDelete");
+  closeDelete.addEventListener("click", () => {
+    let deleteConfirm = document.querySelector(".delete_confirm");
+    deleteConfirm.style.display = "none";
+  });
+}
 const reportBtn = document.querySelector(".report");
 let jobId = $("#jobId").val();
 
-editBtn.addEventListener("click", editPost);
-deleteBtn.addEventListener("click", openDeleteConfirm);
 reportBtn.addEventListener("click", reportJob);
-
-function editPost() {
-  window.location.href = "/s/api/jobSearch/updateForm/" + jobId;
-}
-
-// 삭제확인창 열기
-function openDeleteConfirm() {
-  let deleteConfirm = document.querySelector(".delete_confirm");
-  deleteConfirm.style.display = "flex";
-}
-
-// 삭제버튼들 연결
-const confirmDelete = document.querySelector("#confirmDelete");
-confirmDelete.addEventListener("click", () => {
-  deleteJob();
-});
-const closeDelete = document.querySelector("#closeDelete");
-closeDelete.addEventListener("click", () => {
-  let deleteConfirm = document.querySelector(".delete_confirm");
-  deleteConfirm.style.display = "none";
-});
 
 /*******/
 /* 댓글 */

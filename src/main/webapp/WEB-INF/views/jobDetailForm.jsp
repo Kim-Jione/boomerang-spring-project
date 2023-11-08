@@ -118,7 +118,7 @@
                 <div class="pf_intro">
                   <h4>구인글 소개</h4>
                   <div class="border"></div>
-                  <textarea readonly class="introduce textarea">${job.jobContent}</textarea>
+                  <div class="introduce">${job.jobContent}</div>
                 </div>
               </div>
             </div>
@@ -164,12 +164,12 @@
                         <div class="pic center_display">
                           <a href="/s/api/user/detailForm/${comment.userId}" style="display: flex;">
                             <img src="/img/${comment.userProfileImg}" alt="image" />
+                          </a>
                         </div>
                         <div class="comment_info_txt">
                           <p class="nickname">
                             ${comment.userNickname}
                           </p>
-                          </a>
                           <p class="created_date">
                             <fmt:formatDate value="${comment.createdAt}" pattern="yy.MM.dd kk:mm" type="date" />
                           </p>
@@ -183,7 +183,7 @@
                         <button class='reportBtn'>신고하기</button>
                       </div>
                     </div>
-                    <textarea class="comment textarea" readonly>${comment.commentContent}${comment.commentId}</textarea>
+                    <textarea class="comment textarea" readonly>${comment.commentContent}</textarea>
                   </div>
                 </c:forEach>
               </div>
