@@ -127,7 +127,6 @@
         (SELECT COUNT(*) FROM view WHERE pf_id = #{pfId})  as viewCount,
         if(l.likey_id IS NOT NULL, TRUE, FALSE)            as isLikey,
         l.likey_id
-
         FROM performance p
         LEFT JOIN user u
         ON p.user_id = u.user_id
