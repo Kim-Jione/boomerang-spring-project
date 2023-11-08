@@ -128,8 +128,7 @@ a {
     text-decoration: none;
 }
 
-button,
-button:focus {
+button {
     border: none;
     cursor: pointer;
     outline: none;
