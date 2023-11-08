@@ -9,6 +9,7 @@ import com.example.bumerang.domain.view.ViewDao;
 import com.example.bumerang.web.dto.request.jobSearch.DeadlineDto;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
+import com.example.bumerang.web.dto.response.PagingDto;
 import com.example.bumerang.web.dto.response.jobSearch.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -82,8 +83,8 @@ public class JobSearchService {
 	}
 
 
-	public List<JobListDto> findAllJob() {
-		List<JobListDto> findAllJob = jobSearchDao.findAllJob();
+	public List<JobListDto> findAllJob(Integer startNum, String keyword) {
+		List<JobListDto> findAllJob = jobSearchDao.findAllJob(startNum, keyword);
 		for (int i = 0; i < findAllJob.size(); i++) {
 			List<String> jobPositionTitle = jobSearchPositionDao.findById(findAllJob.get(i).getJobId());
 			findAllJob.get(i).setJobPositionTitle(jobPositionTitle);
@@ -109,4 +110,9 @@ public class JobSearchService {
 		JobSearch deadlineResult = jobSearchDao.findById(deadlineDto.getJobId());
 		return deadlineResult;
 	}
+
+	public PagingDto paging(Integer page, String keyword) {
+		PagingDto paging = jobSearchDao.paging(page, keyword);
+        return paging;
+    }
 }

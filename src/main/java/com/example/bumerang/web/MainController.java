@@ -1,19 +1,9 @@
 package com.example.bumerang.web;
 
-import com.example.bumerang.domain.jobSearch.JobSearch;
-import com.example.bumerang.domain.performance.Performance;
-import com.example.bumerang.service.JobSearchService;
-import com.example.bumerang.service.PerformanceService;
-import com.example.bumerang.service.UserService;
-import com.example.bumerang.web.dto.SessionUserDto;
-import com.example.bumerang.web.dto.request.jobSearch.DeadlineDto;
-import com.example.bumerang.web.dto.request.user.LoginDto;
-import com.example.bumerang.web.dto.response.CMRespDto;
-import com.example.bumerang.web.dto.response.jobSearch.JobListDto;
-import com.example.bumerang.web.dto.response.jobSearch.JobMainDto;
-import com.example.bumerang.web.dto.response.performance.PfListDto;
-import com.example.bumerang.web.dto.response.performance.PfMainDto;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +11,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
+import com.example.bumerang.domain.jobSearch.JobSearch;
+import com.example.bumerang.domain.performance.Performance;
+import com.example.bumerang.service.JobSearchService;
+import com.example.bumerang.service.PerformanceService;
+import com.example.bumerang.service.UserService;
+import com.example.bumerang.web.dto.SearchDto;
+import com.example.bumerang.web.dto.SessionUserDto;
+import com.example.bumerang.web.dto.request.jobSearch.DeadlineDto;
+import com.example.bumerang.web.dto.request.user.LoginDto;
+import com.example.bumerang.web.dto.response.CMRespDto;
+import com.example.bumerang.web.dto.response.PagingDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobListDto;
+import com.example.bumerang.web.dto.response.performance.PfListDto;
+
+import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
@@ -37,16 +40,29 @@ public class MainController {
 
 // 구인정보글 메인 화면
 	@GetMapping({"/","/jobSearch/mainForm"})
-	public String jobMainForm(Model model) {
+	public String jobMainForm(Model model, SearchDto searchDto) {
 		// 테스트 위한 임시 로그인 - 메인페이지 들어오면 로그인됨
 		LoginDto loginDto = new LoginDto();
 		loginDto.setUserLoginId("ssar");
 		loginDto.setUserPassword("1234");
 		SessionUserDto loginResult = userService.findByUser(loginDto);
 		userService.login(loginResult);
-		// 테스트 위한 임시 로그인
-		List<JobListDto> jobList = jobSearchService.findAllJob();
+        // 테스트 위한 임시 로그인
+        Integer page = searchDto.getPage();
+        String keyword = searchDto.getKeyword();
+        // 페이지수 비어있을 때 초기화
+        if (page == null) {
+			page = 0;
+		}
+        System.err.println("디버그 컨트롤러 실행");
+        System.err.println("keyword"+keyword);
+        // 페이지 수 설정
+        Integer startNum = page * 12;
+		PagingDto paging = jobSearchService.paging(page, keyword);
+        paging.makeBlockInfoByPostAll(keyword);
+        List<JobListDto> jobList = jobSearchService.findAllJob(startNum, keyword);
 		List<JobListDto> bestJobList = jobSearchService.findAllBestJob();
+        model.addAttribute("paging", paging); // 페이징
 		model.addAttribute("jobList",jobList);
 		model.addAttribute("bestJobList",bestJobList);
 		return "jobMainForm";
