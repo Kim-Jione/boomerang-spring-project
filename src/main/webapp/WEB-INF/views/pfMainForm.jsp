@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap"
           rel="stylesheet">
     <link
-            href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+            href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
             rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -47,7 +47,7 @@
             <article class="poster">
                 <div class="img"></div>
                 <a href="/s/api/performance/detailForm/${best.pfId}">
-                    <img src="/image/poster/poster_1.jpg" class="img-hover">
+                    <img src="/image/poster/${best.pfThumbnail}" class="img-hover">
                 </a>
                 <div class="info">
                     <div class="badge">
@@ -67,10 +67,9 @@
                 </div>
             </article>
         </div>
-    </div>
     </c:forEach>
+    </div>
 </div>
-
 
 <div class="main_post">
     <ul class="main_title">
