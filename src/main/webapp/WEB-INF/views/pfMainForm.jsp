@@ -71,7 +71,6 @@
     </div>
 </div>
 
-
 <div class="main_post">
     <ul class="main_title">
         <li><i class="fa-solid fa-compact-disc"></i></li>
