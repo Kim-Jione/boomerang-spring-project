@@ -43,11 +43,13 @@ SOItems.forEach((SOItems) => {
 });
 
 // 싱글 드랍박스에 기존 정보 불러오기
-let existingGenre = document.querySelector("#jobGenre").value;
-let existingGender = document.querySelector("#jobGender").value;
+let existingGenre = document.querySelector("#jobGenre");
+let existingGender = document.querySelector("#jobGender");
 if (existingGenre) {
   SOItems.forEach((SOItems) => {
-    if (SOItems.querySelector(".item-text").innerText == existingGenre.value) {
+    if (
+      SOItems.querySelector(".item-text").innerText == existingGenre.innerText
+    ) {
       SOItems.classList.toggle("checked");
       let btnText =
         SOItems.parentElement.parentElement.querySelector(".btn-text");
@@ -57,7 +59,9 @@ if (existingGenre) {
 }
 if (existingGender) {
   SOItems.forEach((SOItems) => {
-    if (SOItems.querySelector(".item-text").innerText == existingGender.value) {
+    if (
+      SOItems.querySelector(".item-text").innerText == existingGender.innerText
+    ) {
       SOItems.classList.toggle("checked");
       let btnText =
         SOItems.parentElement.parentElement.querySelector(".btn-text");
@@ -108,20 +112,16 @@ items.forEach((item) => {
 });
 
 // 멀티플 드랍박스에 기존 정보 불러오기
-let existingPosition = $("#jobPositionTitleList").val();
+let existingPosition = document.querySelectorAll(".jobPositionTitleList");
 
 if (existingPosition) {
   existingPosition.forEach((existingPosition) => {
     items.forEach((items) => {
-      if (items.querySelector(".item-text").innerText == existingPosition) {
+      if (
+        items.querySelector(".item-text").innerText == existingPosition.value
+      ) {
         items.classList.toggle("checked");
-        checked =
-          items.parentElement.parentElement.querySelectorAll(".checked");
-        checkedTexts.push(items.querySelector(".item-text").textContent);
       }
-      let btnText =
-        items.parentElement.parentElement.querySelector(".btn-text");
-      btnText.innerText = `${checkedTexts}`;
     });
   });
 }
@@ -161,7 +161,7 @@ var quill = new Quill("#editor-container", {
   theme: "snow" // or 'bubble'
 });
 
-// 구인 글
+// 구인 글 작성
 $("#jobWriteBtn").click(() => {
   write();
 });
@@ -201,6 +201,58 @@ function write() {
     if (res.code == 1) {
       alert(res.msg);
       location.href = "/jobSearch/mainForm";
+    } else {
+      alert(res.msg);
+      return false;
+    }
+  });
+}
+
+// 구인 글 수정
+$("#jobUpdateBtn").click(() => {
+  update();
+});
+
+function update() {
+  let jobGenre = document.querySelector("#jobGenre").innerText;
+  let jobGender = document.querySelector("#jobGender").innerText;
+  let jobPositionTitle = checkedTexts;
+  let jobId = $("#jobId").val();
+
+  let quillContent = document.querySelector(".ql-editor");
+  let jobContent = quillContent.innerHTML;
+
+  let data = {
+    jobContentTitle: $("#jobContentTitle").val(),
+    jobContent: jobContent,
+    jobPositionList: jobPositionTitle, // 모집분야를 배열로 선언
+    jobArtTitle: $("#jobArtTitle").val(),
+    jobGenre: jobGenre,
+    jobStartDate: $("#jobStartDate").val(),
+    jobProductionDate: $("#jobProductionDate").val(),
+    jobTo: $("#jobTo").val(),
+    jobPay: $("#jobPay").val(),
+    jobGender: jobGender,
+    jobContact: $("#jobContact").val(),
+    jobDeadline: $("#jobDeadline").val(),
+    userId: $("#userId").val(),
+    jobId: $("#jobId").val()
+  };
+
+  alert("userId" + data.userId);
+  alert("jobId" + data. jobId);
+
+  $.ajax("/s/api/jobSearch/update", {
+    type: "PUT",
+    dataType: "json",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/s/api/jobSearch/detailForm/" + jobId;
     } else {
       alert(res.msg);
       return false;

@@ -134,14 +134,14 @@
     <select id="findByUpdateResult"
             resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
         SELECT * FROM job_search
-        WHERE job_id=#{jobId} AND job_status='deleted'
+        WHERE job_id=#{jobId} AND job_status !='deleted'
     </select>
 
     <select id="findByDelete"
             resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
         SELECT *
         FROM job_search j
-        WHERE j.job_id=#{jobId} AND job_status='deleted'
+        WHERE j.job_id=#{jobId} AND job_status ='deleted'
     </select>
 
     <update id="dead">
@@ -150,6 +150,6 @@
         job_status = 'dead'
         WHERE
         job_id = #{jobId}
-        AND user_id = #{userId} AND job_status='deleted'
+        AND user_id = #{userId} AND job_status !='deleted'
     </update>
 </mapper>

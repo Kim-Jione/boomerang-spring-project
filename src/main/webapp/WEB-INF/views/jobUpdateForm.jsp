@@ -30,6 +30,7 @@
 
       <body>
         <%@ include file="layout/header.jsp" %>
+          <input type="hidden" value="${job.jobId}" id="jobId">
           <div class="container">
             <div class="board_write_wrap">
               <div class="top">
@@ -85,7 +86,7 @@
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="OTT/TV 드라마">OTT/TV 드라마</span>
+                          <span class="item-text" value="드라마">드라마</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
@@ -154,6 +155,9 @@
                   </dl>
                   <dl>
                     <dt>모집 분야</dt>
+                    <c:forEach items="${job.jobPositionTitle}" var="positionTitle">
+                      <input class="jobPositionTitleList" type="hidden" value="${positionTitle.jobPositionTitle}">
+                    </c:forEach>
                     <dd>
                       <div class="select-btn">
                         <span class="btn-text" id="jobPositionTitleList">${job.jobPositionTitles}</span>
@@ -221,13 +225,13 @@
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="남성" id="jobGender">남성</span>
+                          <span class="item-text" value="남성">남성</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="여성" id="jobGender">여성</span>
+                          <span class="item-text" value="여성">여성</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
@@ -252,7 +256,9 @@
                   </dl>
                 </div>
                 <div class="content">
-                  <div id="editor-container">${job.jobContent}</div>
+                  <div id="editor-container">
+                    ${job.jobContent}
+                  </div>
                 </div>
               </div>
             </div>
