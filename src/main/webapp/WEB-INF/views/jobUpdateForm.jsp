@@ -35,7 +35,7 @@
               <div class="top">
                 <div class="board_name">
                   <i class="fa-solid fa-feather-pointed"></i>
-                  <h2>구인정보 쓰기</h2>
+                  <h2>구인정보 수정하기</h2>
                   <input type="hidden" id="userId" value="${principal.userId}">
                 </div>
                 <div class="bt_wrap">
@@ -57,7 +57,7 @@
                     <dt>작품 장르</dt>
                     <dd>
                       <div class="select_single">
-                        <span class="btn-text">하나를 골라주세요</span>
+                        <span class="btn-text" id="jobGenre">${job.jobGenre}</span>
                         <span class="arrow-dwn">
                           <i class="fa-solid fa-chevron-down"></i>
                         </span>
@@ -67,49 +67,49 @@
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text jobGenre" data-value="단편영화">단편영화</span>
+                          <span class="item-text" value="단편영화">단편영화</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="장편영화" id="jobGenre">장편영화</span>
+                          <span class="item-text" value="장편영화">장편영화</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="연극" id="jobGenre">연극</span>
+                          <span class="item-text" value="연극">연극</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="OTT/TV 드라마" id="jobGenre">OTT/TV 드라마</span>
+                          <span class="item-text" value="OTT/TV 드라마"  >OTT/TV 드라마</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="웹 컨텐츠" id="jobGenre">웹 컨텐츠</span>
+                          <span class="item-text" value="웹 컨텐츠"  >웹 컨텐츠</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="광고" id="jobGenre">광고</span>
+                          <span class="item-text" value="광고"  >광고</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="전시" id="jobGenre">전시</span>
+                          <span class="item-text" value="전시"  >전시</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="기타" id="jobGenre">기타</span>
+                          <span class="item-text" value="기타"  >기타</span>
                         </li>
                       </ul>
                     </dd>
@@ -156,7 +156,7 @@
                     <dt>모집 분야</dt>
                     <dd>
                       <div class="select-btn">
-                        <span class="btn-text">모두 골라주세요</span>
+                        <span class="btn-text" id="jobPositionTitleList">${job.jobPositionTitles}</span>
                         <span class="arrow-dwn">
                           <i class="fa-solid fa-chevron-down"></i>
                         </span>
@@ -211,7 +211,7 @@
                     <dt>모집 성별</dt>
                     <dd>
                       <div class="select_single">
-                        <span class="btn-text">성별을 골라주세요</span>
+                        <span class="btn-text" id="jobGender">${job.jobGender}</span>
                         <span class="arrow-dwn">
                           <i class="fa-solid fa-chevron-down"></i>
                         </span>

@@ -118,16 +118,13 @@
                 <div class="pf_intro">
                   <h4>구인글 소개</h4>
                   <div class="border"></div>
-                  <textarea readonly class="introduce textarea">
-                    ${job.jobContent}
-                  </textarea>
+                  <textarea readonly class="introduce textarea">${job.jobContent}</textarea>
                 </div>
               </div>
             </div>
             <c:if test="${principal.userId == job.userId}">
               <div class="button_wrap">
-                <button type="button" class="edit_btn"><a
-                    href="/s/api/jobSearch/updateForm/${job.jobId}">수정</a></button>
+                <button type="button" class="edit_btn">수정</button>
                 <button type="button" class="delete_btn">삭제</button>
                 <div class="delete_confirm">
                   <h2 class="pro_tit">정말로 삭제하시겠습니까?</h2>
@@ -149,10 +146,10 @@
                     </div>
                     <div class="form_info center_display">
                       <input type="hidden" name="user" id="user" value="김휴고" />
-                      <textarea type="text" name="comment" id="comment" placeholder="댓글을 입력하세요"></textarea>
+                      <textarea type="text" name="comment" id="commentContent" placeholder="댓글을 입력하세요"></textarea>
                     </div>
                   </div>
-                  <button type="button" class="submit_btn">등록</button>
+                  <button type="button" class="submit_btn" id="commentWriteBtn">등록</button>
                 </form>
               </div>
               <!-- 여기까지 -->
@@ -161,25 +158,32 @@
                 <!-- 댓글이 달리는 부분 -->
                 <c:forEach var="comment" items="${job.commentList}">
                   <div class="comment_card">
+                    <input type="hidden" class="commentId" id="${comment.commentId}" value="${comment.commentId}">
                     <div class="comment_top">
                       <div class="comment_info">
                         <div class="pic center_display">
-                          <img src="/img/${comment.userProfileImg}" alt="image" />
+                          <a href="/s/api/user/detailForm/${comment.userId}" style="display: flex;">
+                            <img src="/img/${comment.userProfileImg}" alt="image" />
                         </div>
                         <div class="comment_info_txt">
                           <p class="nickname">
                             ${comment.userNickname}
                           </p>
-                          <p class="created_date">${comment.createdAt}</p>
+                          </a>
+                          <p class="created_date">
+                            <fmt:formatDate value="${comment.createdAt}" pattern="yy.MM.dd kk:mm" type="date" />
+                          </p>
                         </div>
                       </div>
                       <div class="comment_btns">
-                        <button class='editBtn'>수정</button>
-                        <button class='removeBtn'>삭제</button>
+                        <c:if test="${comment.userId==principal.userId}">
+                          <button class='editBtn'>수정</button>
+                          <button class='removeBtn'>삭제</button>
+                        </c:if>
                         <button class='reportBtn'>신고하기</button>
                       </div>
                     </div>
-                    <textarea class="comment textarea" readonly>${comment.commentContent}</textarea>
+                    <textarea class="comment textarea" readonly>${comment.commentContent}${comment.commentId}</textarea>
                   </div>
                 </c:forEach>
               </div>
