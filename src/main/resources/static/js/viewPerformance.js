@@ -5,13 +5,14 @@
 const editBtn = document.querySelector(".edit_btn");
 const deleteBtn = document.querySelector(".delete_btn");
 const reportBtn = document.querySelector(".report");
+let pfId = $("#pfId").val();
 
 editBtn.addEventListener("click", editPost);
 deleteBtn.addEventListener("click", openDeleteConfirm);
 reportBtn.addEventListener("click", reportPf);
 
 function editPost() {
-  window.location.href = "pfWriteForm.jsp";
+  window.location.href = "/s/api/performance/updateForm/" + pfId;
 }
 
 // 삭제확인창 열기
@@ -96,7 +97,7 @@ function addFeedback(item) {
                     <p class="nickname">
                         ${item.userName}
                     </p>
-                    <p class="created_date">${item.createdDate}</p>
+                    <p class="created_date"><fmt:formatDate value="${item.createdDate}" pattern="yy.MM.dd kk:mm" type="date" /></p>
                 </div>
             </div>
             <div class="comment_btns">
@@ -105,8 +106,8 @@ function addFeedback(item) {
                 <button class='reportBtn'>신고하기</button>
             </div>
         </div>
-        <textarea class="comment textarea" readonly>${item.userComment}</textarea>
-        
+        <textarea class="comment textarea" id="commentContent" readonly>${item.userComment}</textarea>
+
     `;
   // insert feedback into the list
   commentsCont.insertAdjacentElement("beforeend", div);
@@ -153,6 +154,25 @@ function saveComment() {
   textarea.readOnly = true;
   textarea.style.border = "none";
 
+  let data = {
+    pfId: $("#pfId").val(),
+    commentId: commentCard.querySelector(".commentId").value,
+    commentContent: textarea.value,
+    userId: $("#userId").val()
+  };
+
+  $.ajax("/s/api/comment/update", {
+    type: "PUT",
+    data: JSON.stringify(data),
+    dataType: "json",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+    }
+  });
   const editBtn = commentCard.querySelector(".editBtn");
   editBtn.innerText = "수정";
   editBtn.removeEventListener("click", saveComment);
@@ -162,7 +182,32 @@ function saveComment() {
 // 댓글 삭제
 function removeComment() {
   const commentCard = this.closest(".comment_card"); // 삭제 버튼의 부모 comment_card 요소 찾기
-  commentsCont.removeChild(commentCard);
+  if (confirm("정말 삭제하시겠습니까?")) {
+    const commentCard = this.closest(".comment_card"); // 저장 버튼의 부모 comment_card 요소 찾기
+
+    let data = {
+      commentId: commentCard.querySelector(".commentId").value,
+      pfId: $("#pfId").val(),
+      userId: $("#userId").val()
+    };
+
+    $.ajax("/s/api/comment/delete", {
+      type: "DELETE",
+      dataType: "json",
+      data: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).done((res) => {
+      if (res.code == 1) {
+        alert(res.msg);
+        location.reload();
+      } else {
+        alert(res.msg);
+        return false;
+      }
+    });
+  }
 }
 
 // 구인글 신고하기
@@ -205,9 +250,9 @@ function reportComment() {
   var yPos = screen.availHeight / 2 - nHeight / 2;
 
   window.open(
-    "./report.html",
-    "신고하기",
-    "width=" +
+      "/s/api/reportForm",
+      "신고하기",
+      "width=" +
       nWidth +
       ",height=" +
       nHeight +
