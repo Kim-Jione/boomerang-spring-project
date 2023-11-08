@@ -1,3 +1,36 @@
+/***************/
+/* 본문 하단 버튼 */
+/***************/
+
+const editBtn = document.querySelector(".edit_btn");
+const deleteBtn = document.querySelector(".delete_btn");
+const reportBtn = document.querySelector(".report");
+
+editBtn.addEventListener("click", editPost);
+deleteBtn.addEventListener("click", openDeleteConfirm);
+reportBtn.addEventListener("click", reportPf);
+
+function editPost() {
+  window.location.href = "pfWriteForm.jsp";
+}
+
+// 삭제확인창 열기
+function openDeleteConfirm() {
+  let deleteConfirm = document.querySelector(".delete_confirm");
+  deleteConfirm.style.display = "flex";
+}
+
+// 삭제버튼들 연결
+const confirmDelete = document.querySelector("#confirmDelete");
+confirmDelete.addEventListener("click", () => {
+  deletePf();
+});
+const closeDelete = document.querySelector("#closeDelete");
+closeDelete.addEventListener("click", () => {
+  let deleteConfirm = document.querySelector(".delete_confirm");
+  deleteConfirm.style.display = "none";
+});
+
 /*******/
 /* 댓글 */
 /*******/
@@ -132,6 +165,37 @@ function removeComment() {
   commentsCont.removeChild(commentCard);
 }
 
+// 구인글 신고하기
+$(".pfReportBtn").click(() => {
+  reportPf();
+});
+
+//  구인글 신고하기
+function reportPf() {
+  let pfId = $("#pfId").val();
+  let userId = $("#pfUserId").val();
+
+  var nWidth = "500";
+  var nHeight = "600";
+  var xPos = document.body.clientWidth / 2 - nWidth / 2;
+  xPos += window.screenLeft; //듀얼 모니터
+  var yPos = screen.availHeight / 2 - nHeight / 2;
+
+  window.open(
+      "/s/api/reportForm/" + pfId + "/" + userId,
+      "신고하기",
+      "width=" +
+      nWidth +
+      ",height=" +
+      nHeight +
+      ",left=" +
+      xPos +
+      ", top=" +
+      yPos +
+      ",toolbar=no"
+  );
+}
+
 //  댓글 신고하기
 function reportComment() {
   var nWidth = "500";
@@ -169,3 +233,95 @@ function resizeTextarea() {
 // 페이지가 처음 로드될 때 기존 댓글들의 height값을 지정
 window.addEventListener("load", resizeTextarea);
 activeCommentBtn();
+
+// 추천 아이콘 클릭
+$("#iconLove").click(() => {
+  let isLovedState = $("#iconLove").hasClass("fa-solid"); // hasClass => fa-solid 갖고 있으면 true 없으면 false
+  if (isLovedState) {
+    deleteLove();
+  } else {
+    insertLove();
+  }
+});
+
+// 구인글 추천하기
+function insertLove() {
+  let data = {
+    pfId: $("#pfId").val(),
+    userId: $("#userId").val()
+  };
+
+  $.ajax("/s/api/likey", {
+    type: "POST",
+    data: JSON.stringify(data),
+    dataType: "json",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      renderLoves();
+      let count = $("#countLikey").text();
+      $("#countLikey").text(Number(count) + 1);
+      $("#likeyId").val(res.data.likeyId);
+    } else {
+      alert(res.msg);
+      location.href = "/user/loginForm";
+    }
+  });
+}
+
+// 구인글 추천 취소하기
+function deleteLove() {
+  let likeyId = $("#likeyId").val();
+
+  $.ajax("/s/api/unlikey/" + likeyId, {
+    type: "DELETE",
+    dataType: "json"
+  }).done((res) => {
+    if (res.code == 1) {
+      renderCancelLoves();
+      let count = $("#countLikey").text();
+      $("#countLikey").text(Number(count) - 1);
+    } else {
+      alert("구인글 추천 취소에 실패했습니다");
+    }
+  });
+}
+
+// 하트 그리기
+function renderLoves() {
+  $("#iconLove").removeClass("fa-regular");
+  $("#iconLove").addClass("fa-solid");
+}
+
+// 하트 지우기
+function renderCancelLoves() {
+  $("#iconLove").removeClass("fa-solid");
+  $("#iconLove").addClass("fa-regular");
+}
+
+// 구인글 삭제
+function deletePf() {
+  let data = {
+    pfId: $("#pfId").val(),
+    userId: $("#userId").val()
+  };
+
+  $.ajax("/s/api/performance/delete", {
+    type: "DELETE",
+    data: JSON.stringify(data),
+    dataType: "json",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/performance/mainForm";
+    } else {
+      alert(res.msg);
+      return false;
+    }
+  });
+}

@@ -36,4 +36,7 @@ public class DetailFormDto {
     private Integer likeyCount;
     // 게시글 조회수
     private Integer viewCount;
+    // 내가 게시글 추천했는지 여부
+    private Boolean isLikey;
+    private Integer likeyId;
 }

@@ -81,12 +81,11 @@ public class MainController {
 
 	// 공연글 메인 화면
 	@GetMapping("/performance/mainForm")
-	public String pfMainForm() {
-		PfMainDto pfMainResp = new PfMainDto();
+	public String pfMainForm(Model model) {
 		List<PfListDto> pfList = performanceService.findAllPf();
 		List<PfListDto> bestPfList = performanceService.findAllBestPf();
-		pfMainResp.setPfList(pfList);
-		pfMainResp.setBestPfList(bestPfList);
+		model.addAttribute("pfList",pfList);
+		model.addAttribute("bestPfList",bestPfList);
 		return "pfMainForm";
 	}
 
