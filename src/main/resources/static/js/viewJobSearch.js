@@ -2,34 +2,35 @@
 /* 본문 하단 버튼 */
 /***************/
 
-//const editBtn = document.querySelector(".edit_btn");
-//const deleteBtn = document.querySelector(".delete_btn");
-//const reportBtn = document.querySelector(".report");
-//
-//editBtn.addEventListener("click", editPost);
-//deleteBtn.addEventListener("click", openDeleteConfirm);
-//reportBtn.addEventListener("click", reportJob);
-//
-//function editPost() {
-//  window.location.href = "writeJobSearch.html";
-//}
-//
-//// 삭제확인창 열기
-//function openDeleteConfirm() {
-//  let deleteConfirm = document.querySelector(".delete_confirm");
-//  deleteConfirm.style.display = "flex";
-//}
-//
-//// 삭제버튼들 연결
-//const confirmDelete = document.querySelector("#confirmDelete");
-//confirmDelete.addEventListener("click", () => {
-//  deleteJob();
-//});
-//const closeDelete = document.querySelector("#closeDelete");
-//closeDelete.addEventListener("click", () => {
-//  let deleteConfirm = document.querySelector(".delete_confirm");
-//  deleteConfirm.style.display = "none";
-//});
+const editBtn = document.querySelector(".edit_btn");
+const deleteBtn = document.querySelector(".delete_btn");
+const reportBtn = document.querySelector(".report");
+let jobId = $("#jobId").val();
+
+editBtn.addEventListener("click", editPost);
+deleteBtn.addEventListener("click", openDeleteConfirm);
+reportBtn.addEventListener("click", reportJob);
+
+function editPost() {
+  window.location.href = "/s/api/jobSearch/updateForm/" + jobId;
+}
+
+// 삭제확인창 열기
+function openDeleteConfirm() {
+  let deleteConfirm = document.querySelector(".delete_confirm");
+  deleteConfirm.style.display = "flex";
+}
+
+// 삭제버튼들 연결
+const confirmDelete = document.querySelector("#confirmDelete");
+confirmDelete.addEventListener("click", () => {
+  deleteJob();
+});
+const closeDelete = document.querySelector("#closeDelete");
+closeDelete.addEventListener("click", () => {
+  let deleteConfirm = document.querySelector(".delete_confirm");
+  deleteConfirm.style.display = "none";
+});
 
 /*******/
 /* 댓글 */
@@ -190,9 +191,6 @@ function removeComment() {
       userId: $("#userId").val()
     };
 
-    alert(data.commentId);
-    alert(data.jobId);
-    alert(data.userId);
     $.ajax("/s/api/comment/delete", {
       type: "DELETE",
       dataType: "json",
@@ -211,11 +209,6 @@ function removeComment() {
     });
   }
 }
-
-// 구인글 신고하기
-$(".jobReportBtn").click(() => {
-  reportJob();
-});
 
 //  구인글 신고하기
 function reportJob() {

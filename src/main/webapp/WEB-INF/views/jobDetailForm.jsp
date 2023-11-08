@@ -124,7 +124,7 @@
             </div>
             <c:if test="${principal.userId == job.userId}">
               <div class="button_wrap">
-                <button type="" class=""><a href="/s/api/jobSearch/updateForm/${job.jobId}">수정</a></button>
+                <button type="button" class="edit_btn">수정</button>
                 <button type="button" class="delete_btn">삭제</button>
                 <div class="delete_confirm">
                   <h2 class="pro_tit">정말로 삭제하시겠습니까?</h2>
