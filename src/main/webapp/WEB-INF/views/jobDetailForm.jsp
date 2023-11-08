@@ -183,7 +183,7 @@
                         <button class='reportBtn'>신고하기</button>
                       </div>
                     </div>
-                    <textarea class="comment textarea" readonly>${comment.commentContent}${comment.commentId}</textarea>
+                    <textarea class="comment textarea" readonly>${comment.commentContent}</textarea>
                   </div>
                 </c:forEach>
               </div>

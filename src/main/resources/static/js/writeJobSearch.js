@@ -108,7 +108,7 @@ items.forEach((item) => {
 });
 
 // 멀티플 드랍박스에 기존 정보 불러오기
-let existingPosition = $("#jobPositionTitleList");
+let existingPosition = $("#jobPositionTitleList").val();
 
 if (existingPosition) {
   existingPosition.forEach((existingPosition) => {

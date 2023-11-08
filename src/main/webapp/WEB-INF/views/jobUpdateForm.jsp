@@ -85,31 +85,31 @@
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="OTT/TV 드라마"  >OTT/TV 드라마</span>
+                          <span class="item-text" value="OTT/TV 드라마">OTT/TV 드라마</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="웹 컨텐츠"  >웹 컨텐츠</span>
+                          <span class="item-text" value="웹 컨텐츠">웹 컨텐츠</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="광고"  >광고</span>
+                          <span class="item-text" value="광고">광고</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="전시"  >전시</span>
+                          <span class="item-text" value="전시">전시</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="기타"  >기타</span>
+                          <span class="item-text" value="기타">기타</span>
                         </li>
                       </ul>
                     </dd>
@@ -252,7 +252,7 @@
                   </dl>
                 </div>
                 <div class="content">
-                  <div id="editor-container">"${job.jobContent}"</div>
+                  <div id="editor-container">${job.jobContent}</div>
                 </div>
               </div>
             </div>
