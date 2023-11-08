@@ -164,12 +164,12 @@
                         <div class="pic center_display">
                           <a href="/s/api/user/detailForm/${comment.userId}" style="display: flex;">
                             <img src="/img/${comment.userProfileImg}" alt="image" />
+                          </a>
                         </div>
                         <div class="comment_info_txt">
                           <p class="nickname">
                             ${comment.userNickname}
                           </p>
-                          </a>
                           <p class="created_date">
                             <fmt:formatDate value="${comment.createdAt}" pattern="yy.MM.dd kk:mm" type="date" />
                           </p>

@@ -1,11 +1,11 @@
 package com.example.bumerang.web.dto.response.performance;
+
 import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.util.List;
-
 
 @Setter
 @Getter

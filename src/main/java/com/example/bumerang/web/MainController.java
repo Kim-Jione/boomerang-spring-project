@@ -28,6 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class MainController {
+
 	private final HttpSession session;
 	private final JobSearchService jobSearchService;
 	private final PerformanceService performanceService;
@@ -51,33 +52,33 @@ public class MainController {
 		return "jobMainForm";
 	}
 
-	// 마감하기 기능
-	@PutMapping("/s/api/main/deadline")
-	public @ResponseBody CMRespDto<?> deadline(@RequestBody DeadlineDto deadlineDto) {
-		SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-		Integer jobId = deadlineDto.getJobId();
-		Integer userId = deadlineDto.getUserId();
-		Integer pfId = deadlineDto.getPfId();
+    // 마감하기 기능
+    @PutMapping("/s/api/main/deadline")
+    public @ResponseBody CMRespDto<?> deadline(@RequestBody DeadlineDto deadlineDto) {
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        Integer jobId = deadlineDto.getJobId();
+        Integer userId = deadlineDto.getUserId();
+        Integer pfId = deadlineDto.getPfId();
         Integer userPId = principal.getUserId();
-        if(userId.equals(userPId)){
-			deadlineDto.setUserId(principal.getUserId());
-			if(jobId!=null){
-				JobSearch jobPS = jobSearchService.findById(jobId);
-				if(jobPS.getUserId().equals(userPId)){
-					JobSearch deadlineResult = jobSearchService.deadline(deadlineDto);
-					return new CMRespDto<>(1, "구인글 마감하기 성공.", deadlineResult);
-				}
-		}
-			if(pfId!=null){
-				Performance pfPS = performanceService.findById(pfId);
-				if(pfPS.getUserId().equals(userPId)){
-					Performance deadlineResult = performanceService.deadline(deadlineDto);
-					return new CMRespDto<>(1, "공연글 마감하기 성공.", deadlineResult);
-				}
-			}
+        if (userId.equals(userPId)) {
+            deadlineDto.setUserId(principal.getUserId());
+            if (jobId != null) {
+                JobSearch jobPS = jobSearchService.findById(jobId);
+                if (jobPS.getUserId().equals(userPId)) {
+                    JobSearch deadlineResult = jobSearchService.deadline(deadlineDto);
+                    return new CMRespDto<>(1, "구인글 마감하기 성공.", deadlineResult);
+                }
+            }
+            if (pfId != null) {
+                Performance pfPS = performanceService.findById(pfId);
+                if (pfPS.getUserId().equals(userPId)) {
+                    Performance deadlineResult = performanceService.deadline(deadlineDto);
+                    return new CMRespDto<>(1, "공연글 마감하기 성공.", deadlineResult);
+                }
+            }
         }
-		return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
-	}
+        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+    }
 
 	// 공연글 메인 화면
 	@GetMapping("/performance/mainForm")
@@ -89,8 +90,8 @@ public class MainController {
 		return "pfMainForm";
 	}
 
-	@GetMapping("/404")
-	public String errorForm(){
-		return "404";
-	}
+    @GetMapping("/404")
+    public String errorForm() {
+        return "404";
+    }
 }

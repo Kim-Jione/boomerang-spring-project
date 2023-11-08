@@ -47,6 +47,7 @@
             <article class="poster">
                 <div class="img"></div>
                 <a href="/s/api/performance/detailForm/${best.pfId}">
+
                     <img src="/image/poster/${best.pfThumbnail}" class="img-hover">
                 </a>
                 <div class="info">
