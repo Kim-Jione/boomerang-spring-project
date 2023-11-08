@@ -53,7 +53,7 @@
                   </dl>
                 </div>
                 <div class="info">
-                  <dl>
+                  <dl class="select">
                     <dt>작품 장르</dt>
                     <dd>
                       <div class="select_single">
@@ -207,7 +207,7 @@
                       </ul>
                     </dd>
                   </dl>
-                  <dl>
+                  <dl class="select">
                     <dt>모집 성별</dt>
                     <dd>
                       <div class="select_single">

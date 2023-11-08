@@ -60,7 +60,7 @@
                         <input class="date" type="date" id="pf_deadline" value="" />까지
                       </dd>
                     </dl>
-                    <dl>
+                    <dl class="select">
                       <dt>관람 연령</dt>
                       <dd>
                         <div class="select_single">
@@ -109,7 +109,7 @@
                         <input type="text" id="pf_bookingmethod" value="" placeholder="예매링크, 예매처 번호 등" />
                       </dd>
                     </dl>
-                    <dl>
+                    <dl class="select">
                       <dt>작품 장르</dt>
                       <dd>
                         <div class="select_single">
