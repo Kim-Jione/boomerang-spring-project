@@ -160,11 +160,6 @@ function saveComment() {
     userId: $("#userId").val()
   };
 
-  alert("jobId" + data.jobId);
-  alert("commentId" + data.commentId);
-  alert("commentContent" + data.commentContent);
-  alert("userId" + data.userId);
-
   $.ajax("/s/api/comment/update", {
     type: "PUT",
     data: JSON.stringify(data),
@@ -186,7 +181,35 @@ function saveComment() {
 // 댓글 삭제
 function removeComment() {
   const commentCard = this.closest(".comment_card"); // 삭제 버튼의 부모 comment_card 요소 찾기
-  commentsCont.removeChild(commentCard);
+  if (confirm("정말 삭제하시겠습니까?")) {
+    const commentCard = this.closest(".comment_card"); // 저장 버튼의 부모 comment_card 요소 찾기
+
+    let data = {
+      commentId: commentCard.querySelector(".commentId").value,
+      jobId: $("#jobId").val(),
+      userId: $("#userId").val()
+    };
+
+    alert(data.commentId);
+    alert(data.jobId);
+    alert(data.userId);
+    $.ajax("/s/api/comment/delete", {
+      type: "DELETE",
+      dataType: "json",
+      data: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).done((res) => {
+      if (res.code == 1) {
+        alert(res.msg);
+        location.reload();
+      } else {
+        alert(res.msg);
+        return false;
+      }
+    });
+  }
 }
 
 // 구인글 신고하기

@@ -119,8 +119,6 @@ function write() {
     userId: $("#userId").val()
   };
 
-  alert("jobContent: " + data.jobContent);
-
   $.ajax("/s/api/jobSearch/write", {
     type: "POST",
     dataType: "json",
