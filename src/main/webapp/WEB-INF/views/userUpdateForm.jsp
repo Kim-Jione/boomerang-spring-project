@@ -89,8 +89,9 @@
                       <ul class="pro_info2">
                         <li>
                           <label for="male">남성</label>
-                          <input type="radio" class="user_gender" name="user_gender" value="${userDetail.userGender}"
-                            checked />
+                          <input type="hidden" id="userGender" value="${userDetail.userGender}" />
+                          <input type="radio" class="user_gender" name="user_gender" value="남성"
+                            />
                           <label for="female">여성</label>
                           <input type="radio" class="user_gender" name="user_gender" value="여성" />
                         </li>
@@ -98,51 +99,51 @@
                           <input id="user_height" type="number" value="${userDetail.userHeight}" id="userheight" />cm
                         </li>
                         <li>
+                          <input type="hidden" id="userForm" value="${userDetail.userForm}" />
                           <select class="dropdown" name="user_form" id="user_form">
-                            <option value="${userDetail.userForm}">${userDetail.userForm}</option>
-                            <option value="아주 마름">아주 마름</option>
-                            <option value="마름" selected>마름</option>
-                            <option value="보통">보통</option>
-                            <option value="건장">건장</option>
-                            <option value="통통">통통</option>
-                            <option value="아주 큼">아주 큼</option>
+                            <option class="user_form" value="아주 마름">아주 마름</option>
+                            <option class="user_form" value="마름">마름</option>
+                            <option class="user_form" value="보통">보통</option>
+                            <option class="user_form" value="건장">건장</option>
+                            <option class="user_form" value="통통">통통</option>
+                            <option class="user_form" value="아주 큼">아주 큼</option>
                           </select>
                         </li>
                         <li>
+                          <input type="hidden" id="userTone" value="${userDetail.userTone}" />
                           <select class="dropdown" name="user_tone" id="user_tone">
-                            <option value="${userDetail.userTone}">${userDetail.userTone}</option>
-                            <option value="아주 낮음">아주 낮음</option>
-                            <option value="낮음" selected>낮음</option>
-                            <option value="보통">보통</option>
-                            <option value="높음">높음</option>
-                            <option value="아주 높음">아주 높음</option>
+                            <option class="user_tone" value="아주 낮음">아주 낮음</option>
+                            <option class="user_tone" value="낮음">낮음</option>
+                            <option class="user_tone" value="보통">보통</option>
+                            <option class="user_tone" value="높음">높음</option>
+                            <option class="user_tone" value="아주 높음">아주 높음</option>
                           </select>
                         </li>
                         <li>
+                          <input type="hidden" id="userPosition" value="${userDetail.userPosition}" />
                           <select class="dropdown" name="user_position" id="user_position">
-                            <option value="${userDetail.userTone}">${userDetail.userTone}</option>
-                            <option value="배우" selected>배우</option>
-                            <option value="연출">연출</option>
-                            <option value="음향">음향</option>
-                            <option value="카메라">카메라</option>
-                            <option value="조명">조명</option>
-                            <option value="작가">작가</option>
-                            <option value="기타">기타</option>
+                            <option class="user_position" value="배우" >배우</option>
+                            <option class="user_position" value="연출">연출</option>
+                            <option class="user_position" value="음향">음향</option>
+                            <option class="user_position" value="카메라">카메라</option>
+                            <option class="user_position" value="조명">조명</option>
+                            <option class="user_position" value="작가">작가</option>
+                            <option class="user_position" value="기타">기타</option>
                           </select>
                         </li>
                         <li>
+                          <input type="hidden" id="userAge" value="${userDetail.userAge}" />
                           <select class="dropdown" name="user_age" id="user_age">
-                            <option value="${userDetail.userAge}">${userDetail.userAge}</option>
-                            <option value="0">10대 미만</option>
-                            <option value="10">10대</option>
-                            <option value="20">20대</option>
-                            <option value="30" selected>30대</option>
-                            <option value="40">40대</option>
-                            <option value="50">50대</option>
-                            <option value="60">60대 이상</option>
-                            <option value="70">70대 이상</option>
-                            <option value="80">80대 이상</option>
-                            <option value="90">90대 이상</option>
+                            <option class="user_age" value="10대 미만">10대 미만</option>
+                            <option class="user_age" value="10대">10대</option>
+                            <option class="user_age" value="20대">20대</option>
+                            <option class="user_age" value="30대">30대</option>
+                            <option class="user_age" value="40대">40대</option>
+                            <option class="user_age" value="50대">50대</option>
+                            <option class="user_age" value="60대">60대</option>
+                            <option class="user_age" value="70대">70대</option>
+                            <option class="user_age" value="80대">80대</option>
+                            <option class="user_age" value="90대 이상">90대 이상</option>
                           </select>
                         </li>
                       </ul>
@@ -159,19 +160,19 @@
                     <div class="pro_txt">
                       <p class="pro_tit">CAREER</p>
                       <p class="pro_data">
+                        <input type="hidden" id="userCareer" value="${userDetail.userCareer}" />
                         <select class="dropdown" id="user_career">
-                          <option value="${userDetail.userCareer}">${userDetail.userCareer}</option>
-                          <option value="신인">신입</option>
-                          <option value="1년차">1년차</option>
-                          <option value="1년차">2년차</option>
-                          <option value="1년차">3년차</option>
-                          <option value="1년차" selected>4년차</option>
-                          <option value="1년차">5년차</option>
-                          <option value="1년차">6년차</option>
-                          <option value="1년차">7년차</option>
-                          <option value="1년차">8년차</option>
-                          <option value="1년차">9년차</option>
-                          <option value="1년차">10년차 이상</option>
+                          <option class="user_career" value="신입">신입</option>
+                          <option class="user_career" value="1년차">1년차</option>
+                          <option class="user_career" value="2년차">2년차</option>
+                          <option class="user_career" value="3년차">3년차</option>
+                          <option class="user_career" value="4년차">4년차</option>
+                          <option class="user_career" value="5년차">5년차</option>
+                          <option class="user_career" value="6년차">6년차</option>
+                          <option class="user_career" value="7년차">7년차</option>
+                          <option class="user_career" value="8년차">8년차</option>
+                          <option class="user_career" value="9년차">9년차</option>
+                          <option class="user_career" value="10년차 아성">10년차 이상</option>
                         </select>
                       </p>
                     </div>
@@ -253,7 +254,7 @@
                   </thead>
                   <tbody class="filmo_body">
                     <c:forEach items="${userDetail.userPortfolio}" var="portfolio">
-                      <tr id="1">
+                      <tr>
                         <td><input id="up_1_title" type="text" value="${portfolio.upTitle}" /></td>
                         <td>
                           <input id="up_1_prod_year" type="number" value="${portfolio.upProdYear}" />
@@ -267,17 +268,6 @@
                         </td>
                         <td>
                           <input id="up_1_history" type="text" value="${portfolio.upDirector}" />
-                        </td>
-                        <td><button class="filmo_del">삭제</button></td>
-                      </tr>
-                      <tr id="2">
-                        <td><input id="title" type="text" value="비공식작전" /></td>
-                        <td><input id="prod_year" type="number" value="2023" /></td>
-                        <td><input id="role" type="text" value="성우: 주지훈" /></td>
-                        <td><input id="genre" type="text" value="장편영화" /></td>
-                        <td><input id="director" type="text" value="김성훈" /></td>
-                        <td>
-                          <input id="history" type="text" value="2023 부산국제영화제" />
                         </td>
                         <td><button class="filmo_del">삭제</button></td>
                       </tr>
