@@ -67,8 +67,8 @@
                 </div>
             </article>
         </div>
-    </div>
     </c:forEach>
+    </div>
 </div>
 
 
