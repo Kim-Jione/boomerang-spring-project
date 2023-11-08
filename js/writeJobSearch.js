@@ -21,7 +21,8 @@ const selectOneBtn = document.querySelectorAll(".select_single"),
   SOItems = document.querySelectorAll(".single_item");
 
 selectOneBtn.forEach((selectOneBtn) => {
-  selectOneBtn.addEventListener("click", () => {
+  selectOneBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
     selectOneBtn.classList.toggle("open");
   });
 });
@@ -66,6 +67,29 @@ if (existingGender) {
     }
   });
 }
+
+//셀렉트 박스 외에 다른 영역을 클릭할 경우, 셀렉트 박스를 닫기
+function isClickSelect(event) {
+  //싱글 드랍박스 조작
+  selectOneBtn.forEach((selectOneBtn) => {
+    if (!selectOneBtn.parentElement.contains(event.target)) {
+      if (selectOneBtn.classList.contains("open")) {
+        selectOneBtn.classList.toggle("open");
+      }
+    }
+  });
+
+  //멀티플 드랍박스 조작
+  if (!selectBtn.parentElement.contains(event.target)) {
+    if (selectBtn.classList.contains("open")) {
+      selectBtn.classList.toggle("open");
+    }
+  }
+}
+
+document.addEventListener("click", function (event) {
+  isClickSelect(event);
+});
 
 /***************/
 /* 멀티플 드랍박스 */
