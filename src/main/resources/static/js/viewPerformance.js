@@ -11,7 +11,7 @@ if (
   editBtn.addEventListener("click", editPost);
   deleteBtn.addEventListener("click", openDeleteConfirm);
   function editPost() {
-    window.location.href = "/s/api/jobSearch/updateForm/" + pfId;
+    window.location.href = "/s/api/performance/updateForm/" + pfId;
   }
 
   // 삭제확인창 열기
@@ -22,7 +22,7 @@ if (
   // 삭제버튼들 연결
   const confirmDelete = document.querySelector("#confirmDelete");
   confirmDelete.addEventListener("click", () => {
-    deleteJob();
+    deletePf();
   });
   const closeDelete = document.querySelector("#closeDelete");
   closeDelete.addEventListener("click", () => {
@@ -33,7 +33,7 @@ if (
 const reportBtn = document.querySelector(".report");
 let pfId = $("#pfId").val();
 
-reportBtn.addEventListener("click", reportJob);
+reportBtn.addEventListener("click", reportPf);
 
 /*******/
 /* 댓글 */
@@ -214,7 +214,7 @@ function removeComment() {
 }
 
 //  구인글 신고하기
-function reportJob() {
+function reportPf() {
   let pfId = $("#pfId").val();
   let userId = $("#pfUserId").val();
 
@@ -261,12 +261,12 @@ function reportComment() {
       ",toolbar=no"
   );
 }
-// 구인글 신고하기
+// 공연글 신고하기
 $(".pfReportBtn").click(() => {
   reportPf();
 });
 
-//  구인글 신고하기
+//  공연글 신고하기
 function reportPf() {
   let pfId = $("#pfId").val();
   let userId = $("#pfUserId").val();
@@ -411,7 +411,7 @@ function deleteLove() {
       let count = $("#countLikey").text();
       $("#countLikey").text(Number(count) - 1);
     } else {
-      alert("구인글 추천 취소에 실패했습니다");
+      alert(res.msg);
     }
   });
 }

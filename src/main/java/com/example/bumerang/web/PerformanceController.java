@@ -63,8 +63,8 @@ public class PerformanceController {
         SessionUserDto userPS = (SessionUserDto)session.getAttribute("principal");
         Integer userId = userPS.getUserId();
         DetailFormDto pfDetail = performanceService.findByPf(userId, pfId);
+        System.err.println("likeyId"+pfDetail.getLikeyId());
         model.addAttribute("pf", pfDetail);
-
         return "pfDetailForm";
     }
 
