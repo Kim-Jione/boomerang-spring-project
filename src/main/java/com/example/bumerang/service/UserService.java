@@ -218,6 +218,5 @@ public class UserService {
     public UserRespDto imageUpdateUser(ImgUpdateDto imgUpdateDto) {
         UserRespDto imgUpdate = userDao.updateImg(imgUpdateDto);
         return imgUpdate;
-
     }
 }

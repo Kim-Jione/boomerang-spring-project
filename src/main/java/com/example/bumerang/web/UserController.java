@@ -122,32 +122,25 @@ public class UserController {
 
     // 회원 비밀번호 수정
     @PutMapping("/s/api/user/passwdUpdate")
-    public String passwdUpdate(@RequestPart("updateDto") PasswdDto passwordDto){
+    public String passwdUpdate(@RequestParam PasswdDto passwordDto){
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         PasswdDto passwd = userService.updatePasswd(passwordDto);
-        System.err.println(passwd +"1");
-        if ( passwd == null || principal == null ) {
-            return "404";
-        }
-        System.err.println(passwd +"2");
         return  "userUpdate";
     }
     // 회원 정보 수정
     @PutMapping("/s/api/user/userConfigUpdate")
-    public String userUpdate(@RequestPart("UpdateDto") UpdateDto updateDto){
+    public String userUpdate(@RequestBody UpdateDto updateDto){
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-        Integer userId = updateDto.getUserId();
-        Integer userPId = principal.getUserId();
-        if(userId.equals(userPId)){
+
             UserRespDto userUpdateResult = userService.update(updateDto);
-            System.err.println(userUpdateResult);
-        }
+            System.err.println("userUpdateResult:"+userUpdateResult);
         return  "userUpdate";
     }
 
     // 계정 상세 화면
     @GetMapping("user/detailForm/{userId}")
     public String detailForm(@PathVariable Integer userId, Model model) {
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(userId);
         model.addAttribute("userDetail",userDetail);
         if(userId == null){
@@ -174,7 +167,6 @@ public class UserController {
     public @ResponseBody CMRespDto<?> searchIdForm() {
         return new CMRespDto<>(1, "아이디 찾기 화면 불러오기 성공.", null);
     }
-
 
     // 비밀번호 찾기 화면
     @GetMapping("/user/searchPwForm")

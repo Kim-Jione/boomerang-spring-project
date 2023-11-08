@@ -30,10 +30,10 @@
                    <h2 class="pro_tit">프로필 이미지 변경하기</h2>
                    <form id="imageForm" enctype="multipart/form-data">
                        <input id="userProfileImg" type="file" accept="image/*">
-                   <div>
-                        <button id="save_editor">저장</button>
-                        <button id="close_editor">닫기</button>
-                   </div>
+                       <div>
+                            <button id="save_editor">저장</button>
+                            <button id="close_editor">닫기</button>
+                       </div>
                   </form>
                   </div>
               <div class="passwordChanger">
@@ -335,6 +335,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="/js/editMemberInfo.js" crossorigin="anonymous"></script>
+     <script src="/js/editMemberInfo-img.js" crossorigin="anonymous"></script>
+     <script src="/js/editMemberInfo-password.js" crossorigin="anonymous"></script>
     <script src="/js/default.js"></script>
   </body>
 </html>

@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 public class ImgUpdateDto {
     private String userProfileImg;
-
+    private String userId;
 }
