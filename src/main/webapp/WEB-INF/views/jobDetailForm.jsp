@@ -157,8 +157,8 @@
               <div class="comments_container center_display">
                 <!-- 댓글이 달리는 부분 -->
                 <c:forEach var="comment" items="${job.commentList}">
-                  <input type="hidden" class="commentId" id="${comment.commentId}" value="${comment.commentId}">
                   <div class="comment_card">
+                    <input type="hidden" class="commentId" id="${comment.commentId}" value="${comment.commentId}">
                     <div class="comment_top">
                       <div class="comment_info">
                         <div class="pic center_display">
