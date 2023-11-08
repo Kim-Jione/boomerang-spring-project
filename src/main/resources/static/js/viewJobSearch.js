@@ -96,7 +96,7 @@ function addFeedback(item) {
                     <p class="nickname">
                         ${item.userName}
                     </p>
-                    <p class="created_date">${item.createdDate}</p>
+                    <p class="created_date"><fmt:formatDate value="${item.createdDate}" pattern="yy.MM.dd kk:mm" type="date" /></p>
                 </div>
             </div>
             <div class="comment_btns">
@@ -105,7 +105,7 @@ function addFeedback(item) {
                 <button class='reportBtn'>신고하기</button>
             </div>
         </div>
-        <textarea class="comment textarea" readonly>${item.userComment}</textarea>
+        <textarea class="comment textarea" id="commentContent" readonly>${item.userComment}</textarea>
 
     `;
   // insert feedback into the list
@@ -153,6 +153,30 @@ function saveComment() {
   textarea.readOnly = true;
   textarea.style.border = "none";
 
+  let data = {
+    jobId: $("#jobId").val(),
+    commentId: commentCard.querySelector(".commentId").value,
+    commentContent: textarea.value,
+    userId: $("#userId").val()
+  };
+
+  alert("jobId" + data.jobId);
+  alert("commentId" + data.commentId);
+  alert("commentContent" + data.commentContent);
+  alert("userId" + data.userId);
+
+  $.ajax("/s/api/comment/update", {
+    type: "PUT",
+    data: JSON.stringify(data),
+    dataType: "json",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+    }
+  });
   const editBtn = commentCard.querySelector(".editBtn");
   editBtn.innerText = "수정";
   editBtn.removeEventListener("click", saveComment);
@@ -274,7 +298,6 @@ function insertLove() {
 
 // 구인글 추천 취소하기
 function deleteLove() {
-
   let likeyId = $("#likeyId").val();
 
   $.ajax("/s/api/unlikey/" + likeyId, {
@@ -321,6 +344,40 @@ function deleteJob() {
     if (res.code == 1) {
       alert(res.msg);
       location.href = "/jobSearch/mainForm";
+    } else {
+      alert(res.msg);
+      return false;
+    }
+  });
+}
+
+// 댓글 작성
+$("#commentWriteBtn").click(() => {
+  write();
+});
+
+function write() {
+  let data = {
+    commentContent: $("#commentContent").val(),
+    jobId: $("#jobId").val(),
+    userId: $("#userId").val()
+  };
+  if (data.commentContent.length < 1) {
+    alert("댓글을 입력해주세요.");
+    return;
+  }
+
+  $.ajax("/s/api/comment/write", {
+    type: "POST",
+    dataType: "json",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/s/api/jobSearch/detailForm/" + data.jobId;
     } else {
       alert(res.msg);
       return false;
