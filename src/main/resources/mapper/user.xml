@@ -201,6 +201,7 @@
         user_id = #{userId} AND user_status != 'deleted'
     </update>
     <update id="updateImg">
+
         update user
         set
         user_profile_img = #{userProfileImg}

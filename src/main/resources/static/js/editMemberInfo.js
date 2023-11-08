@@ -129,6 +129,7 @@ function Imginit(){
     function closeImageEditor() {
       let imageEditor = document.querySelector(".img_editor");
       imageEditor.style.display = "none";
+
     }
 
     //선택한 이미지로 프로필 이미지 변경

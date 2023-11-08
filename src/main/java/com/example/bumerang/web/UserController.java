@@ -60,6 +60,7 @@ public class UserController {
     @GetMapping("/user/loginForm")
     public String loginForm() {
         return "loginForm";
+
     }
 
     // 로그인 기능

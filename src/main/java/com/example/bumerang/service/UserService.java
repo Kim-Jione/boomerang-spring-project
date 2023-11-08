@@ -192,6 +192,7 @@ public class UserService {
             }
         }
         return null;
+
     }
 
     public User findByLogin(String userLoginId) {
@@ -217,5 +218,6 @@ public class UserService {
     public UserRespDto imageUpdateUser(ImgUpdateDto imgUpdateDto) {
         UserRespDto imgUpdate = userDao.updateImg(imgUpdateDto);
         return imgUpdate;
+
     }
 }
