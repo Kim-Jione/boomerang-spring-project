@@ -42,6 +42,29 @@ SOItems.forEach((SOItems) => {
   });
 });
 
+// 싱글 드랍박스에 기존 정보 불러오기
+let existingGenre = document.querySelector("#jobGenre").value;
+let existingGender = document.querySelector("#jobGender").value;
+if (existingGenre) {
+  SOItems.forEach((SOItems) => {
+    if (SOItems.querySelector(".item-text").innerText == existingGenre.value) {
+      SOItems.classList.toggle("checked");
+      let btnText =
+        SOItems.parentElement.parentElement.querySelector(".btn-text");
+      btnText.innerText = SOItems.querySelector(".item-text").innerText;
+    }
+  });
+}
+if (existingGender) {
+  SOItems.forEach((SOItems) => {
+    if (SOItems.querySelector(".item-text").innerText == existingGender.value) {
+      SOItems.classList.toggle("checked");
+      let btnText =
+        SOItems.parentElement.parentElement.querySelector(".btn-text");
+      btnText.innerText = SOItems.querySelector(".item-text").innerText;
+    }
+  });
+}
 /***************/
 /* 멀티플 드랍박스 */
 /***************/
@@ -62,7 +85,17 @@ items.forEach((item) => {
     let checked = item.parentElement.parentElement.querySelectorAll(".checked");
     let btnText = item.parentElement.parentElement.querySelector(".btn-text");
 
-    if (checked && checked.length > 0) {
+    if (checked && checked.length > 0 && checked.length <= 3) {
+      checked.forEach((checked) => {
+        checkedTexts.push(checked.querySelector(".item-text").textContent);
+      });
+
+      btnText.innerText = `${checkedTexts}`;
+    } else if (checked.length > 3) {
+      alert("3개까지만 선택 가능합니다.");
+      item.classList.toggle("checked"); // 마지막으로 선택한 항목 체크 해제
+
+      checked = item.parentElement.parentElement.querySelectorAll(".checked");
       checked.forEach((checked) => {
         checkedTexts.push(checked.querySelector(".item-text").textContent);
       });
@@ -73,6 +106,25 @@ items.forEach((item) => {
     }
   });
 });
+
+// 멀티플 드랍박스에 기존 정보 불러오기
+let existingPosition = $("#jobPositionTitleList");
+
+if (existingPosition) {
+  existingPosition.forEach((existingPosition) => {
+    items.forEach((items) => {
+      if (items.querySelector(".item-text").innerText == existingPosition) {
+        items.classList.toggle("checked");
+        checked =
+          items.parentElement.parentElement.querySelectorAll(".checked");
+        checkedTexts.push(items.querySelector(".item-text").textContent);
+      }
+      let btnText =
+        items.parentElement.parentElement.querySelector(".btn-text");
+      btnText.innerText = `${checkedTexts}`;
+    });
+  });
+}
 
 /************/
 /* 에디터 삽입 */
