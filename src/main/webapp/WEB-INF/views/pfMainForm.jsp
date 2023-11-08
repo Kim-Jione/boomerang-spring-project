@@ -47,7 +47,7 @@
             <article class="poster">
                 <div class="img"></div>
                 <a href="/s/api/performance/detailForm/${best.pfId}">
-                    <img src="/image/poster/poster_1.jpg" class="img-hover">
+                    <img src="/image/poster/${best.pfThumbnail}" class="img-hover">
                 </a>
                 <div class="info">
                     <div class="badge">
@@ -67,8 +67,8 @@
                 </div>
             </article>
         </div>
-    </div>
     </c:forEach>
+    </div>
 </div>
 
 
