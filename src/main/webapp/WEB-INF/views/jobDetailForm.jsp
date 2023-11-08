@@ -118,7 +118,7 @@
                 <div class="pf_intro">
                   <h4>구인글 소개</h4>
                   <div class="border"></div>
-                  <textarea readonly class="introduce textarea">${job.jobContent}</textarea>
+                  <div class="introduce">${job.jobContent}</div>
                 </div>
               </div>
             </div>
