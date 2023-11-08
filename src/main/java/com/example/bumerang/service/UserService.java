@@ -210,9 +210,14 @@ public class UserService {
         return userPS;
     }
 
-    public PasswdDto updatePasswd(PasswdDto passwordDto) {
-        PasswdDto passUpdate = userDao.updatePassword(passwordDto);
-        return passUpdate;
+    public PasswdDto updatePasswd(String userPassword, Integer userId) {
+        System.err.println("userId: "+userId);
+        System.err.println("getUserPassword: "+userPassword);
+         userDao.updatePassword(userPassword, userId);
+         User userPS = userDao.findById(userId);
+        System.err.println("됐다: "+userPS.getUserPassword());
+        PasswdDto passUpdateResult = userDao.findByPwUpdateResult(userPassword, userId);
+        return passUpdateResult;
     }
 
     public UserRespDto imageUpdateUser(ImgUpdateDto imgUpdateDto) {

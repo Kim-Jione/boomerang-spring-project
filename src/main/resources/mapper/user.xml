@@ -201,11 +201,15 @@
         user_id = #{userId} AND user_status != 'deleted'
     </update>
     <update id="updateImg">
-
         update user
         set
         user_profile_img = #{userProfileImg}
         Where
         user_id = #{userId} AND user_status != 'deleted'
     </update>
+
+    <select id="findByPwUpdateResult"
+            resultType="com.example.bumerang.web.dto.request.user.PasswdDto">
+        SELECT * FROM user WHERE user_id=#{userId} AND user_status != 'deleted'
+    </select>
 </mapper>

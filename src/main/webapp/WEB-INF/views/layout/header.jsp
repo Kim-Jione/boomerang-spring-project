@@ -133,7 +133,7 @@
                                         </li>
                                         <li>
                                             <span class="material-icons icons-size">person</span>
-                                            <a href="/user/detailForm/${userId}">계정 관리</a>
+                                            <a href="/user/detailForm/${principal.userId}">계정 관리</a>
                                         </li>
                                         <li>
                                             <span class="material-icons icons-size">account_balance_wallet</span>

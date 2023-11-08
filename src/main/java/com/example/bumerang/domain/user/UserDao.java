@@ -58,7 +58,9 @@ public interface UserDao {
 
     void updatePw(String userPassword, Integer userId);
 
-    PasswdDto updatePassword(PasswdDto passwordDto);
+    void updatePassword(String userPassword,Integer userId);
 
     UserRespDto updateImg(ImgUpdateDto imgUpdateDto);
+
+    PasswdDto findByPwUpdateResult(String userPassword, Integer userId);
 }

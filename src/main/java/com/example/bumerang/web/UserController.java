@@ -122,18 +122,20 @@ public class UserController {
 
     // 회원 비밀번호 수정
     @PutMapping("/s/api/user/passwdUpdate")
-    public String passwdUpdate(@RequestParam PasswdDto passwordDto){
+    public @ResponseBody CMRespDto<?> passwdUpdate(@RequestBody PasswdDto passwordDto){
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-        PasswdDto passwd = userService.updatePasswd(passwordDto);
-        return  "userUpdate";
+        Integer userId = principal.getUserId();
+        System.err.println("디버그userId: "+userId);
+        PasswdDto passwd = userService.updatePasswd(passwordDto.getUserPassword(), userId);
+        System.err.println("디버그getUserPassword: "+passwd.getUserPassword());
+        return new CMRespDto<>(1, "비밀번호 수정 성공.", passwd);
     }
     // 회원 정보 수정
     @PutMapping("/s/api/user/userConfigUpdate")
     public String userUpdate(@RequestBody UpdateDto updateDto){
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-
-            UserRespDto userUpdateResult = userService.update(updateDto);
-            System.err.println("userUpdateResult:"+userUpdateResult);
+        UserRespDto userUpdateResult = userService.update(updateDto);
+        System.err.println("userUpdateResult:"+userUpdateResult);
         return  "userUpdate";
     }
 
