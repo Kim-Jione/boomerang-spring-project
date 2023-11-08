@@ -26,7 +26,7 @@
           <div class="pro_right">
             <div class="name">
               <p>${userDetail.userNickname}</p>
-              <button class="edit_btn" onclick="">수정하기</button>
+              <a class="edit_btn" href="/user/updateForm/${userId}">수정하기</a>
             </div>
             <div class="profile_con">
               <div class="profile_txt">

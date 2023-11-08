@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import com.example.bumerang.web.dto.request.user.*;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -19,9 +20,6 @@ import com.example.bumerang.domain.user.UserDao;
 import com.example.bumerang.domain.userPortfolio.UserPortfolio;
 import com.example.bumerang.util.SHA256;
 import com.example.bumerang.web.dto.SessionUserDto;
-import com.example.bumerang.web.dto.request.user.JoinDto;
-import com.example.bumerang.web.dto.request.user.LoginDto;
-import com.example.bumerang.web.dto.request.user.UpdateDto;
 import com.example.bumerang.web.dto.response.likey.LikeyJSListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
 import com.example.bumerang.web.dto.response.user.SearchIdDto;
@@ -209,5 +207,15 @@ public class UserService {
     public User findByEmail(String userEmail) {
         User userPS = userDao.findByEmail(userEmail);
         return userPS;
+    }
+
+    public PasswdDto updatePasswd(PasswdDto passwordDto) {
+        PasswdDto passUpdate = userDao.updatePassword(passwordDto);
+        return passUpdate;
+    }
+
+    public UserRespDto imageUpdateUser(ImgUpdateDto imgUpdateDto) {
+        UserRespDto imgUpdate = userDao.updateImg(imgUpdateDto);
+        return imgUpdate;
     }
 }

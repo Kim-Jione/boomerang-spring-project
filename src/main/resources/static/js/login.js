@@ -29,6 +29,7 @@ function login() {
     userLoginId: $("#userLoginId").val(),
     userPassword: $("#userPassword").val()
   };
+
 alert(data.userLoginId);
   $.ajax("/user/login", {
     type: "POST",

@@ -132,7 +132,6 @@
     <update id="updateUser">
         UPDATE user
         SET
-        user_password = #{userPassword},
         user_email = #{userEmail},
         user_nickname = #{userNickname},
         user_gender = #{userGender},
@@ -144,7 +143,6 @@
         user_skill = #{userSkill},
         user_education = #{userEducation},
         user_contact_link = #{userContactLink},
-        user_profile_img = #{userProfileImg}
         WHERE
         user_id = #{userId} AND user_status != 'deleted'
     </update>
@@ -193,6 +191,20 @@
         SET
         user_password = #{userPassword}
         WHERE
+        user_id = #{userId} AND user_status != 'deleted'
+    </update>
+    <update id="updatePassword">
+        update user
+        set
+        user_password = #{userPassword}
+        Where
+        user_id = #{userId} AND user_status != 'deleted'
+    </update>
+    <update id="updateImg">
+        update user
+        set
+        user_profile_img = #{userProfileImg}
+        Where
         user_id = #{userId} AND user_status != 'deleted'
     </update>
 </mapper>

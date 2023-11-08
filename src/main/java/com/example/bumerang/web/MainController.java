@@ -4,8 +4,10 @@ import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.domain.performance.Performance;
 import com.example.bumerang.service.JobSearchService;
 import com.example.bumerang.service.PerformanceService;
+import com.example.bumerang.service.UserService;
 import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.jobSearch.DeadlineDto;
+import com.example.bumerang.web.dto.request.user.LoginDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobListDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobMainDto;
@@ -29,15 +31,19 @@ public class MainController {
 	private final HttpSession session;
 	private final JobSearchService jobSearchService;
 	private final PerformanceService performanceService;
-
+	private final UserService userService;
 	// 구인정보글 메인 화면
 	@GetMapping({"/","/jobSearch/mainForm"})
 	public String jobMainForm(Model model) {
-		JobMainDto jobMainResp = new JobMainDto();
+		// 테스트 위한 임시 로그인 - 메인페이지 들어오면 로그인됨
+		LoginDto loginDto = new LoginDto();
+		loginDto.setUserLoginId("ssar");
+		loginDto.setUserPassword("1234");
+		SessionUserDto loginResult = userService.findByUser(loginDto);
+		userService.login(loginResult);
+		// 테스트 위한 임시 로그인
 		List<JobListDto> jobList = jobSearchService.findAllJob();
 		List<JobListDto> bestJobList = jobSearchService.findAllBeestJob();
-		jobMainResp.setJobList(jobList);
-		jobMainResp.setBestJobList(bestJobList);
 		model.addAttribute("jobList",jobList);
 		model.addAttribute("bestJobList",bestJobList);
 		return "jobMainForm";

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.example.bumerang.web.dto.request.user.*;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import com.example.bumerang.domain.user.User;
 import com.example.bumerang.service.UserService;
 import com.example.bumerang.web.dto.SessionUserDto;
-import com.example.bumerang.web.dto.request.user.JoinDto;
-import com.example.bumerang.web.dto.request.user.LoginDto;
-import com.example.bumerang.web.dto.request.user.UpdateDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
 import com.example.bumerang.web.dto.response.likey.LikeyJSListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
@@ -83,38 +81,71 @@ public class UserController {
     }
 
     // 내 회원정보 수정 화면
-    @GetMapping("/s/api/user/updateForm")
-    public @ResponseBody CMRespDto<?> updateForm() {
+    @GetMapping("user/updateForm/{userId}")
+    public String updateForm(@PathVariable Integer userId, Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-        UserRespDto userDetail = userService.findByDetail(principal.getUserId());
-        return new CMRespDto<>(1, "계정정보 불러오기 성공.", userDetail);
+
+        if(principal == null){
+            return "404";
+        }
+        UserRespDto userDetailFrom = userService.findByDetail(userId);
+        UserRespDto userDetail = userService.findByDetail(userId);
+        model.addAttribute("userDetailFrom",userDetailFrom );
+        model.addAttribute("userDetail",userDetail );
+        return "userUpdateForm";
     }
 
-    // 회원수정기능
-    @PutMapping("/s/api/user/update")
-    public @ResponseBody CMRespDto<?> updateUser(@RequestPart("profileImage") MultipartFile profileImage, @RequestPart("updateDto") UpdateDto updateDto) {
 
+    // 회원 프로필 수정기능
+    @PutMapping("/s/api/user/Imageupdate")
+    public String updateUser(@RequestPart("profileImage") MultipartFile profileImage, @RequestPart("ImgUpdateDto") ImgUpdateDto imgUpdateDto) {
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+
+        // 이미지 업로드 및 업데이트
+        String imagePath = userService.uploadProfileImage(profileImage);
+        try {
+            // imgUpdateDto에 imagePath를 설정
+            imgUpdateDto.setUserProfileImg(imagePath);
+            // 사용자 정보 업데이트
+            System.err.println(imagePath);
+            UserRespDto userUpdateResult = userService.imageUpdateUser(imgUpdateDto);
+            System.err.println(userUpdateResult);
+            return "userUpdate";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 오류 처리 로직 추가
+            return "404"; // 오류 페이지로 리디렉션
+        }
+    }
+
+    // 회원 비밀번호 수정
+    @PutMapping("/s/api/user/passwdUpdate")
+    public String passwdUpdate(@RequestPart("updateDto") PasswdDto passwordDto){
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        PasswdDto passwd = userService.updatePasswd(passwordDto);
+        System.err.println(passwd +"1");
+        if ( passwd == null || principal == null ) {
+            return "404";
+        }
+        System.err.println(passwd +"2");
+        return  "userUpdate";
+    }
+    // 회원 정보 수정
+    @PutMapping("/s/api/user/userConfigUpdate")
+    public String userUpdate(@RequestPart("UpdateDto") UpdateDto updateDto){
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = updateDto.getUserId();
         Integer userPId = principal.getUserId();
-        if (userId.equals(userPId)) {
-            try {
-                // 이미지 업로드 및 업데이트
-                String imagePath = userService.uploadProfileImage(profileImage);
-                // UpdateDto에 imagePath를 설정
-                updateDto.setUserProfileImg(imagePath);
-                // 사용자 정보 업데이트
-                UserRespDto userUpdateResult = userService.update(updateDto);
-                return new CMRespDto<>(1, "회원 수정 성공.", userUpdateResult);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if(userId.equals(userPId)){
+            UserRespDto userUpdateResult = userService.update(updateDto);
+            System.err.println(userUpdateResult);
         }
-        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+        return  "userUpdate";
     }
 
     // 계정 상세 화면
-    @GetMapping("/user/detailForm/{userId}")
+    @GetMapping("user/detailForm/{userId}")
     public String detailForm(@PathVariable Integer userId, Model model) {
         UserRespDto userDetail = userService.findByDetail(userId);
         model.addAttribute("userDetail",userDetail);
