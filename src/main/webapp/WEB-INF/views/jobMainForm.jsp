@@ -137,7 +137,7 @@
 
                         <div class="filter">
                             <div class="dropdown_list">
-                                <select id="filterGenre" onchange="filterPosts()" class="dropdown">
+                                <select id="filterGenre" class="dropdown">
                                     <option value="all">장르</option>
                                     <option value="영화">영화</option>
                                     <option value="연극">연극</option>
