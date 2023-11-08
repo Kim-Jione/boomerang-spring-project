@@ -5,13 +5,14 @@
 const editBtn = document.querySelector(".edit_btn");
 const deleteBtn = document.querySelector(".delete_btn");
 const reportBtn = document.querySelector(".report");
+let jobId = $("#jobId").val();
 
 editBtn.addEventListener("click", editPost);
 deleteBtn.addEventListener("click", openDeleteConfirm);
 reportBtn.addEventListener("click", reportJob);
 
 function editPost() {
-  window.location.href = "writeJobSearch.html";
+  window.location.href = "/s/api/jobSearch/updateForm/" + jobId;
 }
 
 // 삭제확인창 열기
@@ -52,7 +53,7 @@ function submitFeedback(e) {
   // get feedback
   const commentForm = comment.value;
   const currentTime = new Date();
-  // if inputs are not empty
+  // if inputs are not empt삭
   if (userForm && commentForm !== "") {
     // create new feedback
     newFeedback = {
@@ -96,7 +97,7 @@ function addFeedback(item) {
                     <p class="nickname">
                         ${item.userName}
                     </p>
-                    <p class="created_date">${item.createdDate}</p>
+                    <p class="created_date"><fmt:formatDate value="${item.createdDate}" pattern="yy.MM.dd kk:mm" type="date" /></p>
                 </div>
             </div>
             <div class="comment_btns">
@@ -105,8 +106,8 @@ function addFeedback(item) {
                 <button class='reportBtn'>신고하기</button>
             </div>
         </div>
-        <textarea class="comment textarea" readonly>${item.userComment}</textarea>
-        
+        <textarea class="comment textarea" id="commentContent" readonly>${item.userComment}</textarea>
+
     `;
   // insert feedback into the list
   commentsCont.insertAdjacentElement("beforeend", div);
@@ -153,6 +154,25 @@ function saveComment() {
   textarea.readOnly = true;
   textarea.style.border = "none";
 
+  let data = {
+    jobId: $("#jobId").val(),
+    commentId: commentCard.querySelector(".commentId").value,
+    commentContent: textarea.value,
+    userId: $("#userId").val()
+  };
+
+  $.ajax("/s/api/comment/update", {
+    type: "PUT",
+    data: JSON.stringify(data),
+    dataType: "json",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+    }
+  });
   const editBtn = commentCard.querySelector(".editBtn");
   editBtn.innerText = "수정";
   editBtn.removeEventListener("click", saveComment);
@@ -162,21 +182,41 @@ function saveComment() {
 // 댓글 삭제
 function removeComment() {
   const commentCard = this.closest(".comment_card"); // 삭제 버튼의 부모 comment_card 요소 찾기
-  commentsCont.removeChild(commentCard);
-}
+  if (confirm("정말 삭제하시겠습니까?")) {
+    const commentCard = this.closest(".comment_card"); // 저장 버튼의 부모 comment_card 요소 찾기
 
-// 구인글 신고하기
-$(".jobReportBtn").click(() => {
-  reportJob();
-});
+    let data = {
+      commentId: commentCard.querySelector(".commentId").value,
+      jobId: $("#jobId").val(),
+      userId: $("#userId").val()
+    };
+
+    $.ajax("/s/api/comment/delete", {
+      type: "DELETE",
+      dataType: "json",
+      data: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).done((res) => {
+      if (res.code == 1) {
+        alert(res.msg);
+        location.reload();
+      } else {
+        alert(res.msg);
+        return false;
+      }
+    });
+  }
+}
 
 //  구인글 신고하기
 function reportJob() {
   let jobId = $("#jobId").val();
   let userId = $("#jobUserId").val();
 
-  var nWidth = "500";
-  var nHeight = "600";
+  var nWidth = "700";
+  var nHeight = "900";
   var xPos = document.body.clientWidth / 2 - nWidth / 2;
   xPos += window.screenLeft; //듀얼 모니터
   var yPos = screen.availHeight / 2 - nHeight / 2;
@@ -320,6 +360,40 @@ function deleteJob() {
     if (res.code == 1) {
       alert(res.msg);
       location.href = "/jobSearch/mainForm";
+    } else {
+      alert(res.msg);
+      return false;
+    }
+  });
+}
+
+// 댓글 작성
+$("#commentWriteBtn").click(() => {
+  write();
+});
+
+function write() {
+  let data = {
+    commentContent: $("#commentContent").val(),
+    jobId: $("#jobId").val(),
+    userId: $("#userId").val()
+  };
+  if (data.commentContent.length < 1) {
+    alert("댓글을 입력해주세요.");
+    return;
+  }
+
+  $.ajax("/s/api/comment/write", {
+    type: "POST",
+    dataType: "json",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/s/api/jobSearch/detailForm/" + data.jobId;
     } else {
       alert(res.msg);
       return false;

@@ -25,14 +25,13 @@
 <input type="hidden" id="userId" value="${principal.userId}"><!--추천자 ID-->
 <input type="hidden" id="likeyId" value="${pf.likeyId}">
 
-
 <div class="pf_container">
     <div class="pf_title_area">
         <div class="pf_display">
             <div class="myinfo">
-                <h1 class="pf_title">소울 메이트</h1>
+                <h1 class="pf_title">${pf.pfTitle}</h1>
                 <div class="pf_label">
-                    <img class="pf_img" src="C:/bumerang/img/${principal.userProfileImg}"/>
+                    <img class="pf_img" src="/img/${principal.userProfileImg}"/>
                     <p class="pf_nickname">${pf.userNickname}</p>
                 </div>
             </div>
@@ -52,7 +51,7 @@
     <div class="border"></div>
 
     <div class="pf_info">
-        <img class="poster_img" src="C:/bumerang/img/${pf.pfThumbnail}"/>
+        <img class="poster_img" src="/img/${pf.pfThumbnail}"/>
         <div class="column">
             <ul class="detail_info">
                 <li>
@@ -127,24 +126,54 @@
         <form>
             <div class="write_comment">
                 <div class="comment_img center_display">
-                    <img src="C:/bumerang/img/${principal.userProfileImg}" alt="image"/>
+                    <img src="/img/${principal.userProfileImg}" alt="image"/>
                 </div>
                 <div class="form_info center_display">
                     <textarea
                             type="text"
                             name="comment"
-                            id="comment"
+                            id="commentContent"
                             placeholder="댓글을 입력하세요"
                     ></textarea>
                 </div>
             </div>
-            <button type="submit" class="submit_btn">등록</button>
+            <button type="button" class="submit_btn" id="commentWriteBtn">등록</button>
         </form>
     </div>
     <!-- 여기까지 -->
 
     <div class="comments_container center_display">
         <!-- 댓글이 달리는 부분 -->
+        <c:forEach var="comment" items="${pf.commentList}">
+            <div class="comment_card">
+                <input type="hidden" class="commentId" id="${comment.commentId}" value="${comment.commentId}">
+                <div class="comment_top">
+                    <div class="comment_info">
+                        <div class="pic center_display">
+                            <a href="/s/api/user/detailForm/${comment.userId}" style="display: flex;">
+                                <img src="/img/${comment.userProfileImg}" alt="image" />
+                        </div>
+                        <div class="comment_info_txt">
+                            <p class="nickname">
+                                    ${comment.userNickname}
+                            </p>
+                            </a>
+                            <p class="created_date">
+                                <fmt:formatDate value="${comment.createdAt}" pattern="yy.MM.dd kk:mm" type="date" />
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comment_btns">
+                        <c:if test="${comment.userId == principal.userId}">
+                            <button class='editBtn'>수정</button>
+                            <button class='removeBtn'>삭제</button>
+                        </c:if>
+                        <button class='reportBtn'>신고하기</button>
+                    </div>
+                </div>
+                <textarea class="comment textarea" readonly>${comment.commentContent}${comment.commentId}</textarea>
+            </div>
+        </c:forEach>
     </div>
 </div>
 
