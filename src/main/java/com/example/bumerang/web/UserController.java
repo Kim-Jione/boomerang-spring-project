@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.example.bumerang.web.dto.request.user.PasswdDto;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,7 +84,7 @@ public class UserController {
     }
 
     // 내 회원정보 수정 화면
-    @GetMapping("/s/api/user/updateForm")
+    @GetMapping("/s/api/user/updateForm/{userId}")
     public String updateForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(principal.getUserId());
@@ -91,34 +92,30 @@ public class UserController {
         return "userUpdateForm";
     }
 
-    // 회원수정기능
-    @PutMapping("/s/api/user/update")
-    public @ResponseBody CMRespDto<?> updateUser(@RequestPart("profileImage") MultipartFile profileImage, @RequestPart("updateDto") UpdateDto updateDto) {
-
+    // 회원 비밀번호 수정
+    @PutMapping("/s/api/user/passwdUpdate")
+    public @ResponseBody CMRespDto<?> passwdUpdate(@RequestBody PasswdDto passwordDto){
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-        Integer userId = updateDto.getUserId();
-        Integer userPId = principal.getUserId();
-        if (userId.equals(userPId)) {
-            try {
-                // 이미지 업로드 및 업데이트
-                String imagePath = userService.uploadProfileImage(profileImage);
-                // UpdateDto에 imagePath를 설정
-                updateDto.setUserProfileImg(imagePath);
-                // 사용자 정보 업데이트
-                UserRespDto userUpdateResult = userService.update(updateDto);
-                return new CMRespDto<>(1, "회원 수정 성공.", userUpdateResult);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        Integer userId = principal.getUserId();
+
+        if( userId == null ){
+            return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
         }
-        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+        System.err.println("디버그userId: " + userId);
+        PasswdDto passwd = userService.updatePasswd(passwordDto.getUserPassword(), userId);
+        System.err.println("디버그getUserPassword: "+passwd.getUserPassword());
+        return new CMRespDto<>(1, "비밀번호 수정 성공.", passwd);
     }
 
     // 계정 상세 화면
-    @GetMapping("/s/api/user/detailForm/{userId}")
+    @GetMapping("s/api/user/detailForm/{userId}")
     public String detailForm(@PathVariable Integer userId, Model model) {
-        UserRespDto userDetail = userService.findByDetail(userId);
-        model.addAttribute("user", userDetail);
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        UserRespDto userDetail = userService.findByDetail(principal.getUserId());
+        model.addAttribute("userDetail",userDetail);
+        if(userId == null){
+            return "404";
+        }
         return "userDetailForm";
     }
 
