@@ -56,7 +56,8 @@ public class MainController {
         Boolean isDead = searchDto.getIsDead();
         // 페이지수 비어있을 때 초기화
         if (page == null) {
-			page = 0;
+            page = 0;
+            searchDto.setPage(page);
 		}
         System.err.println("디버그 컨트롤러 실행");
         System.err.println("keyword: "+keyword);
@@ -66,9 +67,11 @@ public class MainController {
         System.err.println("isDead: "+isDead);
         // 페이지 수 설정
         Integer startNum = page * 12;
-		PagingDto paging = jobSearchService.paging(page, keyword);
+        searchDto.setStartnum(startNum);
+        System.err.println("startNum: "+startNum);
+		PagingDto paging = jobSearchService.paging(searchDto);
         paging.makeBlockInfoByPostAll(keyword);
-        List<JobListDto> jobList = jobSearchService.findAllJob(startNum, keyword);
+        List<JobListDto> jobList = jobSearchService.findAllJob(searchDto);
 		List<JobListDto> bestJobList = jobSearchService.findAllBestJob();
         model.addAttribute("paging", paging); // 페이징
 		model.addAttribute("jobList",jobList);

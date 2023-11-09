@@ -1,21 +1,25 @@
 package com.example.bumerang.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.example.bumerang.domain.comment.CommentDao;
 import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.domain.jobSearch.JobSearchDao;
 import com.example.bumerang.domain.jobSearchPosition.JobSearchPositionDao;
-import com.example.bumerang.domain.likey.LikeyDao;
 import com.example.bumerang.domain.view.ViewDao;
+import com.example.bumerang.web.dto.SearchDto;
 import com.example.bumerang.web.dto.request.jobSearch.DeadlineDto;
 import com.example.bumerang.web.dto.request.jobSearch.UpdateDto;
 import com.example.bumerang.web.dto.request.jobSearch.WriteDto;
 import com.example.bumerang.web.dto.response.PagingDto;
-import com.example.bumerang.web.dto.response.jobSearch.*;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.example.bumerang.web.dto.response.jobSearch.DetailFormDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobCommentDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobListDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobRespDto;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
@@ -83,8 +87,8 @@ public class JobSearchService {
 	}
 
 
-	public List<JobListDto> findAllJob(Integer startNum, String keyword) {
-		List<JobListDto> findAllJob = jobSearchDao.findAllJob(startNum, keyword);
+	public List<JobListDto> findAllJob(SearchDto searchDto) {
+		List<JobListDto> findAllJob = jobSearchDao.findAllJob(searchDto);
 		for (int i = 0; i < findAllJob.size(); i++) {
 			List<String> jobPositionTitle = jobSearchPositionDao.findById(findAllJob.get(i).getJobId());
 			findAllJob.get(i).setJobPositionTitle(jobPositionTitle);
@@ -111,8 +115,8 @@ public class JobSearchService {
 		return deadlineResult;
 	}
 
-	public PagingDto paging(Integer page, String keyword) {
-		PagingDto paging = jobSearchDao.paging(page, keyword);
+	public PagingDto paging(SearchDto searchDto) {
+		PagingDto paging = jobSearchDao.paging(searchDto);
         return paging;
     }
 }

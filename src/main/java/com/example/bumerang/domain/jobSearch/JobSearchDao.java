@@ -1,5 +1,6 @@
 package com.example.bumerang.domain.jobSearch;
 
+import com.example.bumerang.web.dto.SearchDto;
 import com.example.bumerang.web.dto.request.jobSearch.DeadlineDto;
 import com.example.bumerang.web.dto.response.PagingDto;
 import com.example.bumerang.web.dto.response.jobSearch.DetailFormDto;
@@ -23,7 +24,7 @@ public interface JobSearchDao {
 
     public DetailFormDto findByJob(Integer userId, Integer jobId);
 
-    public List<JobListDto> findAllJob(Integer startNum, String keyword);
+    public List<JobListDto> findAllJob(SearchDto searchDto);
 
     public List<JobListDto> findAllBestJob();
 
@@ -35,5 +36,5 @@ public interface JobSearchDao {
 
     public void dead(DeadlineDto deadlineDto);
 
-    public PagingDto paging(@Param("page")Integer page, @Param("keyword")String keyword);
+    public PagingDto paging(SearchDto searchDto);
 }

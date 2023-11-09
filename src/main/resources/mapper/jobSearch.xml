@@ -97,7 +97,7 @@
 ) 				AND j.job_gender = '#{jobGenre}')
 			HAVING isDead = false
         ORDER BY j.created_at DESC
-        OFFSET #{startNum} ROWS
+        OFFSET 1 ROWS
         FETCH NEXT 12 ROWS ONLY
     </select>
 
