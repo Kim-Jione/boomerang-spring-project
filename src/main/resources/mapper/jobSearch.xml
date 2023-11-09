@@ -74,6 +74,7 @@
         u.user_nickname AS userNickname,
         u.user_career AS userCareer,
         u.user_id AS userId,
+        (SELECT GROUP_CONCAT(jp.job_position_title) FROM job_search_position jp WHERE jp.job_id = j.job_id) as jobPositionTitles,
         COALESCE(v.view_count, 0) AS viewCount,
         COALESCE(c.comment_count, 0) AS commentCount,
         COALESCE(l.likey_count, 0) AS likeyCount,
@@ -91,6 +92,10 @@
         SELECT job_id, COUNT(*) AS likey_count FROM likey GROUP BY job_id
         ) l ON j.job_id = l.job_id
         WHERE j.job_status = 'active'AND (j.job_content_title like '%${keyword}%' OR j.job_content LIKE '%${keyword}%')
+        AND (j.job_genre = '#{jobGenre}'  AND (
+    			(SELECT GROUP_CONCAT(jp.job_position_title) FROM job_search_position jp WHERE jp.job_id = j.job_id) LIKE '%#{jobPositionTitle}%'
+) 				AND j.job_gender = '#{jobGenre}')
+			HAVING isDead = false
         ORDER BY j.created_at DESC
         OFFSET #{startNum} ROWS
         FETCH NEXT 12 ROWS ONLY

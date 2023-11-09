@@ -50,12 +50,20 @@ public class MainController {
         // 테스트 위한 임시 로그인
         Integer page = searchDto.getPage();
         String keyword = searchDto.getKeyword();
+        String jobGenre = searchDto.getJobGenre();
+        String jobGender = searchDto.getJobGender();
+        String jobPositionTitle = searchDto.getJobPositionTitle();
+        Boolean isDead = searchDto.getIsDead();
         // 페이지수 비어있을 때 초기화
         if (page == null) {
 			page = 0;
 		}
         System.err.println("디버그 컨트롤러 실행");
-        System.err.println("keyword"+keyword);
+        System.err.println("keyword: "+keyword);
+        System.err.println("jobGenre: "+jobGenre);
+        System.err.println("jobGender: "+jobGender);
+        System.err.println("jobPositionTitle: "+jobPositionTitle);
+        System.err.println("isDead: "+isDead);
         // 페이지 수 설정
         Integer startNum = page * 12;
 		PagingDto paging = jobSearchService.paging(page, keyword);
