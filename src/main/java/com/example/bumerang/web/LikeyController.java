@@ -27,6 +27,9 @@ public class LikeyController {
     @PostMapping("/s/api/likey")
     public @ResponseBody CMRespDto<?> likey(@RequestBody LikeyDto likeyDto) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        System.err.println("getUserId"+likeyDto.getUserId());
+        System.err.println("getJobId"+likeyDto.getJobId());
+        System.err.println("getPfId"+likeyDto.getPfId());
         Integer userId = likeyDto.getUserId();
         Integer userPId = principal.getUserId();
         if (userId.equals(userPId)) {
@@ -67,6 +70,26 @@ public class LikeyController {
             Likey commentLikey = likeyService.unLikeyComment(commentLikeyId);
             return new CMRespDto<>(1, "댓글 추천 취소 성공", commentLikey);
         }
+
+        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+    }
+    
+    @DeleteMapping("/s/api/unlikey/{likeyId}")
+    public @ResponseBody CMRespDto<?> likey(@PathVariable Integer likeyId) {
+        Likey likeyPS = likeyService.findById(likeyId);
+        System.err.println("likeyId"+likeyId);
+        System.err.println("getUserId"+likeyPS.getUserId());
+        System.err.println("getJobId"+likeyPS.getJobId());
+        System.err.println("getPfId"+likeyPS.getPfId());
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        Integer userId = likeyPS.getUserId();
+        Integer userPId = principal.getUserId();
+        System.err.println("userId"+userId);
+        System.err.println("userPId"+userPId);
+        if (userId.equals(userPId)) {
+            // 추천 취소
+            Likey unLikeyResult = likeyService.unLikey(likeyId);
+            return new CMRespDto<>(1, "추천 취소 성공", unLikeyResult);
         }
         return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }

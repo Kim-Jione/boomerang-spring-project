@@ -62,6 +62,7 @@
 
     <select id="findAllJob" resultType="com.example.bumerang.web.dto.response.jobSearch.JobListDto">
         SELECT
+
         j.job_id,
         j.job_genre,
         j.job_deadline,
@@ -71,6 +72,22 @@
         j.user_id,
         COALESCE(view_count, 0) AS view_count,
         COALESCE(comment_count, 0) AS comment_count
+
+        j.job_id AS jobId,
+        j.job_genre AS jobGenre,
+        j.job_deadline AS jobDeadline,
+        j.job_content_title AS jobContentTitle,
+        u.user_profile_img AS userProfileImg,
+        u.user_nickname AS userNickname,
+        u.user_career AS userCareer,
+        u.user_id AS userId,
+        (SELECT GROUP_CONCAT(jp.job_position_title) FROM job_search_position jp WHERE jp.job_id = j.job_id) as jobPositionTitles,
+        COALESCE(v.view_count, 0) AS viewCount,
+        COALESCE(c.comment_count, 0) AS commentCount,
+        COALESCE(l.likey_count, 0) AS likeyCount,
+        IF(DATEDIFF(j.job_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
+        IF(DATE(j.created_at) = CURDATE(), TRUE, FALSE) AS isToday
+
         FROM job_search j
         INNER JOIN user u ON j.user_id = u.user_id
         LEFT JOIN (
@@ -79,6 +96,7 @@
         GROUP BY job_id
         ) c ON j.job_id = c.job_id
         LEFT JOIN (
+
         SELECT job_id, COUNT(view_id) AS view_count
         FROM view
         WHERE job_id IS NOT NULL
@@ -86,6 +104,18 @@
         ) v ON j.job_id = v.job_id
         WHERE j.job_status != 'deleted'
         ORDER BY j.created_at DESC
+
+        SELECT job_id, COUNT(*) AS likey_count FROM likey GROUP BY job_id
+        ) l ON j.job_id = l.job_id
+        WHERE j.job_status = 'active'AND (j.job_content_title like '%${keyword}%' OR j.job_content LIKE '%${keyword}%')
+        AND (j.job_genre = '#{jobGenre}'  AND (
+    			(SELECT GROUP_CONCAT(jp.job_position_title) FROM job_search_position jp WHERE jp.job_id = j.job_id) LIKE '%#{jobPositionTitle}%'
+) 				AND j.job_gender = '#{jobGenre}')
+			HAVING isDead = false
+        ORDER BY j.created_at DESC
+        OFFSET 1 ROWS
+        FETCH NEXT 12 ROWS ONLY
+
     </select>
 
     <select id="findAllBestJob" resultType="com.example.bumerang.web.dto.response.jobSearch.JobListDto">
@@ -125,14 +155,14 @@
     <select id="findByUpdateResult"
             resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
         SELECT * FROM job_search
-        WHERE job_id=#{jobId} AND job_status='deleted'
+        WHERE job_id=#{jobId} AND job_status !='deleted'
     </select>
 
     <select id="findByDelete"
             resultType="com.example.bumerang.web.dto.response.jobSearch.JobRespDto">
         SELECT *
         FROM job_search j
-        WHERE j.job_id=#{jobId} AND job_status='deleted'
+        WHERE j.job_id=#{jobId} AND job_status ='deleted'
     </select>
 
     <update id="dead">
@@ -141,6 +171,20 @@
         job_status = 'dead'
         WHERE
         job_id = #{jobId}
-        AND user_id = #{userId} AND job_status='deleted'
+        AND user_id = #{userId} AND job_status !='deleted'
     </update>
+
+    <select id="paging" resultType="com.example.bumerang.web.dto.response.PagingDto">
+         SELECT j.totalCount, j.totalPage, j.currentPage,
+         (case currentPage when 0 then 1 else 0 END) first,
+         (case currentPage when totalPage-1 then 1 else 0 END) last
+         FROM
+         (
+         select  count(*) totalCount, CEILING(count(*)/12) totalPage, #{page} as currentPage, 0 as
+         first, 0 as LAST, job_content_title
+         FROM job_search
+         WHERE job_status!='deleted' AND( job_content_title LIKE '%${keyword}%' 
+   		 OR job_content LIKE '%${keyword}%')
+         ) j ;
+    </select>
 </mapper>

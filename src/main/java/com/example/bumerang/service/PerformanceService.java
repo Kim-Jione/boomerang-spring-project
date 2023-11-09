@@ -86,7 +86,7 @@ public class PerformanceService {
 
 	public DetailFormDto findByPf(Integer userId, Integer pfId) {
 		List<PfCommentDto> findByCommentList = commentDao.findByPfCommentList(pfId);
-		DetailFormDto findByPf = performanceDao.findByPf(pfId);
+		DetailFormDto findByPf = performanceDao.findByPf(userId, pfId);
 		findByPf.setCommentList(findByCommentList);
 		viewDao.count(pfId,null,userId);
 		return findByPf;

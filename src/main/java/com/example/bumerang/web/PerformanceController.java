@@ -1,5 +1,6 @@
 package com.example.bumerang.web;
 
+import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.domain.performance.Performance;
 import com.example.bumerang.service.PerformanceService;
 import com.example.bumerang.web.dto.SessionUserDto;
@@ -54,11 +55,17 @@ public class PerformanceController {
 
     // 공연글 상세보기 화면
     @GetMapping("/s/api/performance/detailForm/{pfId}")
-    public @ResponseBody CMRespDto<?> detailForm(@PathVariable Integer pfId, Model model) {
+    public String detailForm(@PathVariable Integer pfId, Model model) {
+        Performance pfPS = performanceService.findById(pfId);
+        if (pfPS == null) {
+            return "redirect:/404";
+        }
         SessionUserDto userPS = (SessionUserDto)session.getAttribute("principal");
         Integer userId = userPS.getUserId();
         DetailFormDto pfDetail = performanceService.findByPf(userId, pfId);
-        return new CMRespDto<>(1, "공연글 상세보기 화면 불러오기 성공.", pfDetail);
+        System.err.println("likeyId"+pfDetail.getLikeyId());
+        model.addAttribute("pf", pfDetail);
+        return "pfDetailForm";
     }
 
     // 공연글 수정하기 화면
@@ -112,3 +119,4 @@ public class PerformanceController {
     }
 
 }
+
