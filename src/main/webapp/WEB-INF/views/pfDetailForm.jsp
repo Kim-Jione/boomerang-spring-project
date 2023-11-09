@@ -47,7 +47,7 @@
                class='${pf.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
             <p class="like_count" id="countLikey">${pf.likeyCount}</p>
             <img src="/image/siren.png"/>
-            <p class="report">
+            <p class="pfReport">
                 <button class='pfReportBtn'>신고하기</button>
             </p>
         </div>
@@ -131,7 +131,9 @@
         <form>
             <div class="write_comment">
                 <div class="comment_img center_display">
-                    <img src="/img/${principal.userProfileImg}" alt="image" />
+                    <a href="/s/api/user/detailForm/${pf.userId}">
+                        <img src="/img/${principal.userProfileImg}" alt="image"/>
+                    </a>
                 </div>
                 <div class="form_info center_display">
                     <textarea type="text" name="comment" id="commentContent" placeholder="댓글을 입력하세요"></textarea>
@@ -146,7 +148,7 @@
         <!-- 댓글이 달리는 부분 -->
         <c:forEach var="comment" items="${pf.commentList}">
             <div class="comment_card">
-                <input type="hidden" class="commentId" id="${comment.commentId}" value="${comment.commentId}">
+                <input type="hidden" class="commentId" id="commentId" value="${comment.commentId}">
                 <div class="comment_top">
                     <div class="comment_info">
                         <div class="pic center_display">
@@ -168,7 +170,9 @@
                             <button class='editBtn'>수정</button>
                             <button class='removeBtn'>삭제</button>
                         </c:if>
-                        <button class='reportBtn'>신고하기</button>
+                        <p class="commentReport">
+                            <button class='commentReportBtn'>신고하기</button>
+                        </p>
                     </div>
                 </div>
                 <textarea class="comment textarea" readonly>${comment.commentContent}</textarea>

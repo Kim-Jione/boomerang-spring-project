@@ -144,7 +144,9 @@
             <form>
                 <div class="write_comment">
                     <div class="comment_img center_display">
-                        <img src="/img/${principal.userProfileImg}" alt="image"/>
+                        <a href="/s/api/user/detailForm/${job.userId}">
+                            <img src="/img/${principal.userProfileImg}" alt="image"/>
+                        </a>
                     </div>
                     <div class="form_info center_display">
                         <input type="hidden" name="user" id="user" value="김휴고"/>

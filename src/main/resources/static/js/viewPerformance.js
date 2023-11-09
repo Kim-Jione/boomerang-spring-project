@@ -30,10 +30,13 @@ if (
     deleteConfirm.style.display = "none";
   });
 }
-const reportBtn = document.querySelector(".report");
-let pfId = $("#pfId").val();
+const pfReportBtn = document.querySelector(".pfReport");
+pfReportBtn.addEventListener("click", reportPf);
 
-reportBtn.addEventListener("click", reportPf);
+const commentReportBtn = document.querySelector(".commentReport");
+commentReportBtn.addEventListener("click", reportComment);
+
+let pfId = $("#pfId").val();
 
 /*******/
 /* 댓글 */
@@ -75,11 +78,6 @@ function submitFeedback(e) {
   e.preventDefault();
 }
 
-// 댓글 창을 초기화 함수
-function resetForm() {
-  comment.value = "";
-}
-
 // 저장된 배열에서 댓글 정보를 불러와 html에 붙여넣는 함수
 function addFeedback(item) {
   const letter = "";
@@ -106,7 +104,7 @@ function addFeedback(item) {
             <div class="comment_btns">
                 <button class='editBtn'>수정</button>
                 <button class='removeBtn'>삭제</button>
-                <button class='reportBtn'>신고하기</button>
+                <button class='commentReportBtn'>신고하기</button>
             </div>
         </div>
         <textarea class="comment textarea" id="commentContent" readonly>${item.userComment}</textarea>
@@ -117,12 +115,17 @@ function addFeedback(item) {
   activeCommentBtn();
 }
 
+// 댓글 창을 초기화 함수
+function resetForm() {
+  comment.value = "";
+}
+
 // 댓글 버튼 활성화
 function activeCommentBtn() {
   // 각 버튼 요소 선택
   const editButtons = document.querySelectorAll(".editBtn");
   const removeButtons = document.querySelectorAll(".removeBtn");
-  const reportButtons = document.querySelectorAll(".reportBtn");
+  const reportButtons = document.querySelectorAll(".commentReportBtn");
 
   // 각 버튼과 함수 연결
   editButtons.forEach((editButton) => {
@@ -213,29 +216,6 @@ function removeComment() {
   }
 }
 
-//  댓글 신고하기
-function reportComment() {
-  var nWidth = "500";
-  var nHeight = "600";
-  var xPos = document.body.clientWidth / 2 - nWidth / 2;
-  xPos += window.screenLeft; //듀얼 모니터
-  var yPos = screen.availHeight / 2 - nHeight / 2;
-
-  window.open(
-      "/s/api/reportForm",
-      "신고하기",
-      "width=" +
-      nWidth +
-      ",height=" +
-      nHeight +
-      ",left=" +
-      xPos +
-      ", top=" +
-      yPos +
-      ",toolbar=no"
-  );
-}
-
 //  공연글 신고하기
 function reportPf() {
   let pfId = $("#pfId").val();
@@ -249,6 +229,32 @@ function reportPf() {
 
   window.open(
       "/s/api/reportFormPf/" + pfId + "/" + userId,
+      "신고하기",
+      "width=" +
+      nWidth +
+      ",height=" +
+      nHeight +
+      ",left=" +
+      xPos +
+      ", top=" +
+      yPos +
+      ",toolbar=no"
+  );
+}
+
+//  댓글 신고하기
+function reportComment() {
+  let commentId = $("#commentId").val();
+  let userId = $("#userId").val();
+
+  var nWidth = "700";
+  var nHeight = "900";
+  var xPos = document.body.clientWidth / 2 - nWidth / 2;
+  xPos += window.screenLeft; //듀얼 모니터
+  var yPos = screen.availHeight / 2 - nHeight / 2;
+
+  window.open(
+      "/s/api/reportFormComment/" + commentId + "/" + userId,
       "신고하기",
       "width=" +
       nWidth +

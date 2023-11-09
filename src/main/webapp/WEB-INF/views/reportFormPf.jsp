@@ -27,8 +27,8 @@
           <input type="hidden" value="${principal.userId}" id="userId">
 
           <div class="target_info" id="targetInfo">
-            <div><span>작 성</span><span>김휴고</span></div>
-            <div><span>내 용</span><span>만병통치약, '휴고의 눈물' 팝니다</span></div>
+            <div><span>작 성 자</span><span>${pfInfo.userNickname}</span></div>
+            <div><span>제 목</span><span>${pfInfo.pfTitle}</span></div>
           </div>
           <div class="reason_info">
             <h3>사유선택</h3>
@@ -62,10 +62,6 @@
                 <input id="reportContent" type="text" class="guitar" wrap="hard" />
               </li>
             </ul>
-
-
-            </ul>
-
           </div>
           <div class="btn_wrap">
             <button class="pfReportBtn">제 출</button>

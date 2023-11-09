@@ -1,9 +1,9 @@
-// 공연글 신고하기
-$(".pfReportBtn").click(() => {
-  reportPf();
+// 공연 댓글 신고하기
+$(".commentReportBtn").click(() => {
+  reportComment();
 });
 
-function reportPf() {
+function reportComment() {
   const selectedReportType = $('input[name="reportType"]:checked').val();
 
   if (selectedReportType === undefined) {
@@ -12,13 +12,11 @@ function reportPf() {
   }
 
   let data = {
-    pfId: $("#targetId").val(),
+    commentId: $("#targetId").val(),
     userId: $("#userId").val(),
     reportType: selectedReportType,
     reportContent: $("#reportContent").val()
   };
-
-  alert("targetId: "+data.pfId);
 
   $.ajax("/s/api/report", {
     type: "POST",

@@ -61,19 +61,34 @@ public class ReportController {
         }
         return new CMRespDto<>(-1, "데이터 요청을 다시 해주세요.", null);
     }
-    
+
+    // 공연글 신고창 화면
+    @GetMapping("/s/api/reportFormPf/{targetId}/{userId}")
+    public String reportFormPf(@PathVariable Integer targetId, @PathVariable Integer userId, Model model) {
+        ReportDto pfInfo = reportService.findByTargetIdPf(targetId);
+        model.addAttribute("pfInfo", pfInfo);
+        model.addAttribute("targetId", targetId);
+        model.addAttribute("userId", userId);
+        return "reportFormPf";
+    }
+
     // 구인글 신고창 화면
 	@GetMapping("/s/api/reportFormJob/{targetId}/{userId}")
 	public String reportFormJob(@PathVariable Integer targetId, @PathVariable Integer userId, Model model) {
+        ReportDto jobInfo = reportService.findByTargetIdJob(targetId);
+        model.addAttribute("jobInfo", jobInfo);
         model.addAttribute("targetId", targetId);
         model.addAttribute("userId", userId);
 		return "reportFormJob";
 	}
-    // 공연글 신고창 화면
-	@GetMapping("/s/api/reportFormPf/{targetId}/{userId}")
-	public String reportFormPf(@PathVariable Integer targetId, @PathVariable Integer userId, Model model) {
+
+    // 댓글 신고창 화면
+	@GetMapping("/s/api/reportFormComment/{targetId}/{userId}")
+	public String reportFormComment(@PathVariable Integer targetId, @PathVariable Integer userId, Model model) {
+        ReportDto commentInfo = reportService.findByTargetIdComment(targetId);
+        model.addAttribute("commentInfo", commentInfo);
         model.addAttribute("targetId", targetId);
         model.addAttribute("userId", userId);
-		return "reportFormPf";
+		return "reportFormComment";
 	}
 }
