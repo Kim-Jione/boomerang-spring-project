@@ -153,31 +153,43 @@
   margin-bottom: 50px;
 }
 
+.contentDetail {
+  padding: 20px 0px;
+  border-bottom: 2px solid black;
+  margin-bottom: 20px;
+}
+
 #editor-container {
   height: 375px;
   font-size: 18px;
   font-family: inherit;
 }
+.contentDetail h1,
 #editor-container h1 {
   font-size: 36px;
   font-family: inherit;
 }
+.contentDetail h2,
 #editor-container h2 {
   font-size: 32px;
   font-family: inherit;
 }
+.contentDetail h3,
 #editor-container h3 {
   font-size: 28px;
   font-family: inherit;
 }
+.contentDetail h4,
 #editor-container h4 {
   font-size: 24px;
   font-family: inherit;
 }
+.contentDetail h5,
 #editor-container h5 {
   font-size: 20px;
   font-family: inherit;
 }
+.contentDetail h6,
 #editor-container h6 {
   font-size: 16px;
   font-family: inherit;
