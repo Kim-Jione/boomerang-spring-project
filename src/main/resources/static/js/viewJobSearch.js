@@ -226,7 +226,7 @@ function reportJob() {
   var yPos = screen.availHeight / 2 - nHeight / 2;
 
   window.open(
-    "/s/api/reportForm/" + jobId + "/" + userId,
+    "/s/api/reportFormJob/" + jobId + "/" + userId,
     "신고하기",
     "width=" +
       nWidth +
