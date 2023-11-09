@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.example.bumerang.web.dto.request.user.PasswdDto;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,7 +59,7 @@ public class UserController {
         return new CMRespDto<>(1, "회원가입 성공.", joinResult);
     }
     
-    // 로그인 화면
+    // 로그인과 회원가입 화면
     @GetMapping("/user/loginForm")
     public String loginForm() {
         return "loginForm";
@@ -84,40 +85,63 @@ public class UserController {
 
     // 내 회원정보 수정 화면
     @GetMapping("/s/api/user/updateForm")
-    public @ResponseBody CMRespDto<?> updateForm() {
+    public String updateForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(principal.getUserId());
-        return new CMRespDto<>(1, "계정정보 불러오기 성공.", userDetail);
+        model.addAttribute("user", userDetail);
+        return "userUpdateForm";
     }
 
     // 회원수정기능
-    @PutMapping("/s/api/user/update")
-    public @ResponseBody CMRespDto<?> updateUser(@RequestPart("profileImage") MultipartFile profileImage, @RequestPart("updateDto") UpdateDto updateDto) {
 
+    // 회원 비밀번호 수정
+    @PutMapping("/s/api/user/passwdUpdate")
+    public @ResponseBody CMRespDto<?> passwdUpdate(@RequestBody PasswdDto passwordDto){
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-        Integer userId = updateDto.getUserId();
-        Integer userPId = principal.getUserId();
-        if (userId.equals(userPId)) {
-            try {
-                // 이미지 업로드 및 업데이트
-                String imagePath = userService.uploadProfileImage(profileImage);
-                // UpdateDto에 imagePath를 설정
-                updateDto.setUserProfileImg(imagePath);
-                // 사용자 정보 업데이트
-                UserRespDto userUpdateResult = userService.update(updateDto);
-                return new CMRespDto<>(1, "회원 수정 성공.", userUpdateResult);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        Integer userId = principal.getUserId();
+
+        if( userId == null ){
+            return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
         }
-        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+        System.err.println("디버그userId: " + userId);
+        PasswdDto passwd = userService.updatePasswd(passwordDto.getUserPassword(), userId);
+        System.err.println("디버그getUserPassword: "+passwd.getUserPassword());
+        return new CMRespDto<>(1, "비밀번호 수정 성공.", passwd);
     }
 
+
+//    @PutMapping("/s/api/user/update")
+//    public @ResponseBody CMRespDto<?> updateUser(@RequestPart("profileImage") MultipartFile profileImage, @RequestPart("updateDto") UpdateDto updateDto) {
+//
+//        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+//        Integer userId = updateDto.getUserId();
+//        Integer userPId = principal.getUserId();
+//        if (userId.equals(userPId)) {
+//            try {
+//                // 이미지 업로드 및 업데이트
+//                String imagePath = userService.uploadProfileImage(profileImage);
+//                // UpdateDto에 imagePath를 설정
+//                updateDto.setUserProfileImg(imagePath);
+//                // 사용자 정보 업데이트
+//                UserRespDto userUpdateResult = userService.update(updateDto);
+//                return new CMRespDto<>(1, "회원 수정 성공.", userUpdateResult);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+//    }
+
     // 계정 상세 화면
-    @GetMapping("/s/api/user/detailForm/{userId}")
-    public @ResponseBody CMRespDto<?> detailForm(@PathVariable Integer userId) {
+    @GetMapping("user/detailForm/{userId}")
+    public String detailForm(@PathVariable Integer userId, Model model) {
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(userId);
-        return new CMRespDto<>(1, "계정정보 불러오기 성공.", userDetail);
+        model.addAttribute("userDetail",userDetail);
+        if(userId == null){
+            return "404";
+        }
+        return "detailForm";
     }
 
     // 내가 작성한 글 화면
@@ -134,37 +158,38 @@ public class UserController {
     }
 
     // 아이디 찾기 화면
-    @GetMapping("/user/searchIdForm")
-    public @ResponseBody CMRespDto<?> searchIdForm() {
-        return new CMRespDto<>(1, "아이디 찾기 화면 불러오기 성공.", null);
+    @GetMapping("/user/helpId")
+    public String helpIdForm() {
+        return "helpIdForm";
     }
 
-
     // 비밀번호 찾기 화면
-    @GetMapping("/user/searchPwForm")
-    public @ResponseBody CMRespDto<?> searchPwForm() {
-        return new CMRespDto<>(1, "비밀번호 찾기 화면 불러오기 성공.", null);
+    @GetMapping("/user/helpPw")
+    public String helpPwForm() {
+        return "helpPwForm";
     }
 
     // 아이디 찾기
-    @PostMapping("/user/searchId")
-    public @ResponseBody CMRespDto<?> searchId(@RequestBody SearchIdDto searchIdDto) {
-        SearchIdDto userLoginId = userService.findByLoginId(searchIdDto);
-        if(userLoginId==null){
-            return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
+    @PostMapping("/user/findId")
+    public String searchId(@RequestParam String userEmail, SearchIdDto userEmailId, Model model) {
+        userEmailId.setUserEmail(userEmail);
+        SearchIdDto userId = userService.findByLoginId(userEmailId);
+        if(userId == null){
+            return "redirect:/user/helpId";
         }
-        return new CMRespDto<>(1, "아이디 찾기 성공.", userLoginId);
+        model.addAttribute("userId", userId);
+        return "findId";
     }
 
-    // 비밀번호 찾기
-    @PostMapping("/user/searchPw")
-    public @ResponseBody CMRespDto<?> searchPw(@RequestBody SearchPwDto searchPwDto) {
-        SearchPwDto userPassword = userService.findByPw(searchPwDto);
-        if(userPassword==null){
-            return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
+    @PostMapping("/user/findPw")
+    public String searchPw(@RequestParam String userEmail, SearchPwDto userEmailPw, Model model) {
+        userEmailPw.setUserEmail(userEmail);
+        SearchPwDto userPw = userService.findByPw(userEmailPw);
+        if(userPw == null){
+            return "redirect:/user/helpPw";
         }
-        SimpleMailMessage message = userService.sendMessage(searchPwDto);
-        return new CMRespDto<>(1, "비밀번호 찾기 성공.", message);
+        SimpleMailMessage message = userService.sendMessage(userEmailPw);
+        return "findPw";
     }
 
     // 관심목록 화면

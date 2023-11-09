@@ -13,6 +13,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap"
           rel="stylesheet" />
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- AJax -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link
           href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
           rel="stylesheet" />
@@ -32,10 +36,11 @@
                 <div class="board_name">
                   <i class="fa-solid fa-feather-pointed"></i>
                   <h2>구인정보 쓰기</h2>
+                  <input type="hidden" id="userId" value="${principal.userId}">
                 </div>
                 <div class="bt_wrap">
-                  <a href="viewNotice.html" class="save">등록</a>
-                  <a href="notice.html" class="cancel">취소</a>
+                  <a class="save" id="jobWriteBtn">등록</a>
+                  <a href="/jobSearch/mainForm" class="cancel">취소</a>
                 </div>
               </div>
               <div class="board_write">
@@ -43,16 +48,16 @@
                   <dl>
                     <dt>제목</dt>
                     <dd>
-                      <input type="text" placeholder="글 제목을 입력하세요" value="" />
+                      <input type="text" placeholder="글 제목을 입력하세요" id="jobContentTitle" />
                     </dd>
                   </dl>
                 </div>
                 <div class="info">
-                  <dl>
+                  <dl class="select">
                     <dt>작품 장르</dt>
                     <dd>
                       <div class="select_single">
-                        <span class="btn-text">하나를 골라주세요</span>
+                        <span class="btn-text " id="jobGenre">하나를 골라주세요</span>
                         <span class="arrow-dwn">
                           <i class="fa-solid fa-chevron-down"></i>
                         </span>
@@ -62,54 +67,54 @@
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">단편영화</span>
+                          <span class="item-text jobGenre" data-value="단편영화">단편영화</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">장편영화</span>
+                          <span class="item-text" value="장편영화">장편영화</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">연극</span>
+                          <span class="item-text" value="연극">연극</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">OTT/TV 드라마</span>
+                          <span class="item-text" value="드라마">드라마</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">웹 컨텐츠</span>
+                          <span class="item-text" value="웹 컨텐츠">웹 컨텐츠</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">광고</span>
+                          <span class="item-text" value="광고">광고</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">전시</span>
+                          <span class="item-text" value="전시">전시</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">기타</span>
+                          <span class="item-text" value="기타">기타</span>
                         </li>
                       </ul>
                     </dd>
                     <!-- <dd>
-                <select class="dropdown" name="genre" id="jobGenre">
+                <select class="dropdown" name="genre"  >
                   <option value="단편영화">단편영화</option>
                   <option value="장편영화" selected>장편영화</option>
                   <option value="연극">연극</option>
@@ -124,27 +129,27 @@
                   <dl class="art_title">
                     <dt>작품 제목</dt>
                     <dd>
-                      <input type="text" id="artTitle" value="" placeholder="" />
+                      <input type="text" id="jobArtTitle" placeholder="작품 제목을 입력해주세요." />
                     </dd>
                   </dl>
                   <dl>
                     <dt>시작 예정</dt>
-                    <dd><input type="date" id="job_start_date" value="" /></dd>
+                    <dd><input type="date" id="jobStartDate" /></dd>
                   </dl>
                   <dl>
                     <dt>예상 기간</dt>
                     <dd>
-                      <input type="text" id="job_production_date" placeholder="0일, 0주, 0회차 등" value="" />
+                      <input type="text" id="jobProductionDate" placeholder="0일, 0주, 0회차 등" value="" />
                     </dd>
                   </dl>
                   <dl>
                     <dt>모집 마감</dt>
-                    <dd><input type="date" id="job_deadline" value="" /></dd>
+                    <dd><input type="date" id="jobDeadline" /></dd>
                   </dl>
                   <dl>
                     <dt>모집 인원</dt>
                     <dd>
-                      <input type="number" id="job_to" value="" placeholder="숫자만 입력해주세요. 미정은 00" />
+                      <input type="number" id="jobTo" placeholder="숫자만 입력해주세요. 미정은 00" />
                     </dd>
                   </dl>
                   <dl>
@@ -158,43 +163,43 @@
                       </div>
                       <ul class="list-items">
                         <li class="item">
-                          <span class="checkbox">
+                          <span class="checkbox" name="jobPositionTitle" value="배우">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
                           <span class="item-text">배우</span>
                         </li>
                         <li class="item">
-                          <span class="checkbox">
+                          <span class="checkbox" name="jobPositionTitle" value="연출">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
                           <span class="item-text">연출</span>
                         </li>
                         <li class="item">
-                          <span class="checkbox">
+                          <span class="checkbox" name="jobPositionTitle" value="음향">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
                           <span class="item-text">음향</span>
                         </li>
                         <li class="item">
-                          <span class="checkbox">
+                          <span class="checkbox" name="jobPositionTitle" value="카메라">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
                           <span class="item-text">카메라</span>
                         </li>
                         <li class="item">
-                          <span class="checkbox">
+                          <span class="checkbox" name="jobPositionTitle" value="조명">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
                           <span class="item-text">조명</span>
                         </li>
                         <li class="item">
-                          <span class="checkbox">
+                          <span class="checkbox" name="jobPositionTitle" value="작가">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
                           <span class="item-text">작가</span>
                         </li>
                         <li class="item">
-                          <span class="checkbox">
+                          <span class="checkbox" name="jobPositionTitle" value="기타">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
                           <span class="item-text">기타</span>
@@ -202,11 +207,11 @@
                       </ul>
                     </dd>
                   </dl>
-                  <dl>
+                  <dl class="select">
                     <dt>모집 성별</dt>
                     <dd>
                       <div class="select_single">
-                        <span class="btn-text">성별을 골라주세요</span>
+                        <span class="btn-text" id="jobGender">성별을 골라주세요</span>
                         <span class="arrow-dwn">
                           <i class="fa-solid fa-chevron-down"></i>
                         </span>
@@ -216,19 +221,19 @@
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">남성</span>
+                          <span class="item-text" value="남성" id="jobGender">남성</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">여성</span>
+                          <span class="item-text" value="여성" id="jobGender">여성</span>
                         </li>
                         <li class="single_item">
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text">성별 무관</span>
+                          <span class="item-text" value="성별 무관" id="jobGender">성별 무관</span>
                         </li>
                       </ul>
                     </dd>
@@ -236,13 +241,13 @@
                   <dl>
                     <dt>연락 방법</dt>
                     <dd>
-                      <input type="text" id="job_contact" value="" placeholder="연출: 010-****-****" />
+                      <input type="text" id="jobContact" placeholder="연출: 010-****-****" />
                     </dd>
                   </dl>
                   <dl>
                     <dt>출 연 료</dt>
                     <dd>
-                      <input type="text" id="job_pay" value="" placeholder="회차당 00만 원" />
+                      <input type="text" id="jobPay" value="" placeholder="회차당 00만 원" />
                     </dd>
                   </dl>
                 </div>

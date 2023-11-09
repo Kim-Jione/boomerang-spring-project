@@ -55,4 +55,6 @@ public interface UserDao {
     User findByEmail(String userEmail);
 
     void updatePw(String userPassword, Integer userId);
+
+    void updatePassword(String userPassword, Integer userId);
 }
