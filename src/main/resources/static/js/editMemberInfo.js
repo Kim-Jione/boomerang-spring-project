@@ -4,7 +4,7 @@ function existingOption() {
     const gender = document.querySelector("#userGender");
     const form = document.querySelector("#userForm");
     const tone = document.querySelector("#userTone");
-    const position = document.querySelector("#userPosition");
+    const field = document.querySelector("#userField");
     const age = document.querySelector("#userAge");
     const career = document.querySelector("#userCareer");
 
@@ -12,7 +12,7 @@ function existingOption() {
     const genderList = document.querySelectorAll(".user_gender");
     const formList = document.querySelectorAll(".user_form");
     const toneList = document.querySelectorAll(".user_tone");
-    const positionList = document.querySelectorAll(".user_position");
+    const fieldList = document.querySelectorAll(".user_field");
     const ageList = document.querySelectorAll(".user_age");
     const careerList = document.querySelectorAll(".user_career");
     
@@ -33,9 +33,9 @@ function existingOption() {
             toneList.selected == true;
         }
     })
-    positionList.forEach((positionList) => {
-        if(positionList.value == position.value) {
-            positionList.selected == true;
+    fieldList.forEach((fieldList) => {
+        if(fieldList.value == field.value) {
+            fieldList.selected == true;
         }
     })
     ageList.forEach((ageList) => {

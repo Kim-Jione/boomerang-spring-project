@@ -36,7 +36,7 @@
                   <h2 class="pro_tit">프로필 이미지 변경하기</h2>
                   <form id="imageForm" enctype="multipart/form-data">
                     <input id="userProfileImg" type="file" accept="image/*">
-                    <div>
+                    <div> 
                       <button id="save_editor">저장</button>
                       <button id="close_editor">닫기</button>
                     </div>
@@ -120,15 +120,15 @@
                           </select>
                         </li>
                         <li>
-                          <input type="hidden" id="userPosition" value="${userDetail.userPosition}" />
-                          <select class="dropdown" name="user_position" id="user_position">
-                            <option class="user_position" value="배우" >배우</option>
-                            <option class="user_position" value="연출">연출</option>
-                            <option class="user_position" value="음향">음향</option>
-                            <option class="user_position" value="카메라">카메라</option>
-                            <option class="user_position" value="조명">조명</option>
-                            <option class="user_position" value="작가">작가</option>
-                            <option class="user_position" value="기타">기타</option>
+                          <input type="hidden" id="userField" value="${userDetail.uftitles}" />
+                          <select class="dropdown" name="user_field" id="user_field">
+                            <option class="user_field" value="배우" >배우</option>
+                            <option class="user_field" value="연출">연출</option>
+                            <option class="user_field" value="음향">음향</option>
+                            <option class="user_field" value="카메라">카메라</option>
+                            <option class="user_field" value="조명">조명</option>
+                            <option class="user_field" value="작가">작가</option>
+                            <option class="user_field" value="기타">기타</option>
                           </select>
                         </li>
                         <li>
