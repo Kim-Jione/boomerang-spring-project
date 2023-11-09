@@ -155,6 +155,7 @@
   font-size: 18px;
   padding: 0 5px;
   margin-top: 30px;
+  padding-bottom: 30px;
   overflow: hidden;
   width: 100%;
   height: auto;
@@ -324,18 +325,18 @@ form .write_comment .form_info {
 
 .top button {
   background-color: #459fee;
-  border: solid transparent;
+  border: 1px solid #ccc;
   border-radius: 50px;
-  border-width: 0 0 4px;
+  border-width: 0 0 2px;
   box-sizing: border-box;
   width: 80px;
   height: 50px;
-  font-size: 16px;
+  font-size: 18px;
   color: white;
   cursor: pointer;
   outline: none;
-  touch-action: manipulation;
-  transition: filter 0.2s;
+  /* touch-action: manipulation;
+  transition: filter 0.2s; */
 }
 /* 
 .top button:hover:not(:disabled) {
