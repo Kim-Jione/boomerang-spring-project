@@ -141,7 +141,7 @@
                             <span class="checkbox">
                               <i class="fa-solid fa-check check-icon"></i>
                             </span>
-                            <span class="item-text">OTT/TV 드라마</span>
+                            <span class="item-text">드라마</span>
                           </li>
                           <li class="single_item">
                             <span class="checkbox">

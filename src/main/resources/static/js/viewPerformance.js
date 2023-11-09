@@ -327,7 +327,7 @@ function deleteLove() {
       let count = $("#countLikey").text();
       $("#countLikey").text(Number(count) - 1);
     } else {
-      alert("공연글 추천 취소에 실패했습니다");
+      alert(res.msg);
     }
   });
 }
