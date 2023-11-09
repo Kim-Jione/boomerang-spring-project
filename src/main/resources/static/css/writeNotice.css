@@ -35,26 +35,28 @@
 
 .bt_wrap a {
   display: inline-block;
-  width: 70px;
+  width: 80px;
+  height: 50px;
   margin-left: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  border: solid 1px #ccc;
+  border-radius: 50px;
+  border-width: 0 0 4px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  touch-action: manipulation;
+  transition: filter 0.2s;
 }
 
 .bt_wrap a.save {
-  background:#c8e4fd;
-  color: rgb(52, 52, 253);
+  background-color: #459fee;
+  
 }
 
-.bt_wrap a.save:hover {
-  background: #fff;
-  color: #000;
-}
-
-.bt_wrap a.cancel:hover {
-  background: #000;
-  color: #fff;
+.bt_wrap a.cancel {
+  background-color: palevioletred;
 }
 
 /* 게시물 쓰기창 */
@@ -148,6 +150,7 @@
 
 .content {
   margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 #editor-container {
