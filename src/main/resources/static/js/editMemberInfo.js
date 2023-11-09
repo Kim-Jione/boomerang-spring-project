@@ -56,7 +56,6 @@ function Forminit(){
 
     document.querySelector(".save").addEventListener("click", saveForm)
     var filmo = document.querySelectorAll(".filmo_body");
-    alert(filmo);
 
     function saveForm(){
         var data = {

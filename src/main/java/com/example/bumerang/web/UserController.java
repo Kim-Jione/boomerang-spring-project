@@ -91,7 +91,8 @@ public class UserController {
     public String updateForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(principal.getUserId());
-        model.addAttribute("user", userDetail);
+        System.err.println("getUserAge"+userDetail.getUserAge());
+        model.addAttribute("userDetail", userDetail);
         return "userUpdateForm";
     }
 

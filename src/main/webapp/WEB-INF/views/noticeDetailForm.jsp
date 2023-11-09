@@ -61,8 +61,8 @@
                     </dd>
                   </dl>
                 </div>
-                <div class="content">
-                  <p>${notice.noticeContent}</p>
+                <div class="contentDetail">
+                  ${notice.noticeContent}
                 </div>
               </div>
               <div class="bt_wrap">
