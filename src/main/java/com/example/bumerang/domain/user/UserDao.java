@@ -60,7 +60,7 @@ public interface UserDao {
 
     void updatePassword(String userPassword,Integer userId);
 
-    UserRespDto updateImg(ImgUpdateDto imgUpdateDto);
-
     PasswdDto findByPwUpdateResult(String userPassword, Integer userId);
+
+    ImgUpdateDto updateImg(String userProfileImg, Integer userId);
 }

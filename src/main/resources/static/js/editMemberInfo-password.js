@@ -42,6 +42,18 @@ function Passwdinit() {
       // 두 값이 같을 때 경고를 숨김
       document.getElementById("passwordError").style.display = "none";
     }
+    if (userPasswd.value !== userPasswdConf.value) {
+          alert("비밀번호가 일치하지 않습니다.");
+          return; // 비밀번호 불일치 시 함수 종료
+      }
+    if (userPasswd.value.length < 8) {
+          alert("비밀번호는 최소 8자 이상이어야 합니다.");
+          return; // 비밀번호 길이 검사
+      }
+    if (!isPasswd(userPasswd.value)) {
+          alert("비밀번호는 영어 대문자, 소문자, 숫자, 특수문자를 모두 포함하여 8자 이상이어야 합니다.");
+          return; // 비밀번호 구조 검사
+      }
   }
 
   function savePasswdChanger() {

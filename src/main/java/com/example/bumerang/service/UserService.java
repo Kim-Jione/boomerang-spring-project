@@ -77,7 +77,7 @@ public class UserService {
     }
 
     // 사용자 정보 수정
-    public UserRespDto update(UpdateDto updateDto){
+    public UserRespDto update(UpdateDto updateDto, Integer userId){
         String enPassword = sha256.encrypt(updateDto.getUserPassword());
         updateDto.setUserPassword(enPassword);
         userDao.updateUser(updateDto);
@@ -173,16 +173,16 @@ public class UserService {
         userDao.updatePw(encPassword, userPS.getUserId());
     }
 
-    public String uploadProfileImage(MultipartFile profileImage) {
+    public String uploadProfileImage(MultipartFile profileImage, Integer userId) {
         if (!profileImage.isEmpty()) {
             try {
-                // 이미지 파일 이름을 랜덤으로 생성
-                String fileName = UUID.randomUUID() + "_" + profileImage.getOriginalFilename();
+                // 이미지 파일 이름을 원래 이름으로 생성
+                String fileName = profileImage.getOriginalFilename();
+                // 파일 이름에 UUID를 추가하여 중복을 방지
+                fileName = UUID.randomUUID().toString() + "_" + fileName;
                 Path imagePath = Paths.get(imageUploadPath + fileName);
-
                 // 이미지 저장
                 profileImage.transferTo(imagePath.toFile());
-
                 // 이미지 파일 경로를 반환
                 return imageUploadPath + fileName;
             } catch (IOException e) {
@@ -192,9 +192,7 @@ public class UserService {
             }
         }
         return null;
-
     }
-
     public User findByLogin(String userLoginId) {
         User userPS = userDao.findByLoginId(userLoginId);
         return userPS;
@@ -211,6 +209,8 @@ public class UserService {
     }
 
     public PasswdDto updatePasswd(String userPassword, Integer userId) {
+        String enPassword = sha256.encrypt(userPassword);
+        userPassword = enPassword;
         System.err.println("userId: "+userId);
         System.err.println("getUserPassword: "+userPassword);
          userDao.updatePassword(userPassword, userId);
@@ -220,8 +220,12 @@ public class UserService {
         return passUpdateResult;
     }
 
-    public UserRespDto imageUpdateUser(ImgUpdateDto imgUpdateDto) {
-        UserRespDto imgUpdate = userDao.updateImg(imgUpdateDto);
-        return imgUpdate;
+    public void imageUpdateUser(String userprofileImg) {
+        User principal = (User) session.getAttribute("principal");
+        System.err.println("principal"+principal);
+        System.err.println("userprofileImg"+userprofileImg);
+        System.err.println("principalid : "+principal.getUserId());
+        userDao.updateImg(userprofileImg, principal.getUserId());
+
     }
 }

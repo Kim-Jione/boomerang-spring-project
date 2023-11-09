@@ -1,7 +1,10 @@
 package com.example.bumerang.web;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
-
+import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import com.example.bumerang.web.dto.request.user.*;
@@ -86,9 +89,6 @@ public class UserController {
     public String updateForm(@PathVariable Integer userId, Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
 
-        if(principal == null){
-            return "404";
-        }
         UserRespDto userDetailFrom = userService.findByDetail(userId);
         UserRespDto userDetail = userService.findByDetail(userId);
         model.addAttribute("userDetailFrom",userDetailFrom );
@@ -98,26 +98,55 @@ public class UserController {
 
 
     // 회원 프로필 수정기능
-    @PutMapping("/s/api/user/Imageupdate")
-    public String updateUser(@RequestPart("profileImage") MultipartFile profileImage, @RequestPart("ImgUpdateDto") ImgUpdateDto imgUpdateDto) {
+    @PostMapping("/s/api/user/Imageupdate")
+    public @ResponseBody CMRespDto<?> updateUser(
+            @RequestPart("profileImage") MultipartFile profileImage,
+            @RequestPart("ImgUpdateDto") ImgUpdateDto imgUpdateDto)  throws Exception {
+
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-
-        // 이미지 업로드 및 업데이트
-        String imagePath = userService.uploadProfileImage(profileImage);
-        try {
-            // imgUpdateDto에 imagePath를 설정
-            imgUpdateDto.setUserProfileImg(imagePath);
-            // 사용자 정보 업데이트
-            System.err.println(imagePath);
-            UserRespDto userUpdateResult = userService.imageUpdateUser(imgUpdateDto);
-            System.err.println(userUpdateResult);
-            return "userUpdate";
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            // 오류 처리 로직 추가
-            return "404"; // 오류 페이지로 리디렉션
+//
+        if (principal == null) {
+            return new CMRespDto<>(-1, "로그인 해주세요.", null);
         }
+
+        int pos = profileImage.getOriginalFilename().lastIndexOf(".");
+
+        String extension = profileImage.getOriginalFilename().substring(pos + 1);
+        String imagePath = "C:/bumerang/img/profile/";
+        String imgSaveName = UUID.randomUUID().toString();
+        String imgName = imgSaveName + "." + extension;
+
+        File makeFileFolder = new File(imagePath);
+        if (!makeFileFolder.exists()) {
+            if (!makeFileFolder.mkdir()) {
+                throw new Exception("File.mkdir():Fail.");
+            }
+        }
+
+        File dest = new File(imagePath, imgName);
+
+        try {
+            Files.copy(profileImage.getInputStream(), dest.toPath());
+        }   catch (IOException e){
+            e.printStackTrace();
+            System.out.println("디버그: 사진저장");
+        }
+        imgUpdateDto.setUserProfileImg(imgName);
+        userService.imageUpdateUser(imgUpdateDto.getUserProfileImg());
+
+        return new CMRespDto<>(1, "업로드 성공", imgName);
+//
+//        Integer userId = principal.getUserId();
+//        String imagePath = userService.uploadProfileImage(profileImage, userId);
+//
+//        if (imagePath == null) {
+//            return new CMRespDto<>(-1, "이미지 업로드에 실패했습니다.", null);
+//        }
+//        System.err.println("auserId: " + userId);
+//        imgUpdateDto.setUserProfileImg(imagePath);
+//        ImgUpdateDto imgUpdateResult = userService.imageUpdateUser(imgUpdateDto, userId);
+//        System.err.println("getUserProfileImg: "+imgUpdateResult.getUserProfileImg());
+//        return new CMRespDto<>(1, "이미지 변경 성공", imageUpdateUser);
     }
 
     // 회원 비밀번호 수정
@@ -125,18 +154,24 @@ public class UserController {
     public @ResponseBody CMRespDto<?> passwdUpdate(@RequestBody PasswdDto passwordDto){
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = principal.getUserId();
-        System.err.println("디버그userId: "+userId);
+
+        if( userId == null ){
+            return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
+        }
+        System.err.println("디버그userId: " + userId);
         PasswdDto passwd = userService.updatePasswd(passwordDto.getUserPassword(), userId);
         System.err.println("디버그getUserPassword: "+passwd.getUserPassword());
         return new CMRespDto<>(1, "비밀번호 수정 성공.", passwd);
     }
     // 회원 정보 수정
     @PutMapping("/s/api/user/userConfigUpdate")
-    public String userUpdate(@RequestBody UpdateDto updateDto){
+    public @ResponseBody CMRespDto<?> userUpdate(@RequestBody UpdateDto updateDto){
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-        UserRespDto userUpdateResult = userService.update(updateDto);
+        Integer userId = principal.getUserId();
+
+        UserRespDto userUpdateResult = userService.update(updateDto, userId);
         System.err.println("userUpdateResult:"+userUpdateResult);
-        return  "userUpdate";
+        return new CMRespDto<>(1, "비밀번호 수정 성공.", userUpdateResult);
     }
 
     // 계정 상세 화면

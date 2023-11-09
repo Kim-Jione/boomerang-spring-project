@@ -6,7 +6,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 public class PasswdDto {
     private Integer userId;
     private String userLoginId;
