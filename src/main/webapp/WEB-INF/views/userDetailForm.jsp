@@ -31,7 +31,8 @@
               <div class="pro_right">
                 <div class="name">
                   <p>${userDetail.userNickname}</p>
-                  <button class="edit_btn" onclick="">수정하기</button>
+                 <button class="edit_btn" onclick="location.href='/s/api/user/updateForm/${principal.userId}'">수정하기</button>
+
                 </div>
                 <div class="profile_con">
                   <div class="profile_txt">
@@ -117,38 +118,16 @@
                     </tr>
                   </thead>
                   <tbody>
+                     <c:forEach items="${userDetail.userPortfolio}" var="portfolio">
                     <tr>
-                      <td>파문</td>
-                      <td>2023</td>
-                      <td>성우: 집 나간 아들, 타쿠야</td>
-                      <td>장편영화</td>
-                      <td>오기가미 나오코</td>
-                      <td>2023 부산국제영화제</td>
+                      <td>${portfolio.upTitle}</td>
+                      <td>${portfolio.upProdYear}</td>
+                      <td>${portfolio.upRole}</td>
+                      <td>${portfolio.upGenre}</td>
+                      <td>${portfolio.upDirector}</td>
+                      <td>${portfolio.upDirector}   </td>
                     </tr>
-                    <tr>
-                      <td>비공식작전</td>
-                      <td>2023</td>
-                      <td>성우: 주지훈</td>
-                      <td>장편영화</td>
-                      <td>김성훈</td>
-                      <td>2023 부산국제영화제</td>
-                    </tr>
-                    <tr>
-                      <td>할머니의 잘지은 밥상</td>
-                      <td>2023</td>
-                      <td>나레이션</td>
-                      <td>다큐멘터리</td>
-                      <td>로컬리티</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>한국어 능력평가 모의고사</td>
-                      <td>2023</td>
-                      <td>성우</td>
-                      <td>기타</td>
-                      <td>랑스</td>
-                      <td></td>
-                    </tr>
+                     </c:forEach>
                   </tbody>
                 </table>
               </div>

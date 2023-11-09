@@ -84,7 +84,7 @@ public class UserController {
     }
 
     // 내 회원정보 수정 화면
-    @GetMapping("/s/api/user/updateForm")
+    @GetMapping("/s/api/user/updateForm/{userId}")
     public String updateForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(principal.getUserId());
