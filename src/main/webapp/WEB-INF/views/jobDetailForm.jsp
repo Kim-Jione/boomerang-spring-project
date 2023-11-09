@@ -30,6 +30,7 @@
 <input type="hidden" id="jobUserId" value="${job.userId}"><!--작성자 ID-->
 <input type="hidden" id="userId" value="${principal.userId}"><!--추천자 ID-->
 <input type="hidden" id="likeyId" value="${job.likeyId}">
+
 <div class="pf_container">
     <div class="pf_title_area">
         <div class="pf_display">
@@ -40,7 +41,7 @@
                 <div class="pf_label">
                     <div class="user_info">
                         <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
-                            <img class="pf_img" src="/img/${job.userProfileImg}"/>
+                            <img class="pf_img" src="/img/${principal.userProfileImg}"/>
                             <p class="pf_nickname">${job.userNickname}</p>
                         </a>
                         <p class="line">|</p>
@@ -59,7 +60,7 @@
                class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
             <p class="like_count" id="countLikey">${job.likeyCount}</p>
             <img src="/image/siren.png"/>
-            <p class="report">
+            <p class="jobReport">
                 <button class='jobReportBtn'>신고하기</button>
             </p>
         </div>
@@ -162,7 +163,7 @@
             <!-- 댓글이 달리는 부분 -->
             <c:forEach var="comment" items="${job.commentList}">
                 <div class="comment_card">
-                    <input type="hidden" class="commentId" id="${comment.commentId}" value="${comment.commentId}">
+                    <input type="hidden" class="commentId" id="commentId" value="${comment.commentId}">
                     <div class="comment_top">
                         <div class="comment_info">
                             <div class="pic center_display">
@@ -180,11 +181,13 @@
                             </div>
                         </div>
                         <div class="comment_btns">
-                            <c:if test="${comment.userId==principal.userId}">
+                            <c:if test="${comment.userId == principal.userId}">
                                 <button class='editBtn'>수정</button>
                                 <button class='removeBtn'>삭제</button>
                             </c:if>
-                            <button class='reportBtn'>신고하기</button>
+                            <p class="commentReport">
+                                <button class='commentReportBtn'>신고하기</button>
+                            </p>
                         </div>
                     </div>
                     <textarea class="comment textarea" readonly>${comment.commentContent}</textarea>
