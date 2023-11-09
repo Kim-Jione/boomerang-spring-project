@@ -57,7 +57,7 @@
                   <dl>
                     <dt>작성 시간</dt>
                     <dd>
-                      <fmt:formatDate value="${notice.createdAt}" pattern="yy.MM.dd kk:mm" type="date" />
+                      <fmt:formatDate value="${notice.createdDate}" pattern="yy.MM.dd kk:mm" type="date" />
                     </dd>
                   </dl>
                 </div>

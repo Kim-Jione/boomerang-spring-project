@@ -91,11 +91,22 @@
         LEFT JOIN (
         SELECT job_id, COUNT(*) AS likey_count FROM likey GROUP BY job_id
         ) l ON j.job_id = l.job_id
-        WHERE j.job_status = 'active'AND (j.job_content_title like '%${keyword}%' OR j.job_content LIKE '%${keyword}%')
-        AND (j.job_genre = '#{jobGenre}'  AND (
-    			(SELECT GROUP_CONCAT(jp.job_position_title) FROM job_search_position jp WHERE jp.job_id = j.job_id) LIKE '%#{jobPositionTitle}%'
-) 				AND j.job_gender = '#{jobGenre}')
-			HAVING isDead = false
+            WHERE j.job_status = 'active'
+            <if test="keyword != null">
+                AND (j.job_content_title like '%${keyword}%' OR j.job_content LIKE '%${keyword}%')
+            </if>
+            <if test="jobGenre != null">
+                AND j.job_genre like '%${jobGenre}%'
+            </if>
+            <if test="jobPositionTitle != null">
+                AND ((SELECT GROUP_CONCAT(jp.job_position_title) FROM job_search_position jp WHERE jp.job_id like j.job_id) LIKE '%${jobPositionTitle}%')
+            </if>
+            <if test="jobGender != null">
+                AND j.job_gender like '%${jobGender}%'
+            </if>
+            <if test="jobGender != null">
+                HAVING isDead = false
+            </if>
         ORDER BY j.created_at DESC
         OFFSET 1 ROWS
         FETCH NEXT 12 ROWS ONLY

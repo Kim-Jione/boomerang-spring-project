@@ -75,6 +75,10 @@
                                                 <a href="/s/api/user/updateForm">계정 관리</a>
                                             </li>
                                             <li>
+                                                <span class="material-icons icons-size">person</span>
+                                                <a href="/s/api/auth/admin/indexForm">관리자 페이지</a>
+                                            </li>
+                                            <li>
                                                 <span class="material-icons icons-size">account_balance_wallet</span>
                                                 <a href="/s/api/user/logout">로그 아웃</a>
                                             </li>

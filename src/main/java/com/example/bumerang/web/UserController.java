@@ -67,7 +67,10 @@ public class UserController {
     // 로그인 기능
     @PostMapping("/user/login")
     public @ResponseBody CMRespDto<?> login(@RequestBody LoginDto loginDto) {
+        System.err.println("getUserLoginId"+loginDto.getUserLoginId());
+        System.err.println("getUserPassword"+loginDto.getUserPassword());
         SessionUserDto loginResult = userService.findByUser(loginDto);
+        System.err.println("loginResultgetUserLoginId"+loginResult.getUserLoginId());
         if (loginResult == null) {
             return new CMRespDto<>(-1, "아이디 혹은 비밀번호를 잘못 입력하셨습니다.", null);
         }
