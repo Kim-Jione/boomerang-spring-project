@@ -16,7 +16,7 @@
         <!-- AJax -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-        <script src="js/report.js"></script>
+        <script src="/js/report.js"></script>
 
       </head>
 
@@ -37,7 +37,7 @@
                 <input type="radio" name="reportType" value="같은 내용의 반복 게시(도배)" />스팸홍보/도배글입니다.
               </li>
               <li>
-                <input type="radio" name="reportType" value="음란성/선전성" /><label for="reason">음란물입니다.</label>
+                <input type="radio" name="reportType" value="음란성/선전성" /><label>음란물입니다.</label>
               </li>
               <li>
                 <input type="radio" name="reportType" value="불법정보" /><label>불법정보를 포함하고 있습니다.</label>
@@ -68,10 +68,10 @@
 
           </div>
           <div class="btn_wrap">
-            <button class="jobReportBtn">제 출</button>
+            <button class="pfReportBtn">제 출</button>
           </div>
         </div>
-        <script src="/js/report.js"></script>
+        <script src="/js/reportPf.js"></script>
       </body>
 
       </html>

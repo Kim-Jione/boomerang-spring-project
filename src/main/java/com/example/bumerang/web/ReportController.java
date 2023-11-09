@@ -62,11 +62,18 @@ public class ReportController {
         return new CMRespDto<>(-1, "데이터 요청을 다시 해주세요.", null);
     }
     
-    // 신고창 화면
-	@GetMapping("/s/api/reportForm/{targetId}/{userId}")
-	public String reportForm(@PathVariable Integer targetId, @PathVariable Integer userId, Model model) {
+    // 구인글 신고창 화면
+	@GetMapping("/s/api/reportFormJob/{targetId}/{userId}")
+	public String reportFormJob(@PathVariable Integer targetId, @PathVariable Integer userId, Model model) {
         model.addAttribute("targetId", targetId);
         model.addAttribute("userId", userId);
-		return "reportForm";
+		return "reportFormJob";
+	}
+    // 공연글 신고창 화면
+	@GetMapping("/s/api/reportFormPf/{targetId}/{userId}")
+	public String reportFormPf(@PathVariable Integer targetId, @PathVariable Integer userId, Model model) {
+        model.addAttribute("targetId", targetId);
+        model.addAttribute("userId", userId);
+		return "reportFormPf";
 	}
 }

@@ -213,6 +213,29 @@ function removeComment() {
   }
 }
 
+//  댓글 신고하기
+function reportComment() {
+  var nWidth = "500";
+  var nHeight = "600";
+  var xPos = document.body.clientWidth / 2 - nWidth / 2;
+  xPos += window.screenLeft; //듀얼 모니터
+  var yPos = screen.availHeight / 2 - nHeight / 2;
+
+  window.open(
+      "/s/api/reportForm",
+      "신고하기",
+      "width=" +
+      nWidth +
+      ",height=" +
+      nHeight +
+      ",left=" +
+      xPos +
+      ", top=" +
+      yPos +
+      ",toolbar=no"
+  );
+}
+
 //  공연글 신고하기
 function reportPf() {
   let pfId = $("#pfId").val();
@@ -225,114 +248,7 @@ function reportPf() {
   var yPos = screen.availHeight / 2 - nHeight / 2;
 
   window.open(
-      "/s/api/reportForm/" + pfId + "/" + userId,
-      "신고하기",
-      "width=" +
-      nWidth +
-      ",height=" +
-      nHeight +
-      ",left=" +
-      xPos +
-      ", top=" +
-      yPos +
-      ",toolbar=no"
-  );
-}
-
-//  댓글 신고하기
-function reportComment() {
-  var nWidth = "500";
-  var nHeight = "600";
-  var xPos = document.body.clientWidth / 2 - nWidth / 2;
-  xPos += window.screenLeft; //듀얼 모니터
-  var yPos = screen.availHeight / 2 - nHeight / 2;
-
-  window.open(
-      "/s/api/reportForm",
-      "신고하기",
-      "width=" +
-      nWidth +
-      ",height=" +
-      nHeight +
-      ",left=" +
-      xPos +
-      ", top=" +
-      yPos +
-      ",toolbar=no"
-  );
-}
-// 공연글 신고하기
-$(".pfReportBtn").click(() => {
-  reportPf();
-});
-
-//  공연글 신고하기
-function reportPf() {
-  let pfId = $("#pfId").val();
-  let userId = $("#pfUserId").val();
-
-  var nWidth = "500";
-  var nHeight = "600";
-  var xPos = document.body.clientWidth / 2 - nWidth / 2;
-  xPos += window.screenLeft; //듀얼 모니터
-  var yPos = screen.availHeight / 2 - nHeight / 2;
-
-  window.open(
-      "/s/api/reportForm/" + pfId + "/" + userId,
-      "신고하기",
-      "width=" +
-      nWidth +
-      ",height=" +
-      nHeight +
-      ",left=" +
-      xPos +
-      ", top=" +
-      yPos +
-      ",toolbar=no"
-  );
-}
-
-// 공연글 신고하기
-$(".pfReportBtn").click(() => {
-  reportPf();
-});
-
-//  공연글 신고하기
-function reportPf() {
-  let pfId = $("#pfId").val();
-  let userId = $("#pfUserId").val();
-
-  var nWidth = "500";
-  var nHeight = "600";
-  var xPos = document.body.clientWidth / 2 - nWidth / 2;
-  xPos += window.screenLeft; //듀얼 모니터
-  var yPos = screen.availHeight / 2 - nHeight / 2;
-
-  window.open(
-      "/s/api/reportForm/" + pfId + "/" + userId,
-      "신고하기",
-      "width=" +
-      nWidth +
-      ",height=" +
-      nHeight +
-      ",left=" +
-      xPos +
-      ", top=" +
-      yPos +
-      ",toolbar=no"
-  );
-}
-
-//  댓글 신고하기
-function reportComment() {
-  var nWidth = "500";
-  var nHeight = "600";
-  var xPos = document.body.clientWidth / 2 - nWidth / 2;
-  xPos += window.screenLeft; //듀얼 모니터
-  var yPos = screen.availHeight / 2 - nHeight / 2;
-
-  window.open(
-      "/s/api/reportForm",
+      "/s/api/reportFormPf/" + pfId + "/" + userId,
       "신고하기",
       "width=" +
       nWidth +
