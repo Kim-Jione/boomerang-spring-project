@@ -30,8 +30,9 @@
               </div>
               <div class="pro_right">
                 <div class="name">
-                  <p>임성수</p>
-                  <button class="edit_btn" onclick="">수정하기</button>
+                  <p>${userDetail.userNickname}</p>
+                 <button class="edit_btn" onclick="location.href='/s/api/user/updateForm/${principal.userId}'">수정하기</button>
+
                 </div>
                 <div class="profile_con">
                   <div class="profile_txt">
@@ -46,16 +47,16 @@
                         <li>연령대</li>
                       </ul>
                       <ul class="pro_info2">
-                        <li>남성</li>
-                        <li>182cm</li>
-                        <li>표준</li>
-                        <li>밝은 저음</li>
-                        <li>영화, 연극, 뮤지컬, 더빙, 나레이션</li>
+                        <li>${userDetail.userGender}</li>
+                        <li>${userDetail.userHeight}</li>
+                        <li>${userDetail.userForm}</li>
+                        <li>${userDetail.userTone}</li>
+                        <li>${userDetail.uftitles}</li>
                         <li>30대</li>
                       </ul>
                       <div class="pro_txt">
                         <p class="pro_tit">EDUCATION</p>
-                        <p class="pro_data">숭실대학교 금융학부</p>
+                        <p class="pro_data">${userDetail.userEducation}</p>
                       </div>
                     </div>
                   </div>
@@ -63,22 +64,19 @@
                   <div class="profile_txt">
                     <div class="pro_txt">
                       <p class="pro_tit">CAREER</p>
-                      <p class="pro_data">1~3년</p>
+                      <p class="pro_data">${userDetail.userCareer}</p>
                     </div>
 
                     <div class="pro_txt">
                       <p class="pro_tit">SKILLS</p>
-                      <p class="pro_data">토익 920점</p>
-                      <p class="pro_data">해군 중위 전역</p>
-                      <p class="pro_data">성악(바리톤)</p>
-                      <p class="pro_data">베이킹</p>
+                      <p class="pro_data">${userDetail.userSkill}</p>
                     </div>
                     <div class="pro_txt">
                       <p class="pro_tit">CONTACT</p>
-                      <a href="https://open.kakao.com/o/suUDopxe" target="_blank" class="pro_data">카카오톡 오픈채팅<i
+                      <a href="${userDetail.userContactLink}" target="_blank" class="pro_data">카카오톡 오픈채팅<i
                           class="fa-solid fa-arrow-up-right-from-square" title="새창 열기"></i></a>
                       <p class="pro_data email">
-                        <input id="contact" type="hidden" value="hugobayit@gmail.com" />이메일
+                        <input id="contact" type="hidden" value="${userDetail.userEmail}" />이메일
                       </p>
                       <i class="fa-regular fa-copy fa-lg" title="복사하기"></i>
                       <div id="copy_pop" style="display: none">
@@ -120,38 +118,16 @@
                     </tr>
                   </thead>
                   <tbody>
+                     <c:forEach items="${userDetail.userPortfolio}" var="portfolio">
                     <tr>
-                      <td>파문</td>
-                      <td>2023</td>
-                      <td>성우: 집 나간 아들, 타쿠야</td>
-                      <td>장편영화</td>
-                      <td>오기가미 나오코</td>
-                      <td>2023 부산국제영화제</td>
+                      <td>${portfolio.upTitle}</td>
+                      <td>${portfolio.upProdYear}</td>
+                      <td>${portfolio.upRole}</td>
+                      <td>${portfolio.upGenre}</td>
+                      <td>${portfolio.upDirector}</td>
+                      <td>${portfolio.upDirector}   </td>
                     </tr>
-                    <tr>
-                      <td>비공식작전</td>
-                      <td>2023</td>
-                      <td>성우: 주지훈</td>
-                      <td>장편영화</td>
-                      <td>김성훈</td>
-                      <td>2023 부산국제영화제</td>
-                    </tr>
-                    <tr>
-                      <td>할머니의 잘지은 밥상</td>
-                      <td>2023</td>
-                      <td>나레이션</td>
-                      <td>다큐멘터리</td>
-                      <td>로컬리티</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>한국어 능력평가 모의고사</td>
-                      <td>2023</td>
-                      <td>성우</td>
-                      <td>기타</td>
-                      <td>랑스</td>
-                      <td></td>
-                    </tr>
+                     </c:forEach>
                   </tbody>
                 </table>
               </div>
