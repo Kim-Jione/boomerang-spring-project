@@ -30,7 +30,7 @@
               </div>
               <div class="pro_right">
                 <div class="name">
-                  <p>임성수</p>
+                  <p>${userDetail.userNickname}</p>
                   <button class="edit_btn" onclick="">수정하기</button>
                 </div>
                 <div class="profile_con">
@@ -46,16 +46,16 @@
                         <li>연령대</li>
                       </ul>
                       <ul class="pro_info2">
-                        <li>남성</li>
-                        <li>182cm</li>
-                        <li>표준</li>
-                        <li>밝은 저음</li>
-                        <li>영화, 연극, 뮤지컬, 더빙, 나레이션</li>
+                        <li>${userDetail.userGender}</li>
+                        <li>${userDetail.userHeight}</li>
+                        <li>${userDetail.userForm}</li>
+                        <li>${userDetail.userTone}</li>
+                        <li>${userDetail.uftitles}</li>
                         <li>30대</li>
                       </ul>
                       <div class="pro_txt">
                         <p class="pro_tit">EDUCATION</p>
-                        <p class="pro_data">숭실대학교 금융학부</p>
+                        <p class="pro_data">${userDetail.userEducation}</p>
                       </div>
                     </div>
                   </div>
@@ -63,22 +63,19 @@
                   <div class="profile_txt">
                     <div class="pro_txt">
                       <p class="pro_tit">CAREER</p>
-                      <p class="pro_data">1~3년</p>
+                      <p class="pro_data">${userDetail.userCareer}</p>
                     </div>
 
                     <div class="pro_txt">
                       <p class="pro_tit">SKILLS</p>
-                      <p class="pro_data">토익 920점</p>
-                      <p class="pro_data">해군 중위 전역</p>
-                      <p class="pro_data">성악(바리톤)</p>
-                      <p class="pro_data">베이킹</p>
+                      <p class="pro_data">${userDetail.userSkill}</p>
                     </div>
                     <div class="pro_txt">
                       <p class="pro_tit">CONTACT</p>
-                      <a href="https://open.kakao.com/o/suUDopxe" target="_blank" class="pro_data">카카오톡 오픈채팅<i
+                      <a href="${userDetail.userContactLink}" target="_blank" class="pro_data">카카오톡 오픈채팅<i
                           class="fa-solid fa-arrow-up-right-from-square" title="새창 열기"></i></a>
                       <p class="pro_data email">
-                        <input id="contact" type="hidden" value="hugobayit@gmail.com" />이메일
+                        <input id="contact" type="hidden" value="${userDetail.userEmail}" />이메일
                       </p>
                       <i class="fa-regular fa-copy fa-lg" title="복사하기"></i>
                       <div id="copy_pop" style="display: none">

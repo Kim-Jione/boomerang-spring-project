@@ -133,7 +133,7 @@ public class UserController {
 //    }
 
     // 계정 상세 화면
-    @GetMapping("user/detailForm/{userId}")
+    @GetMapping("s/api/user/detailForm/{userId}")
     public String detailForm(@PathVariable Integer userId, Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(userId);
@@ -141,7 +141,7 @@ public class UserController {
         if(userId == null){
             return "404";
         }
-        return "detailForm";
+        return "userDetailForm";
     }
 
     // 내가 작성한 글 화면
