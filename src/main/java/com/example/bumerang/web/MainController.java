@@ -67,12 +67,13 @@ public class MainController {
         System.err.println("isDead: "+isDead);
         // 페이지 수 설정
         Integer startNum = page * 12;
-        searchDto.setStartnum(startNum);
+        searchDto.setStartNum(startNum);
         System.err.println("startNum: "+startNum);
 		PagingDto paging = jobSearchService.paging(searchDto);
         paging.makeBlockInfoByPostAll(keyword);
         List<JobListDto> jobList = jobSearchService.findAllJob(searchDto);
-		List<JobListDto> bestJobList = jobSearchService.findAllBestJob();
+        List<JobListDto> bestJobList = jobSearchService.findAllBestJob();
+        System.err.println(""+paging.getTotalCount());
         model.addAttribute("paging", paging); // 페이징
 		model.addAttribute("jobList",jobList);
 		model.addAttribute("bestJobList",bestJobList);

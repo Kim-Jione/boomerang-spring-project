@@ -8,7 +8,7 @@ import lombok.Setter;
 public class SearchDto {
 	private String keyword;
 	private Integer page;
-	private Integer startnum;
+	private Integer startNum;
 	private String jobGenre;
 	private String jobPositionTitle;
 	private String jobGender;

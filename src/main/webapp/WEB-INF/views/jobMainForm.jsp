@@ -134,54 +134,53 @@
                                 <h2>부메랑 구인 목록</h2>
                             </li>
                         </ul>
-                        <form id="jobSearchForm" method="get" action="/jobSearch/mainForm">
-                            <div class="filter">
-                                <div class="dropdown_list">
-                                    <select id="filterGenre" class="dropdown" name="jobGenre">
-                                        <option value="">장르</option>
-                                        <option value="단편영화">단편영화</option>
-                                        <option value="장편영화">장편영화</option>
-                                        <option value="연극">연극</option>
-                                        <option value="웹 컨텐츠">웹 컨텐츠</option>
-                                        <option value="광고">광고</option>
-                                        <option value="전시">전시</option>
-                                        <option value="기타">기타</option>
-                                    </select>
 
-                                    <select id="filterPosition" class="dropdown" name="jobPositionTitle">
-                                        <option value="">분야</option>
-                                        <option value="배우">배우</option>
-                                        <option value="연출">연출</option>
-                                        <option value="음향">음향</option>
-                                        <option value="카메라">카메라</option>
-                                        <option value="조명">조명</option>
-                                        <option value="작가">작가</option>
-                                        <option value="기타">기타</option>
-                                    </select>
+                        <div class="filter">
+                            <div class="dropdown_list">
+                                <select id="filterGenre" class="dropdown" name="jobGenre">
+                                    <option>장르</option>
+                                    <option value="단편영화">단편영화</option>
+                                    <option value="장편영화">장편영화</option>
+                                    <option value="연극">연극</option>
+                                    <option value="웹 컨텐츠">웹 컨텐츠</option>
+                                    <option value="광고">광고</option>
+                                    <option value="전시">전시</option>
+                                    <option value="기타">기타</option>
+                                </select>
 
-                                    <select id="filterGender" class="dropdown" name="jobGender">
-                                        <option value="">성별</option>
-                                        <option value="남성">남성</option>
-                                        <option value="여성">여성</option>
-                                        <option value="성별무관">성별무관</option>
-                                    </select>
+                                <select id="filterPosition" class="dropdown" name="jobPositionTitle">
+                                    <option>분야</option>
+                                    <option value="배우">배우</option>
+                                    <option value="연출">연출</option>
+                                    <option value="음향">음향</option>
+                                    <option value="카메라">카메라</option>
+                                    <option value="조명">조명</option>
+                                    <option value="작가">작가</option>
+                                    <option value="기타">기타</option>
+                                </select>
 
-                                    <select id="filterOpening" class="dropdown" name="isDead">
-                                        <option value="">모집 여부</option>
-                                        <option value="false">모집중</option>
-                                        <option value="true">모집 마감</option>
-                                    </select>
-                                </div>
-                                <!-- 검색창 -->
+                                <select id="filterGender" class="dropdown" name="jobGender">
+                                    <option>성별</option>
+                                    <option value="남성">남성</option>
+                                    <option value="여성">여성</option>
+                                    <option value="성별무관">성별무관</option>
+                                </select>
+
+                                <select id="filterOpening" class="dropdown" name="isDead">
+                                    <option>모집 여부</option>
+                                    <option value="false">모집중</option>
+                                    <option value="true">모집 마감</option>
+                                </select>
+                            </div>
+                            <!-- 검색창 -->
+                            <form method="get" action="/jobSearch/mainForm">
                                 <div class="search_bar">
-
-
-
                                     <input type="text" name="keyword" id="filterText" placeholder="제목, 닉네임을 입력해보세요.">
                                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+
 
                         <!-- 구인글 및 페이지네이션 -->
                         <div class="search_job_container">
@@ -259,6 +258,9 @@
                                 </div>
                             </c:forEach>
                             <!-- 여기까지만 복사 -->
+                        </div>
+
+                        <div class="pagination">
                         </div>
                     </div>
                     <!-- 페이지 -->
