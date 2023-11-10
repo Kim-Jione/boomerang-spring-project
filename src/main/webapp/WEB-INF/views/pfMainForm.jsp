@@ -224,6 +224,7 @@
                     <script src="/js/performance.js"></script>
                     <script src="/js/default.js"></script>
 
+                    <%@ include file="layout/footer.jsp" %>
             </body>
 
             </html>

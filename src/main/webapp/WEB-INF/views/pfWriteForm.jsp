@@ -208,6 +208,7 @@
           <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
           <script src="/js/writePerformance.js"></script>
           <script src="/js/default.js"></script>
+          <%@ include file="layout/footer.jsp" %>
       </body>
 
       </html>

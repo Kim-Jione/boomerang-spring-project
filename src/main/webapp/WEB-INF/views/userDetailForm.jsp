@@ -31,7 +31,8 @@
               <div class="pro_right">
                 <div class="name">
                   <p>${userDetail.userNickname}</p>
-                 <button class="edit_btn" onclick="location.href='/s/api/user/updateForm/${principal.userId}'">수정하기</button>
+                  <button class="edit_btn"
+                    onclick="location.href='/s/api/user/updateForm/${principal.userId}'">수정하기</button>
 
                 </div>
                 <div class="profile_con">
@@ -118,16 +119,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                     <c:forEach items="${userDetail.userPortfolio}" var="portfolio">
-                    <tr>
-                      <td>${portfolio.upTitle}</td>
-                      <td>${portfolio.upProdYear}</td>
-                      <td>${portfolio.upRole}</td>
-                      <td>${portfolio.upGenre}</td>
-                      <td>${portfolio.upDirector}</td>
-                      <td>${portfolio.upDirector}   </td>
-                    </tr>
-                     </c:forEach>
+                    <c:forEach items="${userDetail.userPortfolio}" var="portfolio">
+                      <tr>
+                        <td>${portfolio.upTitle}</td>
+                        <td>${portfolio.upProdYear}</td>
+                        <td>${portfolio.upRole}</td>
+                        <td>${portfolio.upGenre}</td>
+                        <td>${portfolio.upDirector}</td>
+                        <td>${portfolio.upDirector} </td>
+                      </tr>
+                    </c:forEach>
                   </tbody>
                 </table>
               </div>
@@ -136,6 +137,7 @@
           <script src="https://kit.fontawesome.com/bfb14eb01e.js" crossorigin="anonymous"></script>
           <script src="/js/showMemberInfo.js" crossorigin="anonymous"></script>
           <script src="/js/default.js"></script>
+          <%@ include file="layout/footer.jsp" %>
       </body>
 
       </html>

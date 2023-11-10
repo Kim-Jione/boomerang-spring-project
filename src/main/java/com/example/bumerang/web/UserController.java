@@ -25,11 +25,9 @@ import com.example.bumerang.web.dto.request.user.LoginDto;
 import com.example.bumerang.web.dto.request.user.PasswdDto;
 import com.example.bumerang.web.dto.request.user.UpdateDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
-import com.example.bumerang.web.dto.response.jobSearch.JobRespDto;
 import com.example.bumerang.web.dto.response.likey.LikeyJSListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyRespDto;
-import com.example.bumerang.web.dto.response.performance.PfRespDto;
 import com.example.bumerang.web.dto.response.user.SearchIdDto;
 import com.example.bumerang.web.dto.response.user.SearchPwDto;
 import com.example.bumerang.web.dto.response.user.UserCreateRespoDto;
@@ -180,7 +178,7 @@ public class UserController {
         model.addAttribute("userId", userId);
         return "findId";
     }
-    // 비밀번호 찾긱
+    // 비밀번호 찾기
     @PostMapping("/user/findPw")
     public String searchPw(@RequestParam String userEmail, SearchPwDto userEmailPw, Model model) {
         userEmailPw.setUserEmail(userEmail);
@@ -195,12 +193,17 @@ public class UserController {
     // 관심목록 화면
     @GetMapping("/s/api/user/likeyListForm")
     public String likeyListForm(Model model) {
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        Integer userId = principal.getUserId();
+        if(userId == null){
+            return "404";
+        }
         LikeyRespDto userLikeyList = new LikeyRespDto();
         List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList();
         List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList();
         userLikeyList.setLJSList(LikeyJSDetail);
         userLikeyList.setLPFList(LikeyPFDetail);
-        model.addAttribute("LikeyJSDetail", LikeyPFDetail);
+        model.addAttribute("LikeyJSDetail", LikeyJSDetail);
         model.addAttribute("LikeyPFDetail", LikeyPFDetail);
         return "likeyListForm";
     }

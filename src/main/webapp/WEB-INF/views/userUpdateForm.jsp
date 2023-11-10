@@ -297,6 +297,7 @@
           <script src="/js/editMemberInfo-img.js" crossorigin="anonymous"></script>
           <script src="/js/editMemberInfo-password.js" crossorigin="anonymous"></script>
           <script src="/js/default.js"></script>
+          <%@ include file="layout/footer.jsp" %>
       </body>
 
       </html>
