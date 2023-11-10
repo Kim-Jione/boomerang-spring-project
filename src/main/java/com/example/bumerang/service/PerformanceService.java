@@ -31,7 +31,7 @@ public class PerformanceService {
 	private final CommentDao commentDao;
 	private final ViewDao viewDao;
 	private final HttpSession session;
-	private final String imageUploadPath = "C:/bumerang/img/"; // 여기서 경로 수정
+	private final String imageUploadPath = "/image/poster/"; // 여기서 경로 수정
 
 	//공연글 목록
 	public List<Performance> findAll() {
@@ -86,7 +86,7 @@ public class PerformanceService {
 
 	public DetailFormDto findByPf(Integer userId, Integer pfId) {
 		List<PfCommentDto> findByCommentList = commentDao.findByPfCommentList(pfId);
-		DetailFormDto findByPf = performanceDao.findByPf(pfId);
+		DetailFormDto findByPf = performanceDao.findByPf(userId, pfId);
 		findByPf.setCommentList(findByCommentList);
 		viewDao.count(pfId,null,userId);
 		return findByPf;

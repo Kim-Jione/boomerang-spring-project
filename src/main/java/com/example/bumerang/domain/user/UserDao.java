@@ -3,6 +3,7 @@ package com.example.bumerang.domain.user;
 import com.example.bumerang.domain.userPortfolio.UserPortfolio;
 import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.user.LoginDto;
+import com.example.bumerang.web.dto.request.user.PasswdDto;
 import com.example.bumerang.web.dto.request.user.UpdateDto;
 import com.example.bumerang.web.dto.response.user.SearchIdDto;
 import com.example.bumerang.web.dto.response.user.SearchPwDto;
@@ -55,4 +56,8 @@ public interface UserDao {
     User findByEmail(String userEmail);
 
     void updatePw(String userPassword, Integer userId);
+
+    void updatePassword(String userPassword, Integer userId);
+
+    PasswdDto findByPwUpdateResult(String userPassword, Integer userId);
 }

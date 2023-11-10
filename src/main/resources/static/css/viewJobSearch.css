@@ -13,6 +13,11 @@
   justify-content: space-between;
 }
 
+.pf_title_area .pf_display {
+  width: 100%;
+  max-width: 895px;
+}
+
 .pf_title_area .myinfo {
   display: flex;
   justify-content: flex-start;
@@ -152,18 +157,51 @@
 }
 
 .pf_info .column .pf_intro .introduce {
-  font-size: 18px;
-  padding: 0 5px;
+  padding: 0 5px 30px;
   margin-top: 30px;
   overflow: hidden;
   width: 100%;
   height: auto;
   outline: none;
-  resize: none;
   border: none;
   border-bottom: solid 2px #eee;
+  font-family: inherit;
+}
+/* 글내용 폰트 관련 */
+.pf_info .column .pf_intro .introduce p {
+  font-size: 18px;
+  margin: 10px 0px;
 }
 
+.pf_info .column .pf_intro .introduce h1 {
+  font-size: 36px;
+  margin: 15px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h2 {
+  font-size: 32px;
+  margin: 15px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h3 {
+  font-size: 28px;
+  margin: 15px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h4 {
+  font-size: 24px;
+  margin: 13px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h5 {
+  font-size: 20px;
+  margin: 10px 0px;
+}
+
+.pf_info .column .pf_intro .introduce h6 {
+  font-size: 16px;
+  margin: 10px 0px;
+}
 /***************/
 /* 본문 하단 버튼 */
 /***************/
@@ -177,7 +215,7 @@
   background-color: #459fee;
   border: 1px solid #ccc;
   border-radius: 50px;
-  border-width: 0 0 4px;
+  border-width: 0 0 2px;
   box-sizing: border-box;
   width: 80px;
   height: 50px;
@@ -212,7 +250,6 @@
   padding: 10px;
   gap: 15px;
 }
-
 
 .delete_confirm #confirmDelete {
   background-color: palevioletred;
@@ -292,18 +329,18 @@ form .write_comment .form_info {
 
 .top button {
   background-color: #459fee;
-  border: solid transparent;
+  border: 1px solid #ccc;
   border-radius: 50px;
-  border-width: 0 0 4px;
+  border-width: 0 0 2px;
   box-sizing: border-box;
   width: 80px;
   height: 50px;
-  font-size: 16px;
+  font-size: 18px;
   color: white;
   cursor: pointer;
   outline: none;
-  touch-action: manipulation;
-  transition: filter 0.2s;
+  /* touch-action: manipulation;
+  transition: filter 0.2s; */
 }
 /* 
 .top button:hover:not(:disabled) {

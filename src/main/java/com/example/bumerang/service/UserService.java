@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import com.example.bumerang.web.dto.request.user.PasswdDto;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -58,7 +59,10 @@ public class UserService {
     public SessionUserDto findByUser(LoginDto loginDto) {
         String enPassword = sha256.encrypt(loginDto.getUserPassword());
         loginDto.setUserPassword(enPassword); // 암호화된 비밀번호로 회원가입
+        System.err.println("getUserLoginId"+loginDto.getUserLoginId());
+        System.err.println("getUserPassword"+loginDto.getUserPassword());
         SessionUserDto userPS = userDao.findByUser(loginDto);
+        System.err.println("userPSgetUserLoginId"+userPS.getUserLoginId());
         return userPS;
     }
 
@@ -209,5 +213,17 @@ public class UserService {
     public User findByEmail(String userEmail) {
         User userPS = userDao.findByEmail(userEmail);
         return userPS;
+    }
+
+    public PasswdDto updatePasswd(String userPassword, Integer userId) {
+        String enPassword = sha256.encrypt(userPassword);
+        userPassword = enPassword;
+        System.err.println("userId: "+userId);
+        System.err.println("getUserPassword: "+userPassword);
+        userDao.updatePassword(userPassword, userId);
+        User userPS = userDao.findById(userId);
+        System.err.println("됐다: "+userPS.getUserPassword());
+        PasswdDto passUpdateResult = userDao.findByPwUpdateResult(userPassword, userId);
+        return passUpdateResult;
     }
 }
