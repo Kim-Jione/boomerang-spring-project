@@ -170,7 +170,7 @@
                                 <button class='removeBtn'>삭제</button>
                             </c:if>
                             <p class="commentReport">
-                                <button class='commentReportBtn'>신고하기</button>
+                                <button class='' onclick="reportComment(${comment.commentId})">신고하기</button>
                             </p>
                         </div>
                     </div>

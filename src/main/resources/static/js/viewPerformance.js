@@ -3,8 +3,8 @@
 /***************/
 
 if (
-    document.querySelector(".edit_btn") &&
-    document.querySelector(".delete_btn")
+  document.querySelector(".edit_btn") &&
+  document.querySelector(".delete_btn")
 ) {
   const editBtn = document.querySelector(".edit_btn");
   const deleteBtn = document.querySelector(".delete_btn");
@@ -228,9 +228,9 @@ function reportPf() {
   var yPos = screen.availHeight / 2 - nHeight / 2;
 
   window.open(
-      "/s/api/reportFormPf/" + pfId + "/" + userId,
-      "신고하기",
-      "width=" +
+    "/s/api/reportFormPf/" + pfId + "/" + userId,
+    "신고하기",
+    "width=" +
       nWidth +
       ",height=" +
       nHeight +
@@ -243,8 +243,7 @@ function reportPf() {
 }
 
 //  댓글 신고하기
-function reportComment() {
-  let commentId = $("#commentId").val();
+function reportComment(commentId) {
   let userId = $("#userId").val();
 
   var nWidth = "700";
@@ -254,9 +253,9 @@ function reportComment() {
   var yPos = screen.availHeight / 2 - nHeight / 2;
 
   window.open(
-      "/s/api/reportFormComment/" + commentId + "/" + userId,
-      "신고하기",
-      "width=" +
+    "/s/api/reportFormComment/" + commentId + "/" + userId,
+    "신고하기",
+    "width=" +
       nWidth +
       ",height=" +
       nHeight +

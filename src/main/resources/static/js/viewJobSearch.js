@@ -245,8 +245,6 @@ function reportJob() {
 //  댓글 신고하기
 function reportComment(commentId) {
   let userId = $("#userId").val();
-  alert("commentId" + commentId);
-  alert("userId" + userId);
 
   var nWidth = "700";
   var nHeight = "900";
