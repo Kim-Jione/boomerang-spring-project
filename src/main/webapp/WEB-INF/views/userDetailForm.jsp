@@ -25,7 +25,7 @@
             <div class="container">
               <div class="pro_left">
                 <div class="pro_img">
-                  <img src="/image/임성수.png" />
+                  <img src="/img/${userDetail.userProfileImg}" />
                 </div>
               </div>
               <div class="pro_right">
@@ -52,7 +52,7 @@
                         <li>${userDetail.userForm}</li>
                         <li>${userDetail.userTone}</li>
                         <li>${userDetail.uftitles}</li>
-                        <li>30대</li>
+                        <li>${userDetail.userAge}</li>
                       </ul>
                       <div class="pro_txt">
                         <p class="pro_tit">EDUCATION</p>

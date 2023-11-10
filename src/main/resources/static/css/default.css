@@ -362,6 +362,16 @@ header {
   color: #409ff1;
 }
 
+.login {
+  display: flex;
+  position: absolute;
+  right: 10vw;
+  font-size: 22px;
+  font-family: "Noto Sans KR";
+  font-weight: 600;
+  padding: 5px;
+} 
+
 /* ---------------------------footer--------------------------- */
 
 footer {

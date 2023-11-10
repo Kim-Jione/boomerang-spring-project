@@ -21,12 +21,13 @@
 
       <body>
         <%@ include file="layout/header.jsp" %>
+          <input type="hidden" value="${userDetail.userId}" id="userId">
           <div class="myPage">
             <!-- <section class="profile_wrap"> -->
             <div class="container">
               <div class="pro_left">
                 <div class="pro_img">
-                  <img src="${userDetail.userProfileImg}" />
+                  <img src="/img/${userDetail.userProfileImg}" />
                 </div>
                 <div class="edit_btn">
                   <button class="edit_img">사진 변경</button>
@@ -67,8 +68,8 @@
               <div class="pro_right">
                 <div class="name">
                   <p>
-                    <input id="user_nickname" type="text" value="${userDetail.userNickname}" /><button class="save"
-                      onclick="">
+                    <input id="userNickname" type="text" value="${userDetail.userNickname}" /><button class="save"
+                      onclick="updateUser()">
                       저장하기
                     </button>
                   </p>
@@ -88,19 +89,23 @@
                       </ul>
                       <ul class="pro_info2">
                         <li>
-                          <label for="male">남성</label>
-                          <input type="hidden" id="userGender" value="${userDetail.userGender}" />
-                          <input type="radio" class="user_gender" name="user_gender" value="남성"
-                            />
-                          <label for="female">여성</label>
-                          <input type="radio" class="user_gender" name="user_gender" value="여성" />
+                          <label>
+                            <input type="radio" name="user_gender" value="남성" ${"남성".equals(userDetail.userGender)
+                              ? "checked" : "" }>
+                            남성
+                          </label>
+                          <label>
+                            <input type="radio" name="user_gender" value="여성" ${"여성".equals(userDetail.userGender)
+                              ? "checked" : "" }>
+                            여성
+                          </label>
                         </li>
                         <li>
-                          <input id="user_height" type="number" value="${userDetail.userHeight}" id="userheight" />cm
+                          <input id="user_height" type="number" value="${userDetail.userHeight}" />cm
                         </li>
                         <li>
-                          <input type="hidden" id="userForm" value="${userDetail.userForm}" />
                           <select class="dropdown" name="user_form" id="user_form">
+                            <option class="user_form" value="${userDetail.userForm}">${userDetail.userForm}</option>
                             <option class="user_form" value="아주 마름">아주 마름</option>
                             <option class="user_form" value="마름">마름</option>
                             <option class="user_form" value="보통">보통</option>
@@ -110,8 +115,8 @@
                           </select>
                         </li>
                         <li>
-                          <input type="hidden" id="userTone" value="${userDetail.userTone}" />
                           <select class="dropdown" name="user_tone" id="user_tone">
+                            <option class="user_tone" value="${userDetail.userTone}">${userDetail.userTone}</option>
                             <option class="user_tone" value="아주 낮음">아주 낮음</option>
                             <option class="user_tone" value="낮음">낮음</option>
                             <option class="user_tone" value="보통">보통</option>
@@ -120,9 +125,9 @@
                           </select>
                         </li>
                         <li>
-                          <input type="hidden" id="userField" value="${userDetail.uftitles}" />
                           <select class="dropdown" name="user_field" id="user_field">
-                            <option class="user_field" value="배우" >배우</option>
+                            <option class="user_field" value="${userDetail.uftitles}">${userDetail.uftitles}</option>
+                            <option class="user_field" value="배우">배우</option>
                             <option class="user_field" value="연출">연출</option>
                             <option class="user_field" value="음향">음향</option>
                             <option class="user_field" value="카메라">카메라</option>
@@ -132,8 +137,8 @@
                           </select>
                         </li>
                         <li>
-                          <input type="hidden" id="userAge" value="${userDetail.userAge}" />
                           <select class="dropdown" name="user_age" id="user_age">
+                            <option class="user_age">${userDetail.userAge}</option>
                             <option class="user_age" value="10대 미만">10대 미만</option>
                             <option class="user_age" value="10대">10대</option>
                             <option class="user_age" value="20대">20대</option>
@@ -160,8 +165,8 @@
                     <div class="pro_txt">
                       <p class="pro_tit">CAREER</p>
                       <p class="pro_data">
-                        <input type="hidden" id="userCareer" value="${userDetail.userCareer}" />
                         <select class="dropdown" id="user_career">
+                          <option class="user_career" value="${userDetail.userCareer}">${userDetail.userCareer}</option>
                           <option class="user_career" value="신입">신입</option>
                           <option class="user_career" value="1년차">1년차</option>
                           <option class="user_career" value="2년차">2년차</option>
@@ -192,29 +197,29 @@
 
                         <div>
                           <p class="pro_data email">
-                            이메일<input class="user_contact" id="user_email" type="email"
+                            이메일<input class="user_contact" id="userEmail" type="email"
                               value="${userDetail.userEmail}" />
                           </p>
                         </div>
                       </div>
-<%--                      <!-- <div>--%>
-<%--                      <p class="pro_data kakao">카카오톡 오픈 채팅</p>--%>
-<%--                      <input--%>
-<%--                        class="user_contact"--%>
-<%--                        type="text"--%>
-<%--                        id="user_contact"--%>
-<%--                        value="user_contact"--%>
-<%--                      />--%>
-<%--                    </div>--%>
-<%--                    <div>--%>
-<%--                      <p class="pro_data email">이메일</p>--%>
-<%--                      <input--%>
-<%--                        class="user_contact"--%>
-<%--                        id="user_email"--%>
-<%--                        type="email"--%>
-<%--                        value="user_email"--%>
-<%--                      />${userDetail.userEmail}--%>
-<%--                    </div> -->--%>
+                      <%-- <!-- <div>--%>
+                        <%-- <p class="pro_data kakao">카카오톡 오픈 채팅</p>--%>
+                          <%-- <input--%>
+                            <%-- class="user_contact" --%>
+                              <%-- type="text" --%>
+                                <%-- id="user_contact" --%>
+                                  <%-- value="user_contact" --%>
+                                    <%-- />--%>
+                                    <%-- </div>--%>
+                                      <%-- <div>--%>
+                                        <%-- <p class="pro_data email">이메일</p>--%>
+                                          <%-- <input--%>
+                                            <%-- class="user_contact" --%>
+                                              <%-- id="user_email" --%>
+                                                <%-- type="email" --%>
+                                                  <%-- value="user_email" --%>
+                                                    <%-- />${userDetail.userEmail}--%>
+                                                    <%-- </div> -->--%>
                     </div>
                   </div>
                   <!-- profile_txt Right -->
@@ -255,19 +260,19 @@
                   <tbody class="filmo_body">
                     <c:forEach items="${userDetail.userPortfolio}" var="portfolio">
                       <tr>
-                        <td><input id="up_1_title" type="text" value="${portfolio.upTitle}" /></td>
+                        <td><input id="up_1_title" class="upTitle" type="text" value="${portfolio.upTitle}" /></td>
                         <td>
-                          <input id="up_1_prod_year" type="number" value="${portfolio.upProdYear}" />
+                          <input id="up_1_prod_year" class="upProdYear" type="number" value="${portfolio.upProdYear}" />
                         </td>
                         <td>
-                          <input id="up_1_role" type="text" value="${portfolio.upRole}" />
+                          <input id="up_1_role" class="upRole" type="text" value="${portfolio.upRole}" />
                         </td>
-                        <td><input id="up_1_genre" type="text" value="${portfolio.upGenre}" /></td>
+                        <td><input id="up_1_genre" class="upGenre" type="text" value="${portfolio.upGenre}" /></td>
                         <td>
-                          <input id="up_1_director" type="text" value="${portfolio.upDirector}" />
+                          <input id="up_1_director" class="upDirector" type="text" value="${portfolio.upDirector}" />
                         </td>
                         <td>
-                          <input id="up_1_history" type="text" value="${portfolio.upDirector}" />
+                          <input id="up_1_history" class="upHistory" type="text" value="${portfolio.upHistory}" />
                         </td>
                         <td><button class="filmo_del">삭제</button></td>
                       </tr>
