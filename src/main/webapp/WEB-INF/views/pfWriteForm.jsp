@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap"
           rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link
           href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
           rel="stylesheet" />
@@ -35,8 +36,8 @@
                   <h2>공연정보 쓰기</h2>
                 </div>
                 <div class="bt_wrap">
-                  <a href="viewPerformance.html" class="save">등록</a>
-                  <a href="performance.html" class="cancel">취소</a>
+                  <a class="save" id="pfWriteBtn">등록</a>
+                  <a href="/performance/mainForm" class="cancel">취소</a>
                 </div>
               </div>
               <div class="board_write">
@@ -56,11 +57,11 @@
                     <dl>
                       <dt>공연 기간</dt>
                       <dd>
-                        <input class="date" type="date" id="pf_start_date" value="" />부터
-                        <input class="date" type="date" id="pf_deadline" value="" />까지
+                        <input class="date" type="date" id="pfStartDate" value="" />부터
+                        <input class="date" type="date" id="pfDeadline" value="" />까지
                       </dd>
                     </dl>
-                    <dl>
+                    <dl class="select">
                       <dt>관람 연령</dt>
                       <dd>
                         <div class="select_single">
@@ -109,7 +110,7 @@
                         <input type="text" id="pf_bookingmethod" value="" placeholder="예매링크, 예매처 번호 등" />
                       </dd>
                     </dl>
-                    <dl>
+                    <dl class="select">
                       <dt>작품 장르</dt>
                       <dd>
                         <div class="select_single">
@@ -141,7 +142,7 @@
                             <span class="checkbox">
                               <i class="fa-solid fa-check check-icon"></i>
                             </span>
-                            <span class="item-text">OTT/TV 드라마</span>
+                            <span class="item-text">드라마</span>
                           </li>
                           <li class="single_item">
                             <span class="checkbox">

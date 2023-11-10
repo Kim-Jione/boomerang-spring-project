@@ -1,5 +1,6 @@
 package com.example.bumerang.web;
 
+import com.example.bumerang.domain.jobSearch.JobSearch;
 import com.example.bumerang.domain.performance.Performance;
 import com.example.bumerang.service.PerformanceService;
 import com.example.bumerang.web.dto.SessionUserDto;
@@ -54,25 +55,31 @@ public class PerformanceController {
 
     // 공연글 상세보기 화면
     @GetMapping("/s/api/performance/detailForm/{pfId}")
-    public @ResponseBody CMRespDto<?> detailForm(@PathVariable Integer pfId, Model model) {
+    public String detailForm(@PathVariable Integer pfId, Model model) {
+        Performance pfPS = performanceService.findById(pfId);
+        if (pfPS == null) {
+            return "redirect:/404";
+        }
         SessionUserDto userPS = (SessionUserDto)session.getAttribute("principal");
         Integer userId = userPS.getUserId();
         DetailFormDto pfDetail = performanceService.findByPf(userId, pfId);
-        return new CMRespDto<>(1, "공연글 상세보기 화면 불러오기 성공.", pfDetail);
+        model.addAttribute("pf", pfDetail);
+        return "pfDetailForm";
     }
 
     // 공연글 수정하기 화면
     @GetMapping("/s/api/performance/updateForm/{pfId}")
-    public @ResponseBody CMRespDto<?> updateForm(@PathVariable Integer pfId) {
+    public String updateForm(@PathVariable Integer pfId, Model model) {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Performance pfPS = performanceService.findById(pfId);
         Integer userId = pfPS.getUserId();
         Integer userPId = principal.getUserId();
         if(userId.equals(userPId)){
             DetailFormDto pfDetail = performanceService.findByPf(userId, pfId);
-            return new CMRespDto<>(1, "공연글 수정하기 화면 불러오기 성공.", pfDetail);
+            model.addAttribute("pf", pfDetail);
+            return "pfUpdateForm";
         }
-        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+        return null;
     }
 
     // 공연글 수정하기 기능
@@ -112,3 +119,4 @@ public class PerformanceController {
     }
 
 }
+
