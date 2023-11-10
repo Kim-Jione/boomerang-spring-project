@@ -226,7 +226,7 @@
                                         <img src="/image/deadline.png" class="deadline">
                                     </c:if>
                                     <div class="project">
-                                        <img src="/image/deadline-stamp1.png" class="deadline">
+
                                         <div class="badge_wrapper">
                                             <c:choose>
                                                 <c:when test="${job.jobGenre == '장편영화'}">

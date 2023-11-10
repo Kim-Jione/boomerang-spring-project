@@ -12,8 +12,8 @@ public class LikeyPFListDto {
     private String userProfileImg;
     //  performance에서 가져올 정보
 
-    private boolean isPrice;
-    private boolean isDead;
+    private Boolean isPrice;
+    private Boolean isDead;
 
     private Integer PFId;
     private String PfTitle;

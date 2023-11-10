@@ -18,7 +18,7 @@
           href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
           rel="stylesheet" />
 
-        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <title>BusanMate with Write</title>
       </head>
 
@@ -135,8 +135,11 @@
              <input id="userId" type="hidden" value="${principal.userId}" />
               <article class="poster search">
                 <div class="img"></div>
-                <a href="#">
 
+                <a href="#">
+                  <c:if test="${PFlikeyList.isDead == false}">
+                        <img src="/image/deadline-stamp1.png" class="deadline">
+                  </c:if>
                   <img src="${PFlikeyList.thumbnail}" class="img-hover" />
                 </a>
                 <div class="info">
@@ -162,7 +165,13 @@
                   <c:if test="${PFlikeyList.genre == '기타'}">
                       <div class="category forMusical">${PFlikeyList.genre}</div>
                   </c:if>
-                  <div class="age for19">${PFlikeyList.Agerating}</div>
+                  <div class="age for19">${PFlikeyList.ageRating}</div>
+                  <c:if test="${PFlikeyList.isPrice == true}">
+                      <div class="charge">유료</div>
+                  </c:if>
+                  <c:if test="${PFlikeyList.isPrice == false}">
+                      <div class="charge">무료</div>
+                  </c:if>
               </div>
                   <h3 class="title">${PFlikeyList.pfTitle}</h3>
                   <h4 class="location">${PFlikeyList.location}</h4>
@@ -171,8 +180,6 @@
               </article>
               </c:forEach>
             </section>
-
-
             <div class="pagination2">
               <!--<li class="page-item previous-page disable"><a class="page-link" href="#">Prev</a></li>
         <li class="page-item current-page active"><a class="page-link" href="#">1</a></li>

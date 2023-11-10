@@ -18,6 +18,7 @@ public class JobListDto {
     private String userNickname;
     private String userCareer;
     private Integer userId;
+    private String ageRating;
     private Integer viewCount; // 조회수
     private Integer commentCount; // 댓글수
     private Integer likeyCount; // 좋아요수
