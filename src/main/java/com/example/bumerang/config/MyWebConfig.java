@@ -10,6 +10,6 @@ public class MyWebConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/img/**")
-				.addResourceLocations("file:///C:/bumerang/img/");
+				.addResourceLocations("file:////Users/isu/Desktop/study/intellij-projects/bumerang-spring-project/src/main/resources/static/image/");
 	}
 }

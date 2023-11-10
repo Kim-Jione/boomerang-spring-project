@@ -69,6 +69,7 @@ if (existingGender) {
     }
   });
 }
+
 /***************/
 /* 멀티플 드랍박스 */
 /***************/
@@ -125,6 +126,7 @@ if (existingPosition) {
     });
   });
 }
+
 //셀렉트 박스 외에 다른 영역을 클릭할 경우, 셀렉트 박스를 닫기
 function isClickSelect(event) {
   //싱글 드랍박스 조작
@@ -145,16 +147,16 @@ function isClickSelect(event) {
 document.addEventListener("click", function (event) {
   isClickSelect(event);
 });
+
 /************/
 /* 에디터 삽입 */
 /************/
-
 var quill = new Quill("#editor-container", {
   modules: {
     toolbar: [
-      [{ header: [1, 2, 3, 4, 5, false] }],
+      [{ header: [1, 2, 3, 4, false] }],
       ["bold", "italic", "underline"],
-      ["image", "code-block"]
+      ["code-block"]
     ]
   },
   placeholder: "내용을 입력하세요",
@@ -240,7 +242,7 @@ function update() {
   };
 
   alert("userId" + data.userId);
-  alert("jobId" + data. jobId);
+  alert("jobId" + data.jobId);
 
   $.ajax("/s/api/jobSearch/update", {
     type: "PUT",

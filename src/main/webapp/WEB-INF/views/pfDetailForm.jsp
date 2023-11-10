@@ -55,7 +55,7 @@
     <div class="border"></div>
 
     <div class="pf_info">
-        <img class="poster_img" src="/img/${pf.pfThumbnail}"/>
+        <img class="poster_img" src="/image/${pf.pfThumbnail}"/>
         <div class="column">
             <ul class="detail_info">
                 <li>

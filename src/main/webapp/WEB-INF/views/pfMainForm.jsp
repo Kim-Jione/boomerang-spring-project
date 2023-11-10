@@ -48,7 +48,7 @@
                 <div class="img"></div>
                 <a href="/s/api/performance/detailForm/${best.pfId}">
 
-                    <img src="/image/poster/${best.pfThumbnail}" class="img-hover">
+                    <img src="/image/${best.pfThumbnail}" class="img-hover">
                 </a>
                 <div class="info">
                     <div class="badge">
@@ -146,7 +146,7 @@
             <article class="poster search">
                 <div class="img"></div>
                 <a href="/s/api/performance/detailForm/${pf.pfId}">
-                    <img src="${pf.pfThumbnail}" class="img-hover">
+                    <img src="/image/${pf.pfThumbnail}" class="img-hover">
                 </a>
                 <div class="info">
                     <div class="badge">

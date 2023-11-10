@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 @MapperScan(basePackages = "com.example.bumerang.domain")
@@ -32,4 +33,5 @@ public class MyBatisConfig {
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
+
 }

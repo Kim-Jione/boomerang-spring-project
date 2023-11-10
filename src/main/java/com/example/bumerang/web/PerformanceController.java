@@ -34,17 +34,25 @@ public class PerformanceController {
     // 공연글 등록하기 기능
     @PostMapping("/s/api/performance/write")
     public @ResponseBody CMRespDto<?> write(@RequestPart("thumbnail") MultipartFile thumbnail, @RequestPart("writeDto") WriteDto writeDto) {
+        System.err.println("디버그getPfGenre: "+ writeDto.getPfGenre());
+        System.err.println("디버그getPfAgerating: "+ writeDto.getPfAgerating());
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = writeDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId.equals(userPId)){
+        System.err.println("디버그userId: " + userId);
+        System.err.println("디버그userPId: " + userPId);
+        if(userId == userPId){
             try {
+                System.out.println("통과?");
                 // 썸네일 업로드 및 업데이트
                 String imagePath = performanceService.uploadThumbnail(thumbnail);
-                // UpdateDto에 imagePath를 설정
+                System.out.println("imagePath: " + imagePath);
+                // UpdateDto에 imagePath를 설정x
                 writeDto.setPfThumbnail(imagePath);
+                System.out.println("writeDto.getPfThumbnail(): " + writeDto.getPfThumbnail());
                 // 공연글 등록 업데이트
                 PfRespDto writeResult = performanceService.write(writeDto);
+                System.out.println("writeResult: " + writeResult);
                 return new CMRespDto<>(1, "공연글 등록 성공.", writeResult);
             } catch (Exception e) {
                 e.printStackTrace();

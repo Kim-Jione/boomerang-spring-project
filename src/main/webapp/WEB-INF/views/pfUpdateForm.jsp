@@ -52,7 +52,10 @@
                 </div>
                 <div class="info">
                   <div class="left">
-                    <input type="file" id="pf_img" />
+                    <c:if test="${pf.pfThumbnail != null}">
+                      
+                    </c:if>
+                    <input type="file" name="thumbnail" id="pfThumbnail" />
                   </div>
                   <div class="right">
                     <dl>
