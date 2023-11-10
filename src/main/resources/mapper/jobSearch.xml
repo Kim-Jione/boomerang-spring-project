@@ -65,8 +65,51 @@
     </select>
 
     <select id="findAllJob" resultType="com.example.bumerang.web.dto.response.jobSearch.JobListDto">
-
-
+        SELECT
+        j.job_id AS jobId,
+        j.created_at AS createdAt,
+        j.job_genre AS jobGenre,
+        j.job_deadline AS jobDeadline,
+        j.job_content_title AS jobContentTitle,
+        u.user_profile_img AS userProfileImg,
+        u.user_nickname AS userNickname,
+        u.user_career AS userCareer,
+        u.user_id AS userId,
+        (SELECT GROUP_CONCAT(jp.job_position_title) FROM job_search_position jp WHERE jp.job_id = j.job_id) as jobPositionTitles,
+        COALESCE(v.view_count, 0) AS viewCount,
+        COALESCE(c.comment_count, 0) AS commentCount,
+        COALESCE(l.likey_count, 0) AS likeyCount,
+        IF(DATEDIFF(j.job_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
+        IF(DATE(j.created_at) = CURDATE(), TRUE, FALSE) AS isToday,
+        IF((l.likey_count <![CDATA[ > ]]> 10), TRUE, false) AS isFame
+        FROM
+        (SELECT * 
+			FROM job_search 
+			WHERE job_status != 'deleted') j
+        JOIN
+        (SELECT * 
+		FROM user 
+		WHERE user_status != 'deleted') u ON j.user_id = u.user_id
+        LEFT JOIN (
+        SELECT job_id, COUNT(*) AS view_count 
+		  FROM view 
+		  GROUP BY job_id
+        ) v ON j.job_id = v.job_id
+        LEFT JOIN (
+        SELECT job_id, COUNT(*) AS comment_count 
+		  FROM comment 
+		  WHERE comment_status != 'deleted'
+		  GROUP BY job_id
+        ) c ON j.job_id = c.job_id
+        LEFT JOIN (
+        SELECT job_id, COUNT(*) AS likey_count FROM likey GROUP BY job_id
+        ) l ON j.job_id = l.job_id
+        ORDER BY
+        j.created_at DESC
+        OFFSET
+        #{startNum} ROWS
+        FETCH NEXT
+        16 ROWS ONLY
     </select>
 
     <select id="findAllBestJob" resultType="com.example.bumerang.web.dto.response.jobSearch.JobListDto">
@@ -133,14 +176,14 @@
         SELECT j.totalCount, j.totalPage, j.currentPage,
         (CASE WHEN j.currentPage = 0 THEN 1 ELSE 0 END) AS first,
         (CASE WHEN j.currentPage = j.totalPage - 1 THEN 1 ELSE 0 END) AS last
-        FROM (
-        SELECT COUNT(*) AS totalCount, CEILING(COUNT(*) / 12) AS totalPage,
-            #{page} AS currentPage, 0 AS first, 0 AS last,
-            js.job_content_title, js.user_id
-            FROM (SELECT * FROM job_search WHERE job_status != 'deleted') AS js
-        LEFT JOIN (SELECT * FROM user WHERE user_status != 'deleted') AS u ON js.user_id = u.user_id
-        WHERE js.job_content_title LIKE '%${keyword}%' OR js.job_content LIKE '%${keyword}%'
-        ) j
- LEFT JOIN user AS u ON j.user_id = u.user_id
+			FROM (
+    		SELECT COUNT(*) AS totalCount, CEILING(COUNT(*) / 16) AS totalPage,
+            #{page} AS currentPage, 0 AS first, 0 AS last, js.job_status
+    		FROM job_search js
+    		LEFT JOIN user u ON js.user_id = u.user_id
+    		WHERE js.job_status != 'deleted' AND u.user_status != 'deleted'
+         AND (js.job_content_title LIKE '%${keyword}%' OR js.job_content LIKE '%${keyword}%')
+			) j
+			WHERE j.job_status != 'deleted'
     </select>
 </mapper>

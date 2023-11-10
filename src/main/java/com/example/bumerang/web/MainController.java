@@ -66,7 +66,7 @@ public class MainController {
         System.err.println("jobPositionTitle: "+jobPositionTitle);
         System.err.println("isDead: "+isDead);
         // 페이지 수 설정
-        Integer startNum = page * 12;
+        Integer startNum = page * 16;
         searchDto.setStartNum(startNum);
         System.err.println("startNum: "+startNum);
 		PagingDto paging = jobSearchService.paging(searchDto);
