@@ -65,7 +65,9 @@
                                                 <c:when test="${job.jobGenre == '장편영화'}">
                                                     <!-- 영화 장르일 때 -->
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift"> 장편영화</i>
+                                                        <i class="fa-solid fa-gift">
+                                                            장편영화
+                                                        </i>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -77,7 +79,9 @@
                                                 <c:when test="${job.jobGenre == '단편영화'}">
                                                     <!-- 영화 장르일 때 -->
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift"> 단편영화</i>
+                                                        <i class="fa-solid fa-gift">
+                                                            단편영화
+                                                        </i>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -88,7 +92,8 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-clapperboard"> ${job.jobGenre}</i>
+                                                        <i class="fa-solid fa-clapperboard" class="badge_genre">
+                                                            ${job.jobGenre}</i>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -168,18 +173,19 @@
 
                         <div class="filter">
                             <div class="dropdown_list">
-                                <select id="filterGenre" class="dropdown" name="jobGenre">
+                                <select id="filterGenre" onchange="filterPosts()" class="dropdown">
                                     <option>장르</option>
                                     <option value="단편영화">단편영화</option>
                                     <option value="장편영화">장편영화</option>
                                     <option value="연극">연극</option>
+                                    <option value="드라마">드라마</option>
                                     <option value="웹 컨텐츠">웹 컨텐츠</option>
                                     <option value="광고">광고</option>
                                     <option value="전시">전시</option>
                                     <option value="기타">기타</option>
                                 </select>
 
-                                <select id="filterPosition" class="dropdown" name="jobPositionTitle">
+                                <select id="filterPosition" onchange="filterPosts()" class="dropdown">
                                     <option>분야</option>
                                     <option value="배우">배우</option>
                                     <option value="연출">연출</option>
@@ -190,28 +196,25 @@
                                     <option value="기타">기타</option>
                                 </select>
 
-                                <select id="filterGender" class="dropdown" name="jobGender">
+                                <select id="filterGender" onchange="filterPosts()" class="dropdown">
                                     <option>성별</option>
                                     <option value="남성">남성</option>
                                     <option value="여성">여성</option>
                                     <option value="성별무관">성별무관</option>
                                 </select>
 
-                                <select id="filterOpening" class="dropdown" name="isDead">
+                                <select id="filterOpening" onchange="filterPosts()" class="dropdown">
                                     <option>모집 여부</option>
                                     <option value="false">모집중</option>
                                     <option value="true">모집 마감</option>
                                 </select>
                             </div>
                             <!-- 검색창 -->
-                            <form method="get" action="/jobSearch/mainForm">
-                                <div class="search_bar">
-                                    <input type="text" name="keyword" id="filterText" placeholder="제목, 닉네임을 입력해보세요.">
-                                    <button type="submit">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
-                                </div>
-                            </form>
+                            <div class="search_bar">
+                                <input type="text" id="filterText" oninput="filterSearch()"
+                                    placeholder="제목, 닉네임을 입력해보세요.">
+                                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
                         </div>
 
 
@@ -231,7 +234,9 @@
                                                 <c:when test="${job.jobGenre == '장편영화'}">
                                                     <!-- 영화 장르일 때 -->
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift"> 장편영화</i>
+                                                        <i class="fa-solid fa-gift">
+                                                            <p class="badge_genre">장편영화</p>
+                                                        </i>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -243,7 +248,9 @@
                                                 <c:when test="${job.jobGenre == '단편영화'}">
                                                     <!-- 영화 장르일 때 -->
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift"> 단편영화</i>
+                                                        <i class="fa-solid fa-gift">
+                                                            <p class="badge_genre">단편영화</p>
+                                                        </i>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -254,7 +261,9 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-clapperboard"> ${job.jobGenre}</i>
+                                                        <i class="fa-solid fa-clapperboard">
+                                                            <p class="badge_genre"> ${job.jobGenre}</p>
+                                                        </i>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -329,27 +338,8 @@
                             <!-- 여기까지만 복사 -->
                         </div>
                     </div>
-                    <!-- 페이지 -->
-                    <div class="d-flex justify-content-center">
-                        <ul class="pagination">
-                            <li class='page-item ${paging.first ? "disabled" : ""}'><a style="color: black;"
-                                    class="page-link"
-                                    href="?page=${paging.currentPage-1}&keyword=${paging.keyword}">이전</a>
-                            </li>
-
-                            <c:forEach var="num" begin="${paging.startPageNum}" end="${paging.lastPageNum}" step="1">
-                                <li class='page-item ${paging.currentPage == num-1 ? "active" : ""}'><a
-                                        style="color: black;" class="page-link"
-                                        href="?page=${num-1}&keyword=${paging.keyword}">${num}</a></li>
-                            </c:forEach>
-
-                            <li class='page-item ${paging.last ? "disabled" : ""}'><a style="color: black;"
-                                    class="page-link"
-                                    href="?page=${paging.currentPage+1}&keyword=${paging.keyword}">다음</a>
-                            </li>
-                        </ul>
+                    <div class="pagination">
                     </div>
-
                     <footer class="footer">
                         <div class="left_cover"></div>
                     </footer>

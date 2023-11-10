@@ -106,10 +106,6 @@
         ) l ON j.job_id = l.job_id
         ORDER BY
         j.created_at DESC
-        OFFSET
-        #{startNum} ROWS
-        FETCH NEXT
-        16 ROWS ONLY
     </select>
 
     <select id="findAllBestJob" resultType="com.example.bumerang.web.dto.response.jobSearch.JobListDto">
@@ -171,19 +167,4 @@
             job_id = #{jobId}
           AND user_id = #{userId} AND job_status !='deleted'
     </update>
-
-    <select id="paging" resultType="com.example.bumerang.web.dto.response.PagingDto">
-        SELECT j.totalCount, j.totalPage, j.currentPage,
-        (CASE WHEN j.currentPage = 0 THEN 1 ELSE 0 END) AS first,
-        (CASE WHEN j.currentPage = j.totalPage - 1 THEN 1 ELSE 0 END) AS last
-			FROM (
-    		SELECT COUNT(*) AS totalCount, CEILING(COUNT(*) / 16) AS totalPage,
-            #{page} AS currentPage, 0 AS first, 0 AS last, js.job_status
-    		FROM job_search js
-    		LEFT JOIN user u ON js.user_id = u.user_id
-    		WHERE js.job_status != 'deleted' AND u.user_status != 'deleted'
-         AND (js.job_content_title LIKE '%${keyword}%' OR js.job_content LIKE '%${keyword}%')
-			) j
-			WHERE j.job_status != 'deleted'
-    </select>
 </mapper>

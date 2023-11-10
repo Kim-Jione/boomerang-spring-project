@@ -30,7 +30,7 @@ if (
     deleteConfirm.style.display = "none";
   });
 }
-const pfReportBtn = document.querySelector(".pfReport");
+const pfReportBtn = document.querySelector(".pfReportBtn");
 pfReportBtn.addEventListener("click", reportPf);
 
 // const commentReportBtn = document.querySelector(".commentReport");
