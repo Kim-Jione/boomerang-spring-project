@@ -184,6 +184,13 @@ public class AdminController {
         model.addAttribute("jobList", reportJobList);
         return "admin/report/jobListForm";
     }
+    // 구인글 신고 상세보기 화면
+    @GetMapping("/s/api/auth/report/jobDetailForm/{jobId}")
+    public String findReportJobDetailForm(@PathVariable Integer jobId, Model model) {
+        JobDetailDto jobPS = adminService.findByJobId(jobId);
+        model.addAttribute("jobPS",jobPS);
+        return "admin/report/jobDetailForm";
+    }
 
     // 공연글 신고 목록 화면
     @GetMapping("/s/api/auth/report/pfListForm")
@@ -191,6 +198,13 @@ public class AdminController {
         List<PfListDto> reportPfList = adminService.findReportPfList();
         model.addAttribute("pfList", reportPfList);
         return "admin/report/pfListForm";
+    }
+    // 공연글 신고 상세보기 화면
+    @GetMapping("/s/api/auth/report/pfDetailForm/{pfId}")
+    public String findReportPfDetailForm(@PathVariable Integer pfId, Model model) {
+        PfDetailDto pfPS = adminService.findByPfId(pfId);
+        model.addAttribute("pfPS", pfPS);
+        return "admin/report/pfDetailForm";
     }
 
     // 댓글 신고 목록 화면
