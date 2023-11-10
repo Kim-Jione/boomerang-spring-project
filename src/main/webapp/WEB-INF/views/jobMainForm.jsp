@@ -204,18 +204,17 @@
                                 </select>
                             </div>
                             <!-- 검색창 -->
-                            <form method="get" action="/jobSearch/mainForm">
-                                <div class="search_bar">
-                                    <input type="text" name="keyword" id="filterText" placeholder="제목, 닉네임을 입력해보세요.">
-                                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </div>
-                            </form>
+                            <div class="search_bar">
+                                <input type="text" name="keyword" id="filterText" placeholder="제목, 닉네임을 입력해보세요.">
+                                <button type="button" onclick="search()">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                            </div>
                         </div>
 
 
                         <!-- 구인글 및 페이지네이션 -->
                         <div class="search_job_container">
-                            <!--해당 부분부터 게시글 목록 (더미데이터)-->
                             <c:forEach var="job" items="${jobList}">
                                 <input id="jobId" type="hidden" value="${job.jobId}" />
                                 <input id="userId" type="hidden" value="${principal.userId}" />
@@ -261,10 +260,14 @@
                                                             <i class="fa-solid fa-gift"> 새로 올라온 글</i>
                                                         </div>
                                                     </c:if>
+                                                    <c:if test="${job.isFame}">
+                                                        <!-- 인기 글일 때 -->
+                                                        <div class="badge_new">
+                                                            <i class="fa-solid fa-gift"> 인기글</i>
+                                                        </div>
+                                                    </c:if>
                                                 </c:otherwise>
                                             </c:choose>
-
-
                                         </div>
 
                                         <div class="schedule">
@@ -322,9 +325,6 @@
                                 </div>
                             </c:forEach>
                             <!-- 여기까지만 복사 -->
-                        </div>
-
-                        <div class="pagination">
                         </div>
                     </div>
                     <!-- 페이지 -->

@@ -192,4 +192,3 @@ swiperEl.initialize();
 ////////////////
 // deadline //
 ///////////////
-

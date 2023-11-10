@@ -402,7 +402,6 @@ function write() {
   }).done((res) => {
     if (res.code == 1) {
       alert(res.msg);
-      location.href = "/s/api/jobSearch/detailForm/" + data.jobId;
     } else {
       alert(res.msg);
       return false;

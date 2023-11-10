@@ -80,7 +80,8 @@
         COALESCE(c.comment_count, 0) AS commentCount,
         COALESCE(l.likey_count, 0) AS likeyCount,
         IF(DATEDIFF(j.job_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
-        IF(DATE(j.created_at) = CURDATE(), TRUE, FALSE) AS isToday
+        IF(DATE(j.created_at) = CURDATE(), TRUE, FALSE) AS isToday,
+        IF((l.likey_count <![CDATA[ > ]]> 10), TRUE, false) AS isFame
         FROM
         job_search j
         JOIN
@@ -134,7 +135,8 @@
             COALESCE(c.comment_count, 0) AS commentCount,
             COALESCE(l.likey_count, 0) AS likeyCount,
             IF(DATEDIFF(j.job_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
-            IF(DATE(j.created_at) = CURDATE(), TRUE, FALSE) AS isToday
+            IF(DATE(j.created_at) = CURDATE(), TRUE, FALSE) AS isToday,
+            IF((l.likey_count <![CDATA[ > ]]> 10), TRUE, false) AS isFame
         FROM job_search j
                  JOIN user u ON j.user_id = u.user_id
                  LEFT JOIN (

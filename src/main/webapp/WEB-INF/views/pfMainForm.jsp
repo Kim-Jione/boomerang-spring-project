@@ -39,16 +39,18 @@
                             <li><i class="fa-solid fa-fire"></i></li>
                             <li>
                                 <h2>인기 전시 공연글</h2>
+
+
                             </li>
                         </ul>
                         <div class="top_list">
                             <c:forEach var="best" items="${bestPfList}">
                                 <div class="top">
+
                                     <img class="medal" src="${best.imgPath}">
                                     <article class="poster">
                                         <div class="img"></div>
                                         <a href="/s/api/performance/detailForm/${best.pfId}">
-
                                             <img src="/img/${best.pfThumbnail}" class="img-hover">
                                         </a>
                                         <div class="info">
@@ -148,6 +150,9 @@
                                 <article class="poster search">
                                     <div class="img"></div>
                                     <a href="/s/api/performance/detailForm/${pf.pfId}">
+                                        <c:if test="${pf.isDead}">
+                                            <img src="/image/deadlinePf.png" class="deadline">
+                                        </c:if>
                                         <img src="/img/${pf.pfThumbnail}" class="img-hover">
                                     </a>
                                     <div class="info">
