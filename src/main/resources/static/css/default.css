@@ -371,7 +371,6 @@ footer {
   position: relative;
   width: 100%;
   background-color: #3586ff;
-  min-height: 100px;
   padding: 20px 50px;
   flex-direction: column;
 }

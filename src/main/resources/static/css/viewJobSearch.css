@@ -39,21 +39,26 @@
   max-width: 900px;
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .pf_title_area .myinfo .pf_label .user_info {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   gap: 10px;
 }
+
+.pf_title_area .myinfo .pf_label .user_info a {
+  display: flex;
+  align-items: flex-end;
+}
+
 
 .pf_title_area .myinfo .pf_label .user_info .pf_img {
   border-radius: 50%;
   width: 33px;
   height: 33px;
   border: 0.5px solid #eee;
-  padding-left: 5px;
 }
 
 .pf_title_area .myinfo .pf_label .user_info p {
