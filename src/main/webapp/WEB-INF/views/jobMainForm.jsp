@@ -204,12 +204,14 @@
                                 </select>
                             </div>
                             <!-- 검색창 -->
-                            <div class="search_bar">
-                                <input type="text" name="keyword" id="filterText" placeholder="제목, 닉네임을 입력해보세요.">
-                                <button type="button" onclick="search()">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
-                            </div>
+                            <form method="get" action="/jobSearch/mainForm">
+                                <div class="search_bar">
+                                    <input type="text" name="keyword" id="filterText" placeholder="제목, 닉네임을 입력해보세요.">
+                                    <button type="submit">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
 
 
