@@ -49,20 +49,21 @@
                         </p>
                     </div>
 
+                    <div class="pf_status">
+                        <i class="fa-solid fa-eye"></i>
+                        <p class="view_count">${job.viewCount}</p>
+                        <i id="iconLove"
+                           class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
+                        <p class="like_count" id="countLikey">${job.likeyCount}</p>
+                        <img src="/image/siren.png"/>
+                        <p class="report">
+                            <button class='jobReportBtn'>신고하기</button>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="pf_status">
-            <i class="fa-solid fa-eye"></i>
-            <p class="view_count">${job.viewCount}</p>
-            <i id="iconLove"
-               class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
-            <p class="like_count" id="countLikey">${job.likeyCount}</p>
-            <img src="/image/siren.png"/>
-            <p class="report">
-                <button class='jobReportBtn'>신고하기</button>
-            </p>
-        </div>
+        
     </div>
     <div class="border"></div>
 

@@ -13,6 +13,11 @@
   justify-content: space-between;
 }
 
+.pf_title_area .pf_display {
+  width: 100%;
+  max-width: 895px;
+}
+
 .pf_title_area .myinfo {
   display: flex;
   justify-content: flex-start;
@@ -152,16 +157,15 @@
 }
 
 .pf_info .column .pf_intro .introduce {
-  font-size: 18px;
-  padding: 0 5px;
+  padding: 0 5px 30px;
   margin-top: 30px;
-  padding-bottom: 30px;
   overflow: hidden;
   width: 100%;
   height: auto;
   outline: none;
   border: none;
   border-bottom: solid 2px #eee;
+  font-family: inherit;
 }
 /* 글내용 폰트 관련 */
 .pf_info .column .pf_intro .introduce p {
@@ -211,7 +215,7 @@
   background-color: #459fee;
   border: 1px solid #ccc;
   border-radius: 50px;
-  border-width: 0 0 4px;
+  border-width: 0 0 2px;
   box-sizing: border-box;
   width: 80px;
   height: 50px;
