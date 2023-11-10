@@ -16,6 +16,8 @@
         <!-- AJax -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+        <script src="/js/report.js"></script>
+
       </head>
 
       <body>
@@ -25,8 +27,8 @@
           <input type="hidden" value="${principal.userId}" id="userId">
 
           <div class="target_info" id="targetInfo">
-            <div><span>작 성 자</span><span>${jobInfo.userNickname}</span></div>
-            <div><span>제 목</span><span>${jobInfo.jobContentTitle}</span></div>
+            <div><span>작 성 자</span><span>${commentInfo.userNickname}</span></div>
+            <div><span>내 용</span><span>${commentInfo.commentContent}</span></div>
           </div>
           <div class="reason_info">
             <h3>사유선택</h3>
@@ -62,10 +64,10 @@
             </ul>
           </div>
           <div class="btn_wrap">
-            <button class="jobReportBtn">제 출</button>
+            <button class="commentReportBtn">제 출</button>
           </div>
         </div>
-        <script src="/js/reportJob.js"></script>
+        <script src="/js/reportComment.js"></script>
       </body>
 
       </html>
