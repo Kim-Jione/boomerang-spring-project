@@ -201,7 +201,7 @@
     <update id="updatePassword">
         update user
         set
-        user_password = #{imagePath}
+        user_password = #{userPassword}
         Where
         user_id = #{userId} AND user_status != 'deleted'
     </update>
