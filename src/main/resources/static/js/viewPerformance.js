@@ -33,8 +33,8 @@ if (
 const pfReportBtn = document.querySelector(".pfReport");
 pfReportBtn.addEventListener("click", reportPf);
 
-const commentReportBtn = document.querySelector(".commentReport");
-commentReportBtn.addEventListener("click", reportComment);
+// const commentReportBtn = document.querySelector(".commentReport");
+// commentReportBtn.addEventListener("click", reportComment);
 
 let pfId = $("#pfId").val();
 
