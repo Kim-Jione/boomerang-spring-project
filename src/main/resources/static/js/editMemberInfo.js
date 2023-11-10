@@ -172,15 +172,15 @@ function updateUser() {
     };
 
     // 각 필드의 값을 alert로 확인
-    alert(`Portfolio Item ${i + 1}:
-      upTitle: ${portfolioItem.upTitle},
-      upProdYear: ${portfolioItem.upProdYear},
-      upRole: ${portfolioItem.upRole},
-      upGenre: ${portfolioItem.upGenre},
-      upDirector: ${portfolioItem.upDirector},
-      upHistory: ${portfolioItem.upHistory},
-      userId: ${portfolioItem.userId}
-    `);
+    // alert(`Portfolio Item ${i + 1}:
+    //   upTitle: ${portfolioItem.upTitle},
+    //   upProdYear: ${portfolioItem.upProdYear},
+    //   upRole: ${portfolioItem.upRole},
+    //   upGenre: ${portfolioItem.upGenre},
+    //   upDirector: ${portfolioItem.upDirector},
+    //   upHistory: ${portfolioItem.upHistory},
+    //   userId: ${portfolioItem.userId}
+    // `);
 
     data.userPortfolio.push(portfolioItem);
   }

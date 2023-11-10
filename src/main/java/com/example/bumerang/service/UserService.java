@@ -183,7 +183,7 @@ public class UserService {
                 profileImage.transferTo(imagePath.toFile());
 
                 // 이미지 파일 경로를 반환
-                return imageUploadPath + fileName;
+                return fileName;
             } catch (IOException e) {
                 e.printStackTrace();
                 // 이미지 업로드 실패 처리
@@ -215,8 +215,12 @@ public class UserService {
         System.err.println("getUserPassword: "+userPassword);
         userDao.updatePassword(userPassword, userId);
         User userPS = userDao.findById(userId);
-        System.err.println("됐다: "+userPS.getUserPassword());
         PasswdDto passUpdateResult = userDao.findByPwUpdateResult(userPassword, userId);
         return passUpdateResult;
     }
+
+    public void updateProfileImage(Integer userId,String imagePath) {
+        userDao.updateProfileImage(userId,imagePath);
+    }
+  
 }

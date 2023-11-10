@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.bumerang.domain.user.User;
 import com.example.bumerang.service.UserService;
@@ -27,6 +29,7 @@ import com.example.bumerang.web.dto.response.jobSearch.JobRespDto;
 import com.example.bumerang.web.dto.response.likey.LikeyJSListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyRespDto;
+import com.example.bumerang.web.dto.response.performance.PfRespDto;
 import com.example.bumerang.web.dto.response.user.SearchIdDto;
 import com.example.bumerang.web.dto.response.user.SearchPwDto;
 import com.example.bumerang.web.dto.response.user.UserCreateRespoDto;
@@ -97,19 +100,19 @@ public class UserController {
     public String updateForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(principal.getUserId());
-        System.err.println("userId"+userDetail.getUserId());
-        System.err.println("userEmail"+userDetail.getUserEmail());
-        System.err.println("userNickname"+userDetail.getUserNickname());
-        System.err.println("userGender"+userDetail.getUserGender());
-        System.err.println("userHeight"+userDetail.getUserHeight());
-        System.err.println("userForm"+userDetail.getUserForm());
-        System.err.println("userTone"+userDetail.getUserTone());
-        System.err.println("userAge"+userDetail.getUserAge());
-        System.err.println("userCareer"+userDetail.getUserCareer());
-        System.err.println("userSkill"+userDetail.getUserSkill());
-        System.err.println("userEducation"+userDetail.getUserEducation());
-        System.err.println("userContactLink"+userDetail.getUserContactLink());
-        System.err.println("uftitles"+userDetail.getUftitles());
+        // System.err.println("userId"+userDetail.getUserId());
+        // System.err.println("userEmail"+userDetail.getUserEmail());
+        // System.err.println("userNickname"+userDetail.getUserNickname());
+        // System.err.println("userGender"+userDetail.getUserGender());
+        // System.err.println("userHeight"+userDetail.getUserHeight());
+        // System.err.println("userForm"+userDetail.getUserForm());
+        // System.err.println("userTone"+userDetail.getUserTone());
+        // System.err.println("userAge"+userDetail.getUserAge());
+        // System.err.println("userCareer"+userDetail.getUserCareer());
+        // System.err.println("userSkill"+userDetail.getUserSkill());
+        // System.err.println("userEducation"+userDetail.getUserEducation());
+        // System.err.println("userContactLink"+userDetail.getUserContactLink());
+        // System.err.println("uftitles"+userDetail.getUftitles());
         model.addAttribute("userDetail", userDetail);
         return "userUpdateForm";
     }
@@ -208,25 +211,46 @@ public class UserController {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = userReqDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId.equals(userPId)){
-        System.err.println("userId"+userReqDto.getUserId());
-        System.err.println("userEmail"+userReqDto.getUserEmail());
-        System.err.println("userNickname"+userReqDto.getUserNickname());
-        System.err.println("userGender"+userReqDto.getUserGender());
-        System.err.println("userHeight"+userReqDto.getUserHeight());
-        System.err.println("userForm"+userReqDto.getUserForm());
-        System.err.println("userTone"+userReqDto.getUserTone());
-        System.err.println("userAge"+userReqDto.getUserAge());
-        System.err.println("userCareer"+userReqDto.getUserCareer());
-        System.err.println("userSkill"+userReqDto.getUserSkill());
-        System.err.println("userEducation"+userReqDto.getUserEducation());
-        System.err.println("userContactLink"+userReqDto.getUserContactLink());
-        System.err.println("uftitle"+userReqDto.getUftitle());
+        if (userId.equals(userPId)) {
+            // System.err.println("userId"+userReqDto.getUserId());
+            // System.err.println("userEmail"+userReqDto.getUserEmail());
+            // System.err.println("userNickname"+userReqDto.getUserNickname());
+            // System.err.println("userGender"+userReqDto.getUserGender());
+            // System.err.println("userHeight"+userReqDto.getUserHeight());
+            // System.err.println("userForm"+userReqDto.getUserForm());
+            // System.err.println("userTone"+userReqDto.getUserTone());
+            // System.err.println("userAge"+userReqDto.getUserAge());
+            // System.err.println("userCareer"+userReqDto.getUserCareer());
+            // System.err.println("userSkill"+userReqDto.getUserSkill());
+            // System.err.println("userEducation"+userReqDto.getUserEducation());
+            // System.err.println("userContactLink"+userReqDto.getUserContactLink());
+            // System.err.println("uftitle"+userReqDto.getUftitle());
             UserRespDto userPS = userService.update(userReqDto);
             return new CMRespDto<>(1, "사용자 정보 변경 성공", userPS);
         }
-        return new CMRespDto<>(-1, "응 안돼", null);
+        return new CMRespDto<>(-1, "실패", null);
 
     }
-}
+    
+    // 프로필 이미지 수정 기능
+    @PutMapping("/s/api/user/updateProfile/{userId}")
+    public @ResponseBody CMRespDto<?> updateProfile(@PathVariable Integer userId,
+            @RequestPart("profileImg") MultipartFile profileImg) {
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        Integer userPId = principal.getUserId();
+        if (userId.equals(userPId)) {
+            try {
+                // 썸네일 업로드 및 업데이트
+                String imagePath = userService.uploadProfileImage(profileImg);
+                System.err.println("imagePath: "+imagePath);
+                System.err.println("userId: "+userId);
+                userService.updateProfileImage(userId, imagePath);
+                return new CMRespDto<>(1, "프로필 이미지 변경 성공.", null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+            return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+        }
+    }
 

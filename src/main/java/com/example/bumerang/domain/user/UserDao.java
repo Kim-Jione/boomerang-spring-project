@@ -62,4 +62,6 @@ public interface UserDao {
     PasswdDto findByPwUpdateResult(String userPassword, Integer userId);
 
     public void updateUfTitle(String uftitle);
+
+    public void updateProfileImage(Integer userId, String imagePath);
 }

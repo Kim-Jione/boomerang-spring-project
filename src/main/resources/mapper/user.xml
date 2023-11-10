@@ -201,7 +201,7 @@
     <update id="updatePassword">
         update user
         set
-        user_password = #{userPassword}
+        user_password = #{imagePath}
         Where
         user_id = #{userId} AND user_status != 'deleted'
     </update>
@@ -210,6 +210,14 @@
         UPDATE user_field
         SET
         uf_title = #{ufTitle}
+        WHERE
+        user_id = #{userId}
+    </update>
+
+    <update id="updateProfileImage">
+        UPDATE user
+        SET
+        user_profile_img = #{imagePath}
         WHERE
         user_id = #{userId}
     </update>

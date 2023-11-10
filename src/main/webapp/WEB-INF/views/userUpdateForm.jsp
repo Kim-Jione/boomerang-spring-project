@@ -27,7 +27,7 @@
             <div class="container">
               <div class="pro_left">
                 <div class="pro_img">
-                  <img src="${userDetail.userProfileImg}" />
+                  <img src="/img/${userDetail.userProfileImg}" />
                 </div>
                 <div class="edit_btn">
                   <button class="edit_img">사진 변경</button>
