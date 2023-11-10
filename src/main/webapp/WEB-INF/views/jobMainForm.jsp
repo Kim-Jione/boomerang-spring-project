@@ -61,9 +61,6 @@
                                     </c:if>
                                     <div class="project">
                                         <div class="badge_wrapper">
-                                            <div class="badge_movie">
-                                                <i class="fa-solid fa-clapperboard"> ${job.jobGenre}</i>
-                                            </div>
                                             <c:choose>
                                                 <c:when test="${job.jobGenre == '장편영화'}">
                                                     <!-- 영화 장르일 때 -->
