@@ -217,6 +217,7 @@
         Where
         user_id = #{userId} AND user_status != 'deleted'
     </update>
+
     <update id="userInfoUpdate">
 
     </update>

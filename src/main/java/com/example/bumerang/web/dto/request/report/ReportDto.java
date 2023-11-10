@@ -14,6 +14,10 @@ public class ReportDto {
     private Integer pfId;
     private Integer commentId;
     private Integer userId;
+    private String userNickname;
+    private String pfTitle;
+    private String jobContentTitle;
+    private String commentContent;
 
 
     public Report toReport() {

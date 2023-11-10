@@ -52,6 +52,7 @@
                         <li>${userDetail.userForm}</li>
                         <li>${userDetail.userTone}</li>
                         <li>${userDetail.ufTitles}</li>
+                        <li>${userDetail.uftitles}</li>
                         <li>30대</li>
                       </ul>
                       <div class="pro_txt">

@@ -8,15 +8,14 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <link rel="stylesheet" href="/css/viewJobSearch.css"/>
+    <link rel="stylesheet" href="/css/viewPerformance.css"/>
     <link rel="stylesheet" href="/css/default.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap"
-          rel="stylesheet"/>
-    <link
-            href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-            rel="stylesheet"/>
-    <!-- AJax -->
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+          rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <title>BusanMate with Write</title>
@@ -24,108 +23,96 @@
 
 <body>
 <%@ include file="layout/header.jsp" %>
-<input type="hidden" id="jobId" value="${job.jobId}">
-<input type="hidden" id="jobUserId" value="${job.userId}"><!--작성자 ID-->
+
+<input type="hidden" id="pfId" value="${pf.pfId}">
+<input type="hidden" id="pfUserId" value="${pf.userId}"><!--작성자 ID-->
 <input type="hidden" id="userId" value="${principal.userId}"><!--추천자 ID-->
-<input type="hidden" id="likeyId" value="${job.likeyId}">
+<input type="hidden" id="likeyId" value="${pf.likeyId}">
 
 <div class="pf_container">
     <div class="pf_title_area">
         <div class="pf_display">
             <div class="myinfo">
-                <h1 class="pf_title">
-                    ${job.jobContentTitle}
-                </h1>
+                <h1 class="pf_title">${pf.pfTitle}</h1>
                 <div class="pf_label">
-                    <div class="user_info">
-                        <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
-                            <img class="pf_img" src="/img/${job.userProfileImg}"/>
-                            <p class="pf_nickname">${job.userNickname}</p>
-                        </a>
-                        <p class="line">|</p>
-                        <p class="pf_creation_date">
-                            <fmt:formatDate value="${job.createdAt}" pattern="yyyy-MM-dd"/>
-                        </p>
-                    </div>
-
+                    <img class="pf_img" src="/img/${principal.userProfileImg}"/>
+                    <p class="pf_nickname">${pf.userNickname}</p>
                 </div>
             </div>
         </div>
         <div class="pf_status">
             <i class="fa-solid fa-eye"></i>
-            <p class="view_count">${job.viewCount}</p>
+            <p class="view_count">${pf.viewCount}</p>
             <i id="iconLove"
-               class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
-            <p class="like_count" id="countLikey">${job.likeyCount}</p>
+               class='${pf.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
+            <p class="like_count" id="countLikey">${pf.likeyCount}</p>
             <img src="/image/siren.png"/>
-            <p class="jobReport">
-                <button class='jobReportBtn'>신고하기</button>
+            <p class="pfReport">
+                <button class='pfReportBtn'>신고하기</button>
             </p>
         </div>
     </div>
     <div class="border"></div>
 
     <div class="pf_info">
+        <img class="poster_img" src="/img/${pf.pfThumbnail}"/>
         <div class="column">
             <ul class="detail_info">
                 <li>
-                    <span class="accent">작품명</span>
-                    <p>${job.jobArtTitle}</p>
+                    <span class="accent">공연 기간</span>
+                    <p>${pf.pfStartDate} ~ ${pf.pfDeadline}</p>
                 </li>
                 <li>
-                    <span class="accent">작품 장르</span>
-                    <p>${job.jobGenre}</p>
+                    <span class="accent">장르</span>
+                    <p>${pf.pfGenre}</p>
+                </li>
+
+
+                <li>
+                    <span class="accent">관람 연령</span>
+                    <p>${pf.pfAgerating}</p>
                 </li>
 
                 <li>
-                    <span class="accent">시작 예정일</span>
-                    <p>${job.jobStartDate}</p>
+                    <span class="accent">제작</span>
+                    <p>${pf.pfProduction}</p>
                 </li>
 
                 <li>
-                    <span class="accent">모집 인원</span>
-                    <p>${job.jobTo}</p>
+                    <span class="accent">공연 시간</span>
+                    <p>${pf.pfRunningtime}분</p>
                 </li>
 
                 <li>
-                    <span class="accent">모집 성별</span>
-                    <p>${job.jobGender}</p>
+                    <span class="accent">가격</span>
+                    <p>${pf.pfPrice}</p>
                 </li>
 
                 <li>
-                    <span class="accent">연락 방법</span>
-                    <p>${job.jobContact}</p>
-                </li>
-
-                <li>
-                    <span class="accent">모집 분야</span>
-                    <p>${job.jobPositionTitles}</p>
-                </li>
-
-                <li>
-                    <span class="accent">마감일</span>
-                    <p>${job.jobDeadline}</p>
+                    <span class="accent">예매 방법</span>
+                    <a href="${pf.pfBookingmethod}">예매하기</a>
                 </li>
                 <li>
-                    <span class="accent">제작 기간</span>
-                    <p>${job.jobProductionDate}</p>
-                </li>
-                <li>
-                    <span class="accent">출연료</span>
-                    <p>${job.jobPay}</p>
+                    <span class="accent">위치</span>
+                    <p>${pf.pfLocation}</p>
                 </li>
             </ul>
 
             <div class="pf_intro">
-                <h4>구인글 소개</h4>
+                <h4>작품 소개</h4>
                 <div class="border"></div>
-                <div class="introduce">${job.jobContent}</div>
+                <div class="introduce">${pf.pfContent}</div>
             </div>
         </div>
     </div>
-    <c:if test="${principal.userId == job.userId}">
+
+    <c:if test="${principal.userId == pf.userId}">
     <div class="button_wrap">
-        <button type="button" class="edit_btn">수정</button>
+        <button type="button" class="edit_btn">
+            <a href="/s/api/performance/updateForm/${pf.pfId}">
+                수정
+            </a>
+        </button>
         <button type="button" class="delete_btn">삭제</button>
         <div class="delete_confirm">
             <h2 class="pro_tit">정말로 삭제하시겠습니까?</h2>
@@ -143,7 +130,7 @@
             <form>
                 <div class="write_comment">
                     <div class="comment_img center_display">
-                        <a href="/s/api/user/detailForm/${job.userId}">
+                        <a href="/s/api/user/detailForm/${pf.userId}">
                             <img src="/img/${principal.userProfileImg}" alt="image"/>
                         </a>
                     </div>
@@ -158,7 +145,7 @@
 
         <div class="comments_container center_display">
             <!-- 댓글이 달리는 부분 -->
-            <c:forEach var="comment" items="${job.commentList}">
+            <c:forEach var="comment" items="${pf.commentList}">
                 <div class="comment_card">
                     <input type="hidden" class="commentId" id="commentId" value="${comment.commentId}">
                     <div class="comment_top">
@@ -193,12 +180,13 @@
         </div>
     </div>
 
+
     <footer class="footer">
         <div class="left_cover"></div>
     </footer>
 
     <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
-    <script src="/js/viewJobSearch.js"></script>
+    <script src="/js/viewPerformance.js"></script>
     <script src="/js/default.js"></script>
 </body>
 

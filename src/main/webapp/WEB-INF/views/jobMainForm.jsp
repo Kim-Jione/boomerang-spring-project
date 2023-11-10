@@ -20,8 +20,6 @@
 
                 <link rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-                <!-- JQuery -->
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                 <!-- AJax -->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -57,16 +55,33 @@
                                 <input id="jobId" type="hidden" value="${job.jobId}" />
                                 <input id="userId" type="hidden" value="${principal.userId}" />
                                 <swiper-slide>
+                                    <c:if test="${job.isDead}">
+                                        <img src="/image/deadline.png" class="deadline">
+                                    </c:if>
                                     <div class="project">
                                         <div class="badge_wrapper">
                                             <div class="badge_movie">
                                                 <i class="fa-solid fa-clapperboard"> ${job.jobGenre}</i>
                                             </div>
-                                            <c:if test="${job.isToday}">
-                                                <div class="badge_new">
-                                                    <i class="fa-solid fa-gift"> 새로 올라온 글</i>
-                                                </div>
-                                            </c:if>
+                                            <c:choose>
+                                                <c:when test="${job.jobGenre == '장편영화'}">
+                                                    <!-- 영화 장르일 때 -->
+                                                    <div class="badge_movie">
+                                                        <i class="fa-solid fa-gift"> 장편영화</i>
+                                                    </div>
+                                                </c:when>
+                                                <c:when test="${job.isToday}">
+                                                    <!-- 새로 올라온 글일 때 -->
+                                                    <div class="badge_new">
+                                                        <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                    </div>
+                                                    <div class="badge_movie">
+                                                        <i class="fa-solid fa-gift"> 장편영화</i>
+                                                    </div>
+                                                </c:when>
+                                                <c:otherwise>ㅇㅇ
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
 
                                         <div class="schedule">
@@ -137,44 +152,50 @@
 
                         <div class="filter">
                             <div class="dropdown_list">
-                                <select id="filterGenre" onchange="filterPosts()" class="dropdown">
-                                    <option value="all">장르</option>
-                                    <option value="영화">영화</option>
+                                <select id="filterGenre" class="dropdown" name="jobGenre">
+                                    <option>장르</option>
+                                    <option value="단편영화">단편영화</option>
+                                    <option value="장편영화">장편영화</option>
                                     <option value="연극">연극</option>
-                                    <option value="뮤지컬">뮤지컬</option>
-                                    <option value="전시/행사">전시/행사</option>
+                                    <option value="웹 컨텐츠">웹 컨텐츠</option>
+                                    <option value="광고">광고</option>
+                                    <option value="전시">전시</option>
+                                    <option value="기타">기타</option>
                                 </select>
 
-                                <select id="filterPosition" onchange="filterPosts()" class="dropdown">
-                                    <option value="all">분야</option>
-                                    <option value=“배우“>배우</option>
-                                    <option value=“연출“>연출</option>
-                                    <option value=“음향“>음향</option>
-                                    <option value=“카메라“>카메라</option>
-                                    <option value=“조명“>조명</option>
-                                    <option value=“작가“>작가</option>
-                                    <option value=“기타“>기타</option>
+                                <select id="filterPosition" class="dropdown" name="jobPositionTitle">
+                                    <option>분야</option>
+                                    <option value="배우">배우</option>
+                                    <option value="연출">연출</option>
+                                    <option value="음향">음향</option>
+                                    <option value="카메라">카메라</option>
+                                    <option value="조명">조명</option>
+                                    <option value="작가">작가</option>
+                                    <option value="기타">기타</option>
                                 </select>
 
-                                <select id="filterGender" onchange="filterPosts()" class="dropdown">
-                                    <option value="all">성별</option>
-                                    <option value="남자">남자</option>
-                                    <option value="여자">여자</option>
+                                <select id="filterGender" class="dropdown" name="jobGender">
+                                    <option>성별</option>
+                                    <option value="남성">남성</option>
+                                    <option value="여성">여성</option>
                                     <option value="성별무관">성별무관</option>
                                 </select>
 
-                                <select id="filterOpening" onchange="filterPosts()" class="dropdown">
-                                    <option value="all">모집 여부</option>
-                                    <option value="모집중">모집중</option>
-                                    <option value="모집 마감">모집 마감</option>
+                                <select id="filterOpening" class="dropdown" name="isDead">
+                                    <option>모집 여부</option>
+                                    <option value="false">모집중</option>
+                                    <option value="true">모집 마감</option>
                                 </select>
                             </div>
-                            <div class="search_bar">
-                                <input type="text" id="filterText" oninput="filterSearch()"
-                                    placeholder="제목, 닉네임을 입력해보세요.">
-                                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                            </div>
+                            <!-- 검색창 -->
+                            <form method="get" action="/jobSearch/mainForm">
+                                <div class="search_bar">
+                                    <input type="text" name="keyword" id="filterText" placeholder="제목, 닉네임을 입력해보세요.">
+                                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </form>
                         </div>
+
 
                         <!-- 구인글 및 페이지네이션 -->
                         <div class="search_job_container">
@@ -184,17 +205,50 @@
                                 <input id="userId" type="hidden" value="${principal.userId}" />
 
                                 <div class="search_job_slide">
+                                    <c:if test="${job.isDead}">
+                                        <img src="/image/deadline.png" class="deadline">
+                                    </c:if>
                                     <div class="project">
                                         <div class="badge_wrapper">
-                                            <div class="badge_movie">
-                                                <i class="fa-solid fa-clapperboard"></i>
-                                                <p class="badge_genre">${job.jobGenre}</p>
-                                            </div>
-                                            <c:if test="${job.isToday}">
-                                                <div class="badge_new">
-                                                    <i class="fa-solid fa-gift"> 새로 올라온 글</i>
-                                                </div>
-                                            </c:if>
+                                            <c:choose>
+                                                <c:when test="${job.jobGenre == '장편영화'}">
+                                                    <!-- 영화 장르일 때 -->
+                                                    <div class="badge_movie">
+                                                        <i class="fa-solid fa-gift"> 장편영화</i>
+                                                    </div>
+                                                    <c:if test="${job.isToday}">
+                                                        <!-- 새로 올라온 글일 때 -->
+                                                        <div class="badge_new">
+                                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                        </div>
+                                                    </c:if>
+                                                </c:when>
+                                                <c:when test="${job.jobGenre == '단편영화'}">
+                                                    <!-- 영화 장르일 때 -->
+                                                    <div class="badge_movie">
+                                                        <i class="fa-solid fa-gift"> 단편영화</i>
+                                                    </div>
+                                                    <c:if test="${job.isToday}">
+                                                        <!-- 새로 올라온 글일 때 -->
+                                                        <div class="badge_new">
+                                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                        </div>
+                                                    </c:if>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="badge_movie">
+                                                        <i class="fa-solid fa-clapperboard"> ${job.jobGenre}</i>
+                                                    </div>
+                                                    <c:if test="${job.isToday}">
+                                                        <!-- 새로 올라온 글일 때 -->
+                                                        <div class="badge_new">
+                                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                        </div>
+                                                    </c:if>
+                                                </c:otherwise>
+                                            </c:choose>
+
+
                                         </div>
 
                                         <div class="schedule">
@@ -255,17 +309,28 @@
                         </div>
 
                         <div class="pagination">
-                            <!--<li class="page-item previous-page disable"><a class="page-link" href="#">Prev</a></li>
-                <li class="page-item current-page active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item dots"><a class="page-link" href="#">...</a></li>
-                <li class="page-item current-page"><a class="page-link" href="#">5</a></li>
-                <li class="page-item current-page"><a class="page-link" href="#">6</a></li>
-                <li class="page-item dots"><a class="page-link" href="#">...</a></li>
-                <li class="page-item current-page"><a class="page-link" href="#">10</a></li>
-                <li class="page-item next-page"><a class="page-link" href="#">Next</a></li>-->
                         </div>
                     </div>
+                    <!-- 페이지 -->
+                    <div class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class='page-item ${paging.first ? "disabled" : ""}'><a style="color: black;"
+                                    class="page-link"
+                                    href="?page=${paging.currentPage-1}&keyword=${paging.keyword}">이전</a>
+                            </li>
 
+                            <c:forEach var="num" begin="${paging.startPageNum}" end="${paging.lastPageNum}" step="1">
+                                <li class='page-item ${paging.currentPage == num-1 ? "active" : ""}'><a
+                                        style="color: black;" class="page-link"
+                                        href="?page=${num-1}&keyword=${paging.keyword}">${num}</a></li>
+                            </c:forEach>
+
+                            <li class='page-item ${paging.last ? "disabled" : ""}'><a style="color: black;"
+                                    class="page-link"
+                                    href="?page=${paging.currentPage+1}&keyword=${paging.keyword}">다음</a>
+                            </li>
+                        </ul>
+                    </div>
 
                     <footer class="footer">
                         <div class="left_cover"></div>

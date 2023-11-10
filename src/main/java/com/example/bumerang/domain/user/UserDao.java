@@ -62,4 +62,5 @@ public interface UserDao {
     PasswdDto findByPwUpdateResult(String userPassword, Integer userId);
 
     List<UpdateDto> userInfoUpdate(UpdateDto updateDto, Integer userId);
+
 }

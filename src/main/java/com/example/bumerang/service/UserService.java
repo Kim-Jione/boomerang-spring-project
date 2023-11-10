@@ -59,7 +59,10 @@ public class UserService {
     public SessionUserDto findByUser(LoginDto loginDto) {
         String enPassword = sha256.encrypt(loginDto.getUserPassword());
         loginDto.setUserPassword(enPassword); // 암호화된 비밀번호로 회원가입
+        System.err.println("getUserLoginId"+loginDto.getUserLoginId());
+        System.err.println("getUserPassword"+loginDto.getUserPassword());
         SessionUserDto userPS = userDao.findByUser(loginDto);
+        System.err.println("userPSgetUserLoginId"+userPS.getUserLoginId());
         return userPS;
     }
 

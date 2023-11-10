@@ -23,7 +23,12 @@ public class UpdateDto {
     private String userEducation;
     private String userContactLink;
     private String userProfileImg;
+
     private String ufTitle;
 //    private List<UserPortfolio> userPortfolio;
+
+//    private List<String> uftitle;
+//    private List<UserPortfolio> userPortfolio;
+
 
 }

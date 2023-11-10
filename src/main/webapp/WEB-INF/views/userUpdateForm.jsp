@@ -69,6 +69,7 @@
                   <p>
                     <input id="user_nickname" type="text" value="${userDetail.userNickname}" /><button class="save"
                       >
+                      onclick="">
                       저장하기
                     </button>
                   </p>
@@ -91,6 +92,7 @@
                           <label for="male">남성</label>
                           <input type="hidden" id="userGender" value="${userDetail.userGender}" />
                           <input type="radio" class="user_gender" name="user_gender" value= "남성" ${userDetail.userGender == '남성' ? 'checked' : ''}
+                          <input type="radio" class="user_gender" name="user_gender" value="남성"
                             />
                           <label for="female">여성</label>
                           <input type="radio" class="user_gender" name="user_gender" value= "여성" ${userDetail.userGender == '여성' ? 'checked' : ''}  />
@@ -121,6 +123,7 @@
                         </li>
                         <li>
                           <input type="hidden" id="userField" value="${userDetail.ufTitles}" />
+                          <input type="hidden" id="userField" value="${userDetail.uftitles}" />
                           <select class="dropdown" name="user_field" id="user_field">
                             <option class="user_field" value="배우" >배우</option>
                             <option class="user_field" value="연출">연출</option>
@@ -215,6 +218,24 @@
                         value="user_email"
                       />${userDetail.userEmail}
                     </div> -->
+<%--                      <!-- <div>--%>
+<%--                      <p class="pro_data kakao">카카오톡 오픈 채팅</p>--%>
+<%--                      <input--%>
+<%--                        class="user_contact"--%>
+<%--                        type="text"--%>
+<%--                        id="user_contact"--%>
+<%--                        value="user_contact"--%>
+<%--                      />--%>
+<%--                    </div>--%>
+<%--                    <div>--%>
+<%--                      <p class="pro_data email">이메일</p>--%>
+<%--                      <input--%>
+<%--                        class="user_contact"--%>
+<%--                        id="user_email"--%>
+<%--                        type="email"--%>
+<%--                        value="user_email"--%>
+<%--                      />${userDetail.userEmail}--%>
+<%--                    </div> -->--%>
                     </div>
                   </div>
                   <!-- profile_txt Right -->

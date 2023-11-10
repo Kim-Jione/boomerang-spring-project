@@ -68,7 +68,10 @@ public class UserController {
     // 로그인 기능
     @PostMapping("/user/login")
     public @ResponseBody CMRespDto<?> login(@RequestBody LoginDto loginDto) {
+        System.err.println("getUserLoginId"+loginDto.getUserLoginId());
+        System.err.println("getUserPassword"+loginDto.getUserPassword());
         SessionUserDto loginResult = userService.findByUser(loginDto);
+        System.err.println("loginResultgetUserLoginId"+loginResult.getUserLoginId());
         if (loginResult == null) {
             return new CMRespDto<>(-1, "아이디 혹은 비밀번호를 잘못 입력하셨습니다.", null);
         }
@@ -88,6 +91,7 @@ public class UserController {
     public String updateForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(principal.getUserId());
+        System.err.println("getUserAge"+userDetail.getUserAge());
         model.addAttribute("userDetail", userDetail);
         return "userUpdateForm";
     }
@@ -117,6 +121,7 @@ public class UserController {
         // 사용자 정보 업데이트
         UserRespDto userUpdateResult = userService.update(updateDto, userId);
         return new CMRespDto<>(1, "회원정보 수정 성공.", userUpdateResult);
+
     }
 
     // 계정 상세 화면
@@ -144,31 +149,39 @@ public class UserController {
         return "writeListForm";
     }
 
-    // 아이디 비밀번호 찾기 화면
-    @GetMapping("/user/searchIdPwForm")
-    public String searchIdForm() {
-        return "searchIdPwForm";
+    // 아이디 찾기 화면
+    @GetMapping("/user/helpId")
+    public String helpIdForm() {
+        return "helpIdForm";
+    }
+
+    // 비밀번호 찾기 화면
+    @GetMapping("/user/helpPw")
+    public String helpPwForm() {
+        return "helpPwForm";
     }
 
     // 아이디 찾기
-    @PostMapping("/user/searchId")
-    public @ResponseBody CMRespDto<?> searchId(@RequestBody SearchIdDto searchIdDto) {
-        SearchIdDto userLoginId = userService.findByLoginId(searchIdDto);
-        if(userLoginId==null){
-            return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
+    @PostMapping("/user/findId")
+    public String searchId(@RequestParam String userEmail, SearchIdDto userEmailId, Model model) {
+        userEmailId.setUserEmail(userEmail);
+        SearchIdDto userId = userService.findByLoginId(userEmailId);
+        if(userId == null){
+            return "redirect:/user/helpId";
         }
-        return new CMRespDto<>(1, "아이디 찾기 성공.", userLoginId);
+        model.addAttribute("userId", userId);
+        return "findId";
     }
 
-    // 비밀번호 찾기
-    @PostMapping("/user/searchPw")
-    public @ResponseBody CMRespDto<?> searchPw(@RequestBody SearchPwDto searchPwDto) {
-        SearchPwDto userPassword = userService.findByPw(searchPwDto);
-        if(userPassword==null){
-            return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
+    @PostMapping("/user/findPw")
+    public String searchPw(@RequestParam String userEmail, SearchPwDto userEmailPw, Model model) {
+        userEmailPw.setUserEmail(userEmail);
+        SearchPwDto userPw = userService.findByPw(userEmailPw);
+        if(userPw == null){
+            return "redirect:/user/helpPw";
         }
-        SimpleMailMessage message = userService.sendMessage(searchPwDto);
-        return new CMRespDto<>(1, "비밀번호 찾기 성공.", message);
+        SimpleMailMessage message = userService.sendMessage(userEmailPw);
+        return "findPw";
     }
 
     // 관심목록 화면
