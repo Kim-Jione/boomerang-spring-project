@@ -412,8 +412,17 @@
     background: #ccc;
   }
  
-
-
+.deadline{
+    position: absolute;
+    bottom:-15px;
+    margin-left:15px;
+    z-index: 99;
+    text-align: center;
+    display: block;
+    width: 90%;
+    opacity: 0.8;
+    
+}
 
   /* 반응형 화면 모바일 */
   @media screen and (max-width: 611px) {

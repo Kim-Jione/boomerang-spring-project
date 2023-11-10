@@ -7,10 +7,39 @@ $(document).ready(function(){
   });
 });
 
+/////////////////////////////
+// 드랍다운 필터링 - performance //
+////////////////////////////
+function filterPosts() {
+  var filterGenre = document.getElementById('filterGenre').value;
+  var filterAge = document.getElementById('filterAge').value;
+  var filterRun = document.getElementById('filterRun').value;
+  var filterCharge = document.getElementById('filterCharge').value;
+  var posts = document.getElementsByClassName('poster');
+
+  for (var i = 0; i < posts.length; i++) {
+    var genre = posts[i].getElementsByClassName('category')[0].textContent;
+    var age = posts[i].getElementsByClassName('age')[0].textContent;
+    // var opening = posts[i].getElementsByClassName('opening')[0].textContent;
+    var charge = posts[i].getElementsByClassName('charge')[0].textContent;
+
+    if (
+        (filterGenre === 'all' || filterGenre === genre) &&
+        (filterAge === 'all' || filterAge === age) &&
+        // (filterRun === 'all' || filterRun === opening) &&
+        (filterCharge === 'all' || filterCharge === charge)
+    ) {
+      posts[i].style.display = 'block'; // 선택한 장르에 맞는 게시물만 표시
+    } else {
+      posts[i].style.display = 'none';
+    }
+  }
+}
+
 //////////////
 // 검색기능 //
 /////////////
-function filterPosts() {
+function filterSearch() {
   var filterText = document.getElementById('filterText').value.toLowerCase();
   var posts = document.getElementsByClassName('search');
 
@@ -100,14 +129,3 @@ $(function(){
     return showPage(currentPage - 1);
   });
 });
-
-
-
- 
-
-
-
-
-
-
-

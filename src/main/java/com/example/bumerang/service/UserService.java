@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import com.example.bumerang.domain.jobSearchPosition.JobSearchPositionDao;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,7 @@ public class UserService {
     private final JavaMailSender emailSender;
     private final String imageUploadPath = "C:/bumerang/img/"; // 여기서 경로 수정
     private final SHA256 sha256;
+    private final JobSearchPositionDao jobSearchPositionDao;
 
     //회원가입
     public SessionUserDto join(JoinDto joinDto) {
@@ -111,12 +113,18 @@ public class UserService {
 
     //관심 구인글 록록
     public List<LikeyJSListDto> likeyfindAllJSList() {
-        return likeyDao.likeyFindSJList ();
+        List<LikeyJSListDto> JSList = likeyDao.likeyFindSJList();
+        for (int i = 0; i < JSList.size(); i++) {
+            List<String> jobPositionTitle = jobSearchPositionDao.findById(JSList.get(i).getJobId());
+            JSList.get(i).setJobPositionTitle(jobPositionTitle);
+        }
+        return JSList;
     }
 
     // 관심 공연글 목록
     public List<LikeyPFListDto> likeyfindAllPFList() {
-        return likeyDao.likeyFindPFList();
+        List<LikeyPFListDto> PFList = likeyDao.likeyFindPFList();
+        return PFList;
 
     }
     public List<UserJobSearchDto> myJSList(Integer userId) {
@@ -181,10 +189,8 @@ public class UserService {
                 // 이미지 파일 이름을 랜덤으로 생성
                 String fileName = UUID.randomUUID() + "_" + profileImage.getOriginalFilename();
                 Path imagePath = Paths.get(imageUploadPath + fileName);
-
                 // 이미지 저장
                 profileImage.transferTo(imagePath.toFile());
-
                 // 이미지 파일 경로를 반환
                 return imageUploadPath + fileName;
             } catch (IOException e) {

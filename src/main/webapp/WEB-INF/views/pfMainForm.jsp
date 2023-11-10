@@ -153,10 +153,11 @@
 
             <!-- 전시 공연 정보 -->
             <section class="poster_wrapper">
-
               <article class="poster search">
                 <div class="img"></div>
+
                 <a href="#">
+                  <img src="/image/deadline-stamp1.png" class="deadline">
                   <img src="/image/poster/poster_1.jpg" class="img-hover">
                 </a>
                 <div class="info">

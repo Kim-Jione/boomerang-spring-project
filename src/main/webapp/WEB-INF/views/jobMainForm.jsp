@@ -185,6 +185,7 @@
 
                                 <div class="search_job_slide">
                                     <div class="project">
+                                        <img src="/image/deadline-stamp1.png" class="deadline">
                                         <div class="badge_wrapper">
                                             <div class="badge_movie">
                                                 <i class="fa-solid fa-clapperboard"></i>
@@ -199,7 +200,7 @@
 
                                         <div class="schedule">
                                             <p>마감일 | </p>
-                                            <p>${job.jobDeadline}</p>
+                                                <p>${job.jobDeadline}</p>
                                         </div>
 
                                         <h1 class="project_title">
@@ -249,6 +250,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </c:forEach>
                             <!-- 여기까지만 복사 -->

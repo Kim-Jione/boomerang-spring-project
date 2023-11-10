@@ -64,11 +64,11 @@
                                         <ul>
                                             <li>
                                                 <span class="material-icons icons-size">insert_comment</span>
-                                                <a href="/s/api/user/writeListForm">내 작성글</a>
+                                                <a href="/s/api/user/writeListForm/${principal.userId}">내 작성글</a>
                                             </li>
                                             <li>
                                                 <span class="material-icons icons-size">insert_comment</span>
-                                                <a href="/s/api/user/likeyListForm">내 관심글</a>
+                                                <a href="/s/api/user/likeyListForm/${principal.userId}">내 관심글</a>
                                             </li>
                                             <li>
                                                 <span class="material-icons icons-size">person</span>

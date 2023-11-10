@@ -79,8 +79,7 @@
     <select id="findAllBestPf"
             resultType="com.example.bumerang.web.dto.response.performance.PfListDto">
         SELECT p.pf_title, p.pf_location,
-        CASE WHEN p.pf_price = 0 THEN FALSE
-        ELSE TRUE END AS isPrice,
+        CASE WHEN p.pf_price = 0 THEN FALSE ELSE TRUE END AS isPrice,
         p.pf_start_date, p.pf_deadline, p.pf_thumbnail,
         COALESCE(v.view_count, 0) AS viewCount
         FROM performance p
