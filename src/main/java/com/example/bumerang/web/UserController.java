@@ -88,7 +88,7 @@ public class UserController {
     public String updateForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(principal.getUserId());
-        model.addAttribute("user", userDetail);
+        model.addAttribute("userDetail", userDetail);
         return "userUpdateForm";
     }
 
@@ -106,6 +106,18 @@ public class UserController {
         System.err.println("디버그getUserPassword: "+passwd.getUserPassword());
         return new CMRespDto<>(1, "비밀번호 수정 성공.", passwd);
     }
+    // 회원 정보 수정
+    @PostMapping("/s/api/user/userConfigUpdate")
+    public @ResponseBody CMRespDto<?> userUpdate(@RequestBody UpdateDto updateDto){
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        Integer userId = principal.getUserId();
+        System.err.println("List "+updateDto.getUfTitle());
+        // 사용자 입력 데이터 검증
+       userService.validate(updateDto);
+        // 사용자 정보 업데이트
+        UserRespDto userUpdateResult = userService.update(updateDto, userId);
+        return new CMRespDto<>(1, "회원정보 수정 성공.", userUpdateResult);
+    }
 
     // 계정 상세 화면
     @GetMapping("s/api/user/detailForm/{userId}")
@@ -120,7 +132,7 @@ public class UserController {
     }
 
     // 내가 작성한 글 화면
-    @GetMapping("/s/api/user/writeListForm")
+    @GetMapping("/s/api/user/writeListForm/{userId}")
     public String writeListForm() {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = principal.getUserId();
@@ -160,14 +172,16 @@ public class UserController {
     }
 
     // 관심목록 화면
-    @GetMapping("/s/api/user/likeyListForm")
+    @GetMapping("/s/api/user/likeyListForm/{userId}")
     public String likeyListForm(Model model){
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        Integer userId = principal.getUserId();
         LikeyRespDto userLikeyList = new LikeyRespDto();
         List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList();
         List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList();
         userLikeyList.setLJSList(LikeyJSDetail);
         userLikeyList.setLPFList(LikeyPFDetail);
-        model.addAttribute("LikeyJSDetail", LikeyPFDetail);
+        model.addAttribute("LikeyJSDetail", LikeyJSDetail);
         model.addAttribute("LikeyPFDetail", LikeyPFDetail);
         return "likeyListForm";
     }

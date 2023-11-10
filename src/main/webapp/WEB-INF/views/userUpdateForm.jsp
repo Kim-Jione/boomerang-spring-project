@@ -68,7 +68,7 @@
                 <div class="name">
                   <p>
                     <input id="user_nickname" type="text" value="${userDetail.userNickname}" /><button class="save"
-                      onclick="">
+                      >
                       저장하기
                     </button>
                   </p>
@@ -90,10 +90,10 @@
                         <li>
                           <label for="male">남성</label>
                           <input type="hidden" id="userGender" value="${userDetail.userGender}" />
-                          <input type="radio" class="user_gender" name="user_gender" value="남성"
+                          <input type="radio" class="user_gender" name="user_gender" value= "남성" ${userDetail.userGender == '남성' ? 'checked' : ''}
                             />
                           <label for="female">여성</label>
-                          <input type="radio" class="user_gender" name="user_gender" value="여성" />
+                          <input type="radio" class="user_gender" name="user_gender" value= "여성" ${userDetail.userGender == '여성' ? 'checked' : ''}  />
                         </li>
                         <li>
                           <input id="user_height" type="number" value="${userDetail.userHeight}" id="userheight" />cm
@@ -120,7 +120,7 @@
                           </select>
                         </li>
                         <li>
-                          <input type="hidden" id="userField" value="${userDetail.uftitles}" />
+                          <input type="hidden" id="userField" value="${userDetail.ufTitles}" />
                           <select class="dropdown" name="user_field" id="user_field">
                             <option class="user_field" value="배우" >배우</option>
                             <option class="user_field" value="연출">연출</option>

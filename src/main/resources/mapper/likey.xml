@@ -58,6 +58,7 @@
         j.job_content_title AS jobTitle,
         j.job_start_date AS jobStartDate,
         j.job_deadline AS jobDeadline,
+        j.job_Genre As jobGenre,
         COALESCE(c.comment_count, 0) AS commentCount,
         COALESCE(v.view_count, 0) AS viewCount
         FROM user u

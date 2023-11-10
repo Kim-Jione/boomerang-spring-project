@@ -130,23 +130,33 @@
     </select>
 
     <update id="updateUser">
-        UPDATE user
+        UPDATE user u
+        JOIN user_portfolio up ON u.user_id = up.user_id
         SET
-        user_password = #{userPassword},
-        user_email = #{userEmail},
-        user_nickname = #{userNickname},
-        user_gender = #{userGender},
-        user_height = #{userHeight},
-        user_form = #{userForm},
-        user_tone = #{userTone},
-        user_age = #{userAge},
-        user_career = #{userCareer},
-        user_skill = #{userSkill},
-        user_education = #{userEducation},
-        user_contact_link = #{userContactLink},
-        user_profile_img = #{userProfileImg}
+        u.user_login_id = #{userLoginId},
+        u.user_email = #{userEmail},
+        u.user_nickname = #{userNickname},
+        u.user_gender = #{userGender},
+        u.user_height = #{userHeight},
+        u.user_form = #{userForm},
+        u.user_tone = #{userTone},
+        u.user_age = #{userAge},
+        u.user_career = #{userCareer},
+        u.user_skill = #{userSkill},
+        u.user_education = #{userEducation},
+        u.user_contact_link = #{userContactLink},
+        u.user_profile_img = #{userProfileImg},
+        u.user_status = #{userStatus},
+        u.uftitles = #{uftitles},
+        up.up_title = #{userPortfolio.upTitle},
+        up.up_prod_year = #{userPortfolio.upProdYear},
+        up.up_role = #{userPortfolio.upRole},
+        up.up_genre = #{userPortfolio.upGenre},
+        up.up_director = #{userPortfolio.upDirector},
+        up.up_history = #{userPortfolio.upHistory}
         WHERE
-        user_id = #{userId} AND user_status != 'deleted'
+        u.user_id = #{userId} AND
+        up.up_id = #{userPortfolio.upId};
     </update>
 
     <delete id="fieldDelete">
@@ -206,5 +216,8 @@
         user_password = #{userPassword}
         Where
         user_id = #{userId} AND user_status != 'deleted'
+    </update>
+    <update id="userInfoUpdate">
+
     </update>
 </mapper>

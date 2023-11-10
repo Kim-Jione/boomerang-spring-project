@@ -40,12 +40,13 @@
             <!-- 구인글 및 페이지네이션 -->
             <section class="search_job_container">
               <!--해당 부분부터 게시글 목록 (더미데이터)-->
+              <c:forEach var="detailItem" items="${LikeyJSDetail}">
               <article class="search_job_slide">
                 <div class="project">
                   <div class="badge_wrapper">
                     <div class="badge_movie">
                       <i class="fa-solid fa-clapperboard"></i>
-                      <p class="badge_genre">영화</p>
+                      <p class="badge_genre">${detailItem.jobGenre}</p>
                     </div>
                     <div class="badge_new">
                       <i class="fa-solid fa-gift"> 새로 올라온 글</i>
@@ -54,17 +55,15 @@
 
                   <div class="schedule">
                     <p>마감일 |</p>
-                    <p>2023.12.24</p>
+                    <p>${detailItem.jobDeadline}</p>
                   </div>
 
                   <h1 class="project_title">
-                    [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 테스트 있어요! 많은
-                    지원 부탁드려요.
+                        ${detailItem.jobTitle}
                   </h1>
 
                   <ul class="position_list">
                     <li class="position">배우</li>
-                    <li class="position">감독</li>
                   </ul>
 
                   <div class="content">
@@ -82,275 +81,27 @@
                   <div class="myinfo">
                     <div class="user_info">
                       <div>
-                        <img class="icon" src="/image/chara/bugi13.jpg" />
+                        <img class="icon" src=" ${detailItem.userProfileImg}" />
                       </div>
                       <div class="nickname">
-                        <span class="accent">7년차</span>
-                        <p>두목님</p>
+                        <span class="accent">${detailItem.userCareer}</span>
+                        <p>${detailItem.userNickname}</p>
                       </div>
                     </div>
 
                     <div class="viewAndInfo">
                       <div class="view">
-                        <i class="fa-regular fa-eye"> 14</i>
+                        <i class="fa-regular fa-eye"> ${detailItem.viewCount}</i>
                       </div>
                       <div class="comment">
-                        <i class="fa-regular fa-comment"> 1</i>
+                        <i class="fa-regular fa-comment"> ${detailItem.commentCount}</i>
                       </div>
                     </div>
                   </div>
                 </div>
               </article>
-
-              <article class="search_job_slide">
-                <div class="project">
-                  <div class="badge_wrapper">
-                    <div class="badge_movie">
-                      <i class="fa-solid fa-clapperboard"></i>
-                      <p class="badge_genre">영화</p>
-                    </div>
-                    <div class="badge_new">
-                      <i class="fa-solid fa-gift"> 새로 올라온 글</i>
-                    </div>
-                  </div>
-
-                  <div class="schedule">
-                    <p>마감일 |</p>
-                    <p>2023.12.24</p>
-                  </div>
-
-                  <h1 class="project_title">
-                    [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 테스트 있어요! 많은
-                    지원 부탁드려요.
-                  </h1>
-
-                  <ul class="position_list">
-                    <li class="position">배우</li>
-                    <li class="position">감독</li>
-                  </ul>
-
-                  <div class="content">
-                    <a href="viewJobSearch.html" class="more_btn">
-                      <p>자세히보기</p>
-                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                    <div class="like_btn">
-                      <span class="heart"></span>
-                    </div>
-                  </div>
-
-                  <div class="border"></div>
-
-                  <div class="myinfo">
-                    <div class="user_info">
-                      <div>
-                        <img class="icon" src="image/chara/bugi13.jpg" />
-                      </div>
-                      <div class="nickname">
-                        <span class="accent">7년차</span>
-                        <p>두목님</p>
-                      </div>
-                    </div>
-
-                    <div class="viewAndInfo">
-                      <div class="view">
-                        <i class="fa-regular fa-eye"> 14</i>
-                      </div>
-                      <div class="comment">
-                        <i class="fa-regular fa-comment"> 1</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="search_job_slide">
-                <div class="project">
-                  <div class="badge_wrapper">
-                    <div class="badge_movie">
-                      <i class="fa-solid fa-clapperboard"></i>
-                      <p class="badge_genre">영화</p>
-                    </div>
-                    <div class="badge_new">
-                      <i class="fa-solid fa-gift"> 새로 올라온 글</i>
-                    </div>
-                  </div>
-
-                  <div class="schedule">
-                    <p>마감일 |</p>
-                    <p>2023.12.24</p>
-                  </div>
-
-                  <h1 class="project_title">
-                    [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 테스트 있어요! 많은
-                    지원 부탁드려요.
-                  </h1>
-
-                  <ul class="position_list">
-                    <li class="position">배우</li>
-                    <li class="position">감독</li>
-                  </ul>
-
-                  <div class="content">
-                    <a href="viewJobSearch.html" class="more_btn">
-                      <p>자세히보기</p>
-                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                    <div class="like_btn">
-                      <span class="heart"></span>
-                    </div>
-                  </div>
-
-                  <div class="border"></div>
-
-                  <div class="myinfo">
-                    <div class="user_info">
-                      <div>
-                        <img class="icon" src="image/chara/bugi13.jpg" />
-                      </div>
-                      <div class="nickname">
-                        <span class="accent">7년차</span>
-                        <p>두목님</p>
-                      </div>
-                    </div>
-
-                    <div class="viewAndInfo">
-                      <div class="view">
-                        <i class="fa-regular fa-eye"> 14</i>
-                      </div>
-                      <div class="comment">
-                        <i class="fa-regular fa-comment"> 1</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="search_job_slide">
-                <div class="project">
-                  <div class="badge_wrapper">
-                    <div class="badge_movie">
-                      <i class="fa-solid fa-clapperboard"></i>
-                      <p class="badge_genre">영화</p>
-                    </div>
-                    <div class="badge_new">
-                      <i class="fa-solid fa-gift"> 새로 올라온 글</i>
-                    </div>
-                  </div>
-
-                  <div class="schedule">
-                    <p>마감일 |</p>
-                    <p>2023.12.24</p>
-                  </div>
-
-                  <h1 class="project_title">
-                    [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 테스트 있어요! 많은
-                    지원 부탁드려요.
-                  </h1>
-
-                  <ul class="position_list">
-                    <li class="position">배우</li>
-                    <li class="position">감독</li>
-                  </ul>
-
-                  <div class="content">
-                    <a href="viewJobSearch.html" class="more_btn">
-                      <p>자세히보기</p>
-                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                    <div class="like_btn">
-                      <span class="heart"></span>
-                    </div>
-                  </div>
-
-                  <div class="border"></div>
-
-                  <div class="myinfo">
-                    <div class="user_info">
-                      <div>
-                        <img class="icon" src="image/chara/bugi13.jpg" />
-                      </div>
-                      <div class="nickname">
-                        <span class="accent">7년차</span>
-                        <p>두목님</p>
-                      </div>
-                    </div>
-
-                    <div class="viewAndInfo">
-                      <div class="view">
-                        <i class="fa-regular fa-eye"> 14</i>
-                      </div>
-                      <div class="comment">
-                        <i class="fa-regular fa-comment"> 1</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="search_job_slide">
-                <div class="project">
-                  <div class="badge_wrapper">
-                    <div class="badge_movie">
-                      <i class="fa-solid fa-clapperboard"></i>
-                      <p class="badge_genre">영화</p>
-                    </div>
-                    <div class="badge_new">
-                      <i class="fa-solid fa-gift"> 새로 올라온 글</i>
-                    </div>
-                  </div>
-
-                  <div class="schedule">
-                    <p>마감일 |</p>
-                    <p>2023.12.24</p>
-                  </div>
-
-                  <h1 class="project_title">
-                    [로켓단 컴퍼니] 피카츄 잘잡으시는분 구합니다. 테스트 있어요! 많은
-                    지원 부탁드려요.
-                  </h1>
-
-                  <ul class="position_list">
-                    <li class="position">배우</li>
-                    <li class="position">감독</li>
-                  </ul>
-
-                  <div class="content">
-                    <a href="viewJobSearch.html" class="more_btn">
-                      <p>자세히보기</p>
-                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                    <div class="like_btn">
-                      <span class="heart"></span>
-                    </div>
-                  </div>
-
-                  <div class="border"></div>
-
-                  <div class="myinfo">
-                    <div class="user_info">
-                      <div>
-                        <img class="icon" src="image/chara/bugi13.jpg" />
-                      </div>
-                      <div class="nickname">
-                        <span class="accent">7년차</span>
-                        <p>두목님</p>
-                      </div>
-                    </div>
-
-                    <div class="viewAndInfo">
-                      <div class="view">
-                        <i class="fa-regular fa-eye"> 14</i>
-                      </div>
-                      <div class="comment">
-                        <i class="fa-regular fa-comment"> 1</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
+              </c:forEach>
             </section>
-
             <div class="pagination">
               <!--<li class="page-item previous-page disable"><a class="page-link" href="#">Prev</a></li>
             <li class="page-item current-page active"><a class="page-link" href="#">1</a></li>
@@ -388,82 +139,6 @@
                   </div>
                   <h3 class="title">밑바닥에서</h3>
                   <h4 class="location">예술의 전당 CJ극장</h4>
-                  <h5 class="date">2023.11.14 ~ 2023.12.25</h5>
-                </div>
-              </article>
-
-              <article class="poster search">
-                <div class="img"></div>
-                <a href="#">
-                  <img src="/image/poster/poster_2.jpg" class="img-hover" />
-                </a>
-                <div class="info">
-                  <div class="badge">
-                    <div class="category forMovie">
-                      <i class="fa-solid fa-clapperboard"> 영화</i>
-                    </div>
-                    <div class="age for12">12세 이상</div>
-                    <div class="charge">무료</div>
-                  </div>
-                  <h3 class="title">소울메이트</h3>
-                  <h4 class="location">영화의 전당</h4>
-                  <h5 class="date">2023.11.14 ~ 2023.12.25</h5>
-                </div>
-              </article>
-
-              <article class="poster search">
-                <div class="img"></div>
-                <a href="#">
-                  <img src="/image/poster/poster_3.jpg" class="img-hover" />
-                </a>
-                <div class="info">
-                  <div class="badge">
-                    <div class="category forMovie">
-                      <i class="fa-solid fa-clapperboard"> 영화</i>
-                    </div>
-                    <div class="age for15">15세 이상</div>
-                    <div class="charge">유료</div>
-                  </div>
-                  <h3 class="title">스즈메의 문단속</h3>
-                  <h4 class="location">성수님집 안방</h4>
-                  <h5 class="date">2023.11.14 ~ 2023.12.25</h5>
-                </div>
-              </article>
-
-              <article class="poster search">
-                <div class="img"></div>
-                <a href="#">
-                  <img src="/image/poster/poster_4.jpg" class="img-hover" />
-                </a>
-                <div class="info">
-                  <div class="badge">
-                    <div class="category forTheater">
-                      <i class="fa-solid fa-masks-theater"> 연극</i>
-                    </div>
-                    <div class="age forAll">ALL</div>
-                    <div class="charge">유료</div>
-                  </div>
-                  <h3 class="title">소리</h3>
-                  <h4 class="location">부산 문화 회관</h4>
-                  <h5 class="date">2023.11.14 ~ 2023.12.25</h5>
-                </div>
-              </article>
-
-              <article class="poster search">
-                <div class="img"></div>
-                <a href="#">
-                  <img src="image/poster/poster_4.jpg" class="img-hover" />
-                </a>
-                <div class="info">
-                  <div class="badge">
-                    <div class="category forTheater">
-                      <i class="fa-solid fa-masks-theater"> 연극</i>
-                    </div>
-                    <div class="age forAll">ALL</div>
-                    <div class="charge">유료</div>
-                  </div>
-                  <h3 class="title">소리</h3>
-                  <h4 class="location">부산 문화 회관</h4>
                   <h5 class="date">2023.11.14 ~ 2023.12.25</h5>
                 </div>
               </article>

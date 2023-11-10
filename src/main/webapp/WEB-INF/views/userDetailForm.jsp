@@ -51,7 +51,7 @@
                         <li>${userDetail.userHeight}</li>
                         <li>${userDetail.userForm}</li>
                         <li>${userDetail.userTone}</li>
-                        <li>${userDetail.uftitles}</li>
+                        <li>${userDetail.ufTitles}</li>
                         <li>30대</li>
                       </ul>
                       <div class="pro_txt">

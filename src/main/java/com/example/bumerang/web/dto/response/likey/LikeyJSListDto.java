@@ -20,9 +20,10 @@ public class LikeyJSListDto {
     private String jobTitle;
     private String jobStartDate;
     private String jobDeadline;
+    private String jobGenre;
 
     // 댓글 테이블에서 가져올 정보
-    private Integer CommentCount;
+    private Integer commentCount;
     // 뷰 테이블에서 가져올 정보
-    private Integer ViewCount;
+    private Integer viewCount;
 }

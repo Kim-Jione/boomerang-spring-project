@@ -80,22 +80,47 @@ public class UserService {
     }
 
     // 사용자 정보 수정
-    public UserRespDto update(UpdateDto updateDto){
-        String enPassword = sha256.encrypt(updateDto.getUserPassword());
-        updateDto.setUserPassword(enPassword);
-        userDao.updateUser(updateDto);
+    public static void validate(UpdateDto updateDto) {
+        if (updateDto == null) {
+            throw new NullPointerException("UpdateDto : null ");
+        }
+        // 분야명 검증
+//        List<String> uftitleList = updateDto.getUfTitle();
+//        if (uftitleList == null || uftitleList.isEmpty()) {
+//            throw new Error(" null Error.");
+//        } else if (uftitleList.stream().anyMatch(title -> title == null || title.isEmpty())) {
+//            throw new Error(" [null] Error ");
+//        }
+
+        // 작품 정보 검증
+//        List<UserPortfolio> userPortfolioList = updateDto.getUserPortfolio();
+//        if (userPortfolioList == null || userPortfolioList.stream().anyMatch(portfolio -> portfolio == null
+//                || portfolio.getUpTitle() == null || portfolio.getUpTitle().isEmpty()
+//                || portfolio.getUpProdYear() < 1950 || portfolio.getUpProdYear() > 2040
+//                || portfolio.getUpRole() == null || portfolio.getUpRole().isEmpty()
+//                || portfolio.getUpGenre() == null || portfolio.getUpGenre().isEmpty()
+//                || portfolio.getUpDirector() == null || portfolio.getUpDirector().isEmpty())) {
+//            throw new Error("portfolioInfo");
+//        }
+
+    }
+
+    public UserRespDto update(UpdateDto updateDto, Integer userId){
         // 사용자 분야 수정
-        List<String> uftitleList = updateDto.getUftitle();
-        userDao.fieldDelete(updateDto.getUserId());
-        for(String ufTitle : uftitleList){
-            userDao.fieldInsert(ufTitle, updateDto.getUserId());
-        }
+
+        List<UpdateDto> userList = userDao.userInfoUpdate(updateDto, userId);
+
+//        List<String> uftitleList = updateDto.getUfTitle();
+//        userDao.fieldDelete(updateDto.getUserId());
+//        for(String ufTitle : uftitleList){
+//            userDao.fieldInsert(ufTitle, updateDto.getUserId());
+//        }
         // 사용자 포트폴리오 수정
-        List<UserPortfolio> upList = updateDto.getUserPortfolio();
-        userDao.portfolioDelete(updateDto.getUserId());
-        for(UserPortfolio userPortfolio : upList){
-            userDao.portfolioInsert(userPortfolio);
-        }
+//        List<UserPortfolio> upList = updateDto.getUserPortfolio();
+//        userDao.portfolioDelete(updateDto.getUserId());
+//        for(UserPortfolio userPortfolio : upList){
+//            userDao.portfolioInsert(userPortfolio);
+//        }
         UserRespDto updateResult = userDao.findByDetail(updateDto.getUserId());
         List<UserPortfolio> userPortfolioList = userDao.findByPortfolioList(updateDto.getUserId());
         updateResult.setUserPortfolio(userPortfolioList);

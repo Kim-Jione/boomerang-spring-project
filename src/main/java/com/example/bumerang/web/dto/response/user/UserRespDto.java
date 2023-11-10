@@ -11,7 +11,6 @@ import java.util.List;
 public class UserRespDto {
     private Integer userId;
     private String userLoginId;
-    private String userPassword;
     private String userEmail;
     private String userNickname;
     private String userGender;
@@ -20,11 +19,11 @@ public class UserRespDto {
     private String userTone;
     private String userAge;
     private String userCareer;
-    private String userSkill ;
+    private String userSkill;
     private String userEducation;
     private String userContactLink;
     private String userProfileImg;
     private String userStatus;
-    private String uftitles;
+    private String ufTitles;
     private List<UserPortfolio> userPortfolio;
 }
