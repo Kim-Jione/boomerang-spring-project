@@ -55,6 +55,9 @@
                                 <input id="jobId" type="hidden" value="${job.jobId}" />
                                 <input id="userId" type="hidden" value="${principal.userId}" />
                                 <swiper-slide>
+                                    <c:if test="${job.isDead}">
+                                        <img src="/image/deadline.png" class="deadline">
+                                    </c:if>
                                     <div class="project">
                                         <div class="badge_wrapper">
                                             <div class="badge_movie">
@@ -202,6 +205,9 @@
                                 <input id="userId" type="hidden" value="${principal.userId}" />
 
                                 <div class="search_job_slide">
+                                    <c:if test="${job.isDead}">
+                                        <img src="/image/deadline.png" class="deadline">
+                                    </c:if>
                                     <div class="project">
                                         <div class="badge_wrapper">
                                             <c:choose>

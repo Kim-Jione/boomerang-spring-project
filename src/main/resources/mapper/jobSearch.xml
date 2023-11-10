@@ -146,7 +146,7 @@
                  LEFT JOIN (
             SELECT job_id, COUNT(*) AS likey_count FROM likey GROUP BY job_id
         ) l ON j.job_id = l.job_id
-        WHERE j.job_status = 'active'
+        WHERE j.job_status = 'active' AND u.user_status != 'deleted'
         ORDER BY likeyCount DESC
             LIMIT 8
     </select>
@@ -186,10 +186,12 @@
         FROM
             (
             select  count(*) totalCount, CEILING(count(*)/12) totalPage, #{page} as currentPage, 0 as
-            first, 0 as LAST, job_content_title
+            first, 0 as LAST, job_content_title, user_id
             FROM job_search
             WHERE job_status!='deleted' AND( job_content_title LIKE '%${keyword}%'
             OR job_content LIKE '%${keyword}%')
-            ) j ;
+            ) j 
+        LEFT JOIN user AS u ON j.user_id = u.user_id
+        WHERE u.user_status != 'deleted'
     </select>
 </mapper>
