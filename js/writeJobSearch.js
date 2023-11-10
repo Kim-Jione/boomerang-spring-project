@@ -42,9 +42,9 @@ SOItems.forEach((SOItems) => {
   });
 });
 
-/************************/
+/***************/
 /* 멀티플 드랍박스 */
-/************************/
+/***************/
 const selectBtn = document.querySelector(".select-btn"),
   items = document.querySelectorAll(".item");
 
@@ -55,15 +55,19 @@ selectBtn.addEventListener("click", () => {
 items.forEach((item) => {
   item.addEventListener("click", () => {
     item.classList.toggle("checked");
+    let checkedTexts = [];
 
     let checked = item.parentElement.parentElement.querySelectorAll(".checked");
-    let btnText =
-    item.parentElement.parentElement.querySelector(".btn-text");
+    let btnText = item.parentElement.parentElement.querySelector(".btn-text");
 
     if (checked && checked.length > 0) {
-      btnText.innerText = `${checked.length} Selected`;
+      checked.forEach((checked) => {
+        checkedTexts.push(checked.querySelector(".item-text").textContent);
+      });
+
+      btnText.innerText = `${checkedTexts}`;
     } else {
-      btnText.innerText = "Select Language";
+      btnText.innerText = "모두 골라주세요";
     }
   });
 });
@@ -72,15 +76,14 @@ items.forEach((item) => {
 /* 에디터 삽입 */
 /************/
 
-var quill = new Quill('#editor-container', {
+var quill = new Quill("#editor-container", {
   modules: {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, false] }],
-      ['bold', 'italic', 'underline'],
-      ['image', 'code-block']
-    ]
+      ["bold", "italic", "underline"],
+      ["image", "code-block"],
+    ],
   },
-  placeholder: '내용을 입력하세요',
-  theme: 'snow'  // or 'bubble'
+  placeholder: "내용을 입력하세요",
+  theme: "snow", // or 'bubble'
 });
-
