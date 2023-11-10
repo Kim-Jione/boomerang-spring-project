@@ -265,7 +265,30 @@
                 <li class="page-item next-page"><a class="page-link" href="#">Next</a></li>-->
                         </div>
                     </div>
+<<<<<<< Updated upstream
 
+=======
+                    <!-- 페이지 -->
+                    <!-- <div class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class='page-item ${paging.first ? "disabled" : ""}'><a style="color: black;"
+                                    class="page-link"
+                                    href="?page=${paging.currentPage-1}&keyword=${paging.keyword}">이전</a>
+                            </li>
+
+                            <c:forEach var="num" begin="${paging.startPageNum}" end="${paging.lastPageNum}" step="1">
+                                <li class='page-item ${paging.currentPage == num-1 ? "active" : ""}'><a
+                                        style="color: black;" class="page-link"
+                                        href="?page=${num-1}&keyword=${paging.keyword}">${num}</a></li>
+                            </c:forEach>
+
+                            <li class='page-item ${paging.last ? "disabled" : ""}'><a style="color: black;"
+                                    class="page-link"
+                                    href="?page=${paging.currentPage+1}&keyword=${paging.keyword}">다음</a>
+                            </li>
+                        </ul>
+                    </div> -->
+>>>>>>> Stashed changes
 
                     <footer class="footer">
                         <div class="left_cover"></div>

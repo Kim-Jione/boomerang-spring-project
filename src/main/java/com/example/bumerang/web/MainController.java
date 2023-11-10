@@ -32,9 +32,47 @@ public class MainController {
 
 	// 구인정보글 메인 화면
 	@GetMapping({"/","/jobSearch/mainForm"})
+<<<<<<< Updated upstream
 	public String jobMainForm(Model model) {
 		List<JobListDto> jobList = jobSearchService.findAllJob();
 		List<JobListDto> bestJobList = jobSearchService.findAllBestJob();
+=======
+	public String jobMainForm(Model model, SearchDto searchDto) {
+		// 테스트 위한 임시 로그인 - 메인페이지 들어오면 로그인됨
+		// LoginDto loginDto = new LoginDto();
+		// loginDto.setUserLoginId("ssar");
+		// loginDto.setUserPassword("1234");
+		// SessionUserDto loginResult = userService.findByUser(loginDto);
+		// userService.login(loginResult);
+        // 테스트 위한 임시 로그인
+        Integer page = searchDto.getPage();
+        String keyword = searchDto.getKeyword();
+        String jobGenre = searchDto.getJobGenre();
+        String jobGender = searchDto.getJobGender();
+        String jobPositionTitle = searchDto.getJobPositionTitle();
+        Boolean isDead = searchDto.getIsDead();
+        // 페이지수 비어있을 때 초기화
+        if (page == null) {
+            page = 0;
+            searchDto.setPage(page);
+		}
+        System.err.println("디버그 컨트롤러 실행");
+        System.err.println("keyword: "+keyword);
+        System.err.println("jobGenre: "+jobGenre);
+        System.err.println("jobGender: "+jobGender);
+        System.err.println("jobPositionTitle: "+jobPositionTitle);
+        System.err.println("isDead: "+isDead);
+        // 페이지 수 설정
+        Integer startNum = page * 12;
+        searchDto.setStartNum(startNum);
+        System.err.println("startNum: "+startNum);
+		PagingDto paging = jobSearchService.paging(searchDto);
+        paging.makeBlockInfoByPostAll(keyword);
+        List<JobListDto> jobList = jobSearchService.findAllJob(searchDto);
+        List<JobListDto> bestJobList = jobSearchService.findAllBestJob();
+        System.err.println(""+paging.getTotalCount());
+        model.addAttribute("paging", paging); // 페이징
+>>>>>>> Stashed changes
 		model.addAttribute("jobList",jobList);
 		model.addAttribute("bestJobList",bestJobList);
 		return "jobMainForm";
