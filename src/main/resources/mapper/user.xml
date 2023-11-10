@@ -215,7 +215,7 @@
         set
         user_password = #{userPassword}
         Where
-        user_id = #{userId} AND user_status != 'deleted'
+        user_id = #{userId} AND user_status != 'active'
     </update>
 
     <update id="userInfoUpdate">

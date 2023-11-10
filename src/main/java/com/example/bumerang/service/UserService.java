@@ -62,7 +62,7 @@ public class UserService {
         System.err.println("getUserLoginId"+loginDto.getUserLoginId());
         System.err.println("getUserPassword"+loginDto.getUserPassword());
         SessionUserDto userPS = userDao.findByUser(loginDto);
-        System.err.println("userPSgetUserLoginId"+userPS.getUserLoginId());
+//        System.err.println("userPSgetUserLoginId"+userPS.getUserLoginId());
         return userPS;
     }
 
@@ -118,12 +118,12 @@ public class UserService {
 //        for(String ufTitle : uftitleList){
 //            userDao.fieldInsert(ufTitle, updateDto.getUserId());
 //        }
-        // 사용자 포트폴리오 수정
-//        List<UserPortfolio> upList = updateDto.getUserPortfolio();
-//        userDao.portfolioDelete(updateDto.getUserId());
-//        for(UserPortfolio userPortfolio : upList){
-//            userDao.portfolioInsert(userPortfolio);
-//        }
+//         사용자 포트폴리오 수정
+        List<UserPortfolio> upList = updateDto.getUserPortfolio();
+        userDao.portfolioDelete(updateDto.getUserId());
+        for(UserPortfolio userPortfolio : upList){
+            userDao.portfolioInsert(userPortfolio);
+        }
         UserRespDto updateResult = userDao.findByDetail(updateDto.getUserId());
         List<UserPortfolio> userPortfolioList = userDao.findByPortfolioList(updateDto.getUserId());
         updateResult.setUserPortfolio(userPortfolioList);

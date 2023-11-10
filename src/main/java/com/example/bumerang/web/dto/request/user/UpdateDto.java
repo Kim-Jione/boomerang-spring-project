@@ -25,7 +25,7 @@ public class UpdateDto {
     private String userProfileImg;
 
     private String ufTitle;
-//    private List<UserPortfolio> userPortfolio;
+    private List<UserPortfolio> userPortfolio;
 
 //    private List<String> uftitle;
 //    private List<UserPortfolio> userPortfolio;

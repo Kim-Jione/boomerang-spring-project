@@ -116,6 +116,7 @@ public class UserController {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = principal.getUserId();
         System.err.println("List "+updateDto.getUfTitle());
+        System.err.println(("portfolio"+updateDto.getUserPortfolio().get(0).getUpTitle()));
         // 사용자 입력 데이터 검증
        userService.validate(updateDto);
         // 사용자 정보 업데이트
