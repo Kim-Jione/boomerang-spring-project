@@ -84,15 +84,8 @@ public class UserService {
 
     // 사용자 정보 수정
     public UserRespDto update(UpdateDto updateDto){
-        String enPassword = sha256.encrypt(updateDto.getUserPassword());
-        updateDto.setUserPassword(enPassword);
         userDao.updateUser(updateDto);
-        // 사용자 분야 수정
-        List<String> uftitleList = updateDto.getUftitle();
-        userDao.fieldDelete(updateDto.getUserId());
-        for(String ufTitle : uftitleList){
-            userDao.fieldInsert(ufTitle, updateDto.getUserId());
-        }
+        userDao.updateUfTitle(updateDto.getUftitle());
         // 사용자 포트폴리오 수정
         List<UserPortfolio> upList = updateDto.getUserPortfolio();
         userDao.portfolioDelete(updateDto.getUserId());

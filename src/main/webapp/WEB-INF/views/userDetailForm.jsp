@@ -52,7 +52,7 @@
                         <li>${userDetail.userForm}</li>
                         <li>${userDetail.userTone}</li>
                         <li>${userDetail.uftitles}</li>
-                        <li>30대</li>
+                        <li>${userDetail.userAge}</li>
                       </ul>
                       <div class="pro_txt">
                         <p class="pro_tit">EDUCATION</p>

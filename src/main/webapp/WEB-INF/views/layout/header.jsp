@@ -88,7 +88,7 @@
                             </ul>
                         </c:when>
                         <c:otherwise>
-                            <a href="/user/loginForm" class="linkes">로그인</a>
+                            <a href="/user/loginForm" class="login">로그인</a>
                         </c:otherwise>
                     </c:choose>
 
