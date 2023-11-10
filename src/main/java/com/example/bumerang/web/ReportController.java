@@ -90,5 +90,6 @@ public class ReportController {
         model.addAttribute("targetId", targetId);
         model.addAttribute("userId", userId);
 		return "reportFormComment";
+
 	}
 }

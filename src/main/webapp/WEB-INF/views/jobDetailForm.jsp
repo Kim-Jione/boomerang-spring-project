@@ -16,8 +16,6 @@
     <link
             href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
             rel="stylesheet"/>
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- AJax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -41,7 +39,7 @@
                 <div class="pf_label">
                     <div class="user_info">
                         <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
-                            <img class="pf_img" src="/img/${principal.userProfileImg}"/>
+                            <img class="pf_img" src="/img/${job.userProfileImg}"/>
                             <p class="pf_nickname">${job.userNickname}</p>
                         </a>
                         <p class="line">|</p>
@@ -150,7 +148,6 @@
                         </a>
                     </div>
                     <div class="form_info center_display">
-                        <input type="hidden" name="user" id="user" value="김휴고"/>
                         <textarea type="text" name="comment" id="commentContent" placeholder="댓글을 입력하세요"></textarea>
                     </div>
                 </div>

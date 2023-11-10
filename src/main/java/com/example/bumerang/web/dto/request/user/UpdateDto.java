@@ -1,6 +1,5 @@
 package com.example.bumerang.web.dto.request.user;
 
-import com.example.bumerang.domain.user.User;
 import com.example.bumerang.domain.userPortfolio.UserPortfolio;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,4 +25,5 @@ public class UpdateDto {
     private String userProfileImg;
     private List<String> uftitle;
     private List<UserPortfolio> userPortfolio;
+
 }

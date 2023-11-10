@@ -122,73 +122,72 @@
             </div>
         </div>
     </div>
-</div>
-</c:if>
+    </c:if>
 
-<div class="comment_container center_display">
-    <!-- 댓글 작성부 여기부터 -->
-    <div class="top">
-        <form>
-            <div class="write_comment">
-                <div class="comment_img center_display">
-                    <a href="/s/api/user/detailForm/${pf.userId}">
-                        <img src="/img/${principal.userProfileImg}" alt="image"/>
-                    </a>
+    <div class="comment_container center_display">
+        <!-- 댓글 작성부 여기부터 -->
+        <div class="top">
+            <form>
+                <div class="write_comment">
+                    <div class="comment_img center_display">
+                        <a href="/s/api/user/detailForm/${pf.userId}">
+                            <img src="/img/${principal.userProfileImg}" alt="image"/>
+                        </a>
+                    </div>
+                    <div class="form_info center_display">
+                        <textarea type="text" name="comment" id="commentContent" placeholder="댓글을 입력하세요"></textarea>
+                    </div>
                 </div>
-                <div class="form_info center_display">
-                    <textarea type="text" name="comment" id="commentContent" placeholder="댓글을 입력하세요"></textarea>
-                </div>
-            </div>
-            <button type="button" class="submit_btn" id="commentWriteBtn">등록</button>
-        </form>
-    </div>
-    <!-- 여기까지 -->
+                <button type="button" class="submit_btn" id="commentWriteBtn">등록</button>
+            </form>
+        </div>
+        <!-- 여기까지 -->
 
-    <div class="comments_container center_display">
-        <!-- 댓글이 달리는 부분 -->
-        <c:forEach var="comment" items="${pf.commentList}">
-            <div class="comment_card">
-                <input type="hidden" class="commentId" id="commentId" value="${comment.commentId}">
-                <div class="comment_top">
-                    <div class="comment_info">
-                        <div class="pic center_display">
-                            <a href="/s/api/user/detailForm/${comment.userId}" style="display: flex;">
-                                <img src="/img/${comment.userProfileImg}" alt="image"/>
-                            </a>
+        <div class="comments_container center_display">
+            <!-- 댓글이 달리는 부분 -->
+            <c:forEach var="comment" items="${pf.commentList}">
+                <div class="comment_card">
+                    <input type="hidden" class="commentId" id="commentId" value="${comment.commentId}">
+                    <div class="comment_top">
+                        <div class="comment_info">
+                            <div class="pic center_display">
+                                <a href="/s/api/user/detailForm/${comment.userId}" style="display: flex;">
+                                    <img src="/img/${comment.userProfileImg}" alt="image"/>
+                                </a>
+                            </div>
+                            <div class="comment_info_txt">
+                                <p class="nickname">
+                                        ${comment.userNickname}
+                                </p>
+                                <p class="created_date">
+                                    <fmt:formatDate value="${comment.createdAt}" pattern="yy.MM.dd kk:mm" type="date"/>
+                                </p>
+                            </div>
                         </div>
-                        <div class="comment_info_txt">
-                            <p class="nickname">
-                                    ${comment.userNickname}
-                            </p>
-                            <p class="created_date">
-                                <fmt:formatDate value="${comment.createdAt}" pattern="yy.MM.dd kk:mm" type="date"/>
+                        <div class="comment_btns">
+                            <c:if test="${comment.userId == principal.userId}">
+                                <button class='editBtn'>수정</button>
+                                <button class='removeBtn'>삭제</button>
+                            </c:if>
+                            <p class="commentReport">
+                                <button class='commentReportBtn'>신고하기</button>
                             </p>
                         </div>
                     </div>
-                    <div class="comment_btns">
-                        <c:if test="${comment.userId == principal.userId}">
-                            <button class='editBtn'>수정</button>
-                            <button class='removeBtn'>삭제</button>
-                        </c:if>
-                        <p class="commentReport">
-                            <button class='commentReportBtn'>신고하기</button>
-                        </p>
-                    </div>
+                    <textarea class="comment textarea" readonly>${comment.commentContent}</textarea>
                 </div>
-                <textarea class="comment textarea" readonly>${comment.commentContent}</textarea>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
     </div>
-</div>
 
 
-<footer class="footer">
-    <div class="left_cover"></div>
-</footer>
+    <footer class="footer">
+        <div class="left_cover"></div>
+    </footer>
 
-<script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
-<script src="/js/viewPerformance.js"></script>
-<script src="/js/default.js"></script>
+    <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
+    <script src="/js/viewPerformance.js"></script>
+    <script src="/js/default.js"></script>
 </body>
 
 </html>

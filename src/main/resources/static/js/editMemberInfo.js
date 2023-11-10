@@ -1,69 +1,97 @@
-/* 비밀번호 검사 컨트롤*/
-//유효성 검사. 하나 이상의 영어대소문자와 숫자, 특수문자 포함, 8글자 이상.
-function openPasswdChanger() {
-  let PasswdChanger = document.querySelector(".passwordChanger");
-  PasswdChanger.style.display = "flex";
-}
-//이미지 셀렉터 닫기
-function closePasswdChanger() {
-  let PasswdChanger = document.querySelector(".passwordChanger");
-  PasswdChanger.style.display = "none";
-}
-//선택한 이미지로 프로필 이미지 변경
-function savePasswdChanger() {
-  
-  closePasswdChanger();
-}
+//유저의 기존 옵션을 선택하기
+function existingOption() {
+    //html에 출력되어 있는 user의 기존정보 문자열을 가져옴
+    const gender = document.querySelector("#userGender");
+    const form = document.querySelector("#userForm");
+    const tone = document.querySelector("#userTone");
+    const field = document.querySelector("#userField");
+    const age = document.querySelector("#userAge");
+    const career = document.querySelector("#userCareer");
 
-function isPasswd() {
-  const condition =
-    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-
-  return condition.test(passwd);
-}
-
-//비밀번호 확인 검사
-function isSamePasswd() {
-  if (passwd.value !== passwdConfirm.value) {
-    // 비밀번호와 비밀번호 확인 값이 다를 경우 경고를 표시
-    document.getElementById("passwordError").style.display = "block";
-  } else {
-    // 두 값이 같을 때 경고를 숨김
-    document.getElementById("passwordError").style.display = "none";
-  }
-}
-
-let passwd = document.querySelector("#userPassword");
-let passwdConfirm = document.querySelector("#userPasswordConfirm");
-
-passwdConfirm.addEventListener("input", isSamePasswd);
-
-document.querySelector(".edit_passwd").addEventListener("click", openPasswdChanger);
-document.querySelector("#closeChanger").addEventListener("click", closePasswdChanger);
-document.querySelector("#saveChanger").addEventListener("click", savePasswdChanger);
+    //html에 input/option 버튼을 가져옴
+    const genderList = document.querySelectorAll(".user_gender");
+    const formList = document.querySelectorAll(".user_form");
+    const toneList = document.querySelectorAll(".user_tone");
+    const fieldList = document.querySelectorAll(".user_field");
+    const ageList = document.querySelectorAll(".user_age");
+    const careerList = document.querySelectorAll(".user_career");
 
 
-/* 프로필 이미지 변환 컨트롤 */
-//이미지 셀렉터 열기
-function openImageEditor() {
-  let imageEditor = document.querySelector(".img_editor");
-  imageEditor.style.display = "flex";
-}
-//이미지 셀렉터 닫기
-function closeImageEditor() {
-  let imageEditor = document.querySelector(".img_editor");
-  imageEditor.style.display = "none";
-}
-//선택한 이미지로 프로필 이미지 변경
-function saveImageEditor() {
-  //이미지 변경 후, 변경된 이미지 주소를 서버로 보내는 부분 필요. (조장 문의)
-  closeImageEditor();
+    //기존정보와 input/option값을 비교해 같으면 해당 input/option에 체크/셀렉트
+    genderList.forEach((genderList) => {
+        if(genderList.value == gender.value) {
+            genderList.checked == true;
+        }
+    })
+    formList.forEach((formList) => {
+        if(formList.value == form.value) {
+            formList.selected == true;
+        }
+    })
+    toneList.forEach((toneList) => {
+        if(toneList.value == tone.value) {
+            toneList.selected == true;
+        }
+    })
+    fieldList.forEach((fieldList) => {
+        if(fieldList.value == field.value) {
+            fieldList.selected == true;
+        }
+    })
+    ageList.forEach((ageList) => {
+        if(ageList.value == age.value) {
+            ageList.selected == true;
+        }
+    })
+    careerList.forEach((careerList) => {
+        if(careerList.value == career.value) {
+            careerList.selected == true;
+        }
+    })
+
 }
 
-//이벤트리스너
-document.querySelector(".edit_img").addEventListener("click", openImageEditor);
-document.querySelector("#close_editor").addEventListener("click", closeImageEditor);
-document.querySelector("#save_editor").addEventListener("click", saveImageEditor);
+function Forminit(){
+    existingOption();
+
+    document.querySelector(".save").addEventListener("click", saveForm)
+    var filmo = document.querySelectorAll(".filmo_body");
+
+    function saveForm(){
+        var data = {
+                userNickname:$("#user_nickname").val(),
+                userHeight:$("#userheight").val(),
+                userForm:$("#user_form").val(),
+                userTone:$("#user_tone").val(),
+                userAge:$("#user_age").val(),
+                userCareer:$("#user_career").val(),
+                userSkill:$("#user_skill").val(),
+                userEducation:$("user_education").val(),
+                userContactLink:$("user_contact").val(),
+                userEmail:$("#user_email").val()
+        }
+        $.ajax("/s/api/user/userConfigUpdate", {
+                    type: "put",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }).done((res) => {
+                    if (res.code == 1) {
+                        console.log("asdasd");
+                        alert("정보가 변경되었습니다.");
+                        // location.href = "/user/update" + userId;
+                    } else {
+                        alert(" 정보를 다시 확인해주세요.");
+                        return false;
+                    }
+                });
+       console.log(data);
+    }
+
+}
+window.addEventListener("load", Forminit);
 
 // 과거 마이페이지 코드
 // var iconImages = document.querySelectorAll(".icon_imgs");

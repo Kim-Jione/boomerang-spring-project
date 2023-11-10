@@ -17,9 +17,6 @@ function reportPf() {
     reportType: selectedReportType,
     reportContent: $("#reportContent").val()
   };
-
-  alert("targetId: "+data.pfId);
-
   $.ajax("/s/api/report", {
     type: "POST",
     dataType: "json",

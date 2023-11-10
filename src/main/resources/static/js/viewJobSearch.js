@@ -126,7 +126,7 @@ function activeCommentBtn() {
   // 각 버튼 요소 선택
   const editButtons = document.querySelectorAll(".editBtn");
   const removeButtons = document.querySelectorAll(".removeBtn");
-  const reportButtons = document.querySelectorAll(".reportBtn");
+  const reportButtons = document.querySelectorAll(".commentReportBtn");
 
   // 각 버튼과 함수 연결
   editButtons.forEach((editButton) => {
@@ -268,6 +268,7 @@ function reportComment() {
       ",toolbar=no"
   );
 }
+
 /************************/
 /* textarea 높이 조절 함수 */
 /************************/

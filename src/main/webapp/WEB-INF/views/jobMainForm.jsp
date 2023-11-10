@@ -20,8 +20,6 @@
 
                 <link rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-                <!-- JQuery -->
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                 <!-- AJax -->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -134,11 +132,11 @@
                                 <h2>부메랑 구인 목록</h2>
                             </li>
                         </ul>
-                        <form method="get" action="/jobSearch/mainForm">
+                        <form id="jobSearchForm" method="get" action="/jobSearch/mainForm">
                             <div class="filter">
                                 <div class="dropdown_list">
                                     <select id="filterGenre" class="dropdown" name="jobGenre">
-                                        <option>장르</option>
+                                        <option value="">장르</option>
                                         <option value="단편영화">단편영화</option>
                                         <option value="장편영화">장편영화</option>
                                         <option value="연극">연극</option>
@@ -149,25 +147,25 @@
                                     </select>
 
                                     <select id="filterPosition" class="dropdown" name="jobPositionTitle">
-                                        <option>분야</option>
-                                        <option value=“배우“>배우</option>
-                                        <option value=“연출“>연출</option>
-                                        <option value=“음향“>음향</option>
-                                        <option value=“카메라“>카메라</option>
-                                        <option value=“조명“>조명</option>
-                                        <option value=“작가“>작가</option>
-                                        <option value=“기타“>기타</option>
+                                        <option value="">분야</option>
+                                        <option value="배우">배우</option>
+                                        <option value="연출">연출</option>
+                                        <option value="음향">음향</option>
+                                        <option value="카메라">카메라</option>
+                                        <option value="조명">조명</option>
+                                        <option value="작가">작가</option>
+                                        <option value="기타">기타</option>
                                     </select>
 
                                     <select id="filterGender" class="dropdown" name="jobGender">
-                                        <option>성별</option>
+                                        <option value="">성별</option>
                                         <option value="남성">남성</option>
                                         <option value="여성">여성</option>
                                         <option value="성별무관">성별무관</option>
                                     </select>
 
                                     <select id="filterOpening" class="dropdown" name="isDead">
-                                        <option>모집 여부</option>
+                                        <option value="">모집 여부</option>
                                         <option value="false">모집중</option>
                                         <option value="true">모집 마감</option>
                                     </select>
@@ -256,9 +254,6 @@
                                 </div>
                             </c:forEach>
                             <!-- 여기까지만 복사 -->
-                        </div>
-
-                        <div class="pagination">
                         </div>
                     </div>
                     <!-- 페이지 -->
