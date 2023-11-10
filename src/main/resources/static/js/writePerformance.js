@@ -237,3 +237,4 @@ function previewImage(event) {
     reader.readAsDataURL(selectedFile);
   }
 }
+
