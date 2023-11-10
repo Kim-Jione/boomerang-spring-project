@@ -52,7 +52,27 @@
                 </a>
                 <div class="info">
                     <div class="badge">
-                        <div class="category forMusical">${best.pfGenre}</div>
+                        <c:if test="${best.pfGenre == '단편영화' || best.pfGenre == '장편영화'}">
+                            <div class="category forMusical">${best.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${best.pfGenre == '연극'}">
+                            <div class="category forMusical">${best.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${best.pfGenre == '드라마'}">
+                            <div class="category forMusical">${best.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${best.pfGenre == '웹 컨텐츠'}">
+                            <div class="category forMusical">${best.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${best.pfGenre == '광고'}">
+                            <div class="category forMusical">${best.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${best.pfGenre == '전시'}">
+                            <div class="category forMusical">${best.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${best.pfGenre == '기타'}">
+                            <div class="category forMusical">${best.pfGenre}</div>
+                        </c:if>
                         <div class="age for19">${best.pfAgerating}</div>
                         <c:if test="${best.isPrice == true}">
                             <div class="charge">유료</div>
@@ -87,7 +107,7 @@
                 <option value="단편영화">단편영화</option>
                 <option value="장편영화">장편영화</option>
                 <option value="연극">연극</option>
-                <option value="OTT/TV 드라마">OTT/TV 드라마</option>
+                <option value="드라마">드라마</option>
                 <option value="웹 컨텐츠">웹 컨텐츠</option>
                 <option value="광고">광고</option>
                 <option value="전시">전시</option>
@@ -96,7 +116,7 @@
 
             <select id="filterAge" onchange="filterPosts()" class="dropdown">
                 <option value="all">연령대</option>
-                <option value="전체관람가">전체관람가</option>
+                <option value="모든연령">모든연령</option>
                 <option value="12세 이상">12세 이상</option>
                 <option value="15세 이상">15세 이상</option>
                 <option value="19세 이상">19세 이상</option>
@@ -130,7 +150,27 @@
                 </a>
                 <div class="info">
                     <div class="badge">
-                        <div class="category forMusical">${pf.pfGenre}</div>
+                        <c:if test="${pf.pfGenre == '단편영화' || pf.pfGenre == '장편영화'}">
+                            <div class="category forMusical">${pf.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${pf.pfGenre == '연극'}">
+                            <div class="category forMusical">${pf.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${pf.pfGenre == '드라마'}">
+                            <div class="category forMusical">${pf.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${pf.pfGenre == '웹 컨텐츠'}">
+                            <div class="category forMusical">${pf.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${pf.pfGenre == '광고'}">
+                            <div class="category forMusical">${pf.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${pf.pfGenre == '전시'}">
+                            <div class="category forMusical">${pf.pfGenre}</div>
+                        </c:if>
+                        <c:if test="${pf.pfGenre == '기타'}">
+                            <div class="category forMusical">${pf.pfGenre}</div>
+                        </c:if>
                         <div class="age for19">${pf.pfAgerating}</div>
                         <c:if test="${pf.isPrice == true}">
                             <div class="charge">유료</div>

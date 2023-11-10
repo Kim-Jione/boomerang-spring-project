@@ -197,24 +197,24 @@
                           </p>
                         </div>
                       </div>
-                      <!-- <div>
-                      <p class="pro_data kakao">카카오톡 오픈 채팅</p>
-                      <input
-                        class="user_contact"
-                        type="text"
-                        id="user_contact"
-                        value="user_contact"
-                      />
-                    </div>
-                    <div>
-                      <p class="pro_data email">이메일</p>
-                      <input
-                        class="user_contact"
-                        id="user_email"
-                        type="email"
-                        value="user_email"
-                      />${userDetail.userEmail}
-                    </div> -->
+<%--                      <!-- <div>--%>
+<%--                      <p class="pro_data kakao">카카오톡 오픈 채팅</p>--%>
+<%--                      <input--%>
+<%--                        class="user_contact"--%>
+<%--                        type="text"--%>
+<%--                        id="user_contact"--%>
+<%--                        value="user_contact"--%>
+<%--                      />--%>
+<%--                    </div>--%>
+<%--                    <div>--%>
+<%--                      <p class="pro_data email">이메일</p>--%>
+<%--                      <input--%>
+<%--                        class="user_contact"--%>
+<%--                        id="user_email"--%>
+<%--                        type="email"--%>
+<%--                        value="user_email"--%>
+<%--                      />${userDetail.userEmail}--%>
+<%--                    </div> -->--%>
                     </div>
                   </div>
                   <!-- profile_txt Right -->

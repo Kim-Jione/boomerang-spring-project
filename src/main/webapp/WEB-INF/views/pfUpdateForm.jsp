@@ -27,16 +27,17 @@
 
       <body>
         <%@ include file="layout/header.jsp" %>
-
+          <input type="hidden" value="${pf.pfId}" id="pfId">
           <div class="container">
             <div class="board_write_wrap">
               <div class="top">
                 <div class="board_name">
                   <i class="fa-solid fa-feather-pointed"></i>
-                  <h2>공연정보 쓰기</h2>
+                  <h2>공연정보 수정하기</h2>
+                  <input type="hidden" id="userId" value="${principal.userId}">
                 </div>
                 <div class="bt_wrap">
-                  <a class="save" id="pfWriteBtn">등록</a>
+                  <a class="save" id="pfUpdateBtn">수정</a>
                   <a href="/performance/mainForm" class="cancel">취소</a>
                 </div>
               </div>
@@ -45,7 +46,7 @@
                   <dl>
                     <dt>작품 제목</dt>
                     <dd>
-                      <input type="text" placeholder="" value="" />
+                      <input type="text" value="${pf.pfTitle}" id="pfTitle" />
                     </dd>
                   </dl>
                 </div>
@@ -57,15 +58,15 @@
                     <dl>
                       <dt>공연 기간</dt>
                       <dd>
-                        <input class="date" type="date" id="pfStartDate" value="" />부터
-                        <input class="date" type="date" id="pfDeadline" value="" />까지
+                        <input class="date" type="date" id="pfStartDate" value="${pf.pfStartDate}" />부터
+                        <input class="date" type="date" id="pfDeadline" value="${pf.pfDeadline}" />까지
                       </dd>
                     </dl>
                     <dl class="select">
                       <dt>관람 연령</dt>
                       <dd>
                         <div class="select_single">
-                          <span class="btn-text">하나를 골라주세요</span>
+                          <span class="btn-text" id="pfAgerating">${pf.pfAgerating}</span>
                           <span class="arrow-dwn">
                             <i class="fa-solid fa-chevron-down"></i>
                           </span>
@@ -101,20 +102,20 @@
                     <dl>
                       <dt>공연 시간</dt>
                       <dd>
-                        <input type="number" id="pf_runningtime" value="" placeholder="00분" />
+                        <input type="number" id="pfRunningtime" value="${pf.pfRunningtime}" />
                       </dd>
                     </dl>
                     <dl>
                       <dt>예매 링크</dt>
                       <dd>
-                        <input type="text" id="pf_bookingmethod" value="" placeholder="예매링크, 예매처 번호 등" />
+                        <input type="text" id="pfBookingmethod" value="${pf.pfBookingmethod}" />
                       </dd>
                     </dl>
                     <dl class="select">
                       <dt>작품 장르</dt>
                       <dd>
                         <div class="select_single">
-                          <span class="btn-text">하나를 골라주세요</span>
+                          <span class="btn-text" id="pfGenre">${pf.pfGenre}</span>
                           <span class="arrow-dwn">
                             <i class="fa-solid fa-chevron-down"></i>
                           </span>
@@ -174,25 +175,27 @@
                     <dl>
                       <dt>제 작</dt>
                       <dd>
-                        <input type="text" id="pf_production" value="" placeholder="제작자 또는 제작사" />
+                        <input type="text" id="pfProduction" value="${pf.pfProduction}" />
                       </dd>
                     </dl>
                     <dl>
                       <dt>가 격</dt>
                       <dd>
-                        <input type="number" id="pf_price" value="" placeholder="00원" />
+                        <input type="number" id="pfPrice" value="${pf.pfPrice}" />
                       </dd>
                     </dl>
                     <dl>
                       <dt>위 치</dt>
                       <dd>
-                        <input type="text" id="pf_location" value="" placeholder="공연장소" />
+                        <input type="text" id="pfLocation" value="${pf.pfLocation}" />
                       </dd>
                     </dl>
                   </div>
                 </div>
                 <div class="content">
-                  <div id="editor-container"></div>
+                  <div id="editor-container">
+                    ${pf.pfContent}
+                  </div>
                 </div>
               </div>
             </div>

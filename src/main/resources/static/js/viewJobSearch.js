@@ -30,10 +30,14 @@ if (
     deleteConfirm.style.display = "none";
   });
 }
-const reportBtn = document.querySelector(".report");
+const jobReportBtn = document.querySelector(".jobReport");
+jobReportBtn.addEventListener("click", reportJob);
+
+const commentReportBtn = document.querySelector(".commentReport");
+commentReportBtn.addEventListener("click", reportComment);
+
 let jobId = $("#jobId").val();
 
-reportBtn.addEventListener("click", reportJob);
 
 /*******/
 /* 댓글 */
@@ -106,7 +110,7 @@ function addFeedback(item) {
             <div class="comment_btns">
                 <button class='editBtn'>수정</button>
                 <button class='removeBtn'>삭제</button>
-                <button class='reportBtn'>신고하기</button>
+                <button class='commentReportBtn'>신고하기</button>
             </div>
         </div>
         <textarea class="comment textarea" id="commentContent" readonly>${item.userComment}</textarea>
@@ -122,7 +126,7 @@ function activeCommentBtn() {
   // 각 버튼 요소 선택
   const editButtons = document.querySelectorAll(".editBtn");
   const removeButtons = document.querySelectorAll(".removeBtn");
-  const reportButtons = document.querySelectorAll(".reportBtn");
+  const reportButtons = document.querySelectorAll(".commentReportBtn");
 
   // 각 버튼과 함수 연결
   editButtons.forEach((editButton) => {
@@ -241,14 +245,17 @@ function reportJob() {
 
 //  댓글 신고하기
 function reportComment() {
-  var nWidth = "500";
-  var nHeight = "600";
+  let commentId = $("#commentId").val();
+  let userId = $("#userId").val();
+
+  var nWidth = "700";
+  var nHeight = "900";
   var xPos = document.body.clientWidth / 2 - nWidth / 2;
   xPos += window.screenLeft; //듀얼 모니터
   var yPos = screen.availHeight / 2 - nHeight / 2;
 
   window.open(
-    "/s/api/reportForm",
+      "/s/api/reportFormComment/" + commentId + "/" + userId,
     "신고하기",
     "width=" +
       nWidth +
@@ -261,6 +268,7 @@ function reportComment() {
       ",toolbar=no"
   );
 }
+
 /************************/
 /* textarea 높이 조절 함수 */
 /************************/

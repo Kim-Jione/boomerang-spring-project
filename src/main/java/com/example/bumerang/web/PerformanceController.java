@@ -63,24 +63,23 @@ public class PerformanceController {
         SessionUserDto userPS = (SessionUserDto)session.getAttribute("principal");
         Integer userId = userPS.getUserId();
         DetailFormDto pfDetail = performanceService.findByPf(userId, pfId);
-        System.err.println("likeyId"+pfDetail.getLikeyId());
-        System.err.println("content: "+pfDetail.getPfContent());
         model.addAttribute("pf", pfDetail);
         return "pfDetailForm";
     }
 
     // 공연글 수정하기 화면
     @GetMapping("/s/api/performance/updateForm/{pfId}")
-    public @ResponseBody CMRespDto<?> updateForm(@PathVariable Integer pfId) {
+    public String updateForm(@PathVariable Integer pfId, Model model) {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Performance pfPS = performanceService.findById(pfId);
         Integer userId = pfPS.getUserId();
         Integer userPId = principal.getUserId();
         if(userId.equals(userPId)){
             DetailFormDto pfDetail = performanceService.findByPf(userId, pfId);
-            return new CMRespDto<>(1, "공연글 수정하기 화면 불러오기 성공.", pfDetail);
+            model.addAttribute("pf", pfDetail);
+            return "pfUpdateForm";
         }
-        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
+        return null;
     }
 
     // 공연글 수정하기 기능
