@@ -39,7 +39,7 @@
                 </h1>
                 <div class="pf_label">
                     <div class="user_info">
-                        <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
+                        <a href="/s/api/user/detailForm/${job.userId}">
                             <img class="pf_img" src="/img/${job.userProfileImg}"/>
                             <p class="pf_nickname">${job.userNickname}</p>
                         </a>
