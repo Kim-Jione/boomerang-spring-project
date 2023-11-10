@@ -31,7 +31,7 @@ public class PerformanceService {
 	private final CommentDao commentDao;
 	private final ViewDao viewDao;
 	private final HttpSession session;
-	private final String imageUploadPath = "/image/poster/"; // 여기서 경로 수정
+	private final String imageUploadPath = "C:/bumerang/img/"; // 여기서 경로 수정
 
 	//공연글 목록
 	public List<Performance> findAll() {
@@ -62,16 +62,17 @@ public class PerformanceService {
 			try {
 				// 이미지 파일 이름을 랜덤으로 생성
 				String fileName = UUID.randomUUID() + "_" + thumbnail.getOriginalFilename();
+				System.out.println("fileName: " + fileName);
 				Path imagePath = Paths.get(imageUploadPath + fileName);
-
+				System.out.println("imagePath: " + imagePath);
 				// 이미지 저장
 				thumbnail.transferTo(imagePath.toFile());
-
+				System.out.println("저장");
 				// 이미지 파일 경로를 반환
-				return imageUploadPath + fileName;
+				return fileName;
 			} catch (IOException e) {
 				e.printStackTrace();
-				// 이미지 업로드 실패 처리
+				System.err.println("이미지 업로드 실패: " + e.getMessage());				// 이미지 업로드 실패 처리
 				return null;
 			}
 		}

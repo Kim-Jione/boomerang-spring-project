@@ -37,7 +37,7 @@ public class PerformanceController {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = writeDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId.equals(userPId)){
+        if(userId.equals(userPId)){ 
             try {
                 // 썸네일 업로드 및 업데이트
                 String imagePath = performanceService.uploadThumbnail(thumbnail);
