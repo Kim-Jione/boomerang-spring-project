@@ -16,6 +16,8 @@
     <link
             href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
             rel="stylesheet"/>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- AJax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -28,7 +30,6 @@
 <input type="hidden" id="jobUserId" value="${job.userId}"><!--작성자 ID-->
 <input type="hidden" id="userId" value="${principal.userId}"><!--추천자 ID-->
 <input type="hidden" id="likeyId" value="${job.likeyId}">
-
 <div class="pf_container">
     <div class="pf_title_area">
         <div class="pf_display">
@@ -48,20 +49,21 @@
                         </p>
                     </div>
 
+                    <div class="pf_status">
+                        <i class="fa-solid fa-eye"></i>
+                        <p class="view_count">${job.viewCount}</p>
+                        <i id="iconLove"
+                           class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
+                        <p class="like_count" id="countLikey">${job.likeyCount}</p>
+                        <img src="/image/siren.png"/>
+                        <p class="report">
+                            <button class='jobReportBtn'>신고하기</button>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="pf_status">
-            <i class="fa-solid fa-eye"></i>
-            <p class="view_count">${job.viewCount}</p>
-            <i id="iconLove"
-               class='${job.isLikey ? "fa-solid" : "fa-regular"} fa-heart my_pointer my_red'></i>
-            <p class="like_count" id="countLikey">${job.likeyCount}</p>
-            <img src="/image/siren.png"/>
-            <p class="jobReport">
-                <button class='jobReportBtn'>신고하기</button>
-            </p>
-        </div>
+        
     </div>
     <div class="border"></div>
 
@@ -143,11 +145,10 @@
             <form>
                 <div class="write_comment">
                     <div class="comment_img center_display">
-                        <a href="/s/api/user/detailForm/${job.userId}">
-                            <img src="/img/${principal.userProfileImg}" alt="image"/>
-                        </a>
+                        <img src="/img/${principal.userProfileImg}" alt="image"/>
                     </div>
                     <div class="form_info center_display">
+                        <input type="hidden" name="user" id="user" value="김휴고"/>
                         <textarea type="text" name="comment" id="commentContent" placeholder="댓글을 입력하세요"></textarea>
                     </div>
                 </div>
@@ -160,7 +161,7 @@
             <!-- 댓글이 달리는 부분 -->
             <c:forEach var="comment" items="${job.commentList}">
                 <div class="comment_card">
-                    <input type="hidden" class="commentId" id="commentId" value="${comment.commentId}">
+                    <input type="hidden" class="commentId" id="${comment.commentId}" value="${comment.commentId}">
                     <div class="comment_top">
                         <div class="comment_info">
                             <div class="pic center_display">
@@ -178,13 +179,11 @@
                             </div>
                         </div>
                         <div class="comment_btns">
-                            <c:if test="${comment.userId == principal.userId}">
+                            <c:if test="${comment.userId==principal.userId}">
                                 <button class='editBtn'>수정</button>
                                 <button class='removeBtn'>삭제</button>
                             </c:if>
-                            <p class="commentReport">
-                                <button class='commentReportBtn'>신고하기</button>
-                            </p>
+                            <button class='reportBtn'>신고하기</button>
                         </div>
                     </div>
                     <textarea class="comment textarea" readonly>${comment.commentContent}</textarea>
