@@ -30,14 +30,13 @@ if (
     deleteConfirm.style.display = "none";
   });
 }
-const jobReportBtn = document.querySelector(".jobReport");
+const jobReportBtn = document.querySelector(".jobReportBtn");
 jobReportBtn.addEventListener("click", reportJob);
 
-const commentReportBtn = document.querySelector(".commentReport");
-commentReportBtn.addEventListener("click", reportComment);
+// const commentReportBtn = document.querySelector(".commentReport");
+// commentReportBtn.addEventListener("click", reportComment);
 
 let jobId = $("#jobId").val();
-
 
 /*******/
 /* 댓글 */
@@ -135,9 +134,9 @@ function activeCommentBtn() {
   removeButtons.forEach((removeButton) => {
     removeButton.addEventListener("click", removeComment);
   });
-  reportButtons.forEach((reportButton) => {
-    reportButton.addEventListener("click", reportComment);
-  });
+  // reportButtons.forEach((reportButton) => {
+  //   reportButton.addEventListener("click", reportComment);
+  // });
 }
 
 // 댓글 수정
@@ -244,9 +243,10 @@ function reportJob() {
 }
 
 //  댓글 신고하기
-function reportComment() {
-  let commentId = $("#commentId").val();
+function reportComment(commentId) {
   let userId = $("#userId").val();
+  alert("commentId" + commentId);
+  alert("userId" + userId);
 
   var nWidth = "700";
   var nHeight = "900";
@@ -255,7 +255,7 @@ function reportComment() {
   var yPos = screen.availHeight / 2 - nHeight / 2;
 
   window.open(
-      "/s/api/reportFormComment/" + commentId + "/" + userId,
+    "/s/api/reportFormComment/" + commentId + "/" + userId,
     "신고하기",
     "width=" +
       nWidth +
