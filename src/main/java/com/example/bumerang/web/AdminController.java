@@ -191,6 +191,13 @@ public class AdminController {
         model.addAttribute("jobPS",jobPS);
         return "admin/report/jobDetailForm";
     }
+    // 구인글 신고 삭제하기 기능
+//    @DeleteMapping("/s/api/auth/report/jobDelete/{jobId}")
+//    public @ResponseBody CMRespDto<?> deleteJob(@PathVariable Integer jobId) {
+//        JobDetailDto jobPS = adminService.deleteJob(jobId);
+//        return new CMRespDto<>(1, "구인글 정보 삭제 성공.", jobPS);
+//    }
+
 
     // 공연글 신고 목록 화면
     @GetMapping("/s/api/auth/report/pfListForm")
