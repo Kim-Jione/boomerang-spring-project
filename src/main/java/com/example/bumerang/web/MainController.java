@@ -33,11 +33,16 @@ public class MainController {
 	private final HttpSession session;
 	private final JobSearchService jobSearchService;
 	private final PerformanceService performanceService;
-	private final UserService userService;
+    private final UserService userService;
 
+    // 메인 화면
+    @GetMapping("/")
+	public String mainForm() {
+		return "mainForm";
+	}
 
-// 구인정보글 메인 화면
-	@GetMapping({"/","/jobSearch/mainForm"})
+    // 구인정보글 메인 화면
+	@GetMapping("/jobSearch/mainForm")
 	public String jobMainForm(Model model) {
 		// 테스트 위한 임시 로그인 - 메인페이지 들어오면 로그인됨
 		LoginDto loginDto = new LoginDto();

@@ -163,7 +163,7 @@
         GROUP BY
         p.pf_id
         ORDER BY
-        p.pf_start_date DESC;
+        p.created_at DESC;
     </select>
 
 </mapper>
