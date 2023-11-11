@@ -28,4 +28,6 @@ public interface PerformanceDao {
 
     DetailFormDto findByPf(Integer userId, Integer pfId);
 
+    public List<PfListDto> findMyPfList(Integer userId);
+
 }

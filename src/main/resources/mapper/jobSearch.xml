@@ -167,4 +167,40 @@
             job_id = #{jobId}
           AND user_id = #{userId} AND job_status !='deleted'
     </update>
+
+    <select id="findMyJSList" resultType="com.example.bumerang.web.dto.response.jobSearch.JobListDto">
+        SELECT
+        js.job_id,
+        js.job_genre,
+        js.job_deadline,
+        js.job_content_title,
+        u.user_profile_img,
+        u.user_nickname,
+        u.user_career,
+        js.user_id,
+        COUNT(DISTINCT v.view_id) AS viewCount,
+        COUNT(DISTINCT c.comment_id) AS commentCount,
+        COUNT(DISTINCT l.likey_id) AS likeyCount,
+        js.job_status = 'dead' AS isDead,
+        DATE(js.created_at) = CURRENT_DATE() AS isToday,
+        COUNT(DISTINCT l.likey_id) <![CDATA[ >= ]]> 10 AS isFame
+        FROM
+        job_search js
+        JOIN
+        user u ON js.user_id = u.user_id
+        LEFT JOIN
+        view v ON js.job_id = v.job_id
+        LEFT JOIN
+        comment c ON js.job_id = c.job_id
+        LEFT JOIN
+        likey l ON js.job_id = l.job_id
+        WHERE
+        js.user_id = #{userId}
+        AND js.job_status != 'deleted' 
+        AND u.user_status != 'deleted' 
+        GROUP BY
+        js.job_id
+        ORDER BY
+        js.created_at DESC
+    </select>
 </mapper>

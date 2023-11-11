@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.bumerang.domain.user.User;
+import com.example.bumerang.service.JobSearchService;
+import com.example.bumerang.service.PerformanceService;
 import com.example.bumerang.service.UserService;
 import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.user.JoinDto;
@@ -25,9 +27,11 @@ import com.example.bumerang.web.dto.request.user.LoginDto;
 import com.example.bumerang.web.dto.request.user.PasswdDto;
 import com.example.bumerang.web.dto.request.user.UpdateDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyJSListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyRespDto;
+import com.example.bumerang.web.dto.response.performance.PfListDto;
 import com.example.bumerang.web.dto.response.user.SearchIdDto;
 import com.example.bumerang.web.dto.response.user.SearchPwDto;
 import com.example.bumerang.web.dto.response.user.UserCreateRespoDto;
@@ -43,6 +47,8 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
     private final HttpSession session;
     private final UserService userService;
+    private final JobSearchService jobSearchService;
+    private final PerformanceService performanceService;
 
     // 회원가입 기능
     @PostMapping("/user/join")
@@ -144,15 +150,17 @@ public class UserController {
 
     // 내가 작성한 글 화면
     @GetMapping("/s/api/user/writeListForm")
-    public String writeListForm() {
+    public String writeListForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = principal.getUserId();
-        UserCreateRespoDto userWriteList = new UserCreateRespoDto();
-        List<UserJobSearchDto> myJSList = userService.myJSList(userId);
-        List<UserPerformanceDto> myPfList = userService.myPfList(userId);
-        userWriteList.setMyJSList(myJSList);
-        userWriteList.setMyPfList(myPfList);
-        return "writeListForm";
+        if(userId == null){
+            return "404";
+        }
+        List<JobListDto> myJSList = jobSearchService.findMyJSList(userId);
+        List<PfListDto> myPfList = performanceService.findMyPfList(userId);
+        model.addAttribute("myJSList", myJSList);
+        model.addAttribute("myPfList", myPfList);
+        return "writeListForm"; 
     }
 
     // 아이디 찾기 화면
@@ -227,7 +235,7 @@ public class UserController {
             // System.err.println("userSkill"+userReqDto.getUserSkill());
             // System.err.println("userEducation"+userReqDto.getUserEducation());
             // System.err.println("userContactLink"+userReqDto.getUserContactLink());
-            // System.err.println("uftitle"+userReqDto.getUftitle());
+            System.err.println("uftitle"+userReqDto.getUftitle());
             UserRespDto userPS = userService.update(userReqDto);
             return new CMRespDto<>(1, "사용자 정보 변경 성공", userPS);
         }

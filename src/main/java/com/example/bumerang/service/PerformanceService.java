@@ -115,4 +115,9 @@ public class PerformanceService {
 		Performance deleteResult = performanceDao.findById(pfId);
 		return deleteResult;
 	}
+
+    public List<PfListDto> findMyPfList(Integer userId) {
+		List<PfListDto> myPfList = performanceDao.findMyPfList(userId);
+		return myPfList;
+    }
 }
