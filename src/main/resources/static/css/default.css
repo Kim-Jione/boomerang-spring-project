@@ -156,6 +156,82 @@ img {
 
 /* ---------------------------header--------------------------- */
 
+/* 로딩바 */
+.loader {
+  position: absolute;
+  top: 0;
+  background: linear-gradient(0deg, #fff, #03a9f4);
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+}
+
+.loader .loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.loading .text {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.loading .text h2 {
+  font-family: "Single Day", cursive;
+  font-size: 54px;
+  color: #409ff1;
+}
+
+.loading .text .accent {
+  color: #e8749d;
+}
+
+.loading .text .accent2 {
+  color: #4b4b4b;
+}
+
+.add {
+  animation: animate 0.7s ease-in-out 0.1s;
+}
+@keyframes animate {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.loading .progress-bar {
+  width: 406px;
+  height: 22px;
+  background: #5a5a5a;
+  border-radius: 13px;
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.loading .progress {
+  width: 203px;
+  height: 16px;
+  background: #fff;
+  border-radius: 13px;
+}
+.loading .percent {
+  position: absolute;
+  left: 187px;
+  color: #fdb5ca;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 23px;
+}
+
 /* 로고 및 타이틀 */
 header {
   position: sticky;
@@ -370,7 +446,7 @@ header {
   font-family: "Noto Sans KR";
   font-weight: 600;
   padding: 5px;
-} 
+}
 
 /* ---------------------------footer--------------------------- */
 
