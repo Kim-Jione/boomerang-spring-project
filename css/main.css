@@ -50,7 +50,7 @@
 
 /* 인기글 타이틀 */
   .hot_post {
-    max-width: 1340px;
+    width: 1340px;
     margin: 0 auto;
     margin-top: 50px;
   }
@@ -82,7 +82,7 @@
 
 /* 인기글 스와이퍼 */
   .hot_swiper{
-    max-width: 1210px;
+    width: 1210px;
     margin: 0 auto;
     margin-top: 25px;
   }
@@ -258,14 +258,13 @@
   }
 
   .deadline{
-    z-index: 9999;
     position: absolute;
+    z-index: 99;
     text-align: center;
     display: block;
     width: 90%;
     margin-top: 20px;
     opacity: 0.7;
-
   }
 
 
@@ -428,6 +427,7 @@
     text-align: center;
     margin: 30px 30px 60px;
     user-select: none;
+    margin-bottom: 150px;
   }
   
   .pagination li{

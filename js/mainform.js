@@ -70,3 +70,19 @@ $('.item').hover(function(event){
 }, function(){
     beginPosition();
 });
+
+// 대화상자 페이지 이동 버튼
+// 버튼 요소 가져오기
+var button = document.querySelectorAll('.button');
+
+// 버튼 클릭 시 실행할 함수 정의
+function goToPage() {
+    // 여기에 이동하고 싶은 페이지의 URL을 넣어주세요.
+    window.location.href = '/index.html';
+}
+
+// 모든 버튼에 클릭 이벤트 리스너 추가
+button.forEach(function(button) {
+    button.addEventListener('click', goToPage);
+});
+

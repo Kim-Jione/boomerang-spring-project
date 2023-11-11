@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
@@ -19,8 +20,19 @@
 </head>
 
 <body>
-
     <header>
+        <div class="loader">
+            <div class="loading">
+                <div class="text">
+                    <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>
+                </div>
+                <label class="percent">100%</label>
+                <div class="progress-bar">
+                <div class="progress"></div>
+                </div>
+            </div>
+        </div>
+        
         <div class="navbar">
              <div class="bot_menu">
                    <a href=""><img src="image/mainlogo.png"></a>
@@ -733,7 +745,7 @@
                                 </div>
                                 <div class="nickname">
                                     <span class="accent">7년차</span>
-                                    <p>두목님</p>
+                                    <p>appleapple</p>
                                 </div>
                             </div>
 
@@ -2775,12 +2787,33 @@
         </div>
     
     
-    <footer class="footer">
-        <div class="left_cover"></div>
-    </footer>
+        <footer>
+            <div class="waves">
+                <div class="wave" id="wave1"></div>
+                <div class="wave" id="wave2"></div>
+                <div class="wave" id="wave3"></div>
+                <div class="wave" id="wave4"></div>
+            </div>
+            <ul class="social_icon">
+                <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            </ul>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="footer_privacy_policy.html">Service</a></li>
+                <li><a href="footer_term_of_use.html">Team</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <p>ⓒ2023 멀티캠퍼스 팀 부메랑</p>
+        </footer>
 
     <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="js/default.js"></script>
     <script src="js/main.js"></script>
 
