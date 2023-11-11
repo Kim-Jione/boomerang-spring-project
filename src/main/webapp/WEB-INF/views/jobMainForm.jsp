@@ -175,7 +175,7 @@
                                                     <!-- 영화 장르일 때 -->
                                                     <div class="badge_movie">
                                                         <i class="fa-solid fa-gift">
-                                                            기타
+                                                            단편영화
                                                         </i>
                                                     </div>
                                                     <c:if test="${job.isToday}">

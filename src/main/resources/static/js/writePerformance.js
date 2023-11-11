@@ -7,8 +7,8 @@ function resizeTextarea() {
   const textareas = document.querySelectorAll(".textarea");
 
   for (let i = 0; i < textareas.length; i++) {
-      textareas[i].style.height = "auto";
-      textareas[i].style.height = textareas[i].scrollHeight + "px";
+    textareas[i].style.height = "auto";
+    textareas[i].style.height = textareas[i].scrollHeight + "px";
   }
 }
 
@@ -23,23 +23,23 @@ const selectOneBtn = document.querySelectorAll(".select_single"),
 
 selectOneBtn.forEach((selectOneBtn) => {
   selectOneBtn.addEventListener("click", () => {
-      selectOneBtn.classList.toggle("open");
+    selectOneBtn.classList.toggle("open");
   });
 });
 
 SOItems.forEach((SOItems) => {
   SOItems.addEventListener("click", () => {
-      if (SOItems.parentElement.querySelectorAll(".checked").length > 0) {
-          let previous = SOItems.parentElement.querySelector(".checked");
-          previous.classList.toggle("checked");
-      }
-      SOItems.classList.toggle("checked");
-      // SOItems.closest(".checked").toggle("checked");
+    if (SOItems.parentElement.querySelectorAll(".checked").length > 0) {
+      let previous = SOItems.parentElement.querySelector(".checked");
+      previous.classList.toggle("checked");
+    }
+    SOItems.classList.toggle("checked");
+    // SOItems.closest(".checked").toggle("checked");
 
-      let btnText =
-          SOItems.parentElement.parentElement.querySelector(".btn-text");
-      console.log(SOItems.querySelector(".item-text").innerText);
-      btnText.innerText = SOItems.querySelector(".item-text").innerText;
+    let btnText =
+      SOItems.parentElement.parentElement.querySelector(".btn-text");
+    console.log(SOItems.querySelector(".item-text").innerText);
+    btnText.innerText = SOItems.querySelector(".item-text").innerText;
   });
 });
 
@@ -48,26 +48,27 @@ let existingGenre = document.querySelector("#pfGenre");
 let existingAgerating = document.querySelector("#pfAgerating");
 if (existingGenre) {
   SOItems.forEach((SOItems) => {
-      if (
-          SOItems.querySelector(".item-text").innerText == existingGenre.innerText
-      ) {
-          SOItems.classList.toggle("checked");
-          let btnText =
-              SOItems.parentElement.parentElement.querySelector(".btn-text");
-          btnText.innerText = SOItems.querySelector(".item-text").innerText;
-      }
+    if (
+      SOItems.querySelector(".item-text").innerText == existingGenre.innerText
+    ) {
+      SOItems.classList.toggle("checked");
+      let btnText =
+        SOItems.parentElement.parentElement.querySelector(".btn-text");
+      btnText.innerText = SOItems.querySelector(".item-text").innerText;
+    }
   });
 }
 if (existingAgerating) {
   SOItems.forEach((SOItems) => {
-      if (
-          SOItems.querySelector(".item-text").innerText == existingAgerating.innerText
-      ) {
-          SOItems.classList.toggle("checked");
-          let btnText =
-              SOItems.parentElement.parentElement.querySelector(".btn-text");
-          btnText.innerText = SOItems.querySelector(".item-text").innerText;
-      }
+    if (
+      SOItems.querySelector(".item-text").innerText ==
+      existingAgerating.innerText
+    ) {
+      SOItems.classList.toggle("checked");
+      let btnText =
+        SOItems.parentElement.parentElement.querySelector(".btn-text");
+      btnText.innerText = SOItems.querySelector(".item-text").innerText;
+    }
   });
 }
 
@@ -75,11 +76,11 @@ if (existingAgerating) {
 function isClickSelect(event) {
   //싱글 드랍박스 조작
   selectOneBtn.forEach((selectOneBtn) => {
-      if (!selectOneBtn.parentElement.contains(event.target)) {
-          if (selectOneBtn.classList.contains("open")) {
-              selectOneBtn.classList.toggle("open");
-          }
+    if (!selectOneBtn.parentElement.contains(event.target)) {
+      if (selectOneBtn.classList.contains("open")) {
+        selectOneBtn.classList.toggle("open");
       }
+    }
   });
 }
 
@@ -92,11 +93,11 @@ document.addEventListener("click", function (event) {
 /************/
 var quill = new Quill("#editor-container", {
   modules: {
-      toolbar: [
-          [{header: [1, 2, 3, 4, false]}],
-          ["bold", "italic", "underline"],
-          ["code-block"]
-      ]
+    toolbar: [
+      [{ header: [1, 2, 3, 4, false] }],
+      ["bold", "italic", "underline"],
+      ["code-block"]
+    ]
   },
   placeholder: "내용을 입력하세요",
   theme: "snow" // or 'bubble'
@@ -117,18 +118,18 @@ function write() {
   let formData = new FormData();
 
   let data = {
-      pfTitle: $("#pfTitle").val(),
-      pfStartDate: $("#pfStartDate").val(),
-      pfDeadline: $("#pfDeadline").val(),
-      pfAgerating: pfAgerating,
-      pfRunningtime: $("#pfRunningtime").val(),
-      pfBookingmethod: $("#pfBookingmethod").val(),
-      pfGenre: pfGenre,
-      pfProduction: $("#pfProduction").val(),
-      pfPrice: $("#pfPrice").val(),
-      pfLocation: $("#pfLocation").val(),
-      pfContent: pfContent,
-      userId: $("#userId").val()
+    pfTitle: $("#pfTitle").val(),
+    pfStartDate: $("#pfStartDate").val(),
+    pfDeadline: $("#pfDeadline").val(),
+    pfAgerating: pfAgerating,
+    pfRunningtime: $("#pfRunningtime").val(),
+    pfBookingmethod: $("#pfBookingmethod").val(),
+    pfGenre: pfGenre,
+    pfProduction: $("#pfProduction").val(),
+    pfPrice: $("#pfPrice").val(),
+    pfLocation: $("#pfLocation").val(),
+    pfContent: pfContent,
+    userId: $("#userId").val()
   };
 
   alert("pfGenre: " + data.pfGenre);
@@ -136,24 +137,24 @@ function write() {
 
   formData.append("thumbnail", $("#pfThumbnail")[0].files[0]);
   formData.append(
-      "writeDto",
-      new Blob([JSON.stringify(data)], {type: "application/json"})
+    "writeDto",
+    new Blob([JSON.stringify(data)], { type: "application/json" })
   );
 
   $.ajax("/s/api/performance/write", {
-      type: "POST",
-      data: formData,
-      processData: false, // 쿼리스트링 방지
-      contentType: false,
-      enctype: "multipart/form-data",
+    type: "POST",
+    data: formData,
+    processData: false, // 쿼리스트링 방지
+    contentType: false,
+    enctype: "multipart/form-data"
   }).done((res) => {
-      if (res.code == 1) {
-          alert(res.msg);
-          location.href = "/performance/mainForm";
-      } else {
-          alert(res.msg);
-          return false;
-      }
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/performance/mainForm";
+    } else {
+      alert(res.msg);
+      return false;
+    }
   });
 }
 
@@ -169,42 +170,48 @@ function update() {
 
   let quillContent = document.querySelector(".ql-editor");
   let pfContent = quillContent.innerHTML;
-
+  let formData = new FormData();
   let data = {
-      pfTitle: $("#pfTitle").val(),
-      pfStartDate: $("#pfStartDate").val(),
-      pfDeadline: $("#pfDeadline").val(),
-      pfAgerating: pfAgerating,
-      pfRunningtime: $("#pfRunningtime").val(),
-      pfBookingmethod: $("#pfBookingmethod").val(),
-      pfGenre: pfGenre,
-      pfProduction: $("#pfProduction").val(),
-      pfPrice: $("#pfPrice").val(),
-      pfLocation: $("#pfLocation").val(),
-      pfContent: pfContent,
-      userId: $("#userId").val(),
-      pfThumbnail: $("#pfThumbnail"),
-      pfId: $("#pfId").val()
+    pfTitle: $("#pfTitle").val(),
+    pfStartDate: $("#pfStartDate").val(),
+    pfDeadline: $("#pfDeadline").val(),
+    pfAgerating: pfAgerating,
+    pfRunningtime: $("#pfRunningtime").val(),
+    pfBookingmethod: $("#pfBookingmethod").val(),
+    pfGenre: pfGenre,
+    pfProduction: $("#pfProduction").val(),
+    pfPrice: $("#pfPrice").val(),
+    pfLocation: $("#pfLocation").val(),
+    pfContent: pfContent,
+    userId: $("#userId").val(),
+    pfThumbnail: $("#pfThumbnail"),
+    pfId: $("#pfId").val()
   };
 
   alert("userId" + data.userId);
   alert("pfId" + data.pfId);
 
+  formData.append("thumbnail", $("#pfThumbnail")[0].files[0]);
+  formData.append(
+    "updateDto",
+    new Blob([JSON.stringify(data)], { type: "application/json" })
+  );
+
   $.ajax("/s/api/performance/update", {
-      type: "PUT",
-      dataType: "json",
-      data: JSON.stringify(data),
-      headers: {
-          "Content-Type": "application/json"
-      }
+    type: "PUT",
+    dataType: "json",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
   }).done((res) => {
-      if (res.code == 1) {
-          alert(res.msg);
-          location.href = "/s/api/performance/detailForm/" + pfId;
-      } else {
-          alert(res.msg);
-          return false;
-      }
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/s/api/performance/detailForm/" + pfId;
+    } else {
+      alert(res.msg);
+      return false;
+    }
   });
 }
 
@@ -213,27 +220,27 @@ var isFileSelectionCanceled = false; // Flag to track if the user canceled file 
 
 // 이미지 미리 보기 함수
 function previewImage(event) {
-var pfThumbnail = event.target;
-var imagePreview = document.getElementById('imagePreview');
+  var pfThumbnail = event.target;
+  var imagePreview = document.getElementById("imagePreview");
 
-// Check if the user canceled file selection
-if (isFileSelectionCanceled) {
-  isFileSelectionCanceled = false; // Reset the flag
-  return;
-}
+  // Check if the user canceled file selection
+  if (isFileSelectionCanceled) {
+    isFileSelectionCanceled = false; // Reset the flag
+    return;
+  }
 
-// 선택한 파일이 이미지인지 확인
-if (pfThumbnail.files && pfThumbnail.files[0]) {
-  // Update selectedFile with the newly selected file
-  selectedFile = pfThumbnail.files[0];
-  var reader = new FileReader();
+  // 선택한 파일이 이미지인지 확인
+  if (pfThumbnail.files && pfThumbnail.files[0]) {
+    // Update selectedFile with the newly selected file
+    selectedFile = pfThumbnail.files[0];
+    var reader = new FileReader();
 
-  // 파일을 읽어들이고, 읽기 완료되면 이미지 미리 보기 설정
-  reader.onload = function (e) {
-    imagePreview.src = e.target.result;
-  };
+    // 파일을 읽어들이고, 읽기 완료되면 이미지 미리 보기 설정
+    reader.onload = function (e) {
+      imagePreview.src = e.target.result;
+    };
 
-  // 파일을 읽어들임
-  reader.readAsDataURL(selectedFile);
-}
+    // 파일을 읽어들임
+    reader.readAsDataURL(selectedFile);
+  }
 }

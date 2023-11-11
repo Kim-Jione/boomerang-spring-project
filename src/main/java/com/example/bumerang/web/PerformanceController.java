@@ -1,6 +1,19 @@
 package com.example.bumerang.web;
 
-import com.example.bumerang.domain.jobSearch.JobSearch;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.bumerang.domain.performance.Performance;
 import com.example.bumerang.service.PerformanceService;
 import com.example.bumerang.web.dto.SessionUserDto;
@@ -9,13 +22,8 @@ import com.example.bumerang.web.dto.request.performance.WriteDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
 import com.example.bumerang.web.dto.response.performance.DetailFormDto;
 import com.example.bumerang.web.dto.response.performance.PfRespDto;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
@@ -88,18 +96,19 @@ public class PerformanceController {
         SessionUserDto principal = (SessionUserDto)session.getAttribute("principal");
         Integer userId = updateDto.getUserId();
         Integer userPId = principal.getUserId();
-        if(userId.equals(userPId)){
-            try {
-                // 썸네일 업로드 및 업데이트
-                String imagePath = performanceService.uploadThumbnail(thumbnail);
-                // UpdateDto에 imagePath를 설정
-                updateDto.setPfThumbnail(imagePath);
-                // 공연글 수정 업데이트
-                Performance updateResult = performanceService.update(updateDto);
-                return new CMRespDto<>(1, "공연글 수정 성공.", updateResult);
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (userId.equals(userPId)) {
+            if(thumbnail != null){
+            // 썸네일 업로드 및 업데이트
+            String imagePath = performanceService.uploadThumbnail(thumbnail);
+            // UpdateDto에 imagePath를 설정
+            updateDto.setPfThumbnail(imagePath);
+            // 공연글 수정 업데이트
+            Performance updateResult = performanceService.update(updateDto);
+            return new CMRespDto<>(1, "썸네일도 있는 공연글 수정 성공.", updateResult);
             }
+            // 공연글 수정 업데이트
+            Performance updateResult = performanceService.update(updateDto);
+            return new CMRespDto<>(1, "썸네일 없는 공연글 수정 성공.", updateResult);
         }
         return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
