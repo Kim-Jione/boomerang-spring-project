@@ -66,17 +66,20 @@
         FROM user u
         INNER JOIN likey l ON u.user_id = l.user_id
         INNER JOIN job_search j ON l.job_id = j.job_id
+
         LEFT JOIN (
         SELECT job_id, COUNT(comment_id) AS comment_count
         FROM comment
         GROUP BY job_id
         ) c ON j.job_id = c.job_id
+
         LEFT JOIN (
         SELECT job_id, COUNT(view_id) AS view_count
         FROM view
         GROUP BY job_id
         ) v ON j.job_id = v.job_id
         WHERE u.user_id = #{userId}
+
         ORDER BY j.job_start_date;
     </select>
     <select id="likeyFindPFList" resultType="com.example.bumerang.web.dto.response.likey.LikeyPFListDto">
@@ -96,7 +99,8 @@
         CASE WHEN p.pf_price = 0 THEN FALSE ELSE TRUE END AS isPrice,
         CASE WHEN p.pf_deadline >= CURDATE() THEN TRUE ELSE FALSE END AS isDead,
         COALESCE(c.comment_count, 0) AS commentCount,
-        COALESCE(v.view_count, 0) AS viewCount
+        COALESCE(v.view_count, 0) AS viewCount,
+        IF((l.likey_count <![CDATA[ > ]]> 10), TRUE, false) AS isFame
 
         FROM performance p
         INNER JOIN user u ON p.user_id = u.user_id

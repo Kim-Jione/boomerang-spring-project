@@ -185,11 +185,12 @@ public class UserController {
         LikeyRespDto userLikeyList = new LikeyRespDto();
         List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList(userId);
         List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList(userId);
+
         userLikeyList.setLJSList(LikeyJSDetail);
         userLikeyList.setLPFList(LikeyPFDetail);
 
         for (LikeyPFListDto item : LikeyPFDetail) {
-            System.err.println("UserId: " + item.getThumbnail());
+            System.err.println("UserId: " + item.getisFame());
             // 다른 속성도 필요한대로 출력
         }
         model.addAttribute("LikeyJSDetail", LikeyJSDetail);

@@ -87,14 +87,14 @@
                         <li>연령대</li>
                       </ul>
                       <ul class="pro_info2">
-                        <li>
-                          <label for="male">남성</label>
-                          <input type="hidden" id="userGender" value="${userDetail.userGender}" />
-                          <input type="radio" class="user_gender" name="user_gender" value="남성"
-                            />
-                          <label for="female">여성</label>
-                          <input type="radio" class="user_gender" name="user_gender" value="여성" />
-                        </li>
+                            <li>
+                              <label for="male">남성</label>
+                              <input type="radio" class="user_gender" name="user_gender" value="남성"
+                                <c:if test="${userDetail.userGender eq '남성'}">checked</c:if> />
+                              <label for="female">여성</label>
+                              <input type="radio" class="user_gender" name="user_gender" value="여성"
+                                <c:if test="${userDetail.userGender eq '여성'}">checked</c:if> />
+                            </li>
                         <li>
                           <input id="user_height" type="number" value="${userDetail.userHeight}" id="userheight" />cm
                         </li>
