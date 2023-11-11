@@ -47,18 +47,57 @@
         FROM likey l
         WHERE l.likey_id=LAST_INSERT_ID()
     </select>
+
+    <select id="likeyFindSJList" resultType="com.example.bumerang.web.dto.response.likey.LikeyJSListDto">
+        SELECT
+        u.user_id AS userId,
+        u.user_nickname AS userNickname,
+        u.user_profile_img AS userProfileImg,
+        u.user_career AS userCareer,
+        l.likey_id AS LikeyId,
+        j.job_id AS jobId,
+        j.job_content_title AS jobTitle,
+        j.job_start_date AS jobStartDate,
+        j.job_deadline AS jobDeadline,
+        j.job_genre AS jobGenre,
+        IF(DATEDIFF(j.job_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
+        CASE WHEN DATE(j.created_at) = CURDATE() THEN TRUE ELSE FALSE END AS isToday,
+        COALESCE(c.comment_count, 0) AS commentCount,
+        COALESCE(v.view_count, 0) AS viewCount
+        FROM user u
+        INNER JOIN likey l ON u.user_id = l.user_id
+        INNER JOIN job_search j ON l.job_id = j.job_id
+        LEFT JOIN (
+        SELECT job_id, COUNT(comment_id) AS comment_count
+        FROM comment
+        GROUP BY job_id
+        ) c ON j.job_id = c.job_id
+        LEFT JOIN (
+        SELECT job_id, COUNT(view_id) AS view_count
+        FROM view
+        GROUP BY job_id
+        ) v ON j.job_id = v.job_id
+        WHERE u.user_id = 1
+        ORDER BY l.created_at DESC;
+    </select>
     <select id="likeyFindPFList" resultType="com.example.bumerang.web.dto.response.likey.LikeyPFListDto">
         SELECT
-        p.pf_id AS pfId,
+        u.user_id AS userId,
+        u.user_nickname AS userNickname,
+        u.user_profile_img AS userProfileImg,
+        p.pf_id AS PFId,
         p.pf_title AS pfTitle,
-        p.pf_location AS pfLocation,
-        p.pf_genre AS pfGenre,
+        p.pf_start_date AS StartDate,
+        p.pf_deadline AS Deadline,
+        p.pf_genre AS genre,
+        p.pf_runningTime AS runningTime,
+        p.pf_location AS location,
+        p.pf_thumbnail AS thumbnail,
+        p.pf_agerating As ageRating,
         CASE WHEN p.pf_price = 0 THEN FALSE ELSE TRUE END AS isPrice,
-        p.pf_start_date AS pfStartDate,
-        p.pf_deadline AS pfDeadline,
-        CASE WHEN p.pf_deadline >= CURDATE() THEN FALSE ELSE TRUE END AS isDead,
-        p.pf_thumbnail AS pfThumbnail,
-        p.pf_agerating AS pfAgeRating,
+        CASE WHEN p.pf_deadline >= CURDATE() THEN TRUE ELSE FALSE END AS isDead,
+        COALESCE(c.comment_count, 0) AS commentCount,
+
         COALESCE(v.view_count, 0) AS viewCount
         FROM performance p
         LEFT JOIN (
@@ -108,7 +147,11 @@
         FROM likey
         WHERE user_id = ${userId}
         )
+
         AND j.job_status = 'active' AND u.user_status != 'deleted'
         ORDER BY likeyCount DESC
+
+        l ON p.pf_id = l.pf_id
+        ORDER BY l.created_at DESC;
     </select>
 </mapper>

@@ -73,6 +73,7 @@
           </div>
           <script src="/js/notice.js"></script>
           <script src="/js/default.js"></script>
+          <%@ include file="layout/footer.jsp" %>
       </body>
 
       </html>

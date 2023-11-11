@@ -4,9 +4,11 @@
             <header>
                 <div class="navbar">
                     <div class="bot_menu">
-                        <a href=""><img src="/image/mainlogo.png"></a>
+                        <img src="/image/mainlogo.png">
                         <div class="title">
-                            <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>
+                            <a href="/">
+                                <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>
+                            </a>
                         </div>
 
                         <ul class="menubar">
@@ -88,7 +90,7 @@
                             </ul>
                         </c:when>
                         <c:otherwise>
-                            <a href="/user/loginForm" class="linkes">로그인</a>
+                            <a href="/user/loginForm" class="login">로그인</a>
                         </c:otherwise>
                     </c:choose>
 

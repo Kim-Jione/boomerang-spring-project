@@ -10,7 +10,6 @@ import java.util.List;
 @Setter
 public class UpdateDto {
     private Integer userId;
-    private String userPassword;
     private String userEmail;
     private String userNickname;
     private String userGender;
@@ -22,8 +21,6 @@ public class UpdateDto {
     private String userSkill ;
     private String userEducation;
     private String userContactLink;
-    private String userProfileImg;
-    private List<String> uftitle;
+    private String uftitle;
     private List<UserPortfolio> userPortfolio;
-
 }

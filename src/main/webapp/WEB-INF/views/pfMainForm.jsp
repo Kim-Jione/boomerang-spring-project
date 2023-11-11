@@ -23,6 +23,17 @@
             </head>
 
             <body>
+                <div class="loader">
+                    <div class="loading">
+                        <div class="text">
+                            <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>
+                        </div>
+                        <label class="percent">100%</label>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                    </div>
+                </div>
                 <%@ include file="layout/header.jsp" %>
                     <div class="banner">
                         <swiper-container class="banner_Swiper" pagination="true" pagination-clickable="true"
@@ -224,6 +235,7 @@
                     <script src="/js/performance.js"></script>
                     <script src="/js/default.js"></script>
 
+                    <%@ include file="layout/footer.jsp" %>
             </body>
 
                 <select id="filterRun" onchange="filterPosts()" class="dropdown">

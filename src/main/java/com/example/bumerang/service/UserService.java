@@ -91,15 +91,8 @@ public class UserService {
 
     // 사용자 정보 수정
     public UserRespDto update(UpdateDto updateDto){
-        String enPassword = sha256.encrypt(updateDto.getUserPassword());
-        updateDto.setUserPassword(enPassword);
         userDao.updateUser(updateDto);
-        // 사용자 분야 수정
-        List<String> uftitleList = updateDto.getUftitle();
-        userDao.fieldDelete(updateDto.getUserId());
-        for(String ufTitle : uftitleList){
-            userDao.fieldInsert(ufTitle, updateDto.getUserId());
-        }
+        userDao.updateUfTitle(updateDto.getUserId(), updateDto.getUftitle());
         // 사용자 포트폴리오 수정
         List<UserPortfolio> upList = updateDto.getUserPortfolio();
         userDao.portfolioDelete(updateDto.getUserId());
@@ -190,7 +183,7 @@ public class UserService {
                 // 이미지 저장
                 profileImage.transferTo(imagePath.toFile());
                 // 이미지 파일 경로를 반환
-                return imageUploadPath + fileName;
+                return fileName;
             } catch (IOException e) {
                 e.printStackTrace();
                 // 이미지 업로드 실패 처리
@@ -222,7 +215,6 @@ public class UserService {
         System.err.println("getUserPassword: "+userPassword);
         userDao.updatePassword(userPassword, userId);
         User userPS = userDao.findById(userId);
-        System.err.println("됐다: "+userPS.getUserPassword());
         PasswdDto passUpdateResult = userDao.findByPwUpdateResult(userPassword, userId);
         return passUpdateResult;
     }
@@ -235,4 +227,8 @@ public class UserService {
         }
         return findAllJob;
     }
+    public void updateProfileImage(Integer userId,String imagePath) {
+        userDao.updateProfileImage(userId,imagePath);
+    }
+
 }

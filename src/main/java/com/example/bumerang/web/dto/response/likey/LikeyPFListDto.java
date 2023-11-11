@@ -1,15 +1,12 @@
 package com.example.bumerang.web.dto.response.likey;
 
-import com.example.bumerang.web.dto.response.performance.PfCommentDto;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.sql.Timestamp;
-import java.util.List;
 
 @Getter
 @Setter
 public class LikeyPFListDto {
+
     private Integer pfId;
     private String pfTitle;
     private String pfLocation;
