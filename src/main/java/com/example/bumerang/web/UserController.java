@@ -178,20 +178,20 @@ public class UserController {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = principal.getUserId();
         if(userId == null){
-
             return "404";
         }
+        System.err.println("UserId: " + userId );
+
         LikeyRespDto userLikeyList = new LikeyRespDto();
-        List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList();
-        List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList();
+        List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList(userId);
+        List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList(userId);
         userLikeyList.setLJSList(LikeyJSDetail);
         userLikeyList.setLPFList(LikeyPFDetail);
 
-//        for (LikeyPFListDto item : LikeyPFDetail) {
-//            System.err.println("isPrice: " + Boolean.toString(item.isPrice()));
-//            System.err.println("isDead: " + Boolean.toString(item.isDead()));
-//            // 다른 속성도 필요한대로 출력
-//        }
+        for (LikeyPFListDto item : LikeyPFDetail) {
+            System.err.println("UserId: " + item.getThumbnail());
+            // 다른 속성도 필요한대로 출력
+        }
         model.addAttribute("LikeyJSDetail", LikeyJSDetail);
         model.addAttribute("LikeyPFDetail", LikeyPFDetail);
         return "likeyListForm";

@@ -59,7 +59,7 @@
         j.job_start_date AS jobStartDate,
         j.job_deadline AS jobDeadline,
         j.job_genre AS jobGenre,
-        IF(DATEDIFF(j.job_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
+        IF(DATEDIFF(j.job_deadline, CURDATE())  <![CDATA[ < ]]>  0, true, false) AS isDead,
         CASE WHEN DATE(j.created_at) = CURDATE() THEN TRUE ELSE FALSE END AS isToday,
         COALESCE(c.comment_count, 0) AS commentCount,
         COALESCE(v.view_count, 0) AS viewCount
@@ -76,7 +76,8 @@
         FROM view
         GROUP BY job_id
         ) v ON j.job_id = v.job_id
-        WHERE u.user_id = 1;
+        WHERE u.user_id = #{userId}
+        ORDER BY j.job_start_date;
     </select>
     <select id="likeyFindPFList" resultType="com.example.bumerang.web.dto.response.likey.LikeyPFListDto">
         SELECT
@@ -118,6 +119,7 @@
         SELECT * FROM likey l WHERE l.user_id = 1
         )
 
-        l ON p.pf_id = l.pf_id;
+        l ON p.pf_id = l.pf_id
+        ORDER BY l.created_at DESC;
     </select>
 </mapper>

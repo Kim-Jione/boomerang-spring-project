@@ -119,8 +119,8 @@ public class UserService {
     }
 
     //관심 구인글 록록
-    public List<LikeyJSListDto> likeyfindAllJSList() {
-        List<LikeyJSListDto> JSList = likeyDao.likeyFindSJList();
+    public List<LikeyJSListDto> likeyfindAllJSList(Integer userId) {
+        List<LikeyJSListDto> JSList = likeyDao.likeyFindSJList(userId);
         for (int i = 0; i < JSList.size(); i++) {
             List<String> jobPositionTitle = jobSearchPositionDao.findById(JSList.get(i).getJobId());
             JSList.get(i).setJobPositionTitle(jobPositionTitle);
@@ -129,8 +129,8 @@ public class UserService {
     }
 
     // 관심 공연글 목록
-    public List<LikeyPFListDto> likeyfindAllPFList() {
-        List<LikeyPFListDto> PFList = likeyDao.likeyFindPFList();
+    public List<LikeyPFListDto> likeyfindAllPFList(Integer userId) {
+        List<LikeyPFListDto> PFList = likeyDao.likeyFindPFList(userId);
         return PFList;
 
     }

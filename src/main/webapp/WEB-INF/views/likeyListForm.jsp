@@ -46,15 +46,50 @@
                           <article class="search_job_slide">
                             <div class="project">
                               <div class="badge_wrapper">
-                                <div class="badge_movie">
-                                  <i class="fa-solid fa-clapperboard"></i>
-                                  <p class="badge_genre">${JobLikeyList.jobGenre}</p>
-                                </div>
-                                <c:if test="${JobLikeyList.isToday}">
-                                    <div class="badge_new">
-                                    <i class="fa-solid fa-gift"> 새로 올라온 글</i>
-                                </div>
-                                </c:if>
+                                <div class="badge_wrapper">
+                            <c:choose>
+                                <c:when test="${JobLikeyList.jobGenre == '장편영화'}">
+                                    <!-- 영화 장르일 때 -->
+                                    <div class="badge_movie">
+                                        <i class="fa-solid fa-gift">
+                                            장편영화
+                                        </i>
+                                    </div>
+                                    <c:if test="${JobLikeyList.isToday}">
+                                        <!-- 새로 올라온 글일 때 -->
+                                        <div class="badge_new">
+                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                        </div>
+                                    </c:if>
+                                </c:when>
+                                <c:when test="${JobLikeyList.jobGenre == '단편영화'}">
+                                    <!-- 영화 장르일 때 -->
+                                    <div class="badge_movie">
+                                        <i class="fa-solid fa-gift">
+                                            단편영화
+                                        </i>
+                                    </div>
+                                    <c:if test="${JobLikeyList.isToday}">
+                                        <!-- 새로 올라온 글일 때 -->
+                                        <div class="badge_new">
+                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                        </div>
+                                    </c:if>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="badge_movie">
+                                        <i class="fa-solid fa-clapperboard" class="badge_genre">
+                                            ${JobLikeyList.jobGenre}</i>
+                                    </div>
+                                    <c:if test="${JobLikeyList.isToday}">
+                                        <!-- 새로 올라온 글일 때 -->
+                                        <div class="badge_new">
+                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                        </div>
+                                    </c:if>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
                               </div>
 
                               <div class="schedule">
