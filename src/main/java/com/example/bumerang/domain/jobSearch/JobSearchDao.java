@@ -32,4 +32,6 @@ public interface JobSearchDao {
 
     public void dead(DeadlineDto deadlineDto);
 
+    public List<JobListDto> findMyJSList(Integer userId);
+
 }

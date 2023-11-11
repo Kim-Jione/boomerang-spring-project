@@ -110,4 +110,13 @@ public class JobSearchService {
 		JobSearch deadlineResult = jobSearchDao.findById(deadlineDto.getJobId());
 		return deadlineResult;
 	}
+
+    public List<JobListDto> findMyJSList(Integer userId) {
+		List<JobListDto> findMyJSList = jobSearchDao.findMyJSList(userId);
+		for (int i = 0; i < findMyJSList.size(); i++) {
+			List<String> jobPositionTitle = jobSearchPositionDao.findById(findMyJSList.get(i).getJobId());
+			findMyJSList.get(i).setJobPositionTitle(jobPositionTitle);
+		}
+		return findMyJSList;
+    }
 }

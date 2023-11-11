@@ -136,4 +136,34 @@
         AND p.pf_status != 'deleted'
     </select>
 
+    <select id="findMyPfList"
+            resultType="com.example.bumerang.web.dto.response.performance.PfListDto">
+        SELECT
+            p.pf_id AS pfId,
+            p.pf_title AS pfTitle,
+            p.pf_location AS pfLocation,
+            p.pf_genre AS pfGenre,
+            CASE WHEN p.pf_price = 0 THEN FALSE ELSE TRUE END AS isPrice,
+            p.pf_start_date AS pfStartDate,
+            p.pf_deadline AS pfDeadline,
+            CASE WHEN p.pf_deadline >= CURDATE() THEN TRUE ELSE FALSE END AS isDead,
+            p.pf_thumbnail AS pfThumbnail,
+            p.pf_agerating AS pfAgeRating,
+            COALESCE(v.view_count, 0) AS viewCount
+        FROM performance p
+                 LEFT JOIN (
+            SELECT pf_id, COUNT(view_id) AS view_count
+            FROM VIEW
+            WHERE pf_id IS NOT NULL
+            GROUP BY pf_id
+        ) v ON p.pf_id = v.pf_id
+        WHERE
+        p.user_id = #{userId}
+        AND p.pf_status != 'deleted'
+        GROUP BY
+        p.pf_id
+        ORDER BY
+        p.created_at DESC;
+    </select>
+
 </mapper>

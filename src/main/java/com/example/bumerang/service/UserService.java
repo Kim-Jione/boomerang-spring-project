@@ -85,7 +85,7 @@ public class UserService {
     // 사용자 정보 수정
     public UserRespDto update(UpdateDto updateDto){
         userDao.updateUser(updateDto);
-        userDao.updateUfTitle(updateDto.getUftitle());
+        userDao.updateUfTitle(updateDto.getUserId(), updateDto.getUftitle());
         // 사용자 포트폴리오 수정
         List<UserPortfolio> upList = updateDto.getUserPortfolio();
         userDao.portfolioDelete(updateDto.getUserId());
