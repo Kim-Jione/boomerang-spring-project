@@ -199,6 +199,10 @@
             resultType="com.example.bumerang.web.dto.request.user.PasswdDto">
         SELECT * FROM user WHERE user_id=#{userId} AND user_status != 'deleted'
     </select>
+    <select id="findAllJobLikey" resultType="com.example.bumerang.web.dto.response.jobSearch.JobListDto">
+
+    </select>
+
 
     <update id="updatePassword">
         update user

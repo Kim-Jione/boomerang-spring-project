@@ -4,7 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.example.bumerang.domain.performance.Performance;
+import com.example.bumerang.service.JobSearchService;
+import com.example.bumerang.service.PerformanceService;
+import com.example.bumerang.web.dto.SearchDto;
 import com.example.bumerang.web.dto.request.user.PasswdDto;
+import com.example.bumerang.web.dto.response.PagingDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobListDto;
+import com.example.bumerang.web.dto.response.performance.DetailFormDto;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +43,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserController {
     private final HttpSession session;
     private final UserService userService;
+    private final JobSearchService jobSearchService;
+    private final PerformanceService performanceService;
 
     // 회원가입 기능
     @PostMapping("/user/join")
@@ -174,26 +183,25 @@ public class UserController {
 
     // 관심목록 화면
     @GetMapping("/s/api/user/likeyListForm/{userId}")
-    public String likeyListForm(Model model){
+    public String likeyListForm(Model model, @PathVariable Integer userId, JobListDto jobListDto){
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-        Integer userId = principal.getUserId();
-        if(userId == null){
-            return "404";
-        }
-        System.err.println("UserId: " + userId );
 
-        LikeyRespDto userLikeyList = new LikeyRespDto();
-        List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList(userId);
+        if(userId == null){
+            return "";
+        }
+
+        List<JobListDto> jobList = userService.findAllJobLikey(jobListDto, userId);
+        List<JobListDto> bestJobList = jobSearchService.findAllBestJob();
         List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList(userId);
 
-        userLikeyList.setLJSList(LikeyJSDetail);
-        userLikeyList.setLPFList(LikeyPFDetail);
-
-        for (LikeyPFListDto item : LikeyPFDetail) {
-            System.err.println("UserId: " + item.getisFame());
-            // 다른 속성도 필요한대로 출력
+        for (JobListDto item : jobList) {
+            System.err.println("getImgPath: " + item.getJobDeadline());
+            System.err.println("getIsDead: " + item.getIsDead());
+            System.err.println("getUserId: " + item.getUserId());
         }
-        model.addAttribute("LikeyJSDetail", LikeyJSDetail);
+
+        model.addAttribute("jobList",jobList);
+        model.addAttribute("bestJobList",bestJobList);
         model.addAttribute("LikeyPFDetail", LikeyPFDetail);
         return "likeyListForm";
     }

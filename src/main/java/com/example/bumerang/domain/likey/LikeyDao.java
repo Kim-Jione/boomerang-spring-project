@@ -1,5 +1,7 @@
 package com.example.bumerang.domain.likey;
 
+import com.example.bumerang.web.dto.SearchDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyJSListDto;
 import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
 import org.apache.ibatis.annotations.Param;
@@ -24,7 +26,7 @@ public interface LikeyDao {
 
     public Likey findByRecent();
 
-    List<LikeyJSListDto> likeyFindSJList(Integer userId);
-
     List<LikeyPFListDto> likeyFindPFList(Integer userId);
+
+    List<JobListDto> findAllJoblikey(JobListDto jobListDto, Integer userId);
 }

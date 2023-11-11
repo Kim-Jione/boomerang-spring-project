@@ -11,8 +11,10 @@ import javax.servlet.http.HttpSession;
 
 import com.example.bumerang.domain.jobSearchPosition.JobSearchPositionDao;
 
+import com.example.bumerang.web.dto.SearchDto;
 import com.example.bumerang.web.dto.request.user.PasswdDto;
 
+import com.example.bumerang.web.dto.response.jobSearch.JobListDto;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -117,17 +119,6 @@ public class UserService {
         userDetail.setUserPortfolio(userPortfolioList);
         return userDetail;
     }
-
-    //관심 구인글 록록
-    public List<LikeyJSListDto> likeyfindAllJSList(Integer userId) {
-        List<LikeyJSListDto> JSList = likeyDao.likeyFindSJList(userId);
-        for (int i = 0; i < JSList.size(); i++) {
-            List<String> jobPositionTitle = jobSearchPositionDao.findById(JSList.get(i).getJobId());
-            JSList.get(i).setJobPositionTitle(jobPositionTitle);
-        }
-        return JSList;
-    }
-
     // 관심 공연글 목록
     public List<LikeyPFListDto> likeyfindAllPFList(Integer userId) {
         List<LikeyPFListDto> PFList = likeyDao.likeyFindPFList(userId);
@@ -234,5 +225,14 @@ public class UserService {
         System.err.println("됐다: "+userPS.getUserPassword());
         PasswdDto passUpdateResult = userDao.findByPwUpdateResult(userPassword, userId);
         return passUpdateResult;
+    }
+
+    public List<JobListDto> findAllJobLikey(JobListDto jobListDto, Integer userId) {
+        List<JobListDto> findAllJob = likeyDao.findAllJoblikey(jobListDto, userId);
+        for (int i = 0; i < findAllJob.size(); i++) {
+            List<String> jobPositionTitle = jobSearchPositionDao.findById(findAllJob.get(i).getJobId());
+            findAllJob.get(i).setJobPositionTitle(jobPositionTitle);
+        }
+        return findAllJob;
     }
 }

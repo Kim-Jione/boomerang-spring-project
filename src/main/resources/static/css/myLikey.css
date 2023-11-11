@@ -492,7 +492,16 @@
   color: #818181;
 }
 
-
+.deadline{
+    position: absolute;
+    bottom:-15px;
+    margin-left:15px;
+    z-index: 99;
+    text-align: center;
+    display: block;
+    width: 90%;
+    opacity: 0.8;
+    }
 
 
 
@@ -547,13 +556,3 @@
   .disable2{
     background: #ccc;
   }
-.deadline{
-    position: absolute;
-    bottom:-15px;
-    margin-left:15px;
-    z-index: 99;
-    text-align: center;
-    display: block;
-    width: 90%;
-    opacity: 0.8;
-    }
