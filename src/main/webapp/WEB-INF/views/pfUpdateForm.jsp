@@ -52,7 +52,10 @@
                 </div>
                 <div class="info">
                   <div class="left">
-                    <input type="file" id="pf_img" />
+                    <div id="imagePreviewContainer">
+                      <img id="imagePreview" alt="미리 보기 이미지"  src="/img/${pf.pfThumbnail}">
+                    </div>
+                    <input type="file" name="thumbnail" id="pfThumbnail" onchange="previewImage(event)" />
                   </div>
                   <div class="right">
                     <dl>
@@ -207,8 +210,8 @@
 
           <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
           <script src="/js/writePerformance.js"></script>
-          <script src="/js/default.js"></script>
+          <!-- <script src="/js/default.js"></script> -->
           <%@ include file="layout/footer.jsp" %>
-        </body>
+      </body>
 
-        </html>
+      </html>
