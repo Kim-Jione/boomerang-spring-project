@@ -205,32 +205,26 @@
                                                     <span class="accent">${job.userCareer}</span>
                                                     <p>${job.userNickname}</p>
                                                 </div>
+                                                </a>
                                             </div>
-                                        </div>
-                                        <div class="nickname">
-                                            <span class="accent">${job.userCareer}</span>
-                                            <p>${job.userNickname}</p>
-                                        </div>
-                                        </a>
-                                    </div>
 
-                                    <div class="viewAndInfo">
-                                        <div class="like">
-                                            <i class="fa-regular fa-heart"> ${job.likeyCount}</i>
-                                        </div>
-                                        <div class="comment">
-                                            <i class="fa-regular fa-comment"> ${job.commentCount}</i>
+                                            <div class="viewAndInfo">
+                                                <div class="like">
+                                                    <i class="fa-regular fa-heart"> ${job.likeyCount}</i>
+                                                </div>
+                                                <div class="comment">
+                                                    <i class="fa-regular fa-comment"> ${job.commentCount}</i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </c:forEach>
+                            <!-- 여기까지만 복사 -->
                         </div>
-                    </div>
-                    </c:forEach>
-                    <!-- 여기까지만 복사 -->
-                    </div>
 
-                    <div class="pagination">
-                        <!--<li class="page-item previous-page disable"><a class="page-link" href="#">Prev</a></li>
+                        <div class="pagination">
+                            <!--<li class="page-item previous-page disable"><a class="page-link" href="#">Prev</a></li>
       <li class="page-item current-page active"><a class="page-link" href="#">1</a></li>
       <li class="page-item dots"><a class="page-link" href="#">...</a></li>
       <li class="page-item current-page"><a class="page-link" href="#">5</a></li>
@@ -238,7 +232,7 @@
       <li class="page-item dots"><a class="page-link" href="#">...</a></li>
       <li class="page-item current-page"><a class="page-link" href="#">10</a></li>
       <li class="page-item next-page"><a class="page-link" href="#">Next</a></li>-->
-                    </div>
+                        </div>
                     </div>
 
                     <div class="main_post2">
