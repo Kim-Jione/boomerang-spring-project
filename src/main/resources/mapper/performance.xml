@@ -69,7 +69,7 @@
             CASE WHEN p.pf_price = 0 THEN FALSE ELSE TRUE END AS isPrice,
             p.pf_start_date AS pfStartDate,
             p.pf_deadline AS pfDeadline,
-            CASE WHEN p.pf_deadline >= CURDATE() THEN TRUE ELSE FALSE END AS isDead,  -- 마감 여부를 나타내는 열 추가
+            IF(DATEDIFF(p.pf_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
             p.pf_thumbnail AS pfThumbnail,
             p.pf_agerating AS pfAgeRating,
             COALESCE(v.view_count, 0) AS viewCount
@@ -166,4 +166,23 @@
         p.created_at DESC;
     </select>
 
+    <update id="updateNoTumbnail">
+        UPDATE performance
+        SET
+        pf_title = #{pfTitle},
+        pf_content = #{pfContent},
+        pf_agerating = #{pfAgerating},
+        pf_start_date = #{pfStartDate},
+        pf_deadline = #{pfDeadline},
+        pf_bookingmethod = #{pfBookingmethod},
+        pf_production = #{pfProduction},
+        pf_location = #{pfLocation},
+        pf_runningtime = #{pfRunningtime},
+        pf_price = #{pfPrice},
+        pf_genre = #{pfGenre}
+        WHERE
+        pf_id = #{pfId}
+        AND user_id = #{userId}
+        AND pf_status  != 'deleted'
+    </update>
 </mapper>
