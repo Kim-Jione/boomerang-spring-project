@@ -23,24 +23,6 @@ Object.assign(swiperEl, {
 });
 swiperEl.initialize();
 
-/////////////////////////////
-// 드랍다운 필터링 - 장르 //
-////////////////////////////
-function filterPosts() {
-  var filterGenre = document.getElementById("filterGenre").value;
-  var posts = document.getElementsByClassName("search_job_slide");
-
-  for (var i = 0; i < posts.length; i++) {
-    var genre = posts[i].getElementsByClassName("badge_genre")[0].textContent;
-
-    if (filterGenre === "all" || filterGenre === genre) {
-      posts[i].style.display = "block"; // 선택한 장르에 맞는 게시물만 표시
-    } else {
-      posts[i].style.display = "none";
-    }
-  }
-}
-
 //////////////
 // 검색기능 //
 /////////////

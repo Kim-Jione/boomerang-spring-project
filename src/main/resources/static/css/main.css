@@ -119,7 +119,7 @@
 .main_post .main_title {
   display: flex;
   align-items: center;
-  padding: 0 40px;
+  padding: 15px 40px;
   font-size: 17px;
 }
 
@@ -161,13 +161,23 @@
 }
 
 /* 검색창 */
+.main_post .filter {
+  max-width: 1230px;
+  width: 100%;
+  padding: 10px;
+  margin: 0 auto;
+}
+
 .main_post .filter .search_bar {
   display: flex;
   align-items: center;
-  width: 280px;
-  border: 1px solid #ccc;
+  max-width: 600px;
+  width: 100%;
+  height: 50px;
+  border: 1px solid #1084e9;
   border-radius: 30px;
   overflow: hidden; /* 버튼이 테두리를 벗어나지 않도록 */
+  margin: 0 auto;
 }
 
 .main_post .filter .search_bar input[type="text"] {
@@ -307,7 +317,7 @@
 }
 
 /* 기타 뱃지 */
-.project .badge_wrapper .badge_exhibition {
+.project .badge_wrapper .badge_etc {
   display: flex;
   align-items: center;
   justify-content: center;

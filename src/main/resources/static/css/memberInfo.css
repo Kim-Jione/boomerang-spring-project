@@ -223,7 +223,11 @@ body {
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
+<<<<<<< Updated upstream
   margin-bottom: 200px;
+=======
+  margin-bottom: 300px;
+>>>>>>> Stashed changes
 }
 
 .filmo_wrap .profile_con {
