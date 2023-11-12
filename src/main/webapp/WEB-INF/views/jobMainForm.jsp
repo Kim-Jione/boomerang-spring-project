@@ -30,7 +30,7 @@
             <body>
                 <div class="loader">
                     <div class="loading">
-                        <div class="text">
+                        <div class="load_text">
                             <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>
                         </div>
                         <label class="percent">100%</label>
@@ -249,7 +249,7 @@
                         <div class="filter">
                             <!-- 검색창 -->
                             <div class="search_bar">
-                                <input type="text" id="filterText" oninput="filterSearch()"
+                                <input type="text" id="filterText"
                                     placeholder="제목, 닉네임을 입력해보세요.">
                                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>

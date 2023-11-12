@@ -174,22 +174,22 @@ img {
   z-index: 9999;
 }
 
-.loading .text {
+.loading .load_text {
   text-align: center;
   padding-bottom: 20px;
 }
 
-.loading .text h2 {
+.loading .load_text h2 {
   font-family: "Single Day", cursive;
   font-size: 54px;
   color: #409ff1;
 }
 
-.loading .text .accent {
+.loading .load_text .accent {
   color: #e8749d;
 }
 
-.loading .text .accent2 {
+.loading .load_text .accent2 {
   color: #4b4b4b;
 }
 
