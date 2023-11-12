@@ -120,4 +120,9 @@ public class PerformanceService {
 		List<PfListDto> myPfList = performanceDao.findMyPfList(userId);
 		return myPfList;
     }
+
+	public void updateNoTumbnail(UpdateDto updateDto) {
+		Performance performance = updateDto.toPerformance();
+		performanceDao.updateNoTumbnail(performance);
+	}
 }

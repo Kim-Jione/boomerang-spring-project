@@ -9,6 +9,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import com.example.bumerang.web.dto.request.user.PasswdDto;
+import com.example.bumerang.web.dto.response.jobSearch.JobListDto;
+import com.example.bumerang.web.dto.response.performance.PfListDto;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -23,8 +25,6 @@ import com.example.bumerang.web.dto.SessionUserDto;
 import com.example.bumerang.web.dto.request.user.JoinDto;
 import com.example.bumerang.web.dto.request.user.LoginDto;
 import com.example.bumerang.web.dto.request.user.UpdateDto;
-import com.example.bumerang.web.dto.response.likey.LikeyJSListDto;
-import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
 import com.example.bumerang.web.dto.response.user.SearchIdDto;
 import com.example.bumerang.web.dto.response.user.SearchPwDto;
 import com.example.bumerang.web.dto.response.user.UserJobSearchDto;
@@ -107,13 +107,13 @@ public class UserService {
     }
 
     //관심 구인글 록록
-    public List<LikeyJSListDto> likeyfindAllJSList() {
-        return likeyDao.likeyFindSJList ();
+    public List<JobListDto> likeyfindAllJSList(Integer userId) {
+        return likeyDao.likeyFindSJList (userId);
     }
 
     // 관심 공연글 목록
-    public List<LikeyPFListDto> likeyfindAllPFList() {
-        return likeyDao.likeyFindPFList();
+    public List<PfListDto> likeyfindAllPFList(Integer userId) {
+        return likeyDao.likeyFindPFList(userId);
 
     }
     public List<UserJobSearchDto> myJSList(Integer userId) {
