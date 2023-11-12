@@ -36,13 +36,24 @@ $(document).ready(function () {
 // 드랍다운 필터링 - 장르 //
 ////////////////////////////
 function filterPosts() {
-  var filterGenre = document.getElementById("filterGenre").value;
+  var filterGenre = document.getElementById('filterGenre').value;
+  // var filterPosition = document.getElementById('filterPosition').value;
+  var filterGender = document.getElementById('filterGender').value;
+  var filterOpening = document.getElementById('filterOpening').value;
   var posts = document.getElementsByClassName("search_job_slide");
 
   for (var i = 0; i < posts.length; i++) {
-    var genre = posts[i].getElementsByClassName("badge_genre")[0].textContent;
+    var genre = posts[i].getElementsByClassName('badge_genre')[0].textContent;
+    // var position = posts[i].getElementsByClassName('position')[0].textContent;
+    var gender = posts[i].getElementsByClassName('gender')[0].textContent;
+    var opening = posts[i].getElementsByClassName('opening')[0].textContent;
 
-    if (filterGenre === "all" || filterGenre === genre) {
+    if (
+        (filterGenre === 'all' || filterGenre === genre) &&
+        // (filterPosition === 'all' || filterPosition === position) &&
+        (filterGender === 'all' || filterGender === gender) &&
+        (filterOpening === 'all' || filterOpening === opening)
+    ) {
       posts[i].style.display = "block"; // 선택한 장르에 맞는 게시물만 표시
     } else {
       posts[i].style.display = "none";
@@ -55,20 +66,20 @@ function filterPosts() {
 /////////////
 function filterSearch() {
   var filterText = document.getElementById("filterText").value.toLowerCase();
-  var search = document.getElementsByClassName("search_job_slide");
+  var posts = document.getElementsByClassName("search");
 
-  for (var i = 0; i < search.length; i++) {
-    var title = search[i]
+  for (var i = 0; i < posts.length; i++) {
+    var title = posts[i]
       .getElementsByClassName("project_title")[0]
       .textContent.toLowerCase();
-    var nickname = search[i]
+    var nickname = posts[i]
       .getElementsByClassName("nickname")[0]
       .textContent.toLowerCase();
 
     if (title.includes(filterText) || nickname.includes(filterText)) {
-      search[i].style.display = "block";
+      posts[i].style.display = "block";
     } else {
-      search[i].style.display = "none";
+      posts[i].style.display = "none";
     }
   }
 }
@@ -90,29 +101,18 @@ function getPageList(totalPages, page, maxLength) {
   }
 
   if (page <= maxLength - sideWidth - 1 - rightWidth) {
-    return range(1, maxLength - sideWidth - 1).concat(
-      0,
-      range(totalPages - sideWidth + 1, totalPages)
-    );
+    return range(1, maxLength - sideWidth - 1).concat(0, range(totalPages - sideWidth + 1, totalPages));
   }
 
   if (page >= totalPages - sideWidth - 1 - rightWidth) {
-    return range(1, sideWidth).concat(
-      0,
-      range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages)
-    );
+    return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
   }
 
-  return range(1, sideWidth).concat(
-    0,
-    range(page - leftWidth, page + rightWidth),
-    0,
-    range(totalPages - sideWidth + 1, totalPages)
-  );
+  return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
 }
 
 $(function () {
-  var numberOfItems = $(".search_job_slide").length;
+  var numberOfItems = $(".search").length;
   var limitPerPage = 16; //How many search_job_slide items visible per a page
   var totalPages = Math.ceil(numberOfItems / limitPerPage);
   var paginationSize = 7; //How many page elements visible in the pagination
@@ -123,14 +123,14 @@ $(function () {
 
     currentPage = whichPage;
 
-    $(".search_job_slide")
+    $(".search")
       .hide()
       .slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage)
       .show();
 
     $(".pagination li").slice(1, -1).remove();
 
-    getPageList(totalPages, currentPage, paginationSize).forEach((item) => {
+    getPageList(totalPages, currentPage, paginationSize).forEach(item => {
       $("<li>")
         .addClass("page-item")
         .addClass(item ? "current-page" : "dots")
@@ -189,6 +189,3 @@ $(function () {
     return showPage(currentPage - 1);
   });
 });
-////////////////
-// deadline //
-///////////////

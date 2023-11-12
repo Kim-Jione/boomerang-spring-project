@@ -17,6 +17,7 @@ public class JobListDto {
     private String userProfileImg;
     private String userNickname;
     private String userCareer;
+    private String jobGender;
     private Integer userId;
     private Integer viewCount; // 조회수
     private Integer commentCount; // 댓글수

@@ -70,6 +70,7 @@
         j.created_at AS createdAt,
         j.job_genre AS jobGenre,
         j.job_deadline AS jobDeadline,
+        j.job_gender AS jobGender,
         j.job_content_title AS jobContentTitle,
         u.user_profile_img AS userProfileImg,
         u.user_nickname AS userNickname,

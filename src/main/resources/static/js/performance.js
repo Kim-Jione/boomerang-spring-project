@@ -13,9 +13,9 @@ $(document).ready(function(){
 function filterPosts() {
   var filterGenre = document.getElementById('filterGenre').value;
   var filterAge = document.getElementById('filterAge').value;
-  var filterRun = document.getElementById('filterRun').value;
+  // var filterRun = document.getElementById('filterRun').value;
   var filterCharge = document.getElementById('filterCharge').value;
-  var posts = document.getElementsByClassName('poster');
+  var posts = document.getElementsByClassName('search_pf_slide');
 
   for (var i = 0; i < posts.length; i++) {
     var genre = posts[i].getElementsByClassName('category')[0].textContent;
@@ -26,14 +26,15 @@ function filterPosts() {
     if (
         (filterGenre === 'all' || filterGenre === genre) &&
         (filterAge === 'all' || filterAge === age) &&
-        // (filterRun === 'all' || filterRun === opening) &&
         (filterCharge === 'all' || filterCharge === charge)
     ) {
-      posts[i].style.display = 'block'; // 선택한 장르에 맞는 게시물만 표시
+      posts[i].classList.remove('hidden'); // 'hidden' 클래스 제거
     } else {
-      posts[i].style.display = 'none';
+      posts[i].classList.add('hidden'); // 'hidden' 클래스 추가
     }
   }
+  // 필터링 후 showPage 함수 호출
+  showPage(1);
 }
 
 //////////////
@@ -44,15 +45,20 @@ function filterSearch() {
   var posts = document.getElementsByClassName('search');
 
   for (var i = 0; i < posts.length; i++) {
-      var title = posts[i].getElementsByClassName('title')[0].textContent.toLowerCase();
-      var charge = posts[i].getElementsByClassName('category')[0].textContent.toLowerCase();
+      var title = posts[i]
+          .getElementsByClassName('title')[0]
+          .textContent.toLowerCase();
+      var charge = posts[i]
+          .getElementsByClassName('category')[0]
+          .textContent.toLowerCase();
 
       if (title.includes(filterText) || charge.includes(filterText)) {
-          posts[i].style.display = 'block';
+        posts[i].classList.remove('hidden');
       } else {
-          posts[i].style.display = 'none';
+        posts[i].classList.add('hidden');
       }
   }
+  showPage(1);
 }
 
 ////////////////
@@ -94,14 +100,25 @@ $(function(){
 
     currentPage = whichPage;
 
-    $(".search").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+    $(".search")
+        .hide()
+        .slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage)
+        .show();
 
     $(".pagination li").slice(1, -1).remove();
 
     getPageList(totalPages, currentPage, paginationSize).forEach(item => {
-      $("<li>").addClass("page-item").addClass(item ? "current-page" : "dots")
-      .toggleClass("active", item === currentPage).append($("<a>").addClass("page-link")
-      .attr({href: "javascript:void(0)"}).text(item || "...")).insertBefore(".next-page");
+      $("<li>")
+          .addClass("page-item")
+          .addClass(item ? "current-page" : "dots")
+          .toggleClass("active", item === currentPage)
+          .append(
+              $("<a>")
+                  .addClass("page-link")
+                  .attr({href: "javascript:void(0)"})
+                  .text(item || "...")
+          )
+          .insertBefore(".next-page");
     });
 
     $(".previous-page").toggleClass("disable", currentPage === 1);
@@ -110,14 +127,32 @@ $(function(){
   }
 
   $(".pagination").append(
-    $("<li>").addClass("page-item").addClass("previous-page").append($("<a>").addClass("page-link").attr({href: "javascript:void(0)"}).text("Prev")),
-    $("<li>").addClass("page-item").addClass("next-page").append($("<a>").addClass("page-link").attr({href: "javascript:void(0)"}).text("Next"))
+    $("<li>")
+        .addClass("page-item")
+        .addClass("previous-page")
+        .append(
+            $("<a>")
+                .addClass("page-link")
+                .attr({href: "javascript:void(0)"})
+                .text("Prev")
+        ),
+    $("<li>")
+        .addClass("page-item")
+        .addClass("next-page")
+        .append(
+            $("<a>")
+            .addClass("page-link")
+            .attr({href: "javascript:void(0)"})
+            .text("Next")
+        )
   );
 
   $(".poster_wrapper").show();
   showPage(1);
 
-  $(document).on("click", ".pagination li.current-page:not(.active)", function(){
+  $(document).on("click",
+      ".pagination li.current-page:not(.active)",
+      function(){
     return showPage(+$(this).text());
   });
 
@@ -129,14 +164,3 @@ $(function(){
     return showPage(currentPage - 1);
   });
 });
-
-
-
- 
-
-
-
-
-
-
-
