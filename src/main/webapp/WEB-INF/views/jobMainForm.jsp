@@ -59,7 +59,7 @@
                                 </li>
                             </ul>
 
-                            <p class="push">← ← 글을 옆으로 밀어보세요</p>
+                            <p class="push">← 글을 옆으로 밀어보세요</p>
                         </div>
 
                         <swiper-container class="hot_swiper" space-between="30" init="false">
@@ -74,11 +74,10 @@
                                         <div class="badge_wrapper">
                                             <c:choose>
                                                 <c:when test="${job.jobGenre == '장편영화'}">
-                                                    <!-- 영화 장르일 때 -->
+                                                    <!-- 장편영화 장르일 때 -->
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift">
-                                                            장편영화
-                                                        </i>
+                                                        <i class="fa-solid fa-clapperboard"></i>
+                                                        <p>장편영화</p>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -88,25 +87,24 @@
                                                     </c:if>
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '단편영화'}">
-                                                    <!-- 영화 장르일 때 -->
+                                                    <!-- 단편영화 장르일 때 -->
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift">
-                                                            단편영화
-                                                        </i>
+                                                        <i class="fa-solid fa-clapperboard"></i>
+                                                        <p>단편영화</p>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
                                                         <div class="badge_new">
-                                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                            <i class="fa-solid fa-gift"></i>
+                                                            <p>새로 올라온 글</p>
                                                         </div>
                                                     </c:if>
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '연극'}">
-                                                    <!-- 영화 장르일 때 -->
-                                                    <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift">
-                                                            연극
-                                                        </i>
+                                                    <!-- 연극 장르일 때 -->
+                                                    <div class="badge_theater">
+                                                        <i class="fa-solid fa-masks-theater"></i>
+                                                        <p>연극</p>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -116,11 +114,10 @@
                                                     </c:if>
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '드라마'}">
-                                                    <!-- 영화 장르일 때 -->
-                                                    <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift">
-                                                            드라마
-                                                        </i>
+                                                    <!-- 드라마 장르일 때 -->
+                                                    <div class="badge_drama">
+                                                        <i class="fa-solid fa-panorama"></i>
+                                                        <p>드라마</p>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -130,11 +127,10 @@
                                                     </c:if>
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '웹 컨텐츠'}">
-                                                    <!-- 영화 장르일 때 -->
-                                                    <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift">
-                                                            웹 컨텐츠
-                                                        </i>
+                                                    <!-- 웹 컨텐츠 장르일 때 -->
+                                                    <div class="badge_web_content">
+                                                        <i class="fa-solid fa-icons"></i>
+                                                        <p>웹 컨텐츠</p>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -144,11 +140,10 @@
                                                     </c:if>
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '광고'}">
-                                                    <!-- 영화 장르일 때 -->
-                                                    <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift">
-                                                            광고
-                                                        </i>
+                                                    <!-- 광고 장르일 때 -->
+                                                    <div class="badge_advertising">
+                                                        <i class="fa-solid fa-video"></i>
+                                                        <p>광고</p>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -158,11 +153,10 @@
                                                     </c:if>
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '전시'}">
-                                                    <!-- 영화 장르일 때 -->
-                                                    <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift">
-                                                            전시
-                                                        </i>
+                                                    <!-- 전시 장르일 때 -->
+                                                    <div class="badge_exhibition">
+                                                        <i class="fa-solid fa-palette"></i>
+                                                        <p>전시</p>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -172,11 +166,10 @@
                                                     </c:if>
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '기타'}">
-                                                    <!-- 영화 장르일 때 -->
+                                                    <!-- 기타 장르일 때 -->
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift">
-                                                            기타
-                                                        </i>
+                                                        <i class="fa-solid fa-paperclip"></i>
+                                                        <p>기타</p>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -212,9 +205,6 @@
                                                 <p><a href="/s/api/jobSearch/detailForm/${job.jobId}">자세히보기</a> </p>
                                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                             </div>
-                                            <div class="like_btn">
-                                                추천수: ${job.likeyCount}
-                                            </div>
                                         </div>
 
                                         <div class="border"></div>
@@ -234,11 +224,11 @@
                                             </div>
 
                                             <div class="viewAndInfo">
-                                                <div class="view">
-                                                    <i class="fa-regular fa-eye">${job.viewCount}</i>
+                                                <div class="like">
+                                                    <i class="fa-regular fa-heart"> ${job.likeyCount}</i>
                                                 </div>
                                                 <div class="comment">
-                                                    <i class="fa-regular fa-comment">${job.commentCount}</i>
+                                                    <i class="fa-regular fa-comment"> ${job.commentCount}</i>
                                                 </div>
                                             </div>
                                         </div>
@@ -317,11 +307,10 @@
                                         <div class="badge_wrapper">
                                             <c:choose>
                                                 <c:when test="${job.jobGenre == '장편영화'}">
-                                                    <!-- 영화 장르일 때 -->
+                                                    <!-- 장편영화 장르일 때 -->
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift">
-                                                            <p class="badge_genre">장편영화</p>
-                                                        </i>
+                                                        <i class="fa-solid fa-clapperboard"></i>
+                                                        <p>장편영화</p>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -331,11 +320,89 @@
                                                     </c:if>
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '단편영화'}">
-                                                    <!-- 영화 장르일 때 -->
+                                                    <!-- 단편영화 장르일 때 -->
                                                     <div class="badge_movie">
-                                                        <i class="fa-solid fa-gift">
-                                                            <p class="badge_genre">단편영화</p>
-                                                        </i>
+                                                        <i class="fa-solid fa-clapperboard"></i>
+                                                        <p>단편영화</p>
+                                                    </div>
+                                                    <c:if test="${job.isToday}">
+                                                        <!-- 새로 올라온 글일 때 -->
+                                                        <div class="badge_new">
+                                                            <i class="fa-solid fa-gift"></i>
+                                                            <p>새로 올라온 글</p>
+                                                        </div>
+                                                    </c:if>
+                                                </c:when>
+                                                <c:when test="${job.jobGenre == '연극'}">
+                                                    <!-- 연극 장르일 때 -->
+                                                    <div class="badge_theater">
+                                                        <i class="fa-solid fa-masks-theater"></i>
+                                                        <p>연극</p>
+                                                    </div>
+                                                    <c:if test="${job.isToday}">
+                                                        <!-- 새로 올라온 글일 때 -->
+                                                        <div class="badge_new">
+                                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                        </div>
+                                                    </c:if>
+                                                </c:when>
+                                                <c:when test="${job.jobGenre == '드라마'}">
+                                                    <!-- 드라마 장르일 때 -->
+                                                    <div class="badge_drama">
+                                                        <i class="fa-solid fa-panorama"></i>
+                                                        <p>드라마</p>
+                                                    </div>
+                                                    <c:if test="${job.isToday}">
+                                                        <!-- 새로 올라온 글일 때 -->
+                                                        <div class="badge_new">
+                                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                        </div>
+                                                    </c:if>
+                                                </c:when>
+                                                <c:when test="${job.jobGenre == '웹 컨텐츠'}">
+                                                    <!-- 웹 컨텐츠 장르일 때 -->
+                                                    <div class="badge_web_content">
+                                                        <i class="fa-solid fa-icons"></i>
+                                                        <p>웹 컨텐츠</p>
+                                                    </div>
+                                                    <c:if test="${job.isToday}">
+                                                        <!-- 새로 올라온 글일 때 -->
+                                                        <div class="badge_new">
+                                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                        </div>
+                                                    </c:if>
+                                                </c:when>
+                                                <c:when test="${job.jobGenre == '광고'}">
+                                                    <!-- 광고 장르일 때 -->
+                                                    <div class="badge_advertising">
+                                                        <i class="fa-solid fa-video"></i>
+                                                        <p>광고</p>
+                                                    </div>
+                                                    <c:if test="${job.isToday}">
+                                                        <!-- 새로 올라온 글일 때 -->
+                                                        <div class="badge_new">
+                                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                        </div>
+                                                    </c:if>
+                                                </c:when>
+                                                <c:when test="${job.jobGenre == '전시'}">
+                                                    <!-- 전시 장르일 때 -->
+                                                    <div class="badge_exhibition">
+                                                        <i class="fa-solid fa-palette"></i>
+                                                        <p>전시</p>
+                                                    </div>
+                                                    <c:if test="${job.isToday}">
+                                                        <!-- 새로 올라온 글일 때 -->
+                                                        <div class="badge_new">
+                                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
+                                                        </div>
+                                                    </c:if>
+                                                </c:when>
+                                                <c:when test="${job.jobGenre == '기타'}">
+                                                    <!-- 기타 장르일 때 -->
+                                                    <div class="badge_movie">
+                                                        <i class="fa-solid fa-paperclip"></i>
+                                                        <p>기타</p>
                                                     </div>
                                                     <c:if test="${job.isToday}">
                                                         <!-- 새로 올라온 글일 때 -->
@@ -345,23 +412,6 @@
                                                     </c:if>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <div class="badge_movie">
-                                                        <i class="fa-solid fa-clapperboard">
-                                                            <p class="badge_genre"> ${job.jobGenre}</p>
-                                                        </i>
-                                                    </div>
-                                                    <c:if test="${job.isToday}">
-                                                        <!-- 새로 올라온 글일 때 -->
-                                                        <div class="badge_new">
-                                                            <i class="fa-solid fa-gift"> 새로 올라온 글</i>
-                                                        </div>
-                                                    </c:if>
-                                                    <c:if test="${job.isFame}">
-                                                        <!-- 인기 글일 때 -->
-                                                        <div class="badge_new">
-                                                            <i class="fa-solid fa-gift"> 인기글</i>
-                                                        </div>
-                                                    </c:if>
                                                 </c:otherwise>
                                             </c:choose>
                                         </div>
@@ -388,32 +438,30 @@
                                                 <p><a href="/s/api/jobSearch/detailForm/${job.jobId}">자세히보기</a> </p>
                                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                             </div>
-                                            <div class="like_btn">
-                                                추천수: ${job.likeyCount}
-                                            </div>
                                         </div>
 
                                         <div class="border"></div>
 
                                         <div class="myinfo">
                                             <div class="user_info">
-                                                <div>
-                                                    <a href="/s/api/user/detailForm/${job.userId}">
+                                                <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
+                                                    <div>
                                                         <img class="icon" src="/img/${job.userProfileImg}">
-                                                    </a>
-                                                </div>
-                                                <div class="nickname">
-                                                    <span class="accent">${job.userCareer}</span>
-                                                    <p>${job.userNickname}</p>
-                                                </div>
+
+                                                    </div>
+                                                    <div class="nickname">
+                                                        <span class="accent">${job.userCareer}</span>
+                                                        <p>${job.userNickname}</p>
+                                                    </div>
+                                                </a>
                                             </div>
 
                                             <div class="viewAndInfo">
-                                                <div class="view">
-                                                    <i class="fa-regular fa-eye">${job.viewCount}</i>
+                                                <div class="like">
+                                                    <i class="fa-regular fa-heart"> ${job.likeyCount}</i>
                                                 </div>
                                                 <div class="comment">
-                                                    <i class="fa-regular fa-comment">${job.commentCount}</i>
+                                                    <i class="fa-regular fa-comment"> ${job.commentCount}</i>
                                                 </div>
                                             </div>
                                         </div>

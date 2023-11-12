@@ -41,9 +41,13 @@
 
 .banner .banner_Swiper swiper-slide img {
   display: block;
-  width: 1350px;
-  height: 330px;
+  max-width: 1360px;
+  width: 100%;
+  max-height: 330px;
+  min-height: 160px;
+  height: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 /* 인기글 타이틀 */
@@ -56,8 +60,8 @@
 .hot_post .title_area {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 28px;
+  align-items: flex-end;
+  padding: 0 40px;
   font-size: 20px;
   margin-left: 20px;
 }
@@ -73,20 +77,21 @@
 }
 
 .hot_post .title_area .push {
-  font-family: "Single Day", cursive;
+  font-family: inherit;
+  font-size: 16px;
   margin-right: 20px;
 }
 
 /* 인기글 스와이퍼 */
 .hot_swiper {
-  width: 1210px;
+  width: 1230px;
   margin: 0 auto;
   margin-top: 25px;
 }
 
 .hot_swiper swiper-slide {
   display: flex;
-  padding: 15px 25px 0;
+  padding: 15px 20px;
   width: 280px;
   height: 308px;
   background: #fff;
@@ -95,6 +100,10 @@
   position: relative;
   cursor: pointer;
   transition: 0.2s ease-in;
+}
+
+.hot_swiper swiper-slide:hover {
+  border: 2px solid #999;
 }
 
 /********************/
@@ -189,25 +198,24 @@
 .main_post .search_job_container .search_job_slide {
   display: flex;
   margin: 15px;
-  padding: 15px 25px 0;
-  width: 280px;
+  padding: 15px 20px;
+  width: 285px;
   height: 308px;
   background: #fff;
   border: 2px solid #d1d1d1;
   border-radius: 30px;
   position: relative;
-  cursor: pointer;
   transition: 0.2s ease-in;
 }
 
 .main_post .search_job_container .search_job_slide:hover {
-  border: 2px solid #a7a8a8e3;
+  border: 2px solid #999;
 }
 
 .project {
   display: flex;
   flex-direction: column;
-  width: 230px;
+  width: 250px;
 }
 
 .project .badge_wrapper {
@@ -232,8 +240,91 @@
   background: #efefef;
   color: #656565;
 }
+
+/* 연극 뱃지 */
+.project .badge_wrapper .badge_theater {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgb(143, 3, 143);
+  background-color: rgb(253, 205, 253);
+}
+
+/* 드라마 뱃지 */
+.project .badge_wrapper .badge_drama {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgb(32, 32, 150);
+  background-color: rgb(182, 182, 253)
+}
+
+/* 웹 컨텐츠 뱃지 */
+.project .badge_wrapper .badge_web_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgb(11, 105, 11);
+  background-color: rgb(211, 255, 211);
+}
+
+/* 광고 뱃지 */
+.project .badge_wrapper .badge_advertising {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgb(184, 125, 17);
+  background-color: rgb(253, 230, 187);
+}
+
+/* 전시 뱃지 */
+.project .badge_wrapper .badge_exhibition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgb(150, 56, 43);
+  background-color: rgb(252, 204, 197);
+}
+
+/* 기타 뱃지 */
+.project .badge_wrapper .badge_exhibition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  background: #efefef;
+  color: #656565;
+}
+
 /* 새로 올라온 글 뱃지 */
 .project .badge_wrapper .badge_new {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   font-size: 14px;
   border-radius: 20px;
   padding: 4px 12px;
@@ -255,17 +346,17 @@
 .deadline {
   z-index: 99;
   position: absolute;
+  left: 30px;
   text-align: center;
   display: block;
   width: 90%;
-  margin-top: 20px;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* 구인글 타이틀 */
 .project .project_title {
   font-size: 17px;
-  min-height: 50px;
+  min-height: 55px;
   line-height: 28px;
   font-weight: 500;
   letter-spacing: -0.05em;
@@ -313,9 +404,10 @@
 
 /* 자세히보기 및 좋아요 버튼 구분 */
 .project .content {
-  margin: 15px 0;
+  margin: 10px 0;
   display: flex;
   justify-content: space-between;
+  z-index: 100;
 }
 
 /* 구인글 자세히 보기 */
@@ -334,39 +426,6 @@
   font-size: 12px;
 }
 
-/* 구인글 좋아요 버튼 */
-.project .content .like_btn {
-  transform: translate(-50%, -50%);
-  margin-right: 20px;
-  margin-top: 10px;
-}
-
-.project .content .like_btn .heart {
-  position: absolute;
-  background: url("/image/img.png") no-repeat;
-  background-position: left;
-  background-size: 2900%;
-  height: 90px;
-  width: 90px;
-  top: 50%;
-  left: 21%;
-  transform: translate(-50%, -50%);
-  z-index: 99;
-}
-
-.project .content .like_btn .heart.heart-active {
-  animation: animate 0.8s steps(28) 1;
-  background-position: right;
-}
-
-@keyframes animate {
-  0% {
-    background-position: left;
-  }
-  100% {
-    background-position: right;
-  }
-}
 
 /* 구분선 */
 .project .border {
@@ -380,7 +439,7 @@
   font-weight: 500;
   justify-content: space-between;
   letter-spacing: -0.04em;
-  margin-top: 15px;
+  padding-top: 15px;
 }
 
 .project .myinfo .user_info {
@@ -397,6 +456,7 @@
   width: 45px;
   height: 45px;
   border: 1px solid gray;
+  margin-right: 6px;
 }
 
 .project .myinfo .user_info .nickname {
@@ -404,7 +464,7 @@
 }
 
 .project .myinfo .user_info .nickname .accent {
-  color: #eb2f8d;
+  color: purple;
 }
 
 .project .myinfo .viewAndInfo {
@@ -413,13 +473,23 @@
   align-items: center;
   grid-gap: 10px;
   gap: 10px;
-  margin-right: 8px;
+}
+
+.project .myinfo .viewAndInfo .fa-heart {
+  color: rgb(230, 30, 30);
+  font-size: 15px;
+  font-style: inherit;
+}
+
+.project .myinfo .viewAndInfo .fa-comment {
+  color: rgb(41, 87, 212);
+  font-size: 15px;
 }
 
 /* 페이지 이동 */
 .pagination {
   text-align: center;
-  margin: 30px 30px 60px;
+  margin: 30px 30px 150px;
   user-select: none;
 }
 
@@ -470,9 +540,9 @@
 }
 
 /* 반응형 화면 모바일 */
-@media screen and (max-width: 611px) {
+@media screen and (max-width: 1269px) {
 }
 
 /* 반응형 화면 타블렛 */
-@media screen and (min-width: 612px) and (max-width: 1023px) {
+@media screen and (min-width: 639px) and (max-width: 102px) {
 }
