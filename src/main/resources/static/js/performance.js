@@ -26,7 +26,16 @@ function filterSearch() {
   }
 }
 
-
+// 필터링
+let filter = document.querySelector("#filterText");
+filter.addEventListener("input", () => {
+  console.log(filter.value);
+  if (filter.value == "") {
+    renderPage();
+  } else {
+    filterSearch();
+  }
+});
 
 ////////////////
 // pagination //
@@ -55,6 +64,7 @@ function getPageList(totalPages, page, maxLength){
   return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
 }
 
+function renderPage() {
 $(function(){
   var numberOfItems = $(".search").length;
   var limitPerPage = 12; //How many poster_wrapper items visible per a page
@@ -102,14 +112,6 @@ $(function(){
     return showPage(currentPage - 1);
   });
 });
+}
 
-
-
- 
-
-
-
-
-
-
-
+renderPage();
