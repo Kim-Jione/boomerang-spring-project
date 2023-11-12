@@ -41,8 +41,8 @@ var count = 4;
 var per = 16;
 var loading = setInterval(animate, 7);
 function animate() {
-  if (count == 100 && per == 400) {
-    text.style.fontSize = "70px";
+  if(count == 100 && per == 400){
+  
     text.classList.add("add");
     clearInterval(loading);
   } else {
