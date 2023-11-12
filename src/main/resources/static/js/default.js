@@ -11,7 +11,7 @@ function menu2Toggle() {
 }
 
 function mediaToggle() {
-  mediaMenu.classList.toggle("active");
+  mediaMenu.classList.toggle("act");
 }
 function isClickToggle(event) {
   if (!toggleMenu.parentElement.contains(event.target)) {

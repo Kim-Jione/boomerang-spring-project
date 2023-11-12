@@ -102,7 +102,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <span class="material-symbols-outlined">theater_comedy</span>
+                                        <span class="material-icons icons-size">theater_comedy</span>
                                         <a href="/performance/mainForm">
                                             전시·공연
                                         </a>
