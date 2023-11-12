@@ -17,8 +17,7 @@
             href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
             rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!--제이쿼리 3.4.1 버전-->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
     <title>BusanMate with performance</title>
 </head>
 
@@ -198,11 +197,11 @@
                         <h3 class="title">${pf.pfTitle}</h3>
                         <h4 class="location">${pf.pfLocation}</h4>
                         <h5 class="date">${pf.pfStartDate} ~ ${pf.pfDeadline}</h5>
-                        <c:if test="${pf.isDead == true}">
-                            <div class="opening">상영마감</div>
+                        <c:if test="${pf.isDead}">
+                            <div class="opening" hidden="hidden">상영중</div>
                         </c:if>
                         <c:if test="${pf.isDead == false}">
-                            <div class="opening">상영중</div>
+                            <div class="opening" hidden="hidden">상영마감</div>
                         </c:if>
                     </div>
                 </article>

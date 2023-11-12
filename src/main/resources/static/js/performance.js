@@ -13,19 +13,20 @@ $(document).ready(function(){
 function filterPosts() {
   var filterGenre = document.getElementById('filterGenre').value;
   var filterAge = document.getElementById('filterAge').value;
-  // var filterRun = document.getElementById('filterRun').value;
+  var filterRun = document.getElementById('filterRun').value;
   var filterCharge = document.getElementById('filterCharge').value;
   var posts = document.getElementsByClassName('search_pf_slide');
 
   for (var i = 0; i < posts.length; i++) {
     var genre = posts[i].getElementsByClassName('category')[0].textContent;
     var age = posts[i].getElementsByClassName('age')[0].textContent;
-    // var opening = posts[i].getElementsByClassName('opening')[0].textContent;
+    var opening = posts[i].getElementsByClassName('opening')[0].textContent;
     var charge = posts[i].getElementsByClassName('charge')[0].textContent;
 
     if (
         (filterGenre === 'all' || filterGenre === genre) &&
         (filterAge === 'all' || filterAge === age) &&
+        (filterRun === 'all' || filterRun === opening) &&
         (filterCharge === 'all' || filterCharge === charge)
     ) {
       posts[i].classList.remove('hidden'); // 'hidden' 클래스 제거
@@ -163,4 +164,5 @@ $(function(){
   $(".previous-page").on("click", function(){
     return showPage(currentPage - 1);
   });
+
 });

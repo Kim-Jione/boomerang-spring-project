@@ -37,7 +37,7 @@ $(document).ready(function () {
 ////////////////////////////
 function filterPosts() {
   var filterGenre = document.getElementById('filterGenre').value;
-  // var filterPosition = document.getElementById('filterPosition').value;
+  var filterPosition = document.getElementById('filterPosition').value;
   var filterGender = document.getElementById('filterGender').value;
   var filterOpening = document.getElementById('filterOpening').value;
   var posts = document.getElementsByClassName("search_job_slide");
@@ -54,11 +54,13 @@ function filterPosts() {
         (filterGender === 'all' || filterGender === gender) &&
         (filterOpening === 'all' || filterOpening === opening)
     ) {
-      posts[i].style.display = "block"; // 선택한 장르에 맞는 게시물만 표시
+      posts[i].classList.remove('hidden'); // 'hidden' 클래스 제거
     } else {
-      posts[i].style.display = "none";
+      posts[i].classList.add('hidden'); // 'hidden' 클래스 추가
     }
   }
+  // 필터링 후 showPage 함수 호출
+  showPage(1);
 }
 
 //////////////
@@ -66,7 +68,7 @@ function filterPosts() {
 /////////////
 function filterSearch() {
   var filterText = document.getElementById("filterText").value.toLowerCase();
-  var posts = document.getElementsByClassName("search");
+  var posts = document.getElementsByClassName("search_job_slide");
 
   for (var i = 0; i < posts.length; i++) {
     var title = posts[i]
@@ -112,7 +114,7 @@ function getPageList(totalPages, page, maxLength) {
 }
 
 $(function () {
-  var numberOfItems = $(".search").length;
+  var numberOfItems = $(".search_job_slide").length;
   var limitPerPage = 16; //How many search_job_slide items visible per a page
   var totalPages = Math.ceil(numberOfItems / limitPerPage);
   var paginationSize = 7; //How many page elements visible in the pagination
@@ -123,7 +125,7 @@ $(function () {
 
     currentPage = whichPage;
 
-    $(".search")
+    $(".search_job_slide")
       .hide()
       .slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage)
       .show();
