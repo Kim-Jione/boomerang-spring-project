@@ -1,5 +1,6 @@
 const toggleMenu = document.querySelector(".menu");
 const toggleMenu2 = document.querySelector(".menu2");
+const mediaMenu = document.querySelector(".media_menu");
 function menuToggle() {
   //   const toggleMenu = document.querySelector(".menu");
   toggleMenu.classList.toggle("active");
@@ -7,6 +8,10 @@ function menuToggle() {
 function menu2Toggle() {
   //   const toggleMenu = document.querySelector(".menu2");
   toggleMenu2.classList.toggle("active");
+}
+
+function mediaToggle() {
+  mediaMenu.classList.toggle("active");
 }
 function isClickToggle(event) {
   if (!toggleMenu.parentElement.contains(event.target)) {
