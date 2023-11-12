@@ -197,7 +197,7 @@
                                                 <div class="charge">무료</div>
                                             </c:if>
                                         </div>
-                                        <h3 class="title">${pf.pfTitle}</h3>
+                                        <h3 class="title">${pf.pfTitle}${pf.isDead}</h3>
                                         <h4 class="location">${pf.pfLocation}</h4>
                                         <h5 class="date">${pf.pfStartDate} ~ ${pf.pfDeadline}</h5>
                                         <c:if test="${pf.isDead == true}">
