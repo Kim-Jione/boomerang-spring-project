@@ -23,7 +23,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   <body>
     <div class="loader">
       <div class="loading">
-        <div class="text">
+        <div class="load_text">
           <h2>
             부산 <span class="accent">메이트</span
             ><span class="accent2">랑</span>
