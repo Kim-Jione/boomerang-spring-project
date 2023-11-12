@@ -88,6 +88,9 @@
                                     </div>
                                 </li>
                             </ul>
+                            <a href="#" class="navbar__toogleBtn">
+                                <i class="fa-solid fa-bars"></i>
+                            </a>
                         </c:when>
                         <c:otherwise>
                             <a href="/user/loginForm" class="login">로그인</a>
