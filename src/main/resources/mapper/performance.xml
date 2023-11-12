@@ -146,7 +146,7 @@
             CASE WHEN p.pf_price = 0 THEN FALSE ELSE TRUE END AS isPrice,
             p.pf_start_date AS pfStartDate,
             p.pf_deadline AS pfDeadline,
-            CASE WHEN p.pf_deadline >= CURDATE() THEN TRUE ELSE FALSE END AS isDead,
+            IF(DATEDIFF(p.pf_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
             p.pf_thumbnail AS pfThumbnail,
             p.pf_agerating AS pfAgeRating,
             COALESCE(v.view_count, 0) AS viewCount

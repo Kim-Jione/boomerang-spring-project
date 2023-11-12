@@ -207,8 +207,8 @@ public class UserController {
             return "404";
         }
         LikeyRespDto userLikeyList = new LikeyRespDto();
-        List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList();
-        List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList();
+        List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList(userId);
+        List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList(userId);
         userLikeyList.setLJSList(LikeyJSDetail);
         userLikeyList.setLPFList(LikeyPFDetail);
         model.addAttribute("LikeyJSDetail", LikeyJSDetail);

@@ -24,7 +24,7 @@ public interface LikeyDao {
 
     public Likey findByRecent();
 
-    List<LikeyJSListDto> likeyFindSJList();
+    List<LikeyJSListDto> likeyFindSJList(Integer userId);
 
-    List<LikeyPFListDto> likeyFindPFList();
+    List<LikeyPFListDto> likeyFindPFList(Integer userId);
 }

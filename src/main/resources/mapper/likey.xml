@@ -76,7 +76,7 @@
         FROM view
         GROUP BY job_id
         ) v ON j.job_id = v.job_id
-        WHERE u.user_id = 1
+        WHERE u.user_id = #{userId}
         ORDER BY l.created_at DESC;
     </select>
     <select id="likeyFindPFList" resultType="com.example.bumerang.web.dto.response.likey.LikeyPFListDto">
@@ -116,7 +116,7 @@
 
         v ON p.pf_id = v.pf_id
         INNER JOIN (
-        SELECT * FROM likey l WHERE l.user_id = 1
+        SELECT * FROM likey l WHERE l.user_id = #{userId}
         )
 
         l ON p.pf_id = l.pf_id

@@ -107,13 +107,13 @@ public class UserService {
     }
 
     //관심 구인글 록록
-    public List<LikeyJSListDto> likeyfindAllJSList() {
-        return likeyDao.likeyFindSJList ();
+    public List<LikeyJSListDto> likeyfindAllJSList(Integer userId) {
+        return likeyDao.likeyFindSJList (userId);
     }
 
     // 관심 공연글 목록
-    public List<LikeyPFListDto> likeyfindAllPFList() {
-        return likeyDao.likeyFindPFList();
+    public List<LikeyPFListDto> likeyfindAllPFList(Integer userId) {
+        return likeyDao.likeyFindPFList(userId);
 
     }
     public List<UserJobSearchDto> myJSList(Integer userId) {
