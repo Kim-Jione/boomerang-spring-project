@@ -163,7 +163,7 @@
                                                         <div class="badge_new">
                                                             <i class="fa-solid fa-gift"> 새로 올라온 글</i>
                                                         </div>
-                                                    </c:if>
+                                                    </c:if> 
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '기타'}">
                                                     <!-- 기타 장르일 때 -->
