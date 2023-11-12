@@ -95,7 +95,7 @@ body {
   line-height: 1;
 }
 
-/* .pro_right .name .edit_btn {
+.pro_right .name .edit_btn {
   border: none;
   vertical-align: middle;
   font-size: 13px;
@@ -104,7 +104,7 @@ body {
   border-radius: 100px;
   padding: 0px 15px;
   margin-left: 10px;
-} */
+}
 
 .pro_right .profile_con {
   display: flex;
@@ -172,7 +172,7 @@ body {
 
 .pro_right .profile_con .pro_info .pro_info2 li,
 .pro_right .profile_con .pro_txt .pro_data {
-  height: 25px;
+  height: 31px;
   line-height: 1.2;
   font-weight: 600;
   font-size: 16px;
@@ -223,7 +223,7 @@ body {
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
-  margin-bottom: 65px;
+  margin-bottom: 200px;
 }
 
 .filmo_wrap .profile_con {
@@ -410,7 +410,7 @@ textarea {
   resize: none;
 }
 
-.pro_right .name #user_nickname {
+.pro_right .name #userNickname {
   width: 140px;
   height: 55px;
   margin-right: 20px;
