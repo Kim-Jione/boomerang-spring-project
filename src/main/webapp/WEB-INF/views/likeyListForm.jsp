@@ -180,7 +180,7 @@
 
             <!-- 전시 공연 정보 -->
             <section class="poster_wrapper">
-              <c:forEach var="pf" items="${myPfList}">
+              <c:forEach var="pf" items="${pfList}">
                 <article class="poster search">
                   <div class="img"></div>
                   <a href="/s/api/performance/detailForm/${pf.pfId}">

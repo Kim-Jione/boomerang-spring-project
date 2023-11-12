@@ -1,22 +1,5 @@
 package com.example.bumerang.web;
 
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.example.bumerang.domain.user.User;
 import com.example.bumerang.service.JobSearchService;
 import com.example.bumerang.service.PerformanceService;
@@ -28,18 +11,19 @@ import com.example.bumerang.web.dto.request.user.PasswdDto;
 import com.example.bumerang.web.dto.request.user.UpdateDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
 import com.example.bumerang.web.dto.response.jobSearch.JobListDto;
-import com.example.bumerang.web.dto.response.likey.LikeyJSListDto;
-import com.example.bumerang.web.dto.response.likey.LikeyPFListDto;
-import com.example.bumerang.web.dto.response.likey.LikeyRespDto;
 import com.example.bumerang.web.dto.response.performance.PfListDto;
 import com.example.bumerang.web.dto.response.user.SearchIdDto;
 import com.example.bumerang.web.dto.response.user.SearchPwDto;
-import com.example.bumerang.web.dto.response.user.UserCreateRespoDto;
-import com.example.bumerang.web.dto.response.user.UserJobSearchDto;
-import com.example.bumerang.web.dto.response.user.UserPerformanceDto;
 import com.example.bumerang.web.dto.response.user.UserRespDto;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -203,16 +187,13 @@ public class UserController {
     public String likeyListForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = principal.getUserId();
-        if(userId == null){
+        if(userId == null){ 
             return "404";
         }
-        LikeyRespDto userLikeyList = new LikeyRespDto();
-        List<LikeyJSListDto> LikeyJSDetail = userService.likeyfindAllJSList(userId);
-        List<LikeyPFListDto> LikeyPFDetail = userService.likeyfindAllPFList(userId);
-        userLikeyList.setLJSList(LikeyJSDetail);
-        userLikeyList.setLPFList(LikeyPFDetail);
-        model.addAttribute("LikeyJSDetail", LikeyJSDetail);
-        model.addAttribute("LikeyPFDetail", LikeyPFDetail);
+        List<JobListDto> LikeyJSDetail = userService.likeyfindAllJSList(userId);
+        List<PfListDto> LikeyPFDetail = userService.likeyfindAllPFList(userId);
+        model.addAttribute("jobList", LikeyJSDetail);
+        model.addAttribute("pfList", LikeyPFDetail);
         return "likeyListForm";
     }
 
