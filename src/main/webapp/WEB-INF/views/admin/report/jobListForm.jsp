@@ -48,7 +48,7 @@
                                             <tr>
                                                 <td>${loop.index + 1}</td>
                                                 <td>
-                                                    <a href="/s/api/auth/report/jobDetailForm/${job.jobId}">
+                                                    <a href="/s/api/auth/report/jobDetailForm/${job.jobId}" class="nav-link collapsed">
                                                         ${job.jobContentTitle}
                                                     </a>
                                                 </td>

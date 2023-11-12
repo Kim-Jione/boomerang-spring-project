@@ -48,7 +48,7 @@
                                             <tr>
                                                 <td>${loop.index + 1}</td>
                                                 <td>
-                                                    <a href="/s/api/auth/report/pfDetailForm/${pf.pfId}">
+                                                    <a href="/s/api/auth/report/pfDetailForm/${pf.pfId}" class="nav-link collapsed">
                                                         ${pf.pfTitle}
                                                     </a>
                                                 </td>

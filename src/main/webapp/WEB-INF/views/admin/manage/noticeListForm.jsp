@@ -43,7 +43,7 @@
                                         <c:forEach var="notice" items="${noticeList}" varStatus="loop">
                                             <tr>
                                                 <td>${loop.index + 1}</td>
-                                                <td> <a
+                                                <td> <a class="nav-link collapsed"
                                                         href="/s/api/auth/manage/noticeDetailForm/${notice.noticeId}">${notice.noticeTitle}</a>
                                                 </td>
                                                 <td>${notice.noticeType}</td>
@@ -51,7 +51,7 @@
                                                 <td>${notice.createdAt}</td>
                                                 <td>
                                                     <a href="/s/api/auth/manage/noticeUpdateForm/${notice.noticeId}"
-                                                        class="btn btn-warning">수정</a>
+                                                        class="btn btn-warning nav-link">수정</a>
                                                 </td>
                                                 <td>
                                                     <button onclick="remove(${notice.noticeId})" class="btn btn-danger">

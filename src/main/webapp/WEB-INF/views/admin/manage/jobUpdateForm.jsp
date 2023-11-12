@@ -131,10 +131,10 @@
                             jobDeadline: $("#jobDeadline").val(),
                             jobStatus: $("#jobStatus").val(),
                             jobPositionTitle: selectedPositions,
-                            jobId: $("#jobId").val()
+                            jobId: $("#jobId").val(),
                         };
 
-                        $.ajax("/manage/jobUpdate", {
+                        $.ajax("/s/api/auth/manage/jobUpdate", {
                             type: "PUT",
                             dataType: "json",
                             data: JSON.stringify(data),

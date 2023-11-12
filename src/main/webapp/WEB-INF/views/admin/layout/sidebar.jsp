@@ -5,10 +5,12 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="/s/api/auth/admin/indexForm">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            <!-- 대쉬보드 -->
-                        </a>
+                        <a class="nav-link collapsed" href="/jobSearch/mainForm"
+                                             aria-expanded="false" aria-controls="collapsePages">
+                                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt" > </i></div>
+                                             부메랑돌아가기
+                                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                             </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                             aria-expanded="false" aria-controls="collapsePages">
@@ -19,7 +21,7 @@
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/s/api/auth/manage/userListForm">사용자 관리</a>
+                                <a class="nav-link" href="/s/api/auth/manage/userListForm   ">사용자 관리</a>
                                 <a class="nav-link" href="/s/api/auth/manage/jobListForm">구인정보글 관리</a>
                                 <a class="nav-link" href="/s/api/auth/manage/pfListForm">공연홍보글 관리</a>
                                 <a class="nav-link" href="/s/api/auth/manage/noticeListForm">공지사항 관리</a>

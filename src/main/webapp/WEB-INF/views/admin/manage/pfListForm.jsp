@@ -45,7 +45,7 @@
                                         <c:forEach var="pf" items="${pfList}" varStatus="loop">
                                             <tr>
                                                 <td>${loop.index + 1}</td>
-                                                <td><a href="/s/api/auth/manage/pfDetailForm/${pf.pfId}">${pf.pfTitle}</a></td>
+                                                <td><a href="/s/api/auth/manage/pfDetailForm/${pf.pfId}" class="nav-link collapsed">${pf.pfTitle}</a></td>
                                                 <td>${pf.pfGenre}</td>
                                                 <td>${pf.pfView}</td>
                                                 <td>${pf.pfStatus}</td>

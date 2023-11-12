@@ -41,6 +41,10 @@ public class AdminController {
     @GetMapping("/s/api/auth/manage/userListForm")
     public String findUserListForm(Model model) {
         List<UserListDto> userList = adminService.findUserList();
+        for(UserListDto item : userList ){
+            System.out.println(item.getUserId());
+            System.out.println(item.getUserNickname());
+        }
         model.addAttribute("userList",userList);
         return "admin/manage/userListForm";
     }
