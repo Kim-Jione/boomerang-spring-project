@@ -124,7 +124,7 @@ public class UserController {
     @GetMapping("s/api/user/detailForm/{userId}")
     public String detailForm(@PathVariable Integer userId, Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
-        UserRespDto userDetail = userService.findByDetail(principal.getUserId());
+        UserRespDto userDetail = userService.findByDetail(userId);
         model.addAttribute("userDetail",userDetail);
         if(userId == null){
             return "404";

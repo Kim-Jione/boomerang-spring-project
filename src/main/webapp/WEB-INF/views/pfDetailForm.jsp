@@ -38,7 +38,14 @@
                                     <div class="pf_label">
                                         <div class="user_info">
                                             <a href="/s/api/user/detailForm/${job.userId}">
-                                                <img class="pf_img" src="/img/${principal.userProfileImg}" />
+                                                <c:choose>
+                                                    <c:when test="${pf.userProfileImg==null}">
+                                                        <img class="pf_img" src="/image/noProfileImg.jpg" />
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <img class="pf_img" src="/img/${pf.userProfileImg}">
+                                                    </c:otherwise>
+                                                </c:choose>
                                                 <p class="pf_nickname">${pf.userNickname}</p>
                                             </a>
                                             <p class="line">|</p>
@@ -141,7 +148,14 @@
                             <form>
                                 <div class="write_comment">
                                     <div class="comment_img center_display">
-                                        <img src="/img/${principal.userProfileImg}" alt="image" />
+                                        <c:choose>
+                                            <c:when test="${principal.userProfileImg==null}">
+                                                <img src="/image/noProfileImg.jpg" alt="image" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="/img/${principal.userProfileImg}" alt="image" />
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                     <div class="form_info center_display">
                                         <textarea type="text" name="comment" id="commentContent"
@@ -164,7 +178,14 @@
                                             <div class="pic center_display">
                                                 <a href="/s/api/user/detailForm/${comment.userId}"
                                                     style="display: flex;">
-                                                    <img src="/img/${comment.userProfileImg}" alt="image" />
+                                                    <c:choose>
+                                                        <c:when test="${comment.userProfileImg==null}">
+                                                            <img src="/image/noProfileImg.jpg" alt="image" />
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="/img/${comment.userProfileImg}" alt="image" />
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </a>
                                             </div>
                                             <div class="comment_info_txt">

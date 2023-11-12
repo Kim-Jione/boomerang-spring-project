@@ -25,7 +25,14 @@
             <div class="container">
               <div class="pro_left">
                 <div class="pro_img">
-                  <img src="/img/${userDetail.userProfileImg}" />
+                  <c:choose>
+                    <c:when test="${userDetail.userProfileImg==null}">
+                      <img src="/image/noProfileImg.jpg" />
+                    </c:when>
+                    <c:otherwise><img src="/img/${userDetail.userProfileImg}" />
+                    </c:otherwise>
+                  </c:choose>
+
                 </div>
               </div>
               <div class="pro_right">

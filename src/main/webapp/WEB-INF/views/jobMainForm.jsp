@@ -163,7 +163,7 @@
                                                         <div class="badge_new">
                                                             <i class="fa-solid fa-gift"> 새로 올라온 글</i>
                                                         </div>
-                                                    </c:if> 
+                                                    </c:if>
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '기타'}">
                                                     <!-- 기타 장르일 때 -->
@@ -213,7 +213,14 @@
                                             <div class="user_info">
                                                 <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
                                                     <div>
-                                                        <img class="icon" src="/img/${job.userProfileImg}">
+                                                        <c:choose>
+                                                            <c:when test="${job.userProfileImg==null}">
+                                                                <img class="icon" src="/image/noProfileImg.jpg" />
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <img class="icon" src="/img/${job.userProfileImg}">
+                                                            </c:otherwise>
+                                                        </c:choose>
 
                                                     </div>
                                                     <div class="nickname">
@@ -409,7 +416,14 @@
                                             <div class="user_info">
                                                 <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
                                                     <div>
-                                                        <img class="icon" src="/img/${job.userProfileImg}">
+                                                        <c:choose>
+                                                            <c:when test="${job.userProfileImg==null}">
+                                                                <img class="icon" src="/image/noProfileImg.jpg" />
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <img class="icon" src="/img/${job.userProfileImg}">
+                                                            </c:otherwise>
+                                                        </c:choose>
 
                                                     </div>
                                                     <div class="nickname">

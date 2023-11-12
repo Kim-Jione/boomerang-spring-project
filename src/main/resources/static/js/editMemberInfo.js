@@ -27,18 +27,16 @@ function existingOption() {
   });
   fieldList.forEach((fieldList) => {
     if (fieldList.value == field.value) {
-      fieldList.selected =true;
+      fieldList.selected = true;
     }
   });
   ageList.forEach((ageList) => {
-
     if (ageList.value == age.value) {
       ageList.selected = true;
     }
   });
   careerList.forEach((careerList) => {
     if (careerList.value == career.value) {
-      
       careerList.selected = true;
     }
   });
@@ -85,7 +83,7 @@ function addFilmo() {
   let filmoCol = document.createElement("tr");
   filmoCol.id = filmoNum;
   filmoCol.innerHTML =
-    '<tr><td><input id="title" type="text" /></td><td><input id="prod_year" type="number" value="" /></td><td><input id="role" type="text" value=""/></td><td><input id="genre" type="text" value="" /></td><td><input id="director" type="text" value="" /></td><td><input id="history" type="text" value="" /></td><td><button class="filmo_del">삭제</button></td></tr>';
+    '<tr><td><input id="up_1_title" class="upTitle" type="text" type="text" /></td><td><input id="up_1_prod_year" class="upProdYear" type="number" value="" /></td><td><input id="up_1_role" class="upRole" type="text" value=""/></td><td><input id="up_1_genre" class="upGenre" type="text" value="" /></td><td><input id="up_1_director" class="upDirector" type="text" value="" /></td><td><input id="up_1_history" class="upHistory" type="text" value="" /></td><td><button class="filmo_del">삭제</button></td></tr>';
 
   filmoTable.appendChild(filmoCol);
   activeDelBtns(); //생성한 행의 삭제버튼도 활성화
@@ -103,7 +101,6 @@ function activeDelBtns() {
   }
 
   filmoNum -= 1;
-  
 }
 
 //삭제버튼 초기 활성화
@@ -182,20 +179,20 @@ function updateUser() {
     data.userPortfolio.push(portfolioItem);
   }
 
-    $.ajax("/s/api/user/update", {
-      type: "PUT",
-      dataType: "json",
-      data: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).done((res) => {
-      if (res.code == 1) {
-        alert(res.msg);
-        location.href = "/s/api/user/detailForm/" + data.userId;
-      } else {
-        alert(res.msg);
-        return false;
-      }
-    });
+  $.ajax("/s/api/user/update", {
+    type: "PUT",
+    dataType: "json",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).done((res) => {
+    if (res.code == 1) {
+      alert(res.msg);
+      location.href = "/s/api/user/detailForm/" + data.userId;
+    } else {
+      alert(res.msg);
+      return false;
+    }
+  });
 }
