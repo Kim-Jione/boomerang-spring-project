@@ -3,16 +3,16 @@
 ///////////////////////////
 const swiperEl = document.querySelector(".hot_swiper");
 Object.assign(swiperEl, {
-  slidesPerView: 1,
-  spaceBetween: 10,
+  slidesPerView: 4,
+  spaceBetween: 30,
 
   breakpoints: {
     640: {
-      slidesPerView: 2,
+      slidesPerView: 4,
       spaceBetween: 30
     },
     900: {
-      slidesPerView: 3,
+      slidesPerView: 4,
       spaceBetween: 30
     },
     1340: {
@@ -22,15 +22,6 @@ Object.assign(swiperEl, {
   }
 });
 swiperEl.initialize();
-
-//////////////////////
-// 좋아요 애니메이션 //     //추후 아이디값 넣어서 변하게 설정 할것
-/////////////////////
-$(document).ready(function () {
-  $(".heart").click(function () {
-    $(".heart").toggleClass("heart-active");
-  });
-});
 
 /////////////////////////////
 // 드랍다운 필터링 - 장르 //
@@ -115,7 +106,7 @@ $(function () {
   var numberOfItems = $(".search_job_slide").length;
   var limitPerPage = 16; //How many search_job_slide items visible per a page
   var totalPages = Math.ceil(numberOfItems / limitPerPage);
-  var paginationSize = 7; //How many page elements visible in the pagination
+  var paginationSize = 5; //How many page elements visible in the pagination
   var currentPage;
 
   function showPage(whichPage) {

@@ -325,6 +325,14 @@ header {
   color: #1084e9;
 }
 
+.navbar__toogleBtn {
+  display: none;
+  position: absolute;
+  right: 3vw;
+  font-size: 28px;
+  color: rgb(43, 107, 180);
+}
+
 /*******************/
 /* 드랍 다운 메뉴 */
 /******************/
@@ -561,4 +569,37 @@ footer .wave#wave4 {
   100% {
     background-position-x: 1000px;
   }
+}
+
+/* 반응형 화면 모바일 */
+@media screen and (max-width: 1269px) {
+  .navbar {
+    justify-content: center;
+  }
+
+  .navbar .bot_menu {
+    left: 4vw;
+  }
+
+  .navbar__toogleBtn {
+    display: block;
+  }
+  
+  .navbar .linkes {
+    display: none;
+  }
+}
+
+/* 반응형 화면 모바일 */
+@media screen and (max-width: 639px) {
+  .navbar .bot_menu .menubar {
+    display: none;
+  }
+
+  .navbar .bot_menu {
+    left: 25vw;
+  }
+
+
+  
 }
