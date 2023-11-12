@@ -142,8 +142,8 @@
             userRole: $("#userRole").val(),
             userId: $("#userId").val()
         };
-        console.log(data);
-        $.ajax("/s/api/auth/manage/userUpdate", {
+
+        $.ajax("/s/api/auth/manage/userUpdate/${userId}", {
             type: "PUT",
             dataType: "json",
             data: JSON.stringify(data),

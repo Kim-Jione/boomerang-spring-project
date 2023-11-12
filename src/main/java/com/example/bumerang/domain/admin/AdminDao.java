@@ -13,8 +13,6 @@ public interface AdminDao {
 
     List<PfListDto> findPfList();
 
-    List<NoticeListDto> findNoticeList();
-
     UserRespDto findByUserId(Integer userId);
 
     void updateUser(UserDetailDto userDetailDto);
@@ -77,4 +75,5 @@ public interface AdminDao {
 
     List<BoardCountOfWeekDto> boardCountOfWeek();
 
+    List<NoticeListDto> findNoticeList();
 }

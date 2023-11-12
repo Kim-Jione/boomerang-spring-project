@@ -49,12 +49,14 @@
                                 <th>연령대</th>
                                 <th>경력</th>
                                 <th>학력</th>
+                                <th>계정상태</th>
                                 <th>수정</th>
                                 <th>삭제</th>
                              </tr>
                          </tfoot>
                          <tbody>
                             <c:forEach var="userList" items="${userList}"  varStatus="loop">
+                            <input type="hidden" class="userId" value="${userList.userId}">
                                  <tr>
                                     <td>${loop.index + 1}</td>
                                     <td>${userList.userLoginId}</td>
@@ -67,8 +69,9 @@
                                     <td>${userList.userAge}</td>
                                     <td>${userList.userCareer}</td>
                                     <td>${userList.userEducation}</td>
+                                    <td>${userList.userStatus}</td>
                                     <td><button class="btn btn-warning"> <a href="/s/api/auth/manage/userUpdateForm/${userList.userId}" class="nav-link collapsed">수정</a> </button></td>
-                                    <td><button class="btn btn-danger" onclick="script"> 삭제 </button></td>
+                                    <td><button class="btn btn-danger" onclick="remove('${userList.userId}')"> 삭제 </button></td>
                                  </tr>
                             </c:forEach>
                          </tbody>
@@ -80,5 +83,24 @@
 </div>
 </div>
 <script>
+    function remove(userIdValue) {
+        if (confirm("구인글을 삭제하시겠습니까?")) {
+            $.ajax({
+                url: "/s/api/auth/manage/userDelete/" + userIdValue,
+                type: "DELETE",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            }).done((res) => {
+                if (res.code == 1) {
+                    alert(res.msg);
+                    location.href = "/s/api/auth/manage/userListForm";
+                } else {
+                    alert(res.msg);
+                    location.reload();
+                }
+            });
+        }
+    }
 </script>
 <%@ include file="../layout/footer.jsp" %>

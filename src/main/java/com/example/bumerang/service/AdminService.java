@@ -180,4 +180,5 @@ public class AdminService {
         List<BoardCountOfWeekDto> boardCountOfWeek = adminDao.boardCountOfWeek();
         return boardCountOfWeek;
     }
+
 }

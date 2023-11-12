@@ -53,6 +53,7 @@ public class AdminController {
     @GetMapping("/s/api/auth/manage/userDetailForm/{userId}")
     public String findUserDetailForm(@PathVariable Integer userId, Model model) {
         UserRespDto userPS = adminService.findByUserId(userId);
+        System.err.println("userId: " +userPS.getUserId());
         model.addAttribute("userPS",userPS);
         return "admin/manage/userDetailForm";
     }
@@ -66,7 +67,7 @@ public class AdminController {
     }
 
     // 사용자 수정하기 기능
-    @PutMapping("/s/api/auth/manage/userUpdate")
+    @PutMapping("/s/api/auth/manage/userUpdate/{userId}")
     public @ResponseBody CMRespDto<?> updateUser(@RequestBody UserDetailDto userDetailDto ) {
         UserRespDto userPS = adminService.updateUser(userDetailDto);
         return new CMRespDto<>(1, "사용자 정보 수정 성공.", userPS);
@@ -154,8 +155,15 @@ public class AdminController {
     @DeleteMapping("/s/api/auth/manage/pfDelete/{pfId}")
     public @ResponseBody CMRespDto<?> deletePf(@PathVariable Integer pfId) {
         PfDetailDto pfPS = adminService.deletePf(pfId);
+        System.out.println(pfPS.getPfId());
         return new CMRespDto<>(1, "공연글 정보 삭제 성공.", pfPS);
     }
+
+//    @DeleteMapping("/s/api/auth/manage/noticeDelete")
+//    public  @ResponseBody CMRespDto<?> deleteNotice(@PathVariable Integer noticeId){
+//        NoticeListDto noticePS = adminService.deleNotive(noticeId);
+//        return new CMRespDto<>(1, "공지글 정보 삭제 성공.", noticePS);
+//    }
 
     // 공지글 관리 목록 화면
     @GetMapping("/s/api/auth/manage/noticeListForm")
@@ -195,13 +203,6 @@ public class AdminController {
         model.addAttribute("jobPS",jobPS);
         return "admin/report/jobDetailForm";
     }
-    // 구인글 신고 삭제하기 기능
-//    @DeleteMapping("/s/api/auth/report/jobDelete/{jobId}")
-//    public @ResponseBody CMRespDto<?> deleteJob(@PathVariable Integer jobId) {
-//        JobDetailDto jobPS = adminService.deleteJob(jobId);
-//        return new CMRespDto<>(1, "구인글 정보 삭제 성공.", jobPS);
-//    }
-
 
     // 공연글 신고 목록 화면
     @GetMapping("/s/api/auth/report/pfListForm")

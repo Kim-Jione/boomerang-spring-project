@@ -59,9 +59,7 @@
                                                         class="btn btn-warning">수정</a>
                                                 </td>
                                                 <td>
-                                                    <button onclick="remove(${job.jobId})" class="btn btn-danger">
-                                                        삭제
-                                                    </button>
+                                                    <button onclick="remove('${job.jobId}')" class="btn btn-danger">  삭제 </button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -77,7 +75,7 @@
                 function remove(jobId) {
                     if (confirm("구인글을 삭제하시겠습니까?")) {
                         $.ajax({
-                            url: "/manage/jobDelete/" + jobId,
+                            url: "/s/api/auth/manage/jobDelete/" + jobId,
                             type: "DELETE",
                             headers: {
                                 "Content-Type": "application/json; charset=utf-8",

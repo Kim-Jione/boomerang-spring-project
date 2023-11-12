@@ -55,9 +55,7 @@
                                                         class="btn btn-warning">수정</a>
                                                 </td>
                                                 <td>
-                                                    <button onclick="remove(${pf.pfId})" class="btn btn-danger">
-                                                        삭제
-                                                    </button>
+                                                    <button onclick="remove('${pf.pfId}')" class="btn btn-danger">  삭제 </button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -72,23 +70,23 @@
         </div>
         <script>
             function remove(pfId) {
-                if (confirm("공연글을 삭제하시겠습니까?")) {
-                    $.ajax({
-                        url: "/manage/pfDelete/" + pfId,
-                        type: "DELETE",
-                        headers: {
-                            "Content-Type": "application/json; charset=utf-8",
-                        },
-                    }).done((res) => {
-                        if (res.code == 1) {
-                            alert(res.msg);
-                            location.href = "/s/api/auth/manage/pfListForm";
-                        } else {
-                            alert(res.msg);
-                            location.reload();
-                        }
-                    });
+                    if (confirm("구인글을 삭제하시겠습니까?")) {
+                        $.ajax({
+                            url: "/s/api/auth/manage/pfDelete/" + pfId,
+                            type: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json; charset=utf-8",
+                            },
+                        }).done((res) => {
+                            if (res.code == 1) {
+                                alert(res.msg);
+                                location.href = "/s/api/auth/manage/pfListForm";
+                            } else {
+                                alert(res.msg);
+                                location.reload();
+                            }
+                        });
+                    }
                 }
-            }
         </script>
             <%@ include file="../layout/footer.jsp" %>
