@@ -181,7 +181,7 @@
         COUNT(DISTINCT v.view_id) AS viewCount,
         COUNT(DISTINCT c.comment_id) AS commentCount,
         COUNT(DISTINCT l.likey_id) AS likeyCount,
-        js.job_status = 'dead' AS isDead,
+        IF(DATEDIFF(js.job_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
         DATE(js.created_at) = CURRENT_DATE() AS isToday,
         COUNT(DISTINCT l.likey_id) <![CDATA[ >= ]]> 10 AS isFame
         FROM

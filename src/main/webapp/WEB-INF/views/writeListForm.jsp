@@ -178,49 +178,56 @@
 
             <!-- 전시 공연 정보 -->
             <section class="poster_wrapper">
-              
-              <c:forEach var="best" items="${myPfList}">
-                <img class="medal" src="${best.imgPath}">
+
+              <c:forEach var="pf" items="${myPfList}">
                 <article class="poster search">
                   <div class="img"></div>
-                  <a href="/s/api/performance/detailForm/${best.pfId}">
-                    <img src="/img/${best.pfThumbnail}" class="img-hover">
+                  <a href="/s/api/performance/detailForm/${pf.pfId}">
+                    <c:if test="${pf.isDead}">
+                      <img src="/image/deadlinePf.png" class="deadline">
+                    </c:if>
+                    <img src="/img/${pf.pfThumbnail}" class="img-hover">
                   </a>
                   <div class="info">
                     <div class="badge">
-                      <c:if test="${best.pfGenre == '단편영화' || best.pfGenre == '장편영화'}">
-                        <div class="category forMusical">${best.pfGenre}</div>
+                      <c:if test="${pf.pfGenre == '단편영화' || pf.pfGenre == '장편영화'}">
+                        <div class="category forMusical">${pf.pfGenre}</div>
                       </c:if>
-                      <c:if test="${best.pfGenre == '연극'}">
-                        <div class="category forMusical">${best.pfGenre}</div>
+                      <c:if test="${pf.pfGenre == '연극'}">
+                        <div class="category forMusical">${pf.pfGenre}</div>
                       </c:if>
-                      <c:if test="${best.pfGenre == '드라마'}">
-                        <div class="category forMusical">${best.pfGenre}</div>
+                      <c:if test="${pf.pfGenre == '드라마'}">
+                        <div class="category forMusical">${pf.pfGenre}</div>
                       </c:if>
-                      <c:if test="${best.pfGenre == '웹 컨텐츠'}">
-                        <div class="category forMusical">${best.pfGenre}</div>
+                      <c:if test="${pf.pfGenre == '웹 컨텐츠'}">
+                        <div class="category forMusical">${pf.pfGenre}</div>
                       </c:if>
-                      <c:if test="${best.pfGenre == '광고'}">
-                        <div class="category forMusical">${best.pfGenre}</div>
+                      <c:if test="${pf.pfGenre == '광고'}">
+                        <div class="category forMusical">${pf.pfGenre}</div>
                       </c:if>
-                      <c:if test="${best.pfGenre == '전시'}">
-                        <div class="category forMusical">${best.pfGenre}</div>
+                      <c:if test="${pf.pfGenre == '전시'}">
+                        <div class="category forMusical">${pf.pfGenre}</div>
                       </c:if>
-                      <c:if test="${best.pfGenre == '기타'}">
-                        <div class="category forMusical">${best.pfGenre}</div>
+                      <c:if test="${pf.pfGenre == '기타'}">
+                        <div class="category forMusical">${pf.pfGenre}</div>
                       </c:if>
-                      <div class="age for19">${best.pfAgerating}</div>
-                      <c:if test="${best.isPrice == true}">
+                      <div class="age for19">${pf.pfAgerating}</div>
+                      <c:if test="${pf.isPrice == true}">
                         <div class="charge">유료</div>
                       </c:if>
-
-                      <c:if test="${best.isPrice == false}">
+                      <c:if test="${pf.isPrice == false}">
                         <div class="charge">무료</div>
                       </c:if>
                     </div>
-                    <h3 class="title">${best.pfTitle}</h3>
-                    <h4 class="location">${best.pfLocation}</h4>
-                    <h5 class="date">${best.pfStartDate} ~ ${best.pfDeadline}</h5>
+                    <h3 class="title">${pf.pfTitle}${pf.isDead}</h3>
+                    <h4 class="location">${pf.pfLocation}</h4>
+                    <h5 class="date">${pf.pfStartDate} ~ ${pf.pfDeadline}</h5>
+                    <c:if test="${pf.isDead == true}">
+                      <div class="opening" hidden>상영중</div>
+                    </c:if>
+                    <c:if test="${pf.isDead == false}">
+                      <div class="opening" hidden>상영마감</div>
+                    </c:if>
                   </div>
                 </article>
               </c:forEach>
