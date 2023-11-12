@@ -9,6 +9,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="/css/mainform.css" />
     <link rel="stylesheet" href="/css/default.css" />
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
@@ -16,6 +18,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+                    href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+                    rel="stylesheet">
+
 
     <title>Document</title>
   </head>
@@ -114,6 +120,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       <button id="next"><i class="fa-solid fa-angle-right"></i></button>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
     <script src="/js/default.js"></script>
     <script src="/js/mainform.js"></script>
   </body>
