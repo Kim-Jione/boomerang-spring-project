@@ -104,8 +104,8 @@
                           <input id="user_height" type="number" value="${userDetail.userHeight}" />cm
                         </li>
                         <li>
+                          <input type="hidden" id="userForm" value="${userDetail.userForm}">
                           <select class="dropdown" name="user_form" id="user_form">
-                            <option class="user_form" value="${userDetail.userForm}">${userDetail.userForm}</option>
                             <option class="user_form" value="아주 마름">아주 마름</option>
                             <option class="user_form" value="마름">마름</option>
                             <option class="user_form" value="보통">보통</option>
@@ -115,8 +115,8 @@
                           </select>
                         </li>
                         <li>
+                          <input type="hidden" id="userTone" value="${userDetail.userTone}">
                           <select class="dropdown" name="user_tone" id="user_tone">
-                            <option class="user_tone" value="${userDetail.userTone}">${userDetail.userTone}</option>
                             <option class="user_tone" value="아주 낮음">아주 낮음</option>
                             <option class="user_tone" value="낮음">낮음</option>
                             <option class="user_tone" value="보통">보통</option>
@@ -125,8 +125,8 @@
                           </select>
                         </li>
                         <li>
+                          <input type="hidden" id="userField" value="${userDetail.uftitles}">
                           <select class="dropdown" name="user_field" id="user_field">
-                            <option class="user_field" value="${userDetail.uftitles}">${userDetail.uftitles}</option>
                             <option class="user_field" value="배우">배우</option>
                             <option class="user_field" value="연출">연출</option>
                             <option class="user_field" value="음향">음향</option>
@@ -137,8 +137,8 @@
                           </select>
                         </li>
                         <li>
+                          <input type="hidden" id="userAge" value="${userDetail.userAge}">
                           <select class="dropdown" name="user_age" id="user_age">
-                            <option class="user_age">${userDetail.userAge}</option>
                             <option class="user_age" value="10대 미만">10대 미만</option>
                             <option class="user_age" value="10대">10대</option>
                             <option class="user_age" value="20대">20대</option>
@@ -165,8 +165,9 @@
                     <div class="pro_txt">
                       <p class="pro_tit">CAREER</p>
                       <p class="pro_data">
+                        <input type="hidden" id="userCareer" value="${userDetail.userCareer}">
                         <select class="dropdown" id="user_career">
-                          <option class="user_career" value="${userDetail.userCareer}">${userDetail.userCareer}</option>
+                          
                           <option class="user_career" value="신입">신입</option>
                           <option class="user_career" value="1년차">1년차</option>
                           <option class="user_career" value="2년차">2년차</option>

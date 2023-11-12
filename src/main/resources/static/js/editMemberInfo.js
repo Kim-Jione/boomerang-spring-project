@@ -1,7 +1,6 @@
 //유저의 기존 옵션을 선택하기
 function existingOption() {
   //html에 출력되어 있는 user의 기존정보 문자열을 가져옴
-  const gender = document.querySelector("#userGender");
   const form = document.querySelector("#userForm");
   const tone = document.querySelector("#userTone");
   const field = document.querySelector("#userField");
@@ -9,7 +8,6 @@ function existingOption() {
   const career = document.querySelector("#userCareer");
 
   //html에 input/option 버튼을 가져옴
-  const genderList = document.querySelectorAll(".user_gender");
   const formList = document.querySelectorAll(".user_form");
   const toneList = document.querySelectorAll(".user_tone");
   const fieldList = document.querySelectorAll(".user_field");
@@ -17,37 +15,36 @@ function existingOption() {
   const careerList = document.querySelectorAll(".user_career");
 
   //기존정보와 input/option값을 비교해 같으면 해당 input/option에 체크/셀렉트
-  genderList.forEach((genderList) => {
-    if (genderList.value == gender.value) {
-      genderList.checked == true;
-    }
-  });
   formList.forEach((formList) => {
     if (formList.value == form.value) {
-      formList.selected == true;
+      formList.selected = true;
     }
   });
   toneList.forEach((toneList) => {
     if (toneList.value == tone.value) {
-      toneList.selected == true;
+      toneList.selected = true;
     }
   });
   fieldList.forEach((fieldList) => {
     if (fieldList.value == field.value) {
-      fieldList.selected == true;
+      fieldList.selected =true;
     }
   });
   ageList.forEach((ageList) => {
+
     if (ageList.value == age.value) {
-      ageList.selected == true;
+      ageList.selected = true;
     }
   });
   careerList.forEach((careerList) => {
     if (careerList.value == career.value) {
-      careerList.selected == true;
+      
+      careerList.selected = true;
     }
   });
 }
+
+existingOption();
 
 // window.addEventListener("load", Forminit);
 
@@ -106,7 +103,7 @@ function activeDelBtns() {
   }
 
   filmoNum -= 1;
-  console.log(filmoNum);
+  
 }
 
 //삭제버튼 초기 활성화
