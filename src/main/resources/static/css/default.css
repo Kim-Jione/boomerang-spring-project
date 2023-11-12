@@ -594,7 +594,7 @@ footer .wave#wave4 {
     font : 20px
   }
 
-  .media_menu.active {
+  .media_menu.act {
     opacity: 1;
     visibility: visible;
   }
@@ -657,7 +657,7 @@ footer .wave#wave4 {
     font-size: 22px;
   }
 
-  .media_menu.active {
+  .media_menu.act {
     opacity: 1;
     visibility: visible;
   }
