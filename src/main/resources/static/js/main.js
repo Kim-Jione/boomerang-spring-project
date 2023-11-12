@@ -46,6 +46,17 @@ function filterSearch() {
   }
 }
 
+// 필터링
+let filter = document.querySelector("#filterText");
+filter.addEventListener("input", () => {
+  console.log(filter.value);
+  if (filter.value == "") {
+    renderPage();
+  } else {
+    filterSearch();
+  }
+});
+
 ////////////////
 // pagination //
 ///////////////
@@ -84,84 +95,86 @@ function getPageList(totalPages, page, maxLength) {
   );
 }
 
-$(function () {
-  var numberOfItems = $(".search_job_slide").length;
-  var limitPerPage = 16; //How many search_job_slide items visible per a page
-  var totalPages = Math.ceil(numberOfItems / limitPerPage);
-  var paginationSize = 5; //How many page elements visible in the pagination
-  var currentPage;
-
-  function showPage(whichPage) {
-    if (whichPage < 1 || whichPage > totalPages) return false;
-
-    currentPage = whichPage;
-
-    $(".search_job_slide")
-      .hide()
-      .slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage)
-      .show();
-
-    $(".pagination li").slice(1, -1).remove();
-
-    getPageList(totalPages, currentPage, paginationSize).forEach((item) => {
+function renderPage() {
+  $(function () {
+    var numberOfItems = $(".search_job_slide").length;
+    var limitPerPage = 16; //How many search_job_slide items visible per a page
+    var totalPages = Math.ceil(numberOfItems / limitPerPage);
+    var paginationSize = 5; //How many page elements visible in the pagination
+    var currentPage;
+  
+    function showPage(whichPage) {
+      if (whichPage < 1 || whichPage > totalPages) return false;
+  
+      currentPage = whichPage;
+  
+      $(".search_job_slide")
+        .hide()
+        .slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage)
+        .show();
+  
+      $(".pagination li").slice(1, -1).remove();
+  
+      getPageList(totalPages, currentPage, paginationSize).forEach((item) => {
+        $("<li>")
+          .addClass("page-item")
+          .addClass(item ? "current-page" : "dots")
+          .toggleClass("active", item === currentPage)
+          .append(
+            $("<a>")
+              .addClass("page-link")
+              .attr({ href: "javascript:void(0)" })
+              .text(item || "...")
+          )
+          .insertBefore(".next-page");
+      });
+  
+      $(".previous-page").toggleClass("disable", currentPage === 1);
+      $(".next-page").toggleClass("disable", currentPage === totalPages);
+      return true;
+    }
+  
+    $(".pagination").append(
       $("<li>")
         .addClass("page-item")
-        .addClass(item ? "current-page" : "dots")
-        .toggleClass("active", item === currentPage)
+        .addClass("previous-page")
         .append(
           $("<a>")
             .addClass("page-link")
             .attr({ href: "javascript:void(0)" })
-            .text(item || "...")
+            .text("Prev")
+        ),
+      $("<li>")
+        .addClass("page-item")
+        .addClass("next-page")
+        .append(
+          $("<a>")
+            .addClass("page-link")
+            .attr({ href: "javascript:void(0)" })
+            .text("Next")
         )
-        .insertBefore(".next-page");
+    );
+  
+    $(".search_job_container").show();
+    showPage(1);
+  
+    $(document).on(
+      "click",
+      ".pagination li.current-page:not(.active)",
+      function () {
+        return showPage(+$(this).text());
+      }
+    );
+  
+    $(".next-page").on("click", function () {
+      return showPage(currentPage + 1);
     });
-
-    $(".previous-page").toggleClass("disable", currentPage === 1);
-    $(".next-page").toggleClass("disable", currentPage === totalPages);
-    return true;
-  }
-
-  $(".pagination").append(
-    $("<li>")
-      .addClass("page-item")
-      .addClass("previous-page")
-      .append(
-        $("<a>")
-          .addClass("page-link")
-          .attr({ href: "javascript:void(0)" })
-          .text("Prev")
-      ),
-    $("<li>")
-      .addClass("page-item")
-      .addClass("next-page")
-      .append(
-        $("<a>")
-          .addClass("page-link")
-          .attr({ href: "javascript:void(0)" })
-          .text("Next")
-      )
-  );
-
-  $(".search_job_container").show();
-  showPage(1);
-
-  $(document).on(
-    "click",
-    ".pagination li.current-page:not(.active)",
-    function () {
-      return showPage(+$(this).text());
-    }
-  );
-
-  $(".next-page").on("click", function () {
-    return showPage(currentPage + 1);
+  
+    $(".previous-page").on("click", function () {
+      return showPage(currentPage - 1);
+    });
   });
+}
 
-  $(".previous-page").on("click", function () {
-    return showPage(currentPage - 1);
-  });
-});
-////////////////
-// deadline //
-///////////////
+renderPage();
+

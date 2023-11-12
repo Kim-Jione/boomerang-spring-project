@@ -254,13 +254,12 @@
 
           </div>
 
-          <footer class="footer">
-            <div class="left_cover"></div>
-          </footer>
+          <%@ include file="layout/footer.jsp" %>
 
           <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
           <script src="/js/myLikey.js"></script>
           <script src="/js/default.js"></script>
+          
       </body>
 
       </html>
