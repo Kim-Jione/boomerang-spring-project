@@ -30,4 +30,6 @@ public interface PerformanceDao {
 
     public List<PfListDto> findMyPfList(Integer userId);
 
+    public void updateNoTumbnail(Performance performance);
+
 }

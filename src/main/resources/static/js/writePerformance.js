@@ -164,55 +164,96 @@ $("#pfUpdateBtn").click(() => {
 });
 
 function update() {
-  let pfGenre = document.querySelector("#pfGenre").innerText;
-  let pfAgerating = document.querySelector("#pfAgerating").innerText;
-  let pfId = $("#pfId").val();
+  if ($("#pfThumbnail")[0].files[0] == null) {
+    // 썸네일 수정 안할때
+    let pfGenre = document.querySelector("#pfGenre").innerText;
+    let pfAgerating = document.querySelector("#pfAgerating").innerText;
+    let pfId = $("#pfId").val();
 
-  let quillContent = document.querySelector(".ql-editor");
-  let pfContent = quillContent.innerHTML;
-  let formData = new FormData();
-  let data = {
-    pfTitle: $("#pfTitle").val(),
-    pfStartDate: $("#pfStartDate").val(),
-    pfDeadline: $("#pfDeadline").val(),
-    pfAgerating: pfAgerating,
-    pfRunningtime: $("#pfRunningtime").val(),
-    pfBookingmethod: $("#pfBookingmethod").val(),
-    pfGenre: pfGenre,
-    pfProduction: $("#pfProduction").val(),
-    pfPrice: $("#pfPrice").val(),
-    pfLocation: $("#pfLocation").val(),
-    pfContent: pfContent,
-    userId: $("#userId").val(),
-    pfThumbnail: $("#pfThumbnail"),
-    pfId: $("#pfId").val()
-  };
+    let quillContent = document.querySelector(".ql-editor");
+    let pfContent = quillContent.innerHTML;
+    let data = {
+      pfTitle: $("#pfTitle").val(),
+      pfStartDate: $("#pfStartDate").val(),
+      pfDeadline: $("#pfDeadline").val(),
+      pfAgerating: pfAgerating,
+      pfRunningtime: $("#pfRunningtime").val(),
+      pfBookingmethod: $("#pfBookingmethod").val(),
+      pfGenre: pfGenre,
+      pfProduction: $("#pfProduction").val(),
+      pfPrice: $("#pfPrice").val(),
+      pfLocation: $("#pfLocation").val(),
+      pfContent: pfContent,
+      userId: $("#userId").val(),
+      pfId: $("#pfId").val()
+    };
 
-  alert("userId" + data.userId);
-  alert("pfId" + data.pfId);
+    $.ajax("/s/api/performance/update/noThumbnail", {
+      type: "PUT",
+      dataType: "json",
+      data: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).done((res) => {
+      if (res.code == 1) {
+        alert("썸네일 변경 없는 공연글로 수정되었습니다.");
+        location.href = "/s/api/performance/detailForm/" + pfId;
+      } else {
+        alert("게시글 입력 정보를 다시 확인해주세요.");
+        return false;
+      }
+    });
+  } else {
+    let pfGenre = document.querySelector("#pfGenre").innerText;
+    let pfAgerating = document.querySelector("#pfAgerating").innerText;
+    let pfId = $("#pfId").val();
 
-  formData.append("thumbnail", $("#pfThumbnail")[0].files[0]);
-  formData.append(
-    "updateDto",
-    new Blob([JSON.stringify(data)], { type: "application/json" })
-  );
+    let quillContent = document.querySelector(".ql-editor");
+    let pfContent = quillContent.innerHTML;
+    let formData = new FormData();
+    let data = {
+      pfTitle: $("#pfTitle").val(),
+      pfStartDate: $("#pfStartDate").val(),
+      pfDeadline: $("#pfDeadline").val(),
+      pfAgerating: pfAgerating,
+      pfRunningtime: $("#pfRunningtime").val(),
+      pfBookingmethod: $("#pfBookingmethod").val(),
+      pfGenre: pfGenre,
+      pfProduction: $("#pfProduction").val(),
+      pfPrice: $("#pfPrice").val(),
+      pfLocation: $("#pfLocation").val(),
+      pfContent: pfContent,
+      userId: $("#userId").val(),
+      pfId: $("#pfId").val()
+    };
 
-  $.ajax("/s/api/performance/update", {
-    type: "PUT",
-    dataType: "json",
-    data: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).done((res) => {
-    if (res.code == 1) {
-      alert(res.msg);
-      location.href = "/s/api/performance/detailForm/" + pfId;
-    } else {
-      alert(res.msg);
-      return false;
-    }
-  });
+    alert("userId" + data.userId);
+    alert("pfId" + data.pfId);
+    alert("pfThumbnail" + $("#pfThumbnail")[0].files[0]);
+
+    formData.append("thumbnail", $("#pfThumbnail")[0].files[0]);
+    formData.append(
+      "updateDto",
+      new Blob([JSON.stringify(data)], { type: "application/json" })
+    );
+
+    $.ajax("/s/api/performance/update", {
+      type: "PUT",
+      data: formData,
+      processData: false, // 쿼리스트링 방지
+      contentType: false,
+      enctype: "multipart/form-data"
+    }).done((res) => {
+      if (res.code == 1) {
+        alert(res.msg);
+        location.href = "/s/api/performance/detailForm/" + pfId;
+      } else {
+        alert(res.msg);
+        return false;
+      }
+    });
+  }
 }
 
 var selectedFile = null; // Selected file information
