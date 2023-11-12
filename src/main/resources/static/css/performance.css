@@ -305,6 +305,161 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}/******************/
+/*  포스터 카드  */
+/*****************/
+
+.poster_wrapper {
+  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1310px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.poster {
+  margin: 25px 25px;
+  background-color: #fff;
+  width: 267px;
+  height: 380px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border-left: 0.4px solid #eee;
+  box-shadow: 12px 13px 10px -7px #0000001a;
+  transition: all 0.4s cubic-bezier(0.1, 0.8, 0, 1);
+}
+
+/* 포스터 이미지 및 호버 */
+.poster .img {
+  height: 235px;
+}
+
+.poster .img-hover {
+  object-fit: cover;
+  width: 100%;
+  height: 235px;
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  transition: 0.2s all ease-out;
+}
+
+.poster:hover {
+  box-shadow: 0 30px 18px -8px #0000001a;
+  transform: scale(1.05);
+}
+
+.poster:hover .img-hover:hover {
+  height: 100%;
+  opacity: 1;
+}
+
+/* 포스터 정보 표시 */
+.poster .info {
+  z-index: 2;
+  padding: 12px 20px 20px 20px;
+}
+
+.poster .info .badge {
+  display: flex;
+  gap: 10px;
+}
+
+/* 뱃지 타이틀 */
+
+/* 뱃지 장르 표시 */
+.poster .info .badge .category {
+  font-size: 12px;
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+.forMovie {
+  background: #efefef;
+  color: #656565;
+}
+
+.forTheater {
+  color: rgb(143, 3, 143);
+  background-color: rgb(253, 205, 253);
+}
+
+.forDrama {
+  color: rgb(32, 32, 150);
+  background-color: rgb(182, 182, 253)
+}
+
+.forWebContent {
+  color: rgb(11, 105, 11);
+  background-color: rgb(211, 255, 211);
+}
+
+.forAdvertising {
+  color: rgb(184, 125, 17);
+  background-color: rgb(253, 230, 187);
+}
+
+.forExhibition {
+  color: rgb(150, 56, 43);
+  background-color: rgb(252, 204, 197);
+}
+
+.forEtc {
+  background: #efefef;
+  color: #656565;
+}
+
+/* 뱃지 연령대 표시 */
+.poster .info .badge .age {
+  font-size: 12px;
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+.forAge {
+  color: #3e86f5;
+  background: #e9eefa;
+}
+
+.poster .info .badge .charge {
+  font-size: 12px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  background: #fdf7a5;
+  color: #000000;
+}
+
+/*************************************/
+.poster .info .title {
+  font-size: 22px;
+  margin-top: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.poster .info .location {
+  font-size: 15px;
+  margin-top: 3px;
+  color: #11528b;
+}
+
+.poster .info .date {
+  font-size: 12px;
+  margin-top: 12px;
+  color: #818181;
+}
+
+/* 구인글 좋아요 버튼 */
+.like_plus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* 페이지 이동 */
