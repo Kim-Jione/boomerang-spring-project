@@ -257,7 +257,7 @@
                             <!-- 검색창 -->
                             <div class="search_bar">
                                 <input type="text" id="filterText"
-                                    placeholder="제목, 닉네임을 입력해보세요.">
+                                    placeholder="제목, 닉네임, 장르를 입력해보세요.">
                                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </div>

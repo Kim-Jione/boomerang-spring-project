@@ -37,8 +37,11 @@ function filterSearch() {
     var nickname = search[i]
       .getElementsByClassName("nickname")[0]
       .textContent.toLowerCase();
+    var genre = search[i]
+      .getElementsByClassName("badge_wrapper")[0]
+      .textContent.toLowerCase();
 
-    if (title.includes(filterText) || nickname.includes(filterText)) {
+    if (title.includes(filterText) || nickname.includes(filterText) || genre.includes(filterText)) {
       search[i].style.display = "block";
     } else {
       search[i].style.display = "none";
