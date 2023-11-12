@@ -27,7 +27,13 @@
             <div class="container">
               <div class="pro_left">
                 <div class="pro_img">
-                  <img src="/img/${userDetail.userProfileImg}" />
+                  <c:choose>
+                    <c:when test="${userDetail.userProfileImg==null}">
+                      <img src="/image/noProfileImg.jpg" />
+                    </c:when>
+                    <c:otherwise><img src="/img/${userDetail.userProfileImg}" />
+                    </c:otherwise>
+                  </c:choose>
                 </div>
                 <div class="edit_btn">
                   <button class="edit_img">사진 변경</button>
@@ -167,7 +173,7 @@
                       <p class="pro_data">
                         <input type="hidden" id="userCareer" value="${userDetail.userCareer}">
                         <select class="dropdown" id="user_career">
-                          
+
                           <option class="user_career" value="신입">신입</option>
                           <option class="user_career" value="1년차">1년차</option>
                           <option class="user_career" value="2년차">2년차</option>

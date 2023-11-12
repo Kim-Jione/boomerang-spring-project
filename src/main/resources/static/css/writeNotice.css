@@ -6,6 +6,7 @@
 .board_write_wrap {
   width: 1350px;
   margin-top: 100px;
+  margin-bottom: 250px;
 }
 
 /* 상단부 */
@@ -60,7 +61,7 @@
 
 /* 게시물 쓰기창 */
 .board_write {
-  width: 100%;
+  width: 1350px;
   border-top: 2px solid black;
 }
 

@@ -22,7 +22,6 @@ body {
     #d3e9f6 298px,
     rgba(255, 255, 255, 0) 0
   ); */
-
   /* margin: 100px; */
   width: 100%;
 }
@@ -223,7 +222,7 @@ body {
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
-  margin-bottom: 200px;
+  margin-bottom: 300px;
 }
 
 .filmo_wrap .profile_con {

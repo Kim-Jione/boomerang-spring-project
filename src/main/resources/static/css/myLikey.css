@@ -97,6 +97,84 @@
   background: #efefef;
   color: #656565;
 }
+
+/* 연극 뱃지 */
+.project .badge_wrapper .badge_theater {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgb(143, 3, 143);
+  background-color: rgb(253, 205, 253);
+}
+
+/* 드라마 뱃지 */
+.project .badge_wrapper .badge_drama {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgb(32, 32, 150);
+  background-color: rgb(182, 182, 253)
+}
+
+/* 웹 컨텐츠 뱃지 */
+.project .badge_wrapper .badge_web_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgb(11, 105, 11);
+  background-color: rgb(211, 255, 211);
+}
+
+/* 광고 뱃지 */
+.project .badge_wrapper .badge_advertising {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgb(184, 125, 17);
+  background-color: rgb(253, 230, 187);
+}
+
+/* 전시 뱃지 */
+.project .badge_wrapper .badge_exhibition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: rgb(150, 56, 43);
+  background-color: rgb(252, 204, 197);
+}
+
+/* 기타 뱃지 */
+.project .badge_wrapper .badge_etc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  background: #efefef;
+  color: #656565;
+}
 /* 새로 올라온 글 뱃지 */
 .project .badge_wrapper .badge_new {
   font-size: 14px;
@@ -115,6 +193,16 @@
   color: #999;
   font-weight: 500;
   margin-top: 10px;
+}
+
+.deadline {
+  z-index: 99;
+  position: absolute;
+  left: 30px;
+  text-align: center;
+  display: block;
+  width: 90%;
+  opacity: 0.6;
 }
 
 /* 구인글 타이틀 */
@@ -259,7 +347,7 @@
 }
 
 .project .myinfo .user_info .nickname .accent {
-  color: #eb2f8d;
+  color: purple;
 }
 
 .project .myinfo .viewAndInfo {
@@ -268,7 +356,17 @@
   align-items: center;
   grid-gap: 10px;
   gap: 10px;
-  margin-right: 8px;
+}
+
+.project .myinfo .viewAndInfo .fa-heart {
+  color: rgb(230, 30, 30);
+  font-size: 15px;
+  font-style: inherit;
+}
+
+.project .myinfo .viewAndInfo .fa-comment {
+  color: rgb(41, 87, 212);
+  font-size: 15px;
 }
 
 /* 페이지 이동 */
@@ -382,6 +480,7 @@
   height: 235px;
   position: absolute;
   top: 0;
+  z-index: 3;
   transition: 0.2s all ease-out;
 }
 
@@ -420,14 +519,34 @@
   color: #656565;
 }
 
-.forMusical {
+.forTheater {
   color: rgb(143, 3, 143);
   background-color: rgb(253, 205, 253);
 }
 
-.forTheater {
-  color: #097275;
-  background-color: #ebf9fa;
+.forDrama {
+  color: rgb(32, 32, 150);
+  background-color: rgb(182, 182, 253)
+}
+
+.forWebContent {
+  color: rgb(11, 105, 11);
+  background-color: rgb(211, 255, 211);
+}
+
+.forAdvertising {
+  color: rgb(184, 125, 17);
+  background-color: rgb(253, 230, 187);
+}
+
+.forExhibition {
+  color: rgb(150, 56, 43);
+  background-color: rgb(252, 204, 197);
+}
+
+.forEtc {
+  background: #efefef;
+  color: #656565;
 }
 
 /* 뱃지 연령대 표시 */
@@ -437,21 +556,9 @@
   padding: 4px 12px;
 }
 
-.forAll {
-  color: green;
-  background-color: rgb(216, 250, 216);
-}
-.for12 {
-  color: rgb(52, 52, 253);
-  background-color: #c8e4fd;
-}
-.for15 {
-  color: #f57309;
-  background: #f7e6f6;
-}
-.for19 {
-  color: red;
-  background-color: rgb(255, 212, 212);
+.forAge {
+  color: #3e86f5;
+  background: #e9eefa;
 }
 
 .poster .info .badge .charge {
@@ -485,10 +592,17 @@
   color: #818181;
 }
 
+/* 구인글 좋아요 버튼 */
+.like_plus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* 페이지 이동 */
 .pagination2 {
   text-align: center;
-  margin: 30px 30px 60px;
+  margin: 30px 30px 200px;
   user-select: none;
 }
 

@@ -11,7 +11,7 @@ function menu2Toggle() {
 }
 
 function mediaToggle() {
-  mediaMenu.classList.toggle("active");
+  mediaMenu.classList.toggle("act");
 }
 function isClickToggle(event) {
   if (!toggleMenu.parentElement.contains(event.target)) {
@@ -34,15 +34,18 @@ $(document).ready(function () {
   $(".loader").delay(900).fadeOut();
 });
 //로딩바
-var text = document.querySelector(".text");
+if(document.querySelector(".load_text")){
+var text = document.querySelector(".load_text");
 var percent = document.querySelector(".percent");
 var progress = document.querySelector(".progress");
 var count = 4;
 var per = 16;
 var loading = setInterval(animate, 7);
+
+}
 function animate() {
-  if (count == 100 && per == 400) {
-    text.style.fontSize = "70px";
+  if(count == 100 && per == 400){
+  
     text.classList.add("add");
     clearInterval(loading);
   } else {

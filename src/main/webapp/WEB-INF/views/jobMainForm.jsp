@@ -30,7 +30,7 @@
             <body>
                 <div class="loader">
                     <div class="loading">
-                        <div class="text">
+                        <div class="load_text">
                             <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>
                         </div>
                         <label class="percent">100%</label>
@@ -163,11 +163,11 @@
                                                         <div class="badge_new">
                                                             <i class="fa-solid fa-gift"> 새로 올라온 글</i>
                                                         </div>
-                                                    </c:if> 
+                                                    </c:if>
                                                 </c:when>
                                                 <c:when test="${job.jobGenre == '기타'}">
                                                     <!-- 기타 장르일 때 -->
-                                                    <div class="badge_movie">
+                                                    <div class="badge_etc">
                                                         <i class="fa-solid fa-paperclip"></i>
                                                         <p>기타</p>
                                                     </div>
@@ -213,7 +213,14 @@
                                             <div class="user_info">
                                                 <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
                                                     <div>
-                                                        <img class="icon" src="/img/${job.userProfileImg}">
+                                                        <c:choose>
+                                                            <c:when test="${job.userProfileImg==null}">
+                                                                <img class="icon" src="/image/noProfileImg.jpg" />
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <img class="icon" src="/img/${job.userProfileImg}">
+                                                            </c:otherwise>
+                                                        </c:choose>
 
                                                     </div>
                                                     <div class="nickname">
@@ -247,46 +254,9 @@
                         </ul>
 
                         <div class="filter">
-                            <div class="dropdown_list">
-                                <select id="filterGenre" onchange="filterPosts()" class="dropdown">
-                                    <option>장르</option>
-                                    <option value="단편영화">단편영화</option>
-                                    <option value="장편영화">장편영화</option>
-                                    <option value="연극">연극</option>
-                                    <option value="드라마">드라마</option>
-                                    <option value="웹 컨텐츠">웹 컨텐츠</option>
-                                    <option value="광고">광고</option>
-                                    <option value="전시">전시</option>
-                                    <option value="기타">기타</option>
-                                </select>
-
-                                <select id="filterPosition" onchange="filterPosts()" class="dropdown">
-                                    <option>분야</option>
-                                    <option value="배우">배우</option>
-                                    <option value="연출">연출</option>
-                                    <option value="음향">음향</option>
-                                    <option value="카메라">카메라</option>
-                                    <option value="조명">조명</option>
-                                    <option value="작가">작가</option>
-                                    <option value="기타">기타</option>
-                                </select>
-
-                                <select id="filterGender" onchange="filterPosts()" class="dropdown">
-                                    <option>성별</option>
-                                    <option value="남성">남성</option>
-                                    <option value="여성">여성</option>
-                                    <option value="성별무관">성별무관</option>
-                                </select>
-
-                                <select id="filterOpening" onchange="filterPosts()" class="dropdown">
-                                    <option>모집 여부</option>
-                                    <option value="false">모집중</option>
-                                    <option value="true">모집 마감</option>
-                                </select>
-                            </div>
                             <!-- 검색창 -->
                             <div class="search_bar">
-                                <input type="text" id="filterText" oninput="filterSearch()"
+                                <input type="text" id="filterText"
                                     placeholder="제목, 닉네임을 입력해보세요.">
                                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
@@ -446,7 +416,14 @@
                                             <div class="user_info">
                                                 <a href="/s/api/user/detailForm/${job.userId}" style="display: flex;">
                                                     <div>
-                                                        <img class="icon" src="/img/${job.userProfileImg}">
+                                                        <c:choose>
+                                                            <c:when test="${job.userProfileImg==null}">
+                                                                <img class="icon" src="/image/noProfileImg.jpg" />
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <img class="icon" src="/img/${job.userProfileImg}">
+                                                            </c:otherwise>
+                                                        </c:choose>
 
                                                     </div>
                                                     <div class="nickname">

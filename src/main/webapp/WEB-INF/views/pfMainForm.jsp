@@ -25,7 +25,7 @@
             <body>
                 <div class="loader">
                     <div class="loading">
-                        <div class="text">
+                        <div class="load_text">
                             <h2>부산 <span class="accent">메이트</span><span class="accent2">랑</span></h2>
                         </div>
                         <label class="percent">100%</label>
@@ -50,8 +50,6 @@
                             <li><i class="fa-solid fa-fire"></i></li>
                             <li>
                                 <h2>인기 전시 공연글</h2>
-
-
                             </li>
                         </ul>
                         <div class="top_list">
@@ -67,27 +65,27 @@
                                         <div class="info">
                                             <div class="badge">
                                                 <c:if test="${best.pfGenre == '단편영화' || best.pfGenre == '장편영화'}">
-                                                    <div class="category forMusical">${best.pfGenre}</div>
+                                                    <div class="category forMovie"><i class="fa-solid fa-clapperboard"></i> ${best.pfGenre}</div>
                                                 </c:if>
                                                 <c:if test="${best.pfGenre == '연극'}">
-                                                    <div class="category forMusical">${best.pfGenre}</div>
+                                                    <div class="category forTheater"><i class="fa-solid fa-masks-theater"></i> ${best.pfGenre}</div>
                                                 </c:if>
                                                 <c:if test="${best.pfGenre == '드라마'}">
-                                                    <div class="category forMusical">${best.pfGenre}</div>
+                                                    <div class="category forDrama"><i class="fa-solid fa-panorama"></i> ${best.pfGenre}</div>
                                                 </c:if>
                                                 <c:if test="${best.pfGenre == '웹 컨텐츠'}">
-                                                    <div class="category forMusical">${best.pfGenre}</div>
+                                                    <div class="category forWebContent"><i class="fa-solid fa-icons"></i> ${best.pfGenre}</div>
                                                 </c:if>
                                                 <c:if test="${best.pfGenre == '광고'}">
-                                                    <div class="category forMusical">${best.pfGenre}</div>
+                                                    <div class="category forAdvertising"><i class="fa-solid fa-video"></i> ${best.pfGenre}</div>
                                                 </c:if>
                                                 <c:if test="${best.pfGenre == '전시'}">
-                                                    <div class="category forMusical">${best.pfGenre}</div>
+                                                    <div class="category forExhibition"><i class="fa-solid fa-palette"></i> ${best.pfGenre}</div>
                                                 </c:if>
                                                 <c:if test="${best.pfGenre == '기타'}">
-                                                    <div class="category forMusical">${best.pfGenre}</div>
+                                                    <div class="category forEtc"><i class="fa-solid fa-paperclip"></i> ${best.pfGenre}</div>
                                                 </c:if>
-                                                <div class="age for19">${best.pfAgerating}</div>
+                                                <div class="age forAge">${best.pfAgerating}</div>
                                                 <c:if test="${best.isPrice == true}">
                                                     <div class="charge">유료</div>
                                                 </c:if>
@@ -115,41 +113,8 @@
                         </ul>
 
                         <div class="filter">
-                            <div class="dropdown_list">
-                                <select id="filterGenre" onchange="filterPosts()" class="dropdown">
-                                    <option value="all">장르</option>
-                                    <option value="단편영화">단편영화</option>
-                                    <option value="장편영화">장편영화</option>
-                                    <option value="연극">연극</option>
-                                    <option value="드라마">드라마</option>
-                                    <option value="웹 컨텐츠">웹 컨텐츠</option>
-                                    <option value="광고">광고</option>
-                                    <option value="전시">전시</option>
-                                    <option value="기타">기타</option>
-                                </select>
-
-                                <select id="filterAge" onchange="filterPosts()" class="dropdown">
-                                    <option value="all">연령대</option>
-                                    <option value="모든연령">모든연령</option>
-                                    <option value="12세 이상">12세 이상</option>
-                                    <option value="15세 이상">15세 이상</option>
-                                    <option value="19세 이상">19세 이상</option>
-                                </select>
-
-                                <select id="filterRun" onchange="filterPosts()" class="dropdown">
-                                    <option value="all">상영 여부</option>
-                                    <option value="상영중">상영중</option>
-                                    <option value="상영마감">상영마감</option>
-                                </select>
-
-                                <select id="filterCharge" onchange="filterPosts()" class="dropdown">
-                                    <option value="all">유/무료</option>
-                                    <option value="유료">유료</option>
-                                    <option value="무료">무료</option>
-                                </select>
-                            </div>
                             <div class="search_bar">
-                                <input type="text" id="filterText" oninput="filterSearch()"
+                                <input type="text" id="filterText"
                                     placeholder="제목, 장르를 입력해보세요.">
                                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
@@ -169,27 +134,27 @@
                                     <div class="info">
                                         <div class="badge">
                                             <c:if test="${pf.pfGenre == '단편영화' || pf.pfGenre == '장편영화'}">
-                                                <div class="category forMusical">${pf.pfGenre}</div>
+                                                <div class="category forMovie"><i class="fa-solid fa-clapperboard"></i> ${pf.pfGenre}</div>
                                             </c:if>
                                             <c:if test="${pf.pfGenre == '연극'}">
-                                                <div class="category forMusical">${pf.pfGenre}</div>
+                                                <div class="category forTheater"><i class="fa-solid fa-masks-theater"></i> ${pf.pfGenre}</div>
                                             </c:if>
                                             <c:if test="${pf.pfGenre == '드라마'}">
-                                                <div class="category forMusical">${pf.pfGenre}</div>
+                                                <div class="category forDrama"><i class="fa-solid fa-panorama"></i> ${pf.pfGenre}</div>
                                             </c:if>
                                             <c:if test="${pf.pfGenre == '웹 컨텐츠'}">
-                                                <div class="category forMusical">${pf.pfGenre}</div>
+                                                <div class="category forWebContent"><i class="fa-solid fa-icons"></i> ${pf.pfGenre}</div>
                                             </c:if>
                                             <c:if test="${pf.pfGenre == '광고'}">
-                                                <div class="category forMusical">${pf.pfGenre}</div>
+                                                <div class="category forAdvertising"><i class="fa-solid fa-video"></i> ${pf.pfGenre}</div>
                                             </c:if>
                                             <c:if test="${pf.pfGenre == '전시'}">
-                                                <div class="category forMusical">${pf.pfGenre}</div>
+                                                <div class="category forExhibition"><i class="fa-solid fa-palette"></i> ${pf.pfGenre}</div>
                                             </c:if>
                                             <c:if test="${pf.pfGenre == '기타'}">
-                                                <div class="category forMusical">${pf.pfGenre}</div>
+                                                <div class="category forEtc"><i class="fa-solid fa-paperclip"></i> ${pf.pfGenre}</div>
                                             </c:if>
-                                            <div class="age for19">${pf.pfAgerating}</div>
+                                            <div class="age forAge">${pf.pfAgerating}</div>
                                             <c:if test="${pf.isPrice == true}">
                                                 <div class="charge">유료</div>
                                             </c:if>
