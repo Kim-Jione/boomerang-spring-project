@@ -251,7 +251,7 @@
                                     <div class="img"></div>
                                     <a href="/s/api/performance/detailForm/${pf.pfId}">
                                         <c:if test="${pf.isDead}">
-                                            <img src="/image/deadlinePf.png" class="deadline">
+                                            <img src="/image/deadlinePf.png" class="deadline2">
                                         </c:if>
                                         <img src="/img/${pf.pfThumbnail}" class="img-hover">
                                     </a>

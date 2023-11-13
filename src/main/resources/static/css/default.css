@@ -571,7 +571,7 @@ footer .wave#wave4 {
   }
 }
 
-/* 반응형 화면 모바일 */
+/* 반응형 화면 태블릿 */
 .media_menu {
   display: none;
 }
@@ -631,6 +631,7 @@ footer .wave#wave4 {
 
   .navbar__toogleBtn {
     display: block;
+    cursor: pointer;
   }
   
   .navbar .linkes {
@@ -690,7 +691,4 @@ footer .wave#wave4 {
   .navbar .bot_menu {
     left: 25vw;
   }
-
-
-  
 }

@@ -54,7 +54,7 @@
                                 </li>
 
                                 <li>
-                                    <a href=""><i class="fa-solid fa-bell"></i></a>
+                                    <a><i class="fa-solid fa-bell"></i></a>
                                 </li>
 
                                 <li class="action">
@@ -90,7 +90,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <a href="#" class="navbar__toogleBtn"  onclick="mediaToggle()">
+                            <a class="navbar__toogleBtn"  onclick="mediaToggle()">
                                 <i class="fa-solid fa-bars"></i>
                             </a>
                             <ul class="media_menu">

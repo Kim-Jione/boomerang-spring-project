@@ -30,9 +30,10 @@
 .main_post .main_title {
   display: flex;
   align-items: center;
-  padding: 0 50px;
-  font-size: 18px;
+  padding: 15px 40px;
+  font-size: 17px;
 }
+
 
 .main_post .main_title .fa-rocket {
   font-size: 32px;
@@ -40,9 +41,6 @@
   color: #1084e9;
 }
 
-/*******************/
-/* 구인정보 게시글 */
-/******************/
 .main_post .search_job_container {
   display: none;
   display: flex;
@@ -54,25 +52,24 @@
 .main_post .search_job_container .search_job_slide {
   display: flex;
   margin: 15px;
-  padding: 15px 25px 0;
-  width: 280px;
+  padding: 15px 20px;
+  width: 285px;
   height: 308px;
   background: #fff;
   border: 2px solid #d1d1d1;
   border-radius: 30px;
   position: relative;
-  cursor: pointer;
   transition: 0.2s ease-in;
 }
 
 .main_post .search_job_container .search_job_slide:hover {
-  border: 2px solid #a7a8a8e3;
+  border: 2px solid #999;
 }
 
 .project {
   display: flex;
   flex-direction: column;
-  width: 230px;
+  width: 250px;
 }
 
 .project .badge_wrapper {
@@ -175,8 +172,13 @@
   background: #efefef;
   color: #656565;
 }
+
 /* 새로 올라온 글 뱃지 */
 .project .badge_wrapper .badge_new {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   font-size: 14px;
   border-radius: 20px;
   padding: 4px 12px;
@@ -259,6 +261,7 @@
   margin: 15px 0;
   display: flex;
   justify-content: space-between;
+  z-index: 100;
 }
 
 /* 구인글 자세히 보기 */
@@ -277,40 +280,6 @@
   font-size: 12px;
 }
 
-/* 구인글 좋아요 버튼 */
-.project .content .like_btn {
-  transform: translate(-50%, -50%);
-  margin-right: 20px;
-  margin-top: 10px;
-}
-
-.project .content .like_btn .heart {
-  position: absolute;
-  background: url("/image/img.png") no-repeat;
-  background-position: left;
-  background-size: 2900%;
-  height: 90px;
-  width: 90px;
-  top: 50%;
-  left: 21%;
-  transform: translate(-50%, -50%);
-  z-index: 99;
-}
-
-.project .content .like_btn .heart.heart-active {
-  animation: animate 0.8s steps(28) 1;
-  background-position: right;
-}
-
-@keyframes animate {
-  0% {
-    background-position: left;
-  }
-  100% {
-    background-position: right;
-  }
-}
-
 /* 구분선 */
 .project .border {
   border-top: 2px solid #f2f2f2;
@@ -323,7 +292,7 @@
   font-weight: 500;
   justify-content: space-between;
   letter-spacing: -0.04em;
-  margin-top: 12px;
+  padding-top: 15px;
 }
 
 .project .myinfo .user_info {
@@ -340,6 +309,7 @@
   width: 45px;
   height: 45px;
   border: 1px solid gray;
+  margin-right: 6px;
 }
 
 .project .myinfo .user_info .nickname {
@@ -652,7 +622,7 @@
   background: #ccc;
 }
 
-.deadline {
+.deadline2 {
   position: absolute;
   bottom: -15px;
   margin-left: 15px;
