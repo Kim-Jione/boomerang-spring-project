@@ -652,11 +652,11 @@ footer .wave#wave4 {
     top: 100%;
     right: 0vw;
     width: 100vw;
-    min-width: 639px;
+    min-width: 100%;
     transition: 0.5s; 
     /* visibility: hidden;
     opacity: 0; */
-    font-size: 22px;
+    font-size: 14px;
   }
 
   .media_menu.act {
