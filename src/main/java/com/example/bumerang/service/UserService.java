@@ -222,5 +222,9 @@ public class UserService {
     public void updateProfileImage(Integer userId,String imagePath) {
         userDao.updateProfileImage(userId,imagePath);
     }
+
+    public void delete(Integer userId) {
+        userDao.delete(userId);
+    }
   
 }
