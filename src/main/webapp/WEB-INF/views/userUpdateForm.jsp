@@ -41,13 +41,13 @@
                 </div>
                 <div class="img_editor">
                   <h2 class="pro_tit">프로필 이미지 변경하기</h2>
-                  <form id="imageForm" enctype="multipart/form-data">
+                  <div id="imageForm" enctype="multipart/form-data">
                     <input id="userProfileImg" type="file" accept="image/*">
                     <div>
                       <button id="save_editor">저장</button>
                       <button id="close_editor">닫기</button>
                     </div>
-                  </form>
+                  </div>
                 </div>
                 <div class="passwordChanger">
                   <h2 class="pro_tit">비밀번호 변경하기</h2>
