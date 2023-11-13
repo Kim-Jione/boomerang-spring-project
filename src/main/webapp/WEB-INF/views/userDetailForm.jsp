@@ -146,7 +146,7 @@
             <button type="button" class="withdrawal_btn" onclick="showWithdrawalConfirm();">탈퇴하기</button>
             <div class="withdrawal_comfirm" id="withdrawalConfirmModal" style="display:none;">
                 <h2 class="pro_tit">정말로 탈퇴하시겠습니까?</h2>
-                <div>
+                <div class="confirm">
                     <button id="confirmWithdrawal" onclick="confirmWithdrawal()">탈퇴</button>
                     <button id="closeWithdrawal" onclick="closeWithdrawal()">닫기</button>
                 </div>

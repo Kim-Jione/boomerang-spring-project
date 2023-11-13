@@ -59,8 +59,7 @@ existingOption();
 function showWithdrawalConfirm() {
   var userDetailUserId = document.querySelector('.withdrawal_wrap input:nth-child(1)').value;
   var principalUserId = document.querySelector('.withdrawal_wrap input:nth-child(2)').value;
-alert(userDetailUserId)
-alert(principalUserId)
+
   if (userDetailUserId === principalUserId) {
     document.getElementById('withdrawalConfirmModal').style.display = 'block';
   } else {
