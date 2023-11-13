@@ -18,6 +18,7 @@ public class ReportDto {
     private String pfTitle;
     private String jobContentTitle;
     private String commentContent;
+    private String reportStatus;
 
 
     public Report toReport() {
