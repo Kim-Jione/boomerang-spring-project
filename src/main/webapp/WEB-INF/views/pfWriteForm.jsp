@@ -36,7 +36,7 @@
                   <input type="hidden" id="userId" value="${principal.userId}">
                 </div>
                 <div class="bt_wrap">
-                  <button type="submit" class="save" id="pfWriteBtn">등록</button>
+                  <a class="save" id="pfWriteBtn">등록</a>
                   <a href="/performance/mainForm" class="cancel">취소</a>
                 </div>
               </div>
@@ -45,16 +45,15 @@
                   <dl>
                     <dt>작품 제목</dt>
                     <dd>
-                      <input type="text" id="pfTitle" placeholder="" value="" />
+                      <input type="text" id="pfTitle" placeholder="작품 제목을 입력해주세요." maxlength="30" />
                     </dd>
                   </dl>
                 </div>
                 <div class="info">
                   <div class="left">
                     <div id="imagePreviewContainer">
-                      <img id="imagePreview" alt="미리 보기 이미지">
                     </div>
-                    <input type="file" name="thumbnail" id="pfThumbnail" onchange="previewImage(event)" />
+                    <input type="file" name="thumbnail" id="pfThumbnail" onchange="previewImage(event)" value="/image/defaultThumb.png" />
                   </div>
                   <div class="right">
                     <dl>
@@ -104,13 +103,13 @@
                     <dl>
                       <dt>공연 시간</dt>
                       <dd>
-                        <input type="number" id="pfRunningtime" value="" placeholder="00분" />
+                        <input type="text" pattern="\d*" id="pfRunningtime" placeholder="00분" maxlength="6" />
                       </dd>
                     </dl>
                     <dl>
                       <dt>예매 링크</dt>
                       <dd>
-                        <input type="text" id="pfBookingmethod" value="" placeholder="예매링크, 예매처 번호 등" />
+                        <input type="text" id="pfBookingmethod" placeholder="예매링크, 예매처 번호 등" maxlength="200" />
                       </dd>
                     </dl>
                     <dl class="select">
@@ -177,19 +176,19 @@
                     <dl>
                       <dt>제 작</dt>
                       <dd>
-                        <input type="text" id="pfProduction" value="" placeholder="제작자 또는 제작사" />
+                        <input type="text" id="pfProduction" placeholder="제작자 또는 제작사" maxlength="30" />
                       </dd>
                     </dl>
                     <dl>
                       <dt>가 격</dt>
                       <dd>
-                        <input type="number" id="pfPrice" value="" placeholder="00원" />
+                        <input type="text" pattern="\d*" id="pfPrice" placeholder="00원" maxlength="8" />
                       </dd>
                     </dl>
                     <dl>
                       <dt>위 치</dt>
                       <dd>
-                        <input type="text" id="pfLocation" value="" placeholder="공연장소" />
+                        <input type="text" id="pfLocation" placeholder="공연장소" maxlength="33" />
                       </dd>
                     </dl>
                   </div>

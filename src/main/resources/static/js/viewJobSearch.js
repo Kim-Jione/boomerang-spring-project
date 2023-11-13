@@ -120,6 +120,11 @@ function addFeedback(item) {
   activeCommentBtn();
 }
 
+// 댓글 창을 초기화 함수
+function resetForm() {
+  comment.value = "";
+}
+
 // 댓글 버튼 활성화
 function activeCommentBtn() {
   // 각 버튼 요소 선택
@@ -134,9 +139,9 @@ function activeCommentBtn() {
   removeButtons.forEach((removeButton) => {
     removeButton.addEventListener("click", removeComment);
   });
-  // reportButtons.forEach((reportButton) => {
-  //   reportButton.addEventListener("click", reportComment);
-  // });
+  reportButtons.forEach((reportButton) => {
+    reportButton.addEventListener("click", reportComment);
+  });
 }
 
 // 댓글 수정
@@ -402,6 +407,7 @@ function write() {
   }).done((res) => {
     if (res.code == 1) {
       alert(res.msg);
+      location.href = "/s/api/jobSearch/detailForm/" + data.jobId;
     } else {
       alert(res.msg);
       return false;

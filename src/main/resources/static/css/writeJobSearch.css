@@ -264,6 +264,7 @@
   margin: 5px;
   background-color: palevioletred;
   color: white;
+  transition: transform 0.3s ease-in-out;
 }
 
 .bt_wrap a.save {
@@ -271,12 +272,7 @@
   
 }
 
-.bt_wrap a.save:hover {
-  background: #fff;
-  color: #000;
-}
-
-.bt_wrap a.cancel:hover {
-  background: #000;
-  color: #fff;
+.bt_wrap a:hover {
+  transform: translateY(3px);
+  cursor: pointer;
 }

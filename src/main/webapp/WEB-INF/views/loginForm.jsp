@@ -29,11 +29,11 @@
                 <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
             <input type="text" name="user_login_id" id="userJoinId" placeholder="아이디" required>
-            <input type="password" name="user_password" id="password" placeholder="비밀번호">
-            <input type="password" name="user_password_check" id="password_check" placeholder="비밀번호"
+            <input type="password" name="user_password" id="password" placeholder="비밀번호: 대소문자,특수문자를 포함한 8자리 이상" required>
+            <input type="password" name="user_password_check" id="password_check" placeholder="비밀번호 확인"
                    required>
             <input type="email" name="user_email" id="userEmail" placeholder="email@xxxx" required>
-            <input type="text" name="user_nickname" id="userNickname" placeholder="닉네임" required>
+            <input type="text" maxlength="5" name="user_nickname" id="userNickname" placeholder="닉네임: 최대6자" required>
             <!-- <input type="number" name="user_age" placeholder="만 나이(숫자만)">
     <label for="male">남성</label>
     <input type="radio" name="user_gender" value="true">

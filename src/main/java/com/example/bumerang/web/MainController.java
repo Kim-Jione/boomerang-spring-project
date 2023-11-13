@@ -30,26 +30,33 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class MainController {
 
-	private final HttpSession session;
-	private final JobSearchService jobSearchService;
-	private final PerformanceService performanceService;
+    private final HttpSession session;
+    private final JobSearchService jobSearchService;
+    private final PerformanceService performanceService;
     private final UserService userService;
 
     // 메인 화면
     @GetMapping("/")
-	public String mainForm() {
-		return "mainForm";
-	}
+    public String mainForm() {
+        return "mainForm";
+    }
 
     // 구인정보글 메인 화면
-	@GetMapping("/jobSearch/mainForm")
-	public String jobMainForm(Model model) {
+    @GetMapping("/jobSearch/mainForm")
+    public String jobMainForm(Model model) {
+        // 테스트 위한 임시 로그인 - 메인페이지 들어오면 로그인됨
+        LoginDto loginDto = new LoginDto();
+        loginDto.setUserLoginId("ssar");
+        loginDto.setUserPassword("1234");
+        SessionUserDto loginResult = userService.findByUser(loginDto);
+        userService.login(loginResult);
+        // 테스트 위한 임시 로그인
         List<JobListDto> jobList = jobSearchService.findAllJob();
         List<JobListDto> bestJobList = jobSearchService.findAllBestJob();
-		model.addAttribute("jobList",jobList);
-		model.addAttribute("bestJobList",bestJobList);
-		return "jobMainForm";
-	}
+        model.addAttribute("jobList", jobList);
+        model.addAttribute("bestJobList", bestJobList);
+        return "jobMainForm";
+    }
 
     // 마감하기 기능
     @PutMapping("/s/api/main/deadline")
@@ -79,18 +86,28 @@ public class MainController {
         return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
 
-	// 공연글 메인 화면
-	@GetMapping("/performance/mainForm")
-	public String pfMainForm(Model model) {
-		List<PfListDto> pfList = performanceService.findAllPf();
-		List<PfListDto> bestPfList = performanceService.findAllBestPf();
-		model.addAttribute("pfList",pfList);
-		model.addAttribute("bestPfList",bestPfList);
-		return "pfMainForm";
-	}
+    // 공연글 메인 화면
+    @GetMapping("/performance/mainForm")
+    public String pfMainForm(Model model) {
+        List<PfListDto> pfList = performanceService.findAllPf();
+        List<PfListDto> bestPfList = performanceService.findAllBestPf();
+        model.addAttribute("pfList", pfList);
+        model.addAttribute("bestPfList", bestPfList);
+        return "pfMainForm";
+    }
 
     @GetMapping("/404")
     public String errorForm() {
         return "404";
+    }
+
+    @GetMapping("/main/privacyPolicy")
+    public String privayPolicy() {
+        return "privacyPolicy";
+    }
+
+    @GetMapping("/main/termOfUser")
+    public String termOfUser() {
+        return "termOfUser";
     }
 }
