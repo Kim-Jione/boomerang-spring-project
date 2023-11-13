@@ -41,7 +41,7 @@ function login() {
     if (res.code == 1) {
       location.href = "/jobSearch/mainForm";
     } else {
-      alert(res.msg);
+      alert("아이디 또는 비밀번호를 잘못 입력하셨습니다.");
       return false;
     }
   });
@@ -54,7 +54,7 @@ function join() {
   let passwordCheck = $("#password_check").val();
   let email = $("#userEmail").val();
 
-  if(validateId(id) != "유효") {
+  if (validateId(id) != "유효") {
     alert(validateId(id));
     return false;
   }
@@ -124,16 +124,16 @@ function validatePassword(password) {
 //아이디 유효성 검사
 function validateId(id) {
   // 길이 제약
-  if(id.length < 4 || id.length > 12) {
-    return "아이디는 4자리 이상 12자리 이하여야 합니다."
+  if (id.length < 4 || id.length > 12) {
+    return "아이디는 4자리 이상 12자리 이하여야 합니다.";
   }
 
   // 영어 대소문자와 숫자로만 구성
   const alphanumericRegex = /^[a-zA-Z0-9]+$/;
-  if(!alphanumericRegex.test(id)) {
-    return "아이디는 영어 대소문자와 숫자로만 구성되어야 합니다."
+  if (!alphanumericRegex.test(id)) {
+    return "아이디는 영어 대소문자와 숫자로만 구성되어야 합니다.";
   }
 
   //모든 조건 충족
-  return "유효"
+  return "유효";
 }
