@@ -77,7 +77,7 @@
                                 <ul class="detail_info">
                                     <li>
                                         <span class="accent">공연 기간</span>
-                                        <p>${pf.pfStartDate} ~ ${pf.pfDeadline}</p>
+                                        <p class="pf_during">${pf.pfStartDate} ~ ${pf.pfDeadline}</p>
                                     </li>
                                     <li>
                                         <span class="accent">장르</span>
@@ -210,12 +210,10 @@
                                 </div>
                             </c:forEach>
                         </div>
+                        </div>
                     </div>
+                    
 
-
-                    <footer class="footer">
-                        <div class="left_cover"></div>
-                    </footer>
 
                     <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
                     <script src="/js/viewPerformance.js"></script>

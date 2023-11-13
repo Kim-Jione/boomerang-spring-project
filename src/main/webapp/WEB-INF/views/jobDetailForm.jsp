@@ -19,8 +19,6 @@
                     rel="stylesheet" />
                 <!-- JQuery -->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                <!-- AJax -->
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
                 <title>BusanMate with Write</title>
             </head>
@@ -79,18 +77,20 @@
                             <div class="column">
                                 <ul class="detail_info">
                                     <li>
-                                        <span class="accent">작품명</span>
-                                        <p>${job.jobArtTitle}</p>
+                                        <span class="accent">시작 날짜</span>
+                                        <p>${job.jobStartDate}</p>
                                     </li>
+                                    
                                     <li>
                                         <span class="accent">작품 장르</span>
                                         <p>${job.jobGenre}</p>
                                     </li>
 
                                     <li>
-                                        <span class="accent">시작 예정일</span>
-                                        <p>${job.jobStartDate}</p>
+                                        <span class="accent">작품 이름</span>
+                                        <p>${job.jobArtTitle}</p>
                                     </li>
+                                    
 
                                     <li>
                                         <span class="accent">모집 인원</span>
@@ -113,7 +113,7 @@
                                     </li>
 
                                     <li>
-                                        <span class="accent">마감일</span>
+                                        <span class="accent">마감 날짜</span>
                                         <p>${job.jobDeadline}</p>
                                     </li>
                                     <li>
@@ -121,7 +121,7 @@
                                         <p>${job.jobProductionDate}</p>
                                     </li>
                                     <li>
-                                        <span class="accent">출연료</span>
+                                        <span class="accent">출연 급료</span>
                                         <p>${job.jobPay}</p>
                                     </li>
                                 </ul>
@@ -218,10 +218,7 @@
                                 </c:forEach>
                             </div>
                         </div>
-
-                        <footer class="footer">
-                            <div class="left_cover"></div>
-                        </footer>
+                        </div>
 
                         <script src="https://kit.fontawesome.com/3f247b3389.js" crossorigin="anonymous"></script>
                         <script src="/js/viewJobSearch.js"></script>

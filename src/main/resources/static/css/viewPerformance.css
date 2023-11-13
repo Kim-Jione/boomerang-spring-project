@@ -150,6 +150,10 @@
   padding-bottom: 5px;
 }
 
+.pf_info .column .detail_info .pf_during {
+  letter-spacing: -0.5px;
+}
+
 .pf_info .column .detail_info li .accent {
   font-size: 18px;
   color: #459fee;
@@ -283,7 +287,7 @@
 
 .comment_container {
   margin: 0 auto;
-  margin: 80px 50px;
+  margin: 80px 50px 300px;
 }
 
 .comment_container .top {
