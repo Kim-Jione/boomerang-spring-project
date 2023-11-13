@@ -65,52 +65,84 @@
         IF(DATEDIFF(j.job_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
         IF(DATE(j.created_at) = CURDATE(), TRUE, FALSE) AS isToday,
         IF((l.likey_count <![CDATA[ > ]]> 10), TRUE, false) AS isFame
-        FROM
+    FROM
         (SELECT * 
-			FROM job_search 
-			WHERE job_status != 'deleted') j
-        JOIN
+         FROM job_search 
+         WHERE job_status != 'deleted' AND job_id IN (SELECT job_id FROM likey WHERE user_id = #{userId})
+        ) j
+    JOIN
         (SELECT * 
-		FROM user 
-		WHERE user_status != 'deleted') u ON j.user_id = u.user_id
-        LEFT JOIN (
+         FROM user 
+         WHERE user_status != 'deleted'
+        ) u ON j.user_id = u.user_id
+    LEFT JOIN (
         SELECT job_id, COUNT(*) AS view_count 
-		  FROM view 
-		  GROUP BY job_id
-        ) v ON j.job_id = v.job_id
-        LEFT JOIN (
+        FROM view 
+        GROUP BY job_id
+    ) v ON j.job_id = v.job_id
+    LEFT JOIN (
         SELECT job_id, COUNT(*) AS comment_count 
-		  FROM comment 
-		  WHERE comment_status != 'deleted'
-		  GROUP BY job_id
-        ) c ON j.job_id = c.job_id
-        LEFT JOIN (
-        SELECT job_id, COUNT(*) AS likey_count FROM likey GROUP BY job_id
-        ) l ON j.job_id = l.job_id
-        ORDER BY
+        FROM comment 
+        WHERE comment_status != 'deleted'
+        GROUP BY job_id
+    ) c ON j.job_id = c.job_id
+    LEFT JOIN (
+        SELECT job_id, COUNT(*) AS likey_count, user_id FROM likey WHERE job_id IS NOT NULL GROUP BY job_id
+    ) l ON j.job_id = l.job_id
+    ORDER BY
         j.created_at DESC
     </select>
     <select id="likeyFindPFList" resultType="com.example.bumerang.web.dto.response.performance.PfListDto">
         SELECT
-            p.pf_id AS pfId,
-            p.pf_title AS pfTitle,
-            p.pf_location AS pfLocation,
-            p.pf_genre AS pfGenre,
-            CASE WHEN p.pf_price = 0 THEN FALSE ELSE TRUE END AS isPrice,
-            p.pf_start_date AS pfStartDate,
-            p.pf_deadline AS pfDeadline,
-            IF(DATEDIFF(p.pf_deadline, CURDATE()) <![CDATA[ < ]]> 0, true, false) AS isDead,
-            p.pf_thumbnail AS pfThumbnail,
-            p.pf_agerating AS pfAgeRating,
-            COALESCE(v.view_count, 0) AS viewCount
-        FROM performance p
-                 LEFT JOIN (
-            SELECT pf_id, COUNT(view_id) AS view_count
-            FROM VIEW
-            WHERE pf_id IS NOT NULL
-            GROUP BY pf_id
+        p.pf_id AS pfId,
+        l.likey_id AS likeyId,
+        p.pf_genre AS pfGenre,
+        p.pf_deadline AS pfDeadline,
+        p.pf_location AS pfLocation,
+        p.pf_thumbnail AS pfThumbnail,
+        p.pf_agerating AS pfAgeRating,
+        p.pf_title AS pfTitle,
+        u.user_profile_img AS userProfileImg,
+        p.pf_start_date AS pfStartDate,
+        u.user_nickname AS userNickname,
+        u.user_career AS userCareer,
+        p.user_id AS userId,
+        CASE WHEN p.pf_price = 0 THEN FALSE ELSE TRUE END AS isPrice,
+        COALESCE(v.view_count, 0) AS viewCount,
+        COALESCE(c.comment_count, 0) AS commentCount,
+        COUNT(l.pf_id) AS likeyCount,
+        p.pf_status = 'dead' AS isDead,
+        DATE(p.created_at) = CURDATE() AS isToday,
+        COUNT(l.pf_id) >= 10 AS isFame
+    FROM
+        performance p
+        LEFT JOIN likey l ON p.pf_id = l.pf_id
+        LEFT JOIN (
+            SELECT
+                pf_id,
+                COUNT(*) AS view_count
+            FROM
+                view
+            GROUP BY
+                pf_id
         ) v ON p.pf_id = v.pf_id
-        WHERE p.pf_status != 'deleted'
-        ORDER BY pfId DESC;
+        LEFT JOIN (
+            SELECT
+                pf_id,
+                COUNT(*) AS comment_count
+            FROM
+                comment
+            WHERE
+                comment_status = 'active'
+            GROUP BY
+                pf_id
+        ) c ON p.pf_id = c.pf_id
+        LEFT JOIN user u ON p.user_id = u.user_id
+    WHERE
+        l.user_id = #{userId}
+    GROUP BY
+        p.pf_id
+    ORDER BY
+        p.created_at DESC
     </select>
 </mapper>

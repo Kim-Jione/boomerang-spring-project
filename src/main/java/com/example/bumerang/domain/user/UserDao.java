@@ -13,6 +13,8 @@ import com.example.bumerang.web.dto.response.user.UserRespDto;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface UserDao {
 
     public User findById(Integer userId);
@@ -61,7 +63,7 @@ public interface UserDao {
 
     PasswdDto findByPwUpdateResult(String userPassword, Integer userId);
 
-    public void updateUfTitle(Integer userId, String ufTitle);
+    public void updateUfTitle(@Param("userId") Integer userId, @Param("ufTitle")String ufTitle);
 
     public void updateProfileImage(Integer userId, String imagePath);
 }

@@ -28,7 +28,7 @@
                                             <th>작성일시</th>
                                             <th>신고일시</th>
                                             <th>삭제</th>
-                                                    <th>삭제</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -42,7 +42,7 @@
                                             <th>작성일시</th>
                                             <th>신고일시</th>
                                             <th>삭제</th>
-                                                    <th>삭제</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -50,7 +50,8 @@
                                             <tr>
                                                 <td>${loop.index + 1}</td>
                                                 <td>
-                                                    <a href="/s/api/auth/report/jobListFormUpdate/{${job.jobId}" class="nav-link collapsed">
+                                                    <a href="/s/api/auth/report/jobDetailForm/${job.jobId}"
+                                                        class="nav-link collapsed">
                                                         ${job.jobContentTitle}
                                                     </a>
                                                 </td>

@@ -100,7 +100,7 @@ public class UserController {
         // System.err.println("userSkill"+userDetail.getUserSkill());
         // System.err.println("userEducation"+userDetail.getUserEducation());
         // System.err.println("userContactLink"+userDetail.getUserContactLink());
-        // System.err.println("uftitles"+userDetail.getUftitles());
+        System.err.println("uftitles"+userDetail.getUftitles());
         model.addAttribute("userDetail", userDetail);
         return "userUpdateForm";
     }
@@ -123,7 +123,6 @@ public class UserController {
     // 계정 상세 화면
     @GetMapping("s/api/user/detailForm/{userId}")
     public String detailForm(@PathVariable Integer userId, Model model) {
-        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(userId);
         model.addAttribute("userDetail", userDetail);
         if (userId == null) {
@@ -238,6 +237,7 @@ public class UserController {
                 System.err.println("imagePath: " + imagePath);
                 System.err.println("userId: " + userId);
                 userService.updateProfileImage(userId, imagePath);
+                principal.setUserProfileImg(imagePath);
                 return new CMRespDto<>(1, "프로필 이미지 변경 성공.", null);
             } catch (Exception e) {
                 e.printStackTrace();

@@ -57,19 +57,27 @@ existingOption();
 /* 회원 탈퇴 컨트롤 */
 //회원탈퇴 창 열기
 function showWithdrawalConfirm() {
-  var userDetailUserId = document.querySelector('.withdrawal_wrap input:nth-child(1)').value;
-  var principalUserId = document.querySelector('.withdrawal_wrap input:nth-child(2)').value;
+  var userDetailUserId = document.querySelector(
+    ".withdrawal_wrap input:nth-child(1)"
+  ).value;
+  var principalUserId = document.querySelector(
+    ".withdrawal_wrap input:nth-child(2)"
+  ).value;
 
   if (userDetailUserId === principalUserId) {
-    document.getElementById('withdrawalConfirmModal').style.display = 'block';
+    document.getElementById("withdrawalConfirmModal").style.display = "block";
   } else {
-    alert('세션이 일치하지 않습니다');
+    alert("세션이 일치하지 않습니다");
   }
 }
 
 function confirmWithdrawal() {
-  var userDetailUserId = document.querySelector('.withdrawal_wrap input:nth-child(1)').value;
-  var principalUserId = document.querySelector('.withdrawal_wrap input:nth-child(2)').value;
+  var userDetailUserId = document.querySelector(
+    ".withdrawal_wrap input:nth-child(1)"
+  ).value;
+  var principalUserId = document.querySelector(
+    ".withdrawal_wrap input:nth-child(2)"
+  ).value;
 
   if (userDetailUserId === principalUserId) {
     // AJAX를 사용하여 서버에 POST 요청 보내기
@@ -80,11 +88,11 @@ function confirmWithdrawal() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           // 성공적으로 탈퇴 처리되었을 경우의 동작
-          alert('탈퇴가 완료되었습니다.');
-          closeWithdrawal();
+          alert("탈퇴가 완료되었습니다.");
+          location.href = "/s/api/user/logout";
         } else {
           // 탈퇴 처리 중 에러가 발생한 경우의 동작
-          alert('탈퇴 처리 중 오류가 발생했습니다.');
+          alert("탈퇴 처리 중 오류가 발생했습니다.");
         }
       }
     };
@@ -92,12 +100,12 @@ function confirmWithdrawal() {
     // POST 요청 본문에 필요한 데이터를 전송
     xhr.send(JSON.stringify({ userId: userDetailUserId }));
   } else {
-    alert('세션이 일치하지 않습니다');
+    alert("세션이 일치하지 않습니다");
   }
 }
 
 function closeWithdrawal() {
-  document.getElementById('withdrawalConfirmModal').style.display = 'none';
+  document.getElementById("withdrawalConfirmModal").style.display = "none";
 }
 
 //필모그래피 컨트롤
@@ -182,7 +190,6 @@ function updateUser() {
     uftitle: $("#user_field").val(),
     userPortfolio: []
   };
-
   // UserPortfolio 객체의 개수를 가져옴
   let portfolioCount = document.querySelectorAll(".upTitle").length;
 

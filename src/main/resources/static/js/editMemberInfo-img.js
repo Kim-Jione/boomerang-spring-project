@@ -40,7 +40,6 @@ function Imginit() {
       contentType: false
     }).done((res) => {
       if (res.code == 1) {
-        alert(res.msg);
         location.href = "/s/api/user/updateForm/"+userId;
       } else {
         alert("이미지를 다시 확인해주세요.");

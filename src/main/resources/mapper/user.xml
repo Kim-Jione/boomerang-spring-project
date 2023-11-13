@@ -207,11 +207,11 @@
     </update>
 
     <update id="updateUfTitle">
-        UPDATE user_field
-        SET
-        uf_title = #{ufTitle}
-        WHERE
-        user_id = #{userId}
+        DELETE FROM user_field
+        WHERE user_id = #{userId};
+        INSERT
+        INTO user_field (uf_title, user_id)
+        VALUES (#{ufTitle}, #{userId})
     </update>
 
     <update id="updateProfileImage">

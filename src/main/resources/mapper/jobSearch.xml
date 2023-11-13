@@ -130,7 +130,7 @@
             SELECT job_id, COUNT(*) AS view_count FROM view GROUP BY job_id
         ) v ON j.job_id = v.job_id
                  LEFT JOIN (
-            SELECT job_id, COUNT(*) AS comment_count FROM comment WHERE comment_status = 'active' GROUP BY job_id
+            SELECT job_id, COUNT(*) AS comment_count FROM comment WHERE comment_status != 'deleted' GROUP BY job_id
         ) c ON j.job_id = c.job_id
                  LEFT JOIN (
             SELECT job_id, COUNT(*) AS likey_count FROM likey GROUP BY job_id

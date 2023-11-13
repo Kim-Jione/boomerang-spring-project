@@ -21,7 +21,7 @@
 
       <body>
         <%@ include file="layout/header.jsp" %>
-          <input type="hidden" value="${userDetail.userId}" id="userId">
+          <input type="hidden" value="${principal.userId}" id="userId">
           <div class="myPage">
             <!-- <section class="profile_wrap"> -->
             <div class="container">

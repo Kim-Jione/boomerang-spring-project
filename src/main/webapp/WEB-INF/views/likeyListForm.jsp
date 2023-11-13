@@ -247,7 +247,7 @@
                   <div class="img"></div>
                   <a href="/s/api/performance/detailForm/${pf.pfId}">
                     <c:if test="${pf.isDead}">
-                      <img src="/image/deadlinePf.png" class="deadline2">
+                      <img src="/image/deadlinePf.png" class="deadline">
                     </c:if>
                     <img src="/img/${pf.pfThumbnail}" class="img-hover">
                   </a>
@@ -257,8 +257,7 @@
                         <div class="category forMovie"><i class="fa-solid fa-clapperboard"></i> ${pf.pfGenre}</div>
                       </c:if>
                       <c:if test="${pf.pfGenre == '연극'}">
-                        <div class="category forTheater"><i class="fa-solid fa-masks-theater"></i> ${pf.pfGenre}
-                        </div>
+                        <div class="category forTheater"><i class="fa-solid fa-masks-theater"></i> ${pf.pfGenre}</div>
                       </c:if>
                       <c:if test="${pf.pfGenre == '드라마'}">
                         <div class="category forDrama"><i class="fa-solid fa-panorama"></i> ${pf.pfGenre}</div>
@@ -283,7 +282,7 @@
                         <div class="charge">무료</div>
                       </c:if>
                     </div>
-                    <h3 class="title">${pf.pfTitle}${pf.isDead}</h3>
+                    <h3 class="title">${pf.pfTitle}</h3>
                     <h4 class="location">${pf.pfLocation}</h4>
                     <h5 class="date">${pf.pfStartDate} ~ ${pf.pfDeadline}</h5>
                     <c:if test="${pf.isDead == true}">

@@ -181,7 +181,7 @@ function saveComment() {
     }
   }).done((res) => {
     if (res.code == 1) {
-      alert(res.msg);
+      location.reload();
     }
   });
   const editBtn = commentCard.querySelector(".editBtn");
@@ -211,7 +211,6 @@ function removeComment() {
       }
     }).done((res) => {
       if (res.code == 1) {
-        alert(res.msg);
         location.reload();
       } else {
         alert(res.msg);
@@ -372,7 +371,6 @@ function deleteJob() {
     }
   }).done((res) => {
     if (res.code == 1) {
-      alert(res.msg);
       location.href = "/jobSearch/mainForm";
     } else {
       alert(res.msg);
@@ -406,7 +404,6 @@ function write() {
     }
   }).done((res) => {
     if (res.code == 1) {
-      alert(res.msg);
       location.href = "/s/api/jobSearch/detailForm/" + data.jobId;
     } else {
       alert(res.msg);

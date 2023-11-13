@@ -16,6 +16,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.bumerang.domain.jobSearchPosition.JobSearchPositionDao;
 import com.example.bumerang.domain.likey.LikeyDao;
 import com.example.bumerang.domain.user.User;
 import com.example.bumerang.domain.user.UserDao;
@@ -40,6 +41,7 @@ public class UserService {
 
     private final HttpSession session;
     private final UserDao userDao;
+	private final JobSearchPositionDao jobSearchPositionDao;
     private final LikeyDao likeyDao;
     private final JavaMailSender emailSender;
     private final String imageUploadPath = "C:/bumerang/img/"; // 여기서 경로 수정
@@ -86,6 +88,8 @@ public class UserService {
     public UserRespDto update(UpdateDto updateDto){
         userDao.updateUser(updateDto);
         userDao.updateUfTitle(updateDto.getUserId(), updateDto.getUftitle());
+        System.err.println("updateDto.getUserId()======="+updateDto.getUserId());
+        System.err.println("updateDto.getUftitle()======="+updateDto.getUftitle());
         // 사용자 포트폴리오 수정
         List<UserPortfolio> upList = updateDto.getUserPortfolio();
         userDao.portfolioDelete(updateDto.getUserId());
@@ -108,7 +112,13 @@ public class UserService {
 
     //관심 구인글 록록
     public List<JobListDto> likeyfindAllJSList(Integer userId) {
-        return likeyDao.likeyFindSJList (userId);
+
+        List<JobListDto> findAllJob = likeyDao.likeyFindSJList(userId);
+		for (int i = 0; i < findAllJob.size(); i++) {
+			List<String> jobPositionTitle = jobSearchPositionDao.findById(findAllJob.get(i).getJobId());
+			findAllJob.get(i).setJobPositionTitle(jobPositionTitle);
+		}
+        return findAllJob;
     }
 
     // 관심 공연글 목록
