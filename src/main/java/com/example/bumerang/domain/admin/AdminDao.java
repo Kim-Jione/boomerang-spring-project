@@ -1,6 +1,7 @@
 package com.example.bumerang.domain.admin;
 
 import com.example.bumerang.web.dto.request.notice.WriteDto;
+import com.example.bumerang.web.dto.request.report.ReportDto;
 import com.example.bumerang.web.dto.response.admin.*;
 import com.example.bumerang.web.dto.response.admin.UserRespDto;
 
@@ -39,10 +40,6 @@ public interface AdminDao {
 
     NoticeDetailDto findByNoticeId(Integer noticeId);
 
-    void updateNotice(NoticeDetailDto noticeDetailDto);
-
-    void deleteNotice(Integer noticeId);
-
     List<JobListDto> findReportJobList();
 
     List<PfListDto>  findReportPfList();
@@ -76,4 +73,8 @@ public interface AdminDao {
     List<BoardCountOfWeekDto> boardCountOfWeek();
 
     List<NoticeListDto> findNoticeList();
+
+    void deleteNotice(Integer noticeId);
+
+   void  findReportJobListUpdate(Integer reportId);
 }

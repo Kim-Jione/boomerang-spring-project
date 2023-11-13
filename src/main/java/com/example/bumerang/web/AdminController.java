@@ -2,6 +2,7 @@ package com.example.bumerang.web;
 
 import com.example.bumerang.service.AdminService;
 import com.example.bumerang.web.dto.request.notice.WriteDto;
+import com.example.bumerang.web.dto.request.report.ReportDto;
 import com.example.bumerang.web.dto.response.CMRespDto;
 import com.example.bumerang.web.dto.response.admin.*;
 import lombok.RequiredArgsConstructor;
@@ -120,6 +121,7 @@ public class AdminController {
         return new CMRespDto<>(1, "구인글 정보 삭제 성공.", jobPS);
     }
 
+
     // 공연글 관리 목록 화면
     @GetMapping("/s/api/auth/manage/pfListForm")
     public String findManagePfListForm(Model model) {
@@ -159,11 +161,12 @@ public class AdminController {
         return new CMRespDto<>(1, "공연글 정보 삭제 성공.", pfPS);
     }
 
-//    @DeleteMapping("/s/api/auth/manage/noticeDelete")
-//    public  @ResponseBody CMRespDto<?> deleteNotice(@PathVariable Integer noticeId){
-//        NoticeListDto noticePS = adminService.deleNotive(noticeId);
-//        return new CMRespDto<>(1, "공지글 정보 삭제 성공.", noticePS);
-//    }
+    // 공지글 삭제 기능
+    @DeleteMapping("/s/api/auth/manage/noticeDelete/{noticeId}")
+    public @ResponseBody CMRespDto<?> deleteNotice(@PathVariable Integer noticeId) {
+        NoticeDetailDto noticePS = adminService.deleteNotive(noticeId);
+        return new CMRespDto<>(1, "공지글 정보 삭제 성공.", noticePS);
+    }
 
     // 공지글 관리 목록 화면
     @GetMapping("/s/api/auth/manage/noticeListForm")
@@ -196,12 +199,19 @@ public class AdminController {
         model.addAttribute("jobList", reportJobList);
         return "admin/report/jobListForm";
     }
+
     // 구인글 신고 상세보기 화면
     @GetMapping("/s/api/auth/report/jobDetailForm/{jobId}")
     public String findReportJobDetailForm(@PathVariable Integer jobId, Model model) {
         JobDetailDto jobPS = adminService.findByJobId(jobId);
         model.addAttribute("jobPS",jobPS);
         return "admin/report/jobDetailForm";
+    }
+//  구인글 신고화면 수정(삭제)기능
+    @PutMapping("/s/api/auth/report/jobListFormUpdate/{reportId}")
+    public @ResponseBody CMRespDto<?> findReportJobListForm(@PathVariable Integer reportId) {
+       adminService.findReportJobListUpdate(reportId);
+        return new CMRespDto<>(1, "댓글 정보 삭제 성공.", null);
     }
 
     // 공연글 신고 목록 화면
@@ -211,6 +221,7 @@ public class AdminController {
         model.addAttribute("pfList", reportPfList);
         return "admin/report/pfListForm";
     }
+
     // 공연글 신고 상세보기 화면
     @GetMapping("/s/api/auth/report/pfDetailForm/{pfId}")
     public String findReportPfDetailForm(@PathVariable Integer pfId, Model model) {

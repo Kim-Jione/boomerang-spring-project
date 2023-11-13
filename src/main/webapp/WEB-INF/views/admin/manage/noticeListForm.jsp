@@ -72,7 +72,7 @@
                 function remove(noticeId) {
                     if (confirm("공지글을 삭제하시겠습니까?")) {
                         $.ajax({
-                            url: "/manage/noticeDelete/" + noticeId,
+                            url: "/s/api/auth/manage/noticeDelete/"+noticeId,
                             type: "DELETE",
                             headers: {
                                 "Content-Type": "application/json; charset=utf-8",

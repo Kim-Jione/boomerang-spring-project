@@ -75,13 +75,13 @@
             </div>
             <script>
                 function remove(pfId) {
-                    if (confirm("공연글을 삭제하시겠습니까?")) {
+                    if (confirm("공연글 신고를 삭제하시겠습니까?")) {
                         $.ajax({
-                            url: "/manage/pfDelete/" + pfId,
+                            url: "/s/api/auth/report/pfListForm/" + pfId,
                             type: "DELETE",
                             headers: {
                                 "Content-Type": "application/json; charset=utf-8",
-                            },
+                            },;
                         }).done((res) => {
                             if (res.code == 1) {
                                 alert(res.msg);
