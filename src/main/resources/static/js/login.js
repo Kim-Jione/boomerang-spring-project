@@ -10,19 +10,15 @@ loginBtn.addEventListener("click", () => {
   container.classList.remove("active");
 });
 
-document
-  .getElementById("loginForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    login();
-  });
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+  login();
+});
 
-document
-  .getElementById("joinForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    join();
-  });
+document.getElementById("joinForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+  join();
+});
 
 function login() {
   let data = {
@@ -41,9 +37,13 @@ function login() {
     if (res.code == 1) {
       location.href = "/jobSearch/mainForm";
     } else {
-      alert(res.msg);
+      alert("로그인 실패: " + res.msg);
       return false;
     }
+  }).fail((xhr, status, error) => {
+    // Handle Ajax failures, e.g., network errors
+    console.error("Ajax request failed:", status, error);
+    alert("로그인 중 오류가 발생했습니다. 아이디 및 비밀번호를 확인해주세요.");
   });
 }
 

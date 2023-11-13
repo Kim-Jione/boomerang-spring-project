@@ -132,9 +132,6 @@ function write() {
     userId: $("#userId").val()
   };
 
-  alert("pfGenre: " + data.pfGenre);
-  alert("pfAgerating: " + data.pfAgerating);
-
   formData.append("thumbnail", $("#pfThumbnail")[0].files[0]);
   formData.append(
     "writeDto",
@@ -228,10 +225,6 @@ function update() {
       pfId: $("#pfId").val()
     };
 
-    alert("userId" + data.userId);
-    alert("pfId" + data.pfId);
-    alert("pfThumbnail" + $("#pfThumbnail")[0].files[0]);
-
     formData.append("thumbnail", $("#pfThumbnail")[0].files[0]);
     formData.append(
       "updateDto",
@@ -262,7 +255,8 @@ var isFileSelectionCanceled = false; // Flag to track if the user canceled file 
 // 이미지 미리 보기 함수
 function previewImage(event) {
   var pfThumbnail = event.target;
-  var imagePreview = document.getElementById("imagePreview");
+  var imagePreviewContainer = document.getElementById("imagePreviewContainer");
+  var defaultImagePath = "/image/defaultThumb.png";
 
   // Check if the user canceled file selection
   if (isFileSelectionCanceled) {
@@ -278,10 +272,39 @@ function previewImage(event) {
 
     // 파일을 읽어들이고, 읽기 완료되면 이미지 미리 보기 설정
     reader.onload = function (e) {
-      imagePreview.src = e.target.result;
+      // Remove any existing child elements in the imagePreviewContainer
+      while (imagePreviewContainer.firstChild) {
+        imagePreviewContainer.removeChild(imagePreviewContainer.firstChild);
+      }
+
+      // Create an image element and set its attributes
+      var img = document.createElement("img");
+      img.id = "imagePreview";
+      img.alt = "미리 보기 이미지";
+      img.src = e.target.result;
+      img.style.boxShadow = "none"; // Remove shadow effect
+
+      // Append the image element to the imagePreviewContainer
+      imagePreviewContainer.appendChild(img);
     };
 
     // 파일을 읽어들임
     reader.readAsDataURL(selectedFile);
+  } else {
+    // If no file is selected, display the default image
+    var img = document.createElement("img");
+    img.id = "imagePreview";
+    img.alt = "미리 보기 이미지";
+    img.src = defaultImagePath;
+    img.style.boxShadow = "none"; // Remove shadow effect
+
+    // Remove any existing child elements in the imagePreviewContainer
+    while (imagePreviewContainer.firstChild) {
+      imagePreviewContainer.removeChild(imagePreviewContainer.firstChild);
+    }
+
+    // Append the default image element to the imagePreviewContainer
+    imagePreviewContainer.appendChild(img);
   }
 }
+

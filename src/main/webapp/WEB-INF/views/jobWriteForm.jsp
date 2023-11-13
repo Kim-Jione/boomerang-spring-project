@@ -48,7 +48,7 @@
                   <dl>
                     <dt>제목</dt>
                     <dd>
-                      <input type="text" placeholder="글 제목을 입력하세요" id="jobContentTitle" />
+                      <input type="text" placeholder="글 제목을 입력하세요" id="jobContentTitle" maxlength="30" />
                     </dd>
                   </dl>
                 </div>
@@ -129,7 +129,7 @@
                   <dl class="art_title">
                     <dt>작품 제목</dt>
                     <dd>
-                      <input type="text" id="jobArtTitle" placeholder="작품 제목을 입력해주세요." maxlength="30" />
+                      <input type="text" id="jobArtTitle" placeholder="작품 제목을 입력해주세요." maxlength="20" />
                     </dd>
                   </dl>
                   <dl>
@@ -139,7 +139,7 @@
                   <dl>
                     <dt>예상 기간</dt>
                     <dd>
-                      <input type="text" id="jobProductionDate" placeholder="0일, 0주, 0회차 등" value="" />
+                      <input type="text" id="jobProductionDate" placeholder="0일, 0주, 0회차 등" />
                     </dd>
                   </dl>
                   <dl>
@@ -149,7 +149,7 @@
                   <dl>
                     <dt>모집 인원</dt>
                     <dd>
-                      <input type="number" id="jobTo" placeholder="숫자만 입력해주세요. 미정은 00" />
+                      <input type="text" pattern="\d*" id="jobTo" placeholder="숫자만 입력해주세요. 미정은 00" maxlength="5" />
                     </dd>
                   </dl>
                   <dl>
@@ -241,13 +241,13 @@
                   <dl>
                     <dt>연락 방법</dt>
                     <dd>
-                      <input type="text" id="jobContact" placeholder="연출: 010-****-****" />
+                      <input type="text" id="jobContact" placeholder="연출: 010-****-****" maxlength="30" />
                     </dd>
                   </dl>
                   <dl>
                     <dt>출 연 료</dt>
                     <dd>
-                      <input type="text" id="jobPay" value="" placeholder="회차당 00만 원" />
+                      <input type="text" id="jobPay" value="" placeholder="회차당 00만 원" maxlength="20" />
                     </dd>
                   </dl>
                 </div>

@@ -239,9 +239,6 @@ function update() {
     jobId: $("#jobId").val()
   };
 
-  alert("userId" + data.userId);
-  alert("jobId" + data. jobId);
-
   $.ajax("/s/api/jobSearch/update", {
     type: "PUT",
     dataType: "json",
