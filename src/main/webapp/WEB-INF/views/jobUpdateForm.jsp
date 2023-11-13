@@ -225,7 +225,7 @@
                           <span class="checkbox">
                             <i class="fa-solid fa-check check-icon"></i>
                           </span>
-                          <span class="item-text" value="성별 무관" id="jobGender">성별 무관</span>
+                          <span class="item-text" value="성별무관" id="jobGender">성별무관</span>
                         </li>
                       </ul>
                     </dd>
