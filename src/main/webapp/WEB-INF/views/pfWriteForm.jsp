@@ -36,7 +36,7 @@
                   <input type="hidden" id="userId" value="${principal.userId}">
                 </div>
                 <div class="bt_wrap">
-                  <button type="submit" class="save" id="pfWriteBtn">등록</button>
+                  <a class="save" id="pfWriteBtn">등록</a>
                   <a href="/performance/mainForm" class="cancel">취소</a>
                 </div>
               </div>

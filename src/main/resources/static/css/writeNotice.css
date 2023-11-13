@@ -49,6 +49,11 @@
   outline: none;
   touch-action: manipulation;
   transition: filter 0.2s;
+  transition: transform 0.3s ease-in-out;
+}
+
+.bt_wrap a:hover {
+  transform: translateY(3px);
 }
 
 .bt_wrap a.save {

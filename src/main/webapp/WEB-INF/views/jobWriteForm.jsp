@@ -48,7 +48,7 @@
                   <dl>
                     <dt>제목</dt>
                     <dd>
-                      <input type="text" placeholder="글 제목을 입력하세요" id="jobContentTitle" maxlength="30" />
+                      <input type="text" placeholder="글 제목을 입력하세요" id="jobContentTitle" maxlength="30" required />
                     </dd>
                   </dl>
                 </div>
