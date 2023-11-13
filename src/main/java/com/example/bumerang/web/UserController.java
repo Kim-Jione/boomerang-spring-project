@@ -43,19 +43,19 @@ public class UserController {
         User loginResult = userService.findByLogin(userLoginId);
         User nicknameResult = userService.findByNickname(userNickname);
         User emailResult = userService.findByEmail(userEmail);
-        if(loginResult!=null){
+        if (loginResult != null) {
             return new CMRespDto<>(-1, "중복되는 아이디입니다.", null);
         }
-        if(nicknameResult!=null){
+        if (nicknameResult != null) {
             return new CMRespDto<>(-1, "중복되는 닉네임입니다.", null);
         }
-        if(emailResult!=null){
+        if (emailResult != null) {
             return new CMRespDto<>(-1, "중복되는 이메일입니다.", null);
         }
         SessionUserDto joinResult = userService.join(joinDto);
         return new CMRespDto<>(1, "회원가입 성공.", joinResult);
     }
-    
+
     // 로그인과 회원가입 화면
     @GetMapping("/user/loginForm")
     public String loginForm() {
@@ -65,10 +65,10 @@ public class UserController {
     // 로그인 기능
     @PostMapping("/user/login")
     public @ResponseBody CMRespDto<?> login(@RequestBody LoginDto loginDto) {
-        System.err.println("getUserLoginId"+loginDto.getUserLoginId());
-        System.err.println("getUserPassword"+loginDto.getUserPassword());
+        System.err.println("getUserLoginId" + loginDto.getUserLoginId());
+        System.err.println("getUserPassword" + loginDto.getUserPassword());
         SessionUserDto loginResult = userService.findByUser(loginDto);
-        System.err.println("loginResultgetUserLoginId"+loginResult.getUserLoginId());
+        System.err.println("loginResultgetUserLoginId" + loginResult.getUserLoginId());
         if (loginResult == null) {
             return new CMRespDto<>(-1, "아이디 혹은 비밀번호를 잘못 입력하셨습니다.", null);
         }
@@ -107,16 +107,16 @@ public class UserController {
 
     // 회원 비밀번호 수정
     @PutMapping("/s/api/user/passwdUpdate")
-    public @ResponseBody CMRespDto<?> passwdUpdate(@RequestBody PasswdDto passwordDto){
+    public @ResponseBody CMRespDto<?> passwdUpdate(@RequestBody PasswdDto passwordDto) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = principal.getUserId();
 
-        if( userId == null ){
+        if (userId == null) {
             return new CMRespDto<>(1, "존재하지 않는 계정입니다.", null);
         }
         System.err.println("디버그userId: " + userId);
         PasswdDto passwd = userService.updatePasswd(passwordDto.getUserPassword(), userId);
-        System.err.println("디버그getUserPassword: "+passwd.getUserPassword());
+        System.err.println("디버그getUserPassword: " + passwd.getUserPassword());
         return new CMRespDto<>(1, "비밀번호 수정 성공.", passwd);
     }
 
@@ -125,8 +125,8 @@ public class UserController {
     public String detailForm(@PathVariable Integer userId, Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         UserRespDto userDetail = userService.findByDetail(userId);
-        model.addAttribute("userDetail",userDetail);
-        if(userId == null){
+        model.addAttribute("userDetail", userDetail);
+        if (userId == null) {
             return "404";
         }
         return "userDetailForm";
@@ -137,14 +137,14 @@ public class UserController {
     public String writeListForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = principal.getUserId();
-        if(userId == null){
+        if (userId == null) {
             return "404";
         }
         List<JobListDto> myJSList = jobSearchService.findMyJSList(userId);
         List<PfListDto> myPfList = performanceService.findMyPfList(userId);
         model.addAttribute("myJSList", myJSList);
         model.addAttribute("myPfList", myPfList);
-        return "writeListForm"; 
+        return "writeListForm";
     }
 
     // 아이디 찾기 화면
@@ -164,18 +164,19 @@ public class UserController {
     public String searchId(@RequestParam String userEmail, SearchIdDto userEmailId, Model model) {
         userEmailId.setUserEmail(userEmail);
         SearchIdDto userId = userService.findByLoginId(userEmailId);
-        if(userId == null){
+        if (userId == null) {
             return "redirect:/user/helpId";
         }
         model.addAttribute("userId", userId);
         return "findId";
     }
+
     // 비밀번호 찾기
     @PostMapping("/user/findPw")
     public String searchPw(@RequestParam String userEmail, SearchPwDto userEmailPw, Model model) {
         userEmailPw.setUserEmail(userEmail);
         SearchPwDto userPw = userService.findByPw(userEmailPw);
-        if(userPw == null){
+        if (userPw == null) {
             return "redirect:/user/helpPw";
         }
         SimpleMailMessage message = userService.sendMessage(userEmailPw);
@@ -187,7 +188,7 @@ public class UserController {
     public String likeyListForm(Model model) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userId = principal.getUserId();
-        if(userId == null){ 
+        if (userId == null) {
             return "404";
         }
         List<JobListDto> LikeyJSDetail = userService.likeyfindAllJSList(userId);
@@ -216,33 +217,40 @@ public class UserController {
             // System.err.println("userSkill"+userReqDto.getUserSkill());
             // System.err.println("userEducation"+userReqDto.getUserEducation());
             // System.err.println("userContactLink"+userReqDto.getUserContactLink());
-            System.err.println("uftitle"+userReqDto.getUftitle());
+            System.err.println("uftitle" + userReqDto.getUftitle());
             UserRespDto userPS = userService.update(userReqDto);
             return new CMRespDto<>(1, "사용자 정보 변경 성공", userPS);
         }
         return new CMRespDto<>(-1, "실패", null);
 
     }
-    
+
     // 프로필 이미지 수정 기능
     @PutMapping("/s/api/user/updateProfile/{userId}")
     public @ResponseBody CMRespDto<?> updateProfile(@PathVariable Integer userId,
-            @RequestPart("profileImg") MultipartFile profileImg) {
+                                                    @RequestPart("profileImg") MultipartFile profileImg) {
         SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
         Integer userPId = principal.getUserId();
         if (userId.equals(userPId)) {
             try {
                 // 썸네일 업로드 및 업데이트
                 String imagePath = userService.uploadProfileImage(profileImg);
-                System.err.println("imagePath: "+imagePath);
-                System.err.println("userId: "+userId);
+                System.err.println("imagePath: " + imagePath);
+                System.err.println("userId: " + userId);
                 userService.updateProfileImage(userId, imagePath);
                 return new CMRespDto<>(1, "프로필 이미지 변경 성공.", null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-            return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
-        }
+        return new CMRespDto<>(-1, "올바르지 않은 요청입니다.", null);
     }
+
+    @PostMapping("/user/withDraw/{userId}")
+    public @ResponseBody CMRespDto<?> withDrawUser(@PathVariable Integer userId) {
+        SessionUserDto principal = (SessionUserDto) session.getAttribute("principal");
+        userService.delete(userId);
+        return new CMRespDto<>(1, "프로필 이미지 변경 성공.", null);
+    }
+}
 

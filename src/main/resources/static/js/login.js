@@ -37,11 +37,7 @@ function login() {
     if (res.code == 1) {
       location.href = "/jobSearch/mainForm";
     } else {
-<<<<<<< HEAD
-      alert("로그인 실패: " + res.msg);
-=======
       alert("아이디 또는 비밀번호를 잘못 입력하셨습니다.");
->>>>>>> a061395cf379d17b315549302525d8fe4d15cc54
       return false;
     }
   }).fail((xhr, status, error) => {

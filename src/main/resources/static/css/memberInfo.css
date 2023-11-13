@@ -495,11 +495,16 @@ textarea {
   border: 2px solid palevioletred;
   border-radius: 10px;
   z-index: 10;
-  padding: 10px;
+  padding: 35px 10px;
 }
 
 .withdrawal_wrap .withdrawal_comfirm .pro_tit{
   color: palevioletred;
+  text-align: center;
+}
+
+.confirm {
+  text-align: center;
 }
 
 .withdrawal_wrap .withdrawal_comfirm button {
@@ -514,6 +519,7 @@ textarea {
   border-radius: 100px;
   padding: 0px 15px;
   margin-top: 8px;
+
 }
 
 .withdrawal_wrap .withdrawal_comfirm button:hover {

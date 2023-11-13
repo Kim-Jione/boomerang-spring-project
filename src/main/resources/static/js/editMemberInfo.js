@@ -56,15 +56,48 @@ existingOption();
 
 /* 회원 탈퇴 컨트롤 */
 //회원탈퇴 창 열기
-function openWithdrawalConfirmer() {
-  let confirmer = document.querySelector(".confirm_withdrwal");
-  confirmer.style.display = "block";
+function showWithdrawalConfirm() {
+  var userDetailUserId = document.querySelector('.withdrawal_wrap input:nth-child(1)').value;
+  var principalUserId = document.querySelector('.withdrawal_wrap input:nth-child(2)').value;
+
+  if (userDetailUserId === principalUserId) {
+    document.getElementById('withdrawalConfirmModal').style.display = 'block';
+  } else {
+    alert('세션이 일치하지 않습니다');
+  }
 }
 
-//회원탈퇴 창 닫기
-function closeWithdrawalConfirmer() {
-  let confirmer = document.querySelector(".confirm_withdrwal");
-  confirmer.style.display = "none";
+function confirmWithdrawal() {
+  var userDetailUserId = document.querySelector('.withdrawal_wrap input:nth-child(1)').value;
+  var principalUserId = document.querySelector('.withdrawal_wrap input:nth-child(2)').value;
+
+  if (userDetailUserId === principalUserId) {
+    // AJAX를 사용하여 서버에 POST 요청 보내기
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/user/withDraw/" + userDetailUserId, true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          // 성공적으로 탈퇴 처리되었을 경우의 동작
+          alert('탈퇴가 완료되었습니다.');
+          closeWithdrawal();
+        } else {
+          // 탈퇴 처리 중 에러가 발생한 경우의 동작
+          alert('탈퇴 처리 중 오류가 발생했습니다.');
+        }
+      }
+    };
+
+    // POST 요청 본문에 필요한 데이터를 전송
+    xhr.send(JSON.stringify({ userId: userDetailUserId }));
+  } else {
+    alert('세션이 일치하지 않습니다');
+  }
+}
+
+function closeWithdrawal() {
+  document.getElementById('withdrawalConfirmModal').style.display = 'none';
 }
 
 //필모그래피 컨트롤
