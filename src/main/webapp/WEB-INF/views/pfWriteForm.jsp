@@ -45,7 +45,7 @@
                   <dl>
                     <dt>작품 제목</dt>
                     <dd>
-                      <input type="text" id="pfTitle" placeholder="" value="" />
+                      <input type="text" id="pfTitle" placeholder="작품 제목을 입력해주세요." maxlength="30" />
                     </dd>
                   </dl>
                 </div>
