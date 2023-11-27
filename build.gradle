@@ -18,6 +18,9 @@ configurations {
 repositories {
 	mavenCentral()
 }
+bootJar {
+	duplicatesStrategy = 'exclude'
+}
 
 dependencies {
 	/* annotation */
